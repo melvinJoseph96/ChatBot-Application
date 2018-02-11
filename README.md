@@ -1,6 +1,6 @@
 # Chat Bot CO2015 Software Project
+**Dialogflow Developer Access Token:** f6b365252ccc42ceaf7b5012e2945b68
 ## Key Dates
-**7th Feb** `First Meeting with Stewart`
 
 **21st Feb** `Sprint 1 Deadline`
 
