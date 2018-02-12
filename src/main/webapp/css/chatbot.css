@@ -1,0 +1,49 @@
+#chatbot{
+	width: 270px;
+	height: 250px;
+	padding: 4px;
+	position: fixed;
+  	bottom: 0px;
+  	right: 0px;
+  	margin-bottom: 50px;
+}
+
+#titlebar{
+	height: 25px;
+	background-color: #1dadedbf;
+}
+#messages{
+	height: inherit;
+	overflow-y: scroll;
+}
+
+.message{
+	width: 250px;
+}
+
+.messagetext{
+	margin-top: 4px;
+	margin-bottom: 4px;
+	padding: 4px;
+	display: inline-block;
+}
+
+.message.user{
+	text-align: end;
+}
+
+.message.bot{
+	text-align: start;
+}
+
+.message.user .messagetext{
+	background-color: #1dadedbf;
+}
+
+.message.bot .messagetext{
+	background-color: #f1f0f0;
+}
+
+#input{
+	width: 250px;
+}
