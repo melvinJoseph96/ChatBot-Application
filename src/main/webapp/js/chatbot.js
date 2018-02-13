@@ -13,6 +13,10 @@ $(function() {
 	    }
 	});
 });
+// display main div that contains chatbot after 5000ms
+var fiveSecDelay = setTimeout(function () {
+	$("#main").fadeIn();
+},5000);
 
 function addMessage(id, message){
 	$('#messages').append("<div class=\"message " + id + "\"><div class=\"messagetext\">" + message + "</div></div>")
