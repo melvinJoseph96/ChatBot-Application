@@ -1,22 +1,35 @@
-$(function() {
+$(function() { // On page load
     console.log("loaded chatbot.js");
+
+    setTimeout(function () {
+        $("#main").fadeIn(); // display main div that contains chatbot after 5000ms
+    }, 5000);
+
     $('#input').on('keypress', function(e) { // When a key is pressed
 	    if(e.keyCode === 13 || e.which === 13){ // And the key is enter
-	        var inputMessage = $('#input'); // Get the user's message
-	        if(inputMessage.val() !== null && inputMessage.val() !== ""){ // Make sure it's not empty
-	        	if(inputMessage.val().length !== 0 && inputMessage.val().trim()){
-	        		addMessage("user", inputMessage.val()); // Display the sent message in the chat box
-                    //addMessage("bot", "") // Display the chatbot's reply
-                    inputMessage.val("") // Clear the message text box ready for another message
+	        var inputMessage = $('#input').val(); // Get the user's message
+	        if(inputMessage !== null && inputMessage !== ""){ // Make sure it's not empty
+	        	if(inputMessage.length !== 0 && inputMessage.trim()){
+	        		addMessage("user", inputMessage); // Display the sent message in the chat box
+                    $('#input').val(""); // Clear the message text box ready for another message
+                    $.ajax({ // Send the message to spring for processing
+                        type: "POST",
+                        url: "chatbot",
+                        data: JSON.stringify({
+                            "message": inputMessage
+                        }),
+                        datatype: "json",
+                        contentType: "application/json",
+                        success: function(data) {
+                            addMessage("bot", data.message) // Display the response message in the chat box
+                            $('#messages').scrollTop($('#messages')[0].scrollHeight); // Make sure the chatbox is scrolled to the bottom
+                        }
+                    });
 	        	}
 	    	}
 	    }
 	});
 });
-// display main div that contains chatbot after 5000ms
-var fiveSecDelay = setTimeout(function () {
-	$("#main").fadeIn();
-},5000);
 
 function addMessage(id, message){
 	$('#messages').append("<div class=\"message " + id + "\"><div class=\"messagetext\">" + message + "</div></div>")
