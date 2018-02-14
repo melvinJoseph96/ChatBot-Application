@@ -32,21 +32,15 @@ class ChatbotApplicationTests extends Specification {
 	ResultActions result
 
 
-	def setup(){
-		DefaultMockMvcBuilder builder = MockMvcBuilders.webAppContextSetup(this.wac);
-		this.mockMvc builder.build();
-	}
-
-//
-//	@Test
-//	def "Response for HTTP request '/'"() {
-//		given: "the context of the controller is set up"
-//		mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build()
-//		when: "I do a get '/'"
-//		result = this.mockMvc.perform(get('/'))
-//		then: "I should see the view 'index'"
-//		result.andExpect(view().name('index.html'))
-//	}
+//    @Test
+//    def "Response for HTTP request '/'"() {
+//        given: "the context of the controller is set up"
+//        mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build()
+//        when: "I do a get '/'"
+//        result = this.mockMvc.perform(get('/'))
+//        then: "I should see the view 'index'"
+//        result.andExpect(view().name('index.html'))
+//    }
 
 
 }
