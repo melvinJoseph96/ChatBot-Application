@@ -32,12 +32,12 @@ class ChatbotApplicationTests extends Specification {
 	ResultActions result
 
 
-
-	public "smokeTest"() {
-		expect:
-		true == true
+	def setup(){
+		DefaultMockMvcBuilder builder = MockMvcBuilders.webAppContextSetup(this.wac);
+		this.mockMvc builder.build();
 	}
 
+//
 //	@Test
 //	def "Response for HTTP request '/'"() {
 //		given: "the context of the controller is set up"
