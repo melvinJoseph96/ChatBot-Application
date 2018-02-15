@@ -5,6 +5,7 @@ import org.junit.runner.RunWith
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.http.MediaType
 import org.springframework.test.context.ContextConfiguration
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner
 import org.springframework.test.web.servlet.MockMvc
@@ -20,14 +21,14 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@WebMvcTest(controllers=[IndexController.class])
+@WebMvcTest(controllers=[IndexController.class,ChatbotController.class])
 @ContextConfiguration
 class ChatbotApplicationTests extends Specification {
-	@Autowired
-	WebApplicationContext wac
+    @Autowired
+    WebApplicationContext wac
 
-	MockMvc mockMvc
-	ResultActions result
+    MockMvc mockMvc
+    ResultActions result
 
     @Test
     def "Response for HTTP request '/'"() {
@@ -37,6 +38,18 @@ class ChatbotApplicationTests extends Specification {
         result = this.mockMvc.perform(get('/'))
         then: "I should see the view 'index'"
         result.andExpect(status().isOk()).andExpect(view().name('index.html'))
+    }
+
+    @Test
+    def "Response for HTTP request '/chatbot'"() {
+        given: "The context of the controller is set up"
+        mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build()
+        when: "I do a post '/chatbot' with valid json message data"
+        result = this.mockMvc.perform(post('/chatbot')
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"message\":\"test message\"}"))
+        then: "The request should be successful"
+        result.andExpect(status().is2xxSuccessful())
     }
 
 }
