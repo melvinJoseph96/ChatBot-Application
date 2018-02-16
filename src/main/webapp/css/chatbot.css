@@ -9,12 +9,15 @@
   	bottom: 0px;
   	right: 0px;
   	margin-bottom: 50px;
+    font-family: Helvetica, Arial, sans-serif;
 }
 
 #titlebar{
 	height: 25px;
 	background-color: black;
 	color: white;
+    line-height: 25px;
+    padding: 4px;
 }
 #messages{
 	height: inherit;
@@ -52,14 +55,14 @@
 	width: 250px;
 }
 
+.dialog{
+    float: right;
+}
+
 [class*='close-'] {
 	color: #777;
-	font: 14px/100% arial, sans-serif;
-	position: absolute;
-	right: 5px;
 	text-decoration: none;
 	text-shadow: 0 1px 0 #fff;
-	top: 5px;
 }
 
 .close-X:after {
