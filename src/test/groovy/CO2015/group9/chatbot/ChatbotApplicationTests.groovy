@@ -52,9 +52,4 @@ class ChatbotApplicationTests extends Specification {
         result.andExpect(status().is2xxSuccessful())
     }
 
-    @Test
-    def "minimise the chatbot"(){
-
-    }
-
 }
