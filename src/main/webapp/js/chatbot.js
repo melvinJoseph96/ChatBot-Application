@@ -4,7 +4,7 @@ $(function() { // On page load
 
     setTimeout(function () {
         $("#main").fadeIn(); // display main div that contains chatbot after 5000ms
-        addMessage("user", greetingMessage);
+        addMessage("bot", greetingMessage);
     }, 5000);
 
     $('#input').on('keypress', function(e) { // When a key is pressed
