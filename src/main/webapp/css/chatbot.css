@@ -13,7 +13,8 @@
 
 #titlebar{
 	height: 25px;
-	background-color: #1dadedbf;
+	background-color: black;
+	color: white;
 }
 #messages{
 	height: inherit;
@@ -63,4 +64,33 @@
 
 .close-X:after {
 	content: '✖';
+}
+#collapse{
+	display: none;
+	background-color: black;
+	color: white;
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	width: 270px;
+	height: 25px;
+}
+.button {
+	background-color: black;
+	padding: 10px;
+	text-align: center;
+	text-decoration: none;
+	right:-20;
+	font-weight: bold;
+}
+.expand {
+	border-radius: 60%;
+	position: fixed;
+	display: none;
+	right: 0;
+	bottom: 0;
+	color: white;
+	margin-right: 10px;
+	border: none;
+
 }

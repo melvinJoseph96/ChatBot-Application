@@ -34,3 +34,10 @@ $(function() { // On page load
 function addMessage(id, message){
 	$('#messages').append("<div class=\"message " + id + "\"><div class=\"messagetext\">" + message + "</div></div>")
 }
+function minimise(){
+    $('#titlebar').fadeOut(); //Remove titlebar from screen
+    $('#input').fadeOut(); //Remove text box from screen
+    $('#messages').fadeOut(); //Remove messages from screen
+    $('#collapse').fadeIn(); //Display collapsed chatbot
+    $('.expand').fadeIn(); //Expand button appears
+}
