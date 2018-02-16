@@ -8,9 +8,9 @@ When first loading the website, the chatbot will not be visible. By waiting for 
 
 Press the 'X' button located on the right of the titlebar of the chatbot. The chatbot will then minimise, leaving only the title bar and a button that, when pressed, will re-open the chatbot. The title bar is located at the bottom right hand corner of the web page.
 
+## Re-open the collapsed chatbot
 
-
-
+Press the round button labelled '^' found on the right hand side of the title bar which is found on the bottom right of the page. Once you have pressed this button, the whole chatbot will reopen.
 
 
 
