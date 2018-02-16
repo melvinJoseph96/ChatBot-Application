@@ -11,4 +11,9 @@ public class IndexController {
     public String index(){
         return "index.html";
     }
+
+    @RequestMapping(value = "/admin", method = RequestMethod.GET)
+    public String admin(){
+        return "adminPage.html";
+    }
 }
