@@ -41,3 +41,11 @@ function minimise(){
     $('#collapse').fadeIn(); //Display collapsed chatbot
     $('.expand').fadeIn(); //Expand button appears
 }
+
+function reopen(){
+    $('#collapse').fadeOut(); //Remove collapsed title bar from screen
+    $('.expand').fadeOut(); //Remove button from screen
+    $('#titlebar').fadeIn(); //Add titlebar to screen
+    $('#input').fadeIn(); //Add text box to screen
+    $('#messages').fadeIn(); //Add messages to screen
+}
