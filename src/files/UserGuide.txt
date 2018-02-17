@@ -12,7 +12,9 @@ Press the 'X' button located on the right of the titlebar of the chatbot. The ch
 
 Press the round button labelled '^' found on the right hand side of the title bar which is found on the bottom right of the page. Once you have pressed this button, the whole chatbot will reopen.
 
+## User is greeted by the chatbot
 
+When first loading the page and waiting 5 seconds for the chatbot to appear, the chatbot will automatically display a greeting. It will appear on the left of the chatbot as a message.
 
 
 
