@@ -77,13 +77,13 @@
 	right: 0;
 	width: 270px;
 	height: 25px;
+	padding: 4px;
 }
 .button {
 	background-color: black;
 	padding: 10px;
 	text-align: center;
 	text-decoration: none;
-	right:-20;
 	font-weight: bold;
 }
 .expand {
