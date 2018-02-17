@@ -16,8 +16,6 @@ Press the round button labelled '^' found on the right hand side of the title ba
 
 When first loading the page and waiting 5 seconds for the chatbot to appear, the chatbot will automatically display a greeting. It will appear on the left of the chatbot as a message.
 
+## Re-opening the chatbot will keep the old messages
 
-
-
-
-
+When you have closed the chatbot, press the button labelled '^' to re-open the chatbot. All the messages from the previous conversation will be displayed as they were before.
