@@ -23,6 +23,19 @@ body {
 }
 
 #search {
-    padding: 10px;
-    text-align: center;
+    padding: 10px 100px 10px 100px;
+}
+
+#search input {
+    padding: 3px;
+    top: 0;
+    float: left;
+}
+
+#search button {
+    background-color:transparent;
+    border:0;
+    right: 0;
+    padding: 0;
+    float: left;
 }
