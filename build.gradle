@@ -27,7 +27,6 @@ repositories {
 
 dependencies {
 	implementation('org.springframework.boot:spring-boot-starter-data-jpa')
-	implementation("com.h2database:h2")
 	//implementation('org.springframework.boot:spring-boot-starter-security')
 	implementation('org.springframework.boot:spring-boot-starter-web')
 	implementation('com.mashape.unirest:unirest-java:1.4.9')
