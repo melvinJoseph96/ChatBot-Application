@@ -9,6 +9,7 @@ import javax.persistence.*;
 public class User {
     private Long id;
     private String username;
+    private String password;
     private String passwordHash;
 
     @Id
@@ -27,6 +28,16 @@ public class User {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    @Transient
+    public String getPassword() {
+        return password;
+    }
+
+    @Transient
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getPasswordHash() {
