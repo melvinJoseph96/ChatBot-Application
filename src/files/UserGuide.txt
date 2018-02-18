@@ -34,7 +34,9 @@ When the chatbot loads on the page, the chatbot will automatically reply with a 
 
 The messages are easily distinguishable from the user's messages as the are on opposite sides of the chatbot and in different colours. Furthermore, the order of which the messages were sent and received determines which height they will be displayed at. The new the message, the lower down on the chat log they will appear.
 
+## Accessing the admin control panel
 
+Type /admin into the URL. This will then bring up the admin login page where you can enter your admin login details. By pressing the login button, an admin will then get re-directed to the control panel. The URL will then be /controlpanel. The panel will appear as a table where you can edit chat bot data.
 
 
 
