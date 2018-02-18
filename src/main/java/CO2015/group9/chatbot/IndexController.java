@@ -17,6 +17,12 @@ public class IndexController {
         return "login.html";
     }
 
+    @RequestMapping(value = "/register", method = RequestMethod.GET)
+    public String register(){
+        return "register.html";
+    }
+
     @RequestMapping(value = "/controlpanel", method = RequestMethod.GET)
     public String controlPanel() { return "adminPage.html";}
+
 }
