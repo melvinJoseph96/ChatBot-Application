@@ -13,13 +13,11 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.MultiValueMap;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
+import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
@@ -27,13 +25,13 @@ import java.util.Map;
 @RestController
 public class ChatbotController {
     @RequestMapping(value = "/chatbot", method = RequestMethod.POST)
-    public Message RetrieveMessage(@RequestBody Message m){
+    public Message RetrieveMessage(@RequestBody Message m, HttpServletRequest request){
         try {
             HttpResponse<JsonNode> jsonResponse = Unirest.post("https://api.dialogflow.com/v1/query")
                     .header("Authorization", "Bearer 9f76e1d51fb84e159bff6de5bf1506dd")
                     .header("Content-Type", "application/json")
                     .queryString("v", "20150910")
-                    .body("{\"lang\": \"en\",\"query\": \"" + m.getMessage() + "\",\"sessionId\": \"a\"}")
+                    .body("{\"lang\": \"en\",\"query\": \"" + m.getMessage() + "\",\"sessionId\": \"" + request.getSession().getId() + "\"}")
                     .asJson();
             JSONObject fulfillment = jsonResponse.getBody().getObject().getJSONObject("result").getJSONObject("fulfillment");
             String reply = fulfillment.getString("speech");
