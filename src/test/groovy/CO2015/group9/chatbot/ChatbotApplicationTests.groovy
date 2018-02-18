@@ -37,7 +37,7 @@ class ChatbotApplicationTests extends Specification {
         when: "I do a get '/'"
         result = this.mockMvc.perform(get('/'))
         then: "I should see the view 'index'"
-        result.andExpect(status().isOk()).andExpect(view().name('index.html'))
+        result.andExpect(status().isOk()).andExpect(view().name('index.jsp'))
     }
 
     @Test
@@ -59,7 +59,7 @@ class ChatbotApplicationTests extends Specification {
         when: "I do a get '/admin'"
         result = this.mockMvc.perform(get('/admin'))
         then: "I should see the view 'login'"
-        result.andExpect(status().isOk()).andExpect(view().name('login.html'))
+        result.andExpect(status().isOk()).andExpect(view().name('login.jsp'))
     }
 
     @Test
@@ -69,7 +69,7 @@ class ChatbotApplicationTests extends Specification {
         when: "I do a get '/controlpanel'"
         result = this.mockMvc.perform(get('/controlpanel'))
         then: "I should see the view 'adminPage'"
-        result.andExpect(status().isOk()).andExpect(view().name('adminPage.html'))
+        result.andExpect(status().isOk()).andExpect(view().name('adminPage.jsp'))
     }
 
 }
