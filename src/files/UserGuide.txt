@@ -19,3 +19,17 @@ When first loading the page and waiting 5 seconds for the chatbot to appear, the
 ## Re-opening the chatbot will keep the old messages
 
 When you have closed the chatbot, press the button labelled '^' to re-open the chatbot. All the messages from the previous conversation will be displayed as they were before.
+
+## Typing into the chatbot
+
+Once the chatbot has loaded, at the bottom of the chatbot there is a text box where you can type your questions into. By pressing the enter key, your question will be submitted to the chatbot.
+
+
+
+
+
+
+
+
+
+
