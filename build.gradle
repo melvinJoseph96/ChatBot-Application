@@ -29,6 +29,7 @@ dependencies {
 	//compile('org.springframework.boot:spring-boot-starter-data-jpa')
 	//compile('org.springframework.boot:spring-boot-starter-security')
 	compile('org.springframework.boot:spring-boot-starter-web')
+	compile('com.mashape.unirest:unirest-java:1.4.9')
 	runtime('mysql:mysql-connector-java')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 	testCompile('org.springframework.security:spring-security-test')
