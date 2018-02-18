@@ -28,7 +28,11 @@ Once the chatbot has loaded, at the bottom of the chatbot there is a text box wh
 
 After typing your message into the text box and pressing the enter key, your message will appear on the right side of the chatbot in blue.
 
+## Viewing the chatbot's response
 
+When the chatbot loads on the page, the chatbot will automatically reply with a greeting. Along with all messages from the chatbot, the messages will appear on the left hand side of the chatbot in grey. When you submit a question to the chatbot, it will respond and appear in the same place as the greeting.
+
+The messages are easily distinguishable from the user's messages as the are on opposite sides of the chatbot and in different colours. Furthermore, the order of which the messages were sent and received determines which height they will be displayed at. The new the message, the lower down on the chat log they will appear.
 
 
 
