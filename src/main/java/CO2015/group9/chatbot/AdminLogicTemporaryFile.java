@@ -5,16 +5,16 @@ import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import org.json.JSONArray;
+import org.json.JSONException;
+
 import java.util.ArrayList;
 
 public class AdminLogicTemporaryFile {
 
 
-    // Function returns an ArrayList populated with Intents
     private ArrayList<Intent> getIntents() {
         HttpResponse<JsonNode> httpResponse = null;
         ArrayList<Intent> intents = new ArrayList<>();
-        ArrayList<String> names = new ArrayList<>();
         JSONArray JSONIntents;
 
         try {
@@ -22,10 +22,11 @@ public class AdminLogicTemporaryFile {
                 .header("Authorization", "Bearer f6b365252ccc42ceaf7b5012e2945b68")
                 .header("Content-Type", "application/json").asJson();
         } catch (UnirestException e) {
-            System.out.println(e);
+            e.printStackTrace();
         }
 
         JSONIntents = httpResponse.getBody().getArray();
+        System.out.println(JSONIntents);
 
         for (int i = 0; i < JSONIntents.length(); i++) {
             String name = JSONIntents.getJSONObject(i).getString("name");
@@ -39,7 +40,7 @@ public class AdminLogicTemporaryFile {
                         .header("Authorization", "Bearer f6b365252ccc42ceaf7b5012e2945b68")
                         .header("Content-Type", "application/json").asJson();
             } catch (UnirestException e) {
-                System.out.println(e);
+                e.printStackTrace();
             }
 
             JSONArray JSONUserSays = httpResponseIntent
@@ -52,36 +53,91 @@ public class AdminLogicTemporaryFile {
                     .getJSONArray("responses");
 
             for (int j = 0; j < JSONUserSays.length(); j++) {
-                userSays.add(JSONUserSays
-                        .getJSONObject(j)
-                        .getJSONArray("data")
-                        .getJSONObject(0)
-                        .getString("text"));
+
+                try {
+
+                    userSays.add(JSONUserSays
+                            .getJSONObject(j)
+                            .getJSONArray("data")
+                            .getJSONObject(0)
+                            .getString("text"));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    System.out.println("Intent has no prompts");
+                }
             }
 
             for (int k = 0; k < JSONResponses.length() ; k++) {
-                responses.add(httpResponseIntent
-                        .getBody()
-                        .getObject()
-                        .getJSONArray("responses")
-                        .getJSONObject(0)
-                        .getJSONArray("messages")
-                        .getJSONObject(0)
-                        .getJSONArray("speech")
-                        .getString(k));
+                try {
+
+                    responses.add(JSONResponses
+                            .getJSONObject(0)
+                            .getJSONArray("messages")
+                            .getJSONObject(0)
+                            .getJSONArray("speech")
+                            .getString(k));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    System.out.println("Intent has no responses");
+                }
             }
-
-            intents.add(new Intent(name, userSays, responses));
-
+            intents.add(new Intent(intentId, name, userSays, responses));
         }
         System.out.println("");
         System.out.println("");
+        System.out.println(intents);
         return intents;
+    }
+
+    private void addIntent(String name) {
+        HttpResponse<JsonNode> httpResponse;
+
+        try {
+            httpResponse = Unirest.post("https://api.dialogflow.com/v1/intents/")
+                    .header("Authorization", "Bearer f6b365252ccc42ceaf7b5012e2945b68")
+                    .header("Content-Type", "application/json")
+                    .body("{" +
+                            "  \"contexts\": []," +
+                            "  \"events\": []," +
+                            "  \"fallbackIntent\": false," +
+                            "  \"name\": \"" + name + "\"," +
+                            "  \"priority\": 500000," +
+                            "  \"responses\": [" +
+                            "    {" +
+                            "      \"action\": \"\"," +
+                            "      \"affectedContexts\": []," +
+                            "      \"defaultResponsePlatforms\": {}," +
+                            "      \"messages\": [" +
+                            "        {" +
+                            "        }" +
+                            "      ]," +
+                            "      \"parameters\": []," +
+                            "      \"resetContexts\": false" +
+                            "    }" +
+                            "  ]," +
+                            "  \"templates\": []," +
+                            "  \"userSays\": [" +
+                            "    {" +
+                            "      \"count\": 0," +
+                            "      \"data\": [" +
+                            "        {" +
+                            "        }" +
+                            "      ]" +
+                            "    }" +
+                            "  ]," +
+                            "  \"webhookForSlotFilling\": false," +
+                            "  \"webhookUsed\": false" +
+                            "}").asJson();
+        } catch (UnirestException e) {
+            e.printStackTrace();
+        }
     }
 
     public static void main(String[] args) {
         AdminLogicTemporaryFile test = new AdminLogicTemporaryFile();
         System.out.println(test.getIntents());
+        test.addIntent("asfudg");
+
     }
 
 }
