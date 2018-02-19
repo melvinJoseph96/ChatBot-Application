@@ -121,24 +121,11 @@ public class AdminLogicTemporaryFile {
             HttpResponse<JsonNode> httpResponse = Unirest.post("https://api.dialogflow.com/v1/intents/")
                     .header("Authorization", apiKey)
                     .header("Content-Type", "application/json")
-                    .body("{\"contexts\": []," +
-                            "  \"events\": []," +
-                            "  \"fallbackIntent\": false," +
-                            "  \"name\": \"" + name + "\"," +
-                            "  \"priority\": 500000," +
-                            "  \"responses\": [{" +
-                            "      \"action\": \"\"," +
-                            "      \"affectedContexts\": []," +
-                            "      \"defaultResponsePlatforms\": {}," +
-                            "      \"messages\": [{}]," +
-                            "      \"parameters\": []," +
-                            "      \"resetContexts\": false}]," +
-                            "  \"templates\": []," +
-                            "  \"userSays\": [{" +
-                            "      \"count\": 0," +
-                            "      \"data\": [ {}]}]," +
-                            "  \"webhookForSlotFilling\": false," +
-                            "  \"webhookUsed\": false}")
+                    .body("{\"contexts\": [], \"events\": [], \"fallbackIntent\": false, \"name\": \"" +
+                            name + "\",\"priority\": 500000,\"responses\": [{\"action\": \"\",\"affectedContexts\": []," +
+                            "\"defaultResponsePlatforms\": {},\"messages\": [{}],\"parameters\": []," +
+                            "\"resetContexts\": false}],\"templates\": [],\"userSays\": [{\"count\": 0," +
+                            "\"data\": [ {}]}],\"webhookForSlotFilling\": false,\"webhookUsed\": false}")
                     .asJson();
         } catch (UnirestException e) {
             e.printStackTrace();
