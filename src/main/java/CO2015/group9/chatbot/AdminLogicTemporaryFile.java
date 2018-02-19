@@ -86,6 +86,10 @@ public class AdminLogicTemporaryFile {
         System.out.println("");
         System.out.println("");
         System.out.println(intents);
+        System.out.println("");
+
+        System.out.println("");
+
         return intents;
     }
 
@@ -133,11 +137,38 @@ public class AdminLogicTemporaryFile {
         }
     }
 
+    public void deleteIntent(String id) {
+
+        HttpResponse<JsonNode> httpResponse;
+
+        try {
+            httpResponse = Unirest.delete("https://api.dialogflow.com/v1/intents/" + id)
+                    .header("Authorization", "Bearer f6b365252ccc42ceaf7b5012e2945b68")
+                    .header("Content-Type", "application/json").asJson();
+        } catch (UnirestException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void deleteIntent(Intent intent) {
+        String id = intent.getId();
+        HttpResponse<JsonNode> httpResponse;
+
+        try {
+            httpResponse = Unirest.post("https://api.dialogflow.com/v1/intents/" + id)
+                    .header("Authorization", "Bearer f6b365252ccc42ceaf7b5012e2945b68")
+                    .header("Content-Type", "application/json").asJson();
+        } catch (UnirestException e) {
+            e.printStackTrace();
+        }
+    }
+    
     public static void main(String[] args) {
         AdminLogicTemporaryFile test = new AdminLogicTemporaryFile();
         System.out.println(test.getIntents());
-        test.addIntent("asfudg");
-
+        //test.addIntent("hbvdsafjhbd");
+        test.deleteIntent("dca75cbb-eca7-4a90-8789-2c178f0f857e");
     }
 
 }
