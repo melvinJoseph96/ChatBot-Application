@@ -194,23 +194,29 @@ public class AdminLogicTemporaryFile {
             HttpResponse<JsonNode> httpResponse = Unirest.put("https://api.dialogflow.com/v1/intents/" + id)
                     .header("Authorization", apiKey)
                     .header("Content-Type", "application/json")
-                    .body("{" +
-                            "    \"name\": \"" + intentName + "\"," +
-                            "    \"responses\": [" +
-                            "        {" +
-                            "" +
-                            "            \"messages\": [" +
-                            "                {" +
-                            "                    \"type\": 0," +
-                            "                    \"speech\": [" +
-                            responsesAsJSON +
-                            newResponseFormatted +
-                            "                    ]" +
-                            "                }" +
-                            "            ]" +
-                            "        }" +
-                            "    ]," +
-                            "    \"userSays\": [" + userSaysAsJSON + "]}").asJson();
+                    .body("{    \"name\": \"" + intentName + "\",\"responses\": [{\"messages\": [{\"type\": 0,\"speech\": [" +
+                            responsesAsJSON + newResponseFormatted + "]}]}],\"userSays\": [" + userSaysAsJSON + "]}")
+                    .asJson();
+        } catch (UnirestException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void addUserSays(String id, String newUserSays) {
+        ArrayList<Intent> intents = getIntents();
+        Intent intent = intents.stream().filter(x -> x.getId().equals(id)).findAny().orElse(null);
+        String intentName = intent.getName();
+        String userSaysAsJSON = intent.getUserSaysAsJSON();
+        String responsesAsJSON = intent.getReponsesAsJSON();
+        String newUserSaysFormatted = ",{\"data\": [{\"text\": \"" + newUserSays + "\"}]}";
+
+        try {
+            HttpResponse<JsonNode> httpResponse = Unirest.put("https://api.dialogflow.com/v1/intents/" + id)
+                    .header("Authorization", apiKey)
+                    .header("Content-Type", "application/json")
+                    .body("{    \"name\": \"" + intentName + "\",\"responses\": [{\"messages\": [{\"type\": 0,\"speech\": [" +
+                            responsesAsJSON + "]}]}],\"userSays\": [" + userSaysAsJSON + newUserSaysFormatted + "]}")
+                    .asJson();
         } catch (UnirestException e) {
             e.printStackTrace();
         }
@@ -223,6 +229,7 @@ public class AdminLogicTemporaryFile {
         //System.out.println(test.getIntentDetails("fa39fa7a-2737-41f9-9b72-7e26aa37ea3d"));
         // test.deleteIntent("c822f665-946c-47a1-b898-51d7351db821");
         test.addResponse("8a043471-028d-4645-af0a-55a698385337", "number 7");
+        test.addUserSays("8a043471-028d-4645-af0a-55a698385337", "nuber 5");
     }
 
 }
