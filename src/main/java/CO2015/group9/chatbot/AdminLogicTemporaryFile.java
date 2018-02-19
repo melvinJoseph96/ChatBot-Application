@@ -121,38 +121,25 @@ public class AdminLogicTemporaryFile {
             HttpResponse<JsonNode> httpResponse = Unirest.post("https://api.dialogflow.com/v1/intents/")
                     .header("Authorization", apiKey)
                     .header("Content-Type", "application/json")
-                    .body("{" +
-                            "  \"contexts\": []," +
+                    .body("{\"contexts\": []," +
                             "  \"events\": []," +
                             "  \"fallbackIntent\": false," +
                             "  \"name\": \"" + name + "\"," +
                             "  \"priority\": 500000," +
-                            "  \"responses\": [" +
-                            "    {" +
+                            "  \"responses\": [{" +
                             "      \"action\": \"\"," +
                             "      \"affectedContexts\": []," +
                             "      \"defaultResponsePlatforms\": {}," +
-                            "      \"messages\": [" +
-                            "        {" +
-                            "        }" +
-                            "      ]," +
+                            "      \"messages\": [{}]," +
                             "      \"parameters\": []," +
-                            "      \"resetContexts\": false" +
-                            "    }" +
-                            "  ]," +
+                            "      \"resetContexts\": false}]," +
                             "  \"templates\": []," +
-                            "  \"userSays\": [" +
-                            "    {" +
+                            "  \"userSays\": [{" +
                             "      \"count\": 0," +
-                            "      \"data\": [" +
-                            "        {" +
-                            "        }" +
-                            "      ]" +
-                            "    }" +
-                            "  ]," +
+                            "      \"data\": [ {}]}]," +
                             "  \"webhookForSlotFilling\": false," +
-                            "  \"webhookUsed\": false" +
-                            "}").asJson();
+                            "  \"webhookUsed\": false}")
+                    .asJson();
         } catch (UnirestException e) {
             e.printStackTrace();
         }
@@ -228,8 +215,8 @@ public class AdminLogicTemporaryFile {
         // test.addIntent("hbvdsafjhgfdfsghbd");
         //System.out.println(test.getIntentDetails("fa39fa7a-2737-41f9-9b72-7e26aa37ea3d"));
         // test.deleteIntent("c822f665-946c-47a1-b898-51d7351db821");
-        test.addResponse("8a043471-028d-4645-af0a-55a698385337", "number 7");
-        test.addUserSays("8a043471-028d-4645-af0a-55a698385337", "nuber 5");
+        //test.addResponse("8a043471-028d-4645-af0a-55a698385337", "number 7");
+        //test.addUserSays("8a043471-028d-4645-af0a-55a698385337", "nuber 5");
     }
 
 }
