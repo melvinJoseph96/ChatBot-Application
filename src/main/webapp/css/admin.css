@@ -39,3 +39,37 @@ body {
     padding: 0;
     float: left;
 }
+
+#content {
+    text-align: center;
+}
+
+#add {
+    width: 70%;
+    background-color: #cccccc;
+    margin: 10px;
+    padding: 5px;
+}
+
+#newIntent {
+    margin: 50px;
+}
+
+button {
+    border: transparent;
+    background-color: transparent;
+    font-weight: bold;
+}
+
+#add input[type="text"]{
+    border: transparent;
+    background-color: transparent;
+}
+
+.tr:nth-child(odd){
+    background: #b8d1f3;
+}
+
+.tr:nth-child(even){
+    background: #dae5f4;
+}
