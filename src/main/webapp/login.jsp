@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="css/admin.css">
 </head>
 <body>
-<form method="post" action="/login">
+<form method="post" action="/admin">
     <div id="bar">
         <img src="fdm-logo-anim.gif" width="120" height="60">
         <h1>Admin Login</h1>
