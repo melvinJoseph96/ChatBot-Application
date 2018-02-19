@@ -17,35 +17,34 @@ public class AdminLogicTemporaryFile {
 
 
     private JSONObject getIntentDetails(String id) {
-        HttpResponse<JsonNode> httpResponse = null;
+        JSONObject toReturn = new JSONObject();
 
         try {
-            httpResponse = Unirest.get("https://api.dialogflow.com/v1/intents/" + id)
+            HttpResponse<JsonNode> httpResponse = Unirest.get("https://api.dialogflow.com/v1/intents/" + id)
                     .header("Authorization", apiKey)
                     .header("Content-Type", "application/json").asJson();
+            toReturn = httpResponse.getBody().getObject();
         } catch (UnirestException e) {
             e.printStackTrace();
         }
 
-        return httpResponse.getBody().getObject();
+        return toReturn;
     }
 
 
     private ArrayList<Intent> getIntents() {
-        HttpResponse<JsonNode> httpResponse = null;
         ArrayList<Intent> intents = new ArrayList<>();
-        JSONArray JSONIntents;
+        JSONArray JSONIntents = new JSONArray();
 
         try {
-            httpResponse = Unirest.get("https://api.dialogflow.com/v1/intents")
+            HttpResponse<JsonNode> httpResponse = Unirest.get("https://api.dialogflow.com/v1/intents")
                     .header("Authorization", apiKey)
                 .header("Content-Type", "application/json").asJson();
+            JSONIntents = httpResponse.getBody().getArray();
         } catch (UnirestException e) {
             e.printStackTrace();
         }
 
-        JSONIntents = httpResponse.getBody().getArray();
-        System.out.println(JSONIntents);
 
         for (int i = 0; i < JSONIntents.length(); i++) {
             String name = JSONIntents.getJSONObject(i).getString("name");
@@ -99,10 +98,8 @@ public class AdminLogicTemporaryFile {
     }
 
     private void addIntent(String name) {
-        HttpResponse<JsonNode> httpResponse;
-
         try {
-            httpResponse = Unirest.post("https://api.dialogflow.com/v1/intents/")
+            HttpResponse<JsonNode> httpResponse = Unirest.post("https://api.dialogflow.com/v1/intents/")
                     .header("Authorization", apiKey)
                     .header("Content-Type", "application/json")
                     .body("{" +
@@ -144,10 +141,8 @@ public class AdminLogicTemporaryFile {
 
     private void deleteIntent(String id) {
 
-        HttpResponse<JsonNode> httpResponse;
-
         try {
-            httpResponse = Unirest.delete("https://api.dialogflow.com/v1/intents/" + id)
+            HttpResponse<JsonNode> httpResponse = Unirest.delete("https://api.dialogflow.com/v1/intents/" + id)
                     .header("Authorization", apiKey)
                     .header("Content-Type", "application/json").asJson();
         } catch (UnirestException e) {
@@ -158,10 +153,9 @@ public class AdminLogicTemporaryFile {
 
     public void deleteIntent(Intent intent) {
         String id = intent.getId();
-        HttpResponse<JsonNode> httpResponse;
 
         try {
-            httpResponse = Unirest.delete("https://api.dialogflow.com/v1/intents/" + id)
+            HttpResponse<JsonNode> httpResponse = Unirest.delete("https://api.dialogflow.com/v1/intents/" + id)
                     .header("Authorization", apiKey)
                     .header("Content-Type", "application/json").asJson();
         } catch (UnirestException e) {
@@ -197,9 +191,10 @@ public class AdminLogicTemporaryFile {
 
     public static void main(String[] args) {
         AdminLogicTemporaryFile test = new AdminLogicTemporaryFile();
-        System.out.println(test.getIntents());
-        //test.addIntent("hbvdsafjhbd");
-        //test.deleteIntent("dca75cbb-eca7-4a90-8789-2c178f0f857e");
+        test.getIntents();
+        // test.addIntent("hbvdsafjhgfdfsghbd");
+        System.out.println(test.getIntentDetails("fa39fa7a-2737-41f9-9b72-7e26aa37ea3d"));
+        test.deleteIntent("c822f665-946c-47a1-b898-51d7351db821");
     }
 
 }
