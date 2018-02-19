@@ -9,8 +9,16 @@ import java.util.Set;
 @Table(name = "roles")
 public class Role {
     private Long id;
+    @Column(unique=true, nullable=false)
     private String title;
     private Set<User> users;
+
+    public Role() {
+    }
+
+    public Role(String title) {
+        this.title = title;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

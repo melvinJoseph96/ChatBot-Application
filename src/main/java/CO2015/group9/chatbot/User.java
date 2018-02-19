@@ -8,10 +8,18 @@ import javax.persistence.*;
 @Table(name = "users")
 public class User {
     private Long id;
+    @Column(unique=true, nullable=false)
     private String username;
     private String password;
+    @Column(nullable=false)
     private String passwordHash;
     private Role role;
+
+    public User(String username, String passwordHash, Role role) {
+        this.username = username;
+        this.passwordHash = passwordHash;
+        this.role = role;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -49,7 +57,7 @@ public class User {
         this.passwordHash = passwordHash;
     }
 
-    @ManyToOne(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+    @ManyToOne(fetch=FetchType.LAZY, cascade=CascadeType.MERGE)
     @JoinColumn(name="role", referencedColumnName="id")
     public Role getRole() {
         return role;
