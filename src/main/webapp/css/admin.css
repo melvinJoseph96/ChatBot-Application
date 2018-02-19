@@ -1,5 +1,6 @@
 body {
     margin: 0;
+    text-align: center;
 }
 #bar {
     background-color: #212121;
@@ -39,3 +40,45 @@ body {
     padding: 0;
     float: left;
 }
+
+#content {
+    width: 100%;
+}
+
+#add {
+    width: 70%;
+    background-color: #cccccc;
+    margin: 10px;
+    padding: 5px;
+}
+
+#newIntent {
+    margin: 50px;
+}
+
+button {
+    border: transparent;
+    background-color: transparent;
+    font-weight: bold;
+}
+
+#add input[type="text"]{
+    border: transparent;
+    background-color: transparent;
+}
+#displayIntents{
+    margin:10px;
+    width: 70%;
+}
+#displayIntents table {
+    width: 90%;
+    border: none;
+}
+#displayIntents td {
+    padding: 4px;
+}
+
+#displayIntents tr:nth-child(odd){
+    background: #cccccc;
+}
+
