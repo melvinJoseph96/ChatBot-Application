@@ -11,28 +11,20 @@ public class IndexController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index(){
-        return "index.html";
+        return "index.jsp";
     }
 
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
     public String admin(){
-        return "login.html";
+        return "login.jsp";
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String register(){
-        return "register.html";
+        return "register.jsp";
     }
+
     @RequestMapping(value = "/controlpanel", method = RequestMethod.GET)
-    public String controlPanel(){
-        return "adminPage.html";
-    }
-//    @RequestMapping(value = "/controlpanel", method = RequestMethod.POST)
-//    public String controlPanel(@ModelAttribute("intent") Intent intent, @RequestParam(value="id", required=false, defaultValue="-1") int id) {
-//       if (id>=0){
-//
-//       }
-//        return "adminPage.html";
-//    }
+    public String controlPanel() { return "adminPage.jsp";}
 
 }

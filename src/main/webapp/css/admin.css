@@ -65,11 +65,13 @@ button {
     border: transparent;
     background-color: transparent;
 }
-
-.tr:nth-child(odd){
+#displayIntents{
+    margin:10px;
+}
+#display.tr:nth-child(odd){
     background: #b8d1f3;
 }
 
-.tr:nth-child(even){
+#display.tr:nth-child(even){
     background: #dae5f4;
 }

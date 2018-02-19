@@ -32,15 +32,16 @@
                         <td>
                         </td>
                         <td>
-                            <button onclick="addRow()">+</button>
+                            <button onclick="addRow(); return false;">+</button>
                         </td>
                     </tr>
-
                 </table>
             </form>
         </div>
         <div id="displayIntents">
+            <table id="display">
 
+            </table>
         </div>
     </div>
 </body>
