@@ -11,6 +11,7 @@ public class User {
     private String username;
     private String password;
     private String passwordHash;
+    private Role role;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -46,5 +47,15 @@ public class User {
 
     public void setPasswordHash(String passwordHash) {
         this.passwordHash = passwordHash;
+    }
+
+    @ManyToOne(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+    @JoinColumn(name="role", referencedColumnName="id")
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 }
