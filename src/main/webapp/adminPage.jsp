@@ -30,9 +30,10 @@
                             <input type="text" id="responses" placeholder="Enter the chatbot response" size="35">
                         </td>
                         <td>
+
                         </td>
                         <td>
-                            <button onclick="addRow(); return false;">+</button>
+                            <button type="submit" form="add" onclick="addRow(); return false;">+</button>
                         </td>
                     </tr>
                 </table>
