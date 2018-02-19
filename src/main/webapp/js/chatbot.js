@@ -23,6 +23,9 @@ $(function() { // On page load
                         datatype: "json",
                         contentType: "application/json",
                         success: function(data) {
+                            if (data.message.match(/[\w.]+@[a-zA-Z_-]+?(?:\.[a-zA-Z]{2,6})+/gim)){
+                            addMessage("bot", data.message.replace(data.message,'<a href="mailto:someone@example.com" >Click here to send an email.</a>' ))}
+                            else
                             addMessage("bot", data.message) // Display the response message in the chat box
                             $('#messages').scrollTop($('#messages')[0].scrollHeight); // Make sure the chatbox is scrolled to the bottom
                         }
