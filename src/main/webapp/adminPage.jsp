@@ -39,7 +39,7 @@
             </form>
         </div>
         <div id="displayIntents">
-            <table id="display">
+            <table id="display" cellpadding="0" cellspacing="0" align="center">
 
             </table>
         </div>

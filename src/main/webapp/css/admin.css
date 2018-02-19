@@ -1,5 +1,6 @@
 body {
     margin: 0;
+    text-align: center;
 }
 #bar {
     background-color: #212121;
@@ -41,7 +42,7 @@ body {
 }
 
 #content {
-    text-align: center;
+    width: 100%;
 }
 
 #add {
@@ -67,11 +68,17 @@ button {
 }
 #displayIntents{
     margin:10px;
+    width: 70%;
 }
-#display.tr:nth-child(odd){
-    background: #b8d1f3;
+#displayIntents table {
+    width: 90%;
+    border: none;
+}
+#displayIntents td {
+    padding: 4px;
 }
 
-#display.tr:nth-child(even){
-    background: #dae5f4;
+#displayIntents tr:nth-child(odd){
+    background: #cccccc;
 }
+
