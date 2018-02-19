@@ -56,7 +56,14 @@ public class AdminLogicTemporaryFile {
             JSONArray JSONUserSays = intentDetails.getJSONArray("userSays");
             JSONArray JSONResponses = intentDetails.getJSONArray("responses");
 
-            for (int j = 0; j < JSONUserSays.length(); j++) {
+            int userSaysArrLength = 0;
+            try {
+                userSaysArrLength = JSONUserSays.length();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            for (int j = 0; j < userSaysArrLength; j++) {
 
                 try {
 
@@ -71,7 +78,19 @@ public class AdminLogicTemporaryFile {
                 }
             }
 
-            for (int k = 0; k < JSONResponses.length() ; k++) {
+            int responsesArrLength = 0;
+            try {
+                responsesArrLength = JSONResponses
+                        .getJSONObject(0)
+                        .getJSONArray("messages")
+                        .getJSONObject(0)
+                        .getJSONArray("speech")
+                        .length();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            for (int k = 0; k < responsesArrLength; k++) {
                 try {
 
                     responses.add(JSONResponses
@@ -89,7 +108,7 @@ public class AdminLogicTemporaryFile {
         }
         System.out.println("");
         System.out.println("");
-        System.out.println(intents);
+        System.out.println("qwerty" + intents);
         System.out.println("");
 
         System.out.println("");
@@ -163,38 +182,47 @@ public class AdminLogicTemporaryFile {
         }
     }
 
-//    public void addUserSays(String id, String userSays){
-//        ArrayList<Intent> intents = getIntents();
-//
-//        HttpResponse<JsonNode> httpResponse;
-//
-//        try {
-//            httpResponse = Unirest.put("https://api.dialogflow.com/v1/intents/" + id)
-//                    .header("Authorization", apiKey)
-//                    .header("Content-Type", "application/json")
-//                    .body("{\n" +
-//                            "  \"userSays\": [\n" +
-//                            "    {\n" +
-//                            "      \"count\": 0,\n" +
-//                            "      \"data\": [\n" +
-//                            "        {\n" +
-//                            "          \"text\": \"sample\"\n" +
-//                            "        }\n" +
-//                            "      ]\n" +
-//                            "    }\n" +
-//                            "  ]\n" +
-//                            "}").asJson();
-//        } catch (UnirestException e) {
-//            e.printStackTrace();
-//        }
-//    }
+    public void addResponse(String id, String newResponse) {
+        ArrayList<Intent> intents = getIntents();
+        Intent intent = intents.stream().filter(x -> x.getId().equals(id)).findAny().orElse(null);
+        String intentName = intent.getName();
+        String userSaysAsJSON = intent.getUserSaysAsJSON();
+        String newResponseFormatted = ",\"" + newResponse + "\"";
+        String responsesAsJSON = intent.getReponsesAsJSON();
+
+        try {
+            HttpResponse<JsonNode> httpResponse = Unirest.put("https://api.dialogflow.com/v1/intents/" + id)
+                    .header("Authorization", apiKey)
+                    .header("Content-Type", "application/json")
+                    .body("{" +
+                            "    \"name\": \"" + intentName + "\"," +
+                            "    \"responses\": [" +
+                            "        {" +
+                            "" +
+                            "            \"messages\": [" +
+                            "                {" +
+                            "                    \"type\": 0," +
+                            "                    \"speech\": [" +
+                            responsesAsJSON +
+                            newResponseFormatted +
+                            "                    ]" +
+                            "                }" +
+                            "            ]" +
+                            "        }" +
+                            "    ]," +
+                            "    \"userSays\": [" + userSaysAsJSON + "]}").asJson();
+        } catch (UnirestException e) {
+            e.printStackTrace();
+        }
+    }
 
     public static void main(String[] args) {
         AdminLogicTemporaryFile test = new AdminLogicTemporaryFile();
         test.getIntents();
         // test.addIntent("hbvdsafjhgfdfsghbd");
-        System.out.println(test.getIntentDetails("fa39fa7a-2737-41f9-9b72-7e26aa37ea3d"));
-        test.deleteIntent("c822f665-946c-47a1-b898-51d7351db821");
+        //System.out.println(test.getIntentDetails("fa39fa7a-2737-41f9-9b72-7e26aa37ea3d"));
+        // test.deleteIntent("c822f665-946c-47a1-b898-51d7351db821");
+        test.addResponse("8a043471-028d-4645-af0a-55a698385337", "number 7");
     }
 
 }

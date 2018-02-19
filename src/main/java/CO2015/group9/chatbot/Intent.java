@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 public class Intent {
 
-    private String id;
-    private String name;
+    private String id = "";
+    private String name = "";
     private ArrayList<String> userSays;
     private ArrayList<String> responses;
 
@@ -40,6 +40,33 @@ public class Intent {
 
     public ArrayList<String> getResponses() {
         return responses;
+    }
+
+    public String getUserSaysAsJSON() {
+        StringBuilder str = new StringBuilder();
+        for (String x : userSays) {
+            str
+                    .append("{\"data\": [{\"text\": \"")
+                    .append(x)
+                    .append("\"}]},");
+        }
+        str.setLength(str.length() - 1);
+        System.out.println("JSONuser" + str.toString());
+        return str.toString();
+    }
+
+    public String getReponsesAsJSON() {
+        StringBuilder str = new StringBuilder();
+        System.out.println("resall" + responses);
+        for (String x : responses) {
+            str
+                    .append("\"")
+                    .append(x)
+                    .append("\",");
+        }
+        str.setLength(str.length() - 1);
+        System.out.println("JSONres" + str.toString());
+        return str.toString();
     }
 
     @Override
