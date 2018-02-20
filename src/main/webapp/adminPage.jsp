@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title>Admin</title>
     <link rel="stylesheet" href="css/admin.css">
+    <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/admin.js"></script>
 </head>
 <body onload="load()">

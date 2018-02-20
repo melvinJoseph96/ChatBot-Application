@@ -45,17 +45,18 @@ public class ChatbotController {
     }
 
     @RequestMapping(value = "/intents", method = RequestMethod.GET)
-    public @ResponseBody
-    ArrayList<Intent> getIntents(HttpServletRequest request){
+    public ArrayList<Intent> getIntents(HttpServletRequest request){
         try {
             HttpResponse<JsonNode> jsonResponse = Unirest.get("https://api.dialogflow.com/v1/intents")
                     .header("Authorization", "Bearer f6b365252ccc42ceaf7b5012e2945b68")
                     .header("Content-Type", "application/json")
                     .queryString("v", "20150910")
                     .asJson();
-
-            int i = 0;
-
+            JSONArray ids = jsonResponse.getBody().getObject().getJSONArray("id");
+            List<String> idsString = new ArrayList<>();
+//            for (int i=0;i<ids.length();i++){
+//                idsString.add(ids[i]);
+//            }
             return null;
 
         } catch (UnirestException e) {

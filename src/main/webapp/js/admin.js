@@ -25,16 +25,18 @@ function addRow(){
     }
 }
 function load(){
+    console.log("loaded admin.js");
     $.ajax({
+        type: "GET",
         url:'/intents',
         success: function(data) {
-            alert("w");
-            data.forEach(displayIntent());
+            displayIntent()
         }
     });
 }
 
 function displayIntent(intent){
+    console.log("display 1");
     var table = document.getElementById("display");
     var row = table.insertRow(0);
     var cell1 = row.insertCell(0);
