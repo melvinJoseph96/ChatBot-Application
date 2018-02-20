@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="css/admin.css">
     <script src="js/admin.js"></script>
 </head>
-<body>
+<body onload="load()">
     <div id="bar">
         <img src="fdm-logo-anim.gif" width="120" height="60">
         <h1>Admin Control Panel</h1>
@@ -16,33 +16,35 @@
             <input type="text" placeholder="Search" maxlength="200" size="100" height="30">
             <button type="submit" onclick="search()" ><img src="searchIcon.png" width="23" height="23"></button>
         </div>
-        <div id="newIntent">
-            <form id="add">
-                <table id="intents">
-                    <tr>
-                        <td>
-                            <input type="text" id="name" placeholder="Enter the name" size="35">
-                        </td>
-                        <td>
-                            <input type="text" id="userSays" placeholder="Enter the keywords" size="35">
-                        </td>
-                        <td>
-                            <input type="text" id="responses" placeholder="Enter the chatbot response" size="35">
-                        </td>
-                        <td>
+        <div id="allIntents">
+            <div id="newIntent">
+                <form id="add">
+                    <table id="intents">
+                        <tr>
+                            <td>
+                                <input type="text" id="name" placeholder="Enter the new name" size="35">
+                            </td>
+                            <td>
+                                <input type="text" id="userSays" placeholder="Enter the new keywords" size="35">
+                            </td>
+                            <td>
+                                <input type="text" id="responses" placeholder="Enter the new chatbot response" size="35">
+                            </td>
+                            <td>
 
-                        </td>
-                        <td>
-                            <button type="submit" form="add" onclick="addRow(); return false;">+</button>
-                        </td>
-                    </tr>
+                            </td>
+                            <td>
+                                <button type="submit" form="add" onclick="addRow(); return false;">+</button>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+            <div id="displayIntents">
+                <table id="display" cellpadding="0" cellspacing="0">
+
                 </table>
-            </form>
-        </div>
-        <div id="displayIntents">
-            <table id="display" cellpadding="0" cellspacing="0" align="center">
-
-            </table>
+            </div>
         </div>
     </div>
 </body>

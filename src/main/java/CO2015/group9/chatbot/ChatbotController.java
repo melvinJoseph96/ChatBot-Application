@@ -19,7 +19,9 @@ import org.springframework.web.client.RestTemplate;
 
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -36,6 +38,26 @@ public class ChatbotController {
             JSONObject fulfillment = jsonResponse.getBody().getObject().getJSONObject("result").getJSONObject("fulfillment");
             String reply = fulfillment.getString("speech");
             return new Message(reply, LocalDateTime.now().toString());
+        } catch (UnirestException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @RequestMapping(value = "/intents", method = RequestMethod.GET)
+    public @ResponseBody
+    ArrayList<Intent> getIntents(HttpServletRequest request){
+        try {
+            HttpResponse<JsonNode> jsonResponse = Unirest.get("https://api.dialogflow.com/v1/intents")
+                    .header("Authorization", "Bearer f6b365252ccc42ceaf7b5012e2945b68")
+                    .header("Content-Type", "application/json")
+                    .queryString("v", "20150910")
+                    .asJson();
+
+            int i = 0;
+
+            return null;
+
         } catch (UnirestException e) {
             e.printStackTrace();
             return null;
