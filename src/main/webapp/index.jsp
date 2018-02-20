@@ -14,6 +14,7 @@
         <div id="main">
             <div id="chatbot">
                 <div id="titlebar">
+                    <div id="green">&#8226;</div>
                     Chatbot
                     <div class="dialog">
                         <a href="#" class="close-X" onclick="minimise()"></a>
@@ -22,7 +23,7 @@
                 <div id="messages">
 
                 </div>
-                <input id="input" type="text">
+                <input id="input" type="text" placeholder="Type a message and hit enter to send...">
             </div>
             <div id="collapse">
                 Chat With Us

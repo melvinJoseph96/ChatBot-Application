@@ -17,6 +17,9 @@ public class IndexController {
 
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
     public String admin(Model model, String error){
+        if(error != null){
+            model.addAttribute("error", "Username or password incorrect");
+        }
         return "login.jsp";
     }
 
