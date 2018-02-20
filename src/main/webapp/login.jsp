@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -21,6 +23,9 @@
             <button type="submit" onclick="location.href='/controlpanel'">Login</button>
             <button onclick="location.href='/register'">Register</button>
         </div>
+        <c:if test="${not empty error}">
+            ${error}
+        </c:if>
     </div>
 </form>
 </body>

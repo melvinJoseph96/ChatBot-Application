@@ -30,6 +30,7 @@ dependencies {
 	implementation('org.springframework.boot:spring-boot-starter-security')
 	implementation('org.springframework.boot:spring-boot-starter-web')
     implementation('org.apache.tomcat.embed:tomcat-embed-jasper')
+	compile("javax.servlet:jstl:1.2")
 	implementation('com.mashape.unirest:unirest-java:1.4.9')
 	runtime('mysql:mysql-connector-java')
 	testImplementation('org.springframework.boot:spring-boot-starter-test')
