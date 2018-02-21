@@ -40,6 +40,7 @@
                         </tr>
                     </table>
                 </form>
+                <br>
             </div>
             <div id="displayIntents">
                 <table id="display" cellpadding="0" cellspacing="0">

@@ -50,7 +50,6 @@ body {
     background-color: #212121;
     margin: auto;
     padding: 5px;
-
 }
 #newIntent {
     margin: 10px;
@@ -68,11 +67,11 @@ button {
     color: white;
 }
 #displayIntents{
-    margin:10px;
+    margin:auto;
     width: 70%;
+    text-align: center;
 }
 #displayIntents table {
-    width: 90%;
     border: none;
     margin: auto;
 }
@@ -80,8 +79,9 @@ button {
     padding: 4px;
 }
 #displayIntents tr:nth-child(odd){
-    background: #cccccc;
+    background: #aaaaaa;
 }
-#allIntents {
-    margin: auto;
+#displayIntents tr:nth-child(even){
+    background: #dfdfdf;
 }
+
