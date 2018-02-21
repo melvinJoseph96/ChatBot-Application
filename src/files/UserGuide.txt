@@ -44,5 +44,12 @@ When you type your message into the text box using keywords such as "email", "co
 
 ## Ask questions about FDM
 
-Type into the message box on the chatbot any questions you may have about FDM. An example is "What does a FDM assessment day involve?". Once you enter the question, the chatbot will respond with the answer.
+Type into the message box on the chatbot any questions you may have about FDM. An example is "What does an FDM assessment day involve?". Once you enter the question, the chatbot will respond with the answer.
+
+## An admin can view current chatbot data
+
+Type /admin onto the end of the URL and hit enter. A login page will then be displayed where you must enter valid admin details. Once you've done that and redirected to /controlpanel, the table of data containing the intent information is displayed. The admin can then make changes to the data as they wish.
+
+
+
 
