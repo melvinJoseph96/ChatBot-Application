@@ -42,18 +42,18 @@ public class Intent {
         return responses;
     }
 
-//    public String getUserSaysAsJSON() {
-//        StringBuilder str = new StringBuilder();
-//        for (String x : userSays) {
-//            str
-//                    .append("{\"data\": [{\"text\": \"")
-//                    .append(x)
-//                    .append("\"}]},");
-//        }
-//        str.setLength(str.length() - 1);
-//        System.out.println("JSONuser" + str.toString());
-//        return str.toString();
-//    }
+    public String getUserSaysAsJSON() {
+        StringBuilder str = new StringBuilder();
+        for (String x : userSays) {
+            str
+                    .append("{\"data\": [{\"text\": \"")
+                    .append(x)
+                    .append("\"}]},");
+        }
+        str.setLength(str.length() - 1);
+        System.out.println("JSONuser" + str.toString());
+        return str.toString();
+    }
 
     public String getReponsesAsJSON() {
         StringBuilder str = new StringBuilder();
