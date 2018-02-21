@@ -55,19 +55,18 @@ public class Intent {
 //        return str.toString();
 //    }
 
-    public String getReponsesAsJSON() {
-        StringBuilder str = new StringBuilder();
-        System.out.println("resall" + responses);
-        for (String x : responses) {
-            str
-                    .append("\"")
-                    .append(x)
-                    .append("\",");
-        }
-        str.setLength(str.length() - 1);
-        System.out.println("JSONres" + str.toString());
-        return str.toString();
-    }
+//    public String getReponsesAsJSON() {
+//        StringBuilder str = new StringBuilder();
+//        for (String x : responses) {
+//            str
+//                    .append("\"")
+//                    .append(x)
+//                    .append("\",");
+//        }
+//        str.setLength(str.length() - 1);
+//        System.out.println("JSONres" + str.toString());
+//        return str.toString();
+//    }
 
     @Override
     public String toString(){
