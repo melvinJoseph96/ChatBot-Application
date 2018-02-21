@@ -1,7 +1,5 @@
 package CO2015.group9.chatbot;
 
-import org.hibernate.annotations.GeneratorType;
-
 import javax.persistence.*;
 import java.util.Set;
 

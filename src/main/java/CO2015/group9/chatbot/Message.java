@@ -1,7 +1,5 @@
 package CO2015.group9.chatbot;
 
-import java.time.LocalDateTime;
-
 public class Message {
     private String message;
     private String timestamp;
