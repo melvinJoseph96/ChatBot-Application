@@ -42,5 +42,7 @@ Type /admin into the URL. This will then bring up the admin login page where you
 
 When you type your message into the text box using keywords such as "email", "contact", "information" etc the chatbot will display a clickable link saying "Click here to send an email". When you click the link, it will create an empty email ready for you to write to the team.
 
+## Ask questions about FDM
 
+Type into the message box on the chatbot any questions you may have about FDM. An example is "What does a FDM assessment day involve?". Once you enter the question, the chatbot will respond with the answer.
 
