@@ -26,10 +26,10 @@
                 <input id="input" type="text" placeholder="Type a message and hit enter to send...">
             </div>
             <div id="collapse">
+                <div id="greenA">&#8226;</div>
                 Chat With Us
-
+                <button onclick="reopen()" style='color: white; background-color: transparent;float: right;border:none;font-size: 20px'><b>-</b></button>
             </div>
-            <button class="button expand" onclick="reopen()">^</button>
         </div>
     </body>
 </html>
