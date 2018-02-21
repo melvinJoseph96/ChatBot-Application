@@ -30,12 +30,14 @@ function load(){
         type: "GET",
         url:'/intents',
         success: function(data) {
-            displayIntent()
+            console.log("1");
+            data.forEach(displayIntent());
+            console.log("2");
         }
     });
 }
 
-function displayIntent(intent){
+function displayIntent(){
     console.log("display 1");
     var table = document.getElementById("display");
     var row = table.insertRow(0);
@@ -44,9 +46,9 @@ function displayIntent(intent){
     var cell3 = row.insertCell(2);
     var cell4 = row.insertCell(3);
     var cell5 = row.insertCell(4);
-    cell1.innerHTML = intent.name; //name
-    cell2.innerHTML = intent.userSays; //userSays
-    cell3.innerHTML = intent.responses; //responses
+    cell1.innerHTML = this.name; //name
+    cell2.innerHTML = this.userSays; //userSays
+    cell3.innerHTML = this.responses; //responses
     cell4.innerHTML = "<button onclick='return false;' style='color: green; text-shadow: 0 1px 0 #fff;'>/<button>";
     cell5.innerHTML = "<button onclick='return false;' style='color: red; text-shadow: 0 1px 0 #fff;'>X<button>";
 }

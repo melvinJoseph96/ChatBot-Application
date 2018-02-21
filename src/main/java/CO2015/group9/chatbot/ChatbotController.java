@@ -45,19 +45,66 @@ public class ChatbotController {
     }
 
     @RequestMapping(value = "/intents", method = RequestMethod.GET)
-    public ArrayList<Intent> getIntents(HttpServletRequest request){
+    public List<Intent> getIntents(HttpServletRequest request){
+        List<Intent> intentsList = new ArrayList<>();
         try {
             HttpResponse<JsonNode> jsonResponse = Unirest.get("https://api.dialogflow.com/v1/intents")
                     .header("Authorization", "Bearer f6b365252ccc42ceaf7b5012e2945b68")
                     .header("Content-Type", "application/json")
                     .queryString("v", "20150910")
                     .asJson();
-            JSONArray ids = jsonResponse.getBody().getObject().getJSONArray("id");
+            JSONArray ids = jsonResponse.getBody().getArray();
             List<String> idsString = new ArrayList<>();
-//            for (int i=0;i<ids.length();i++){
-//                idsString.add(ids[i]);
-//            }
-            return null;
+            for (int i=0;i<ids.length();i++){
+                if (ids.getJSONObject(i)!=null){
+                    JSONObject obj = ids.getJSONObject(i);
+                    idsString.add(obj.getString("id"));
+                }
+            }
+            for (String id: idsString){
+                HttpResponse<JsonNode> responseJSON = Unirest.get("https://api.dialogflow.com/v1/intents/" + id)
+                        .header("Authorization", "Bearer f6b365252ccc42ceaf7b5012e2945b68")
+                        .header("Content-Type", "application/json")
+                        .queryString("v", "20150910")
+                        .asJson();
+                JSONObject obj = responseJSON.getBody().getObject();
+                String name = obj.getString("name");
+                JSONArray userSays1 = obj.getJSONArray("userSays");
+                ArrayList<String> userSays = new ArrayList<>();
+                for (int i=0;i<userSays1.length();i++){
+                    if(userSays1.getJSONObject(i)!=null){
+                        JSONObject ob1 = userSays1.getJSONObject(i);
+                        JSONArray arr1 = ob1.getJSONArray("data");
+                        for (int j=0;j<arr1.length();j++){
+                            if(arr1.getJSONObject(j)!=null){
+                                JSONObject ob2 = arr1.getJSONObject(j);
+                                String text = ob2.getString("text");
+                                userSays.add(text);
+                            }
+                        }
+                    }
+                }
+                JSONArray responses1 = obj.getJSONArray("responses");
+                ArrayList<String> responses = new ArrayList<>();
+                for (int j=0;j<responses1.length();j++){
+                    if(responses1.getJSONObject(j)!=null){
+                        JSONObject ob3 = responses1.getJSONObject(j);
+                        JSONArray resp = ob3.getJSONArray("messages");
+                        for (int i=0;i<resp.length();i++){
+                            if(resp.getJSONObject(i)!=null){
+                                JSONObject ob4 = resp.getJSONObject(i);
+                                if (ob4.has("speech")){
+                                    Object p = ob4.get("speech");
+                                    responses.add(p.toString());
+                                }
+                            }
+                        }
+                    }
+                }
+                Intent intent = new Intent(name, userSays, responses);
+                intentsList.add(intent);
+            }
+            return intentsList;
 
         } catch (UnirestException e) {
             e.printStackTrace();
