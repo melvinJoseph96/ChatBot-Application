@@ -9,6 +9,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class AdminLogic {
 
@@ -78,30 +79,26 @@ public class AdminLogic {
                 }
             }
 
-            int responsesArrLength = 0;
-            try {
-                responsesArrLength = JSONResponses
-                        .getJSONObject(0)
-                        .getJSONArray("messages")
-                        .getJSONObject(0)
-                        .getJSONArray("speech")
-                        .length();
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-
-            for (int k = 0; k < responsesArrLength; k++) {
-                try {
-
-                    responses.add(JSONResponses
-                            .getJSONObject(0)
-                            .getJSONArray("messages")
-                            .getJSONObject(0)
-                            .getJSONArray("speech")
-                            .getString(k));
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                    System.out.println("Intent has no responses");
+            for (int j = 0; j < JSONResponses.length(); j++) {
+                if (JSONResponses.getJSONObject(j) != null) {
+                    JSONObject ob3 = JSONResponses.getJSONObject(j);
+                    JSONArray resp = ob3.getJSONArray("messages");
+                    for (int k = 0; k < resp.length(); k++) {
+                        if (resp.getJSONObject(k) != null) {
+                            JSONObject ob4 = resp.getJSONObject(k);
+                            if (ob4.has("speech")) {
+                                Object p = ob4.get("speech");
+                                String pStr = p.toString();
+                                StringBuilder sb = new StringBuilder();
+                                for (int t=0;t<pStr.length();t++){
+                                    if (!(pStr.charAt(t) == '[')&&!(pStr.charAt(t) == ']')&&!(pStr.charAt(t) == '"')){
+                                        sb.append(pStr.charAt(t));
+                                    }
+                                }
+                                responses.add(sb.toString());
+                            }
+                        }
+                    }
                 }
             }
             intents.add(new Intent(intentId, name, userSays, responses));
@@ -110,7 +107,6 @@ public class AdminLogic {
         System.out.println("");
         System.out.println("qwerty" + intents);
         System.out.println("");
-
         System.out.println("");
 
         return intents;
