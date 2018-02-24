@@ -1,46 +1,50 @@
 function search() {
-    var input = document.getElementById("searchBar");
-    var table = document.getElementById("display");
-    var searchLower = input.value.toLowerCase();
-    var tr = table.getElementsByTagName("tr");
-    for (var i = 0; i < tr.length; i++) {
-        var td = tr[i].getElementsByTagName("td")[2];
-        if (td) {
-            if (td.innerHTML.toLowerCase().indexOf(searchLower) > -1) {
-                tr[i].style.display = "";
-            } else {
-                tr[i].style.display = "none";
+    var table = document.getElementById("display"); // Get the table
+    var input = document.getElementById("search"); // Get admin input
+    var inputLower = input.value.toLowerCase(); // Put all characters to lower case
+    var tr = table.getElementsByTagName("tr"); // Get all rows from table
+    for (var i = 0; i < tr.length; i++) { // For each row in the table
+        var td0 = tr[i].getElementsByTagName("td")[0]; // Get the cell at index 0 (1st column)
+        var td1 = tr[i].getElementsByTagName("td")[1]; // Get the cell at index 1 (2nd column)
+        var td2 = tr[i].getElementsByTagName("td")[2]; // Get the cell at index 2 (3rd column)
+        if (td0 || td1 || td2) { // If it exists
+            if ((td0.innerHTML.toLowerCase().indexOf(inputLower) >= 0)||(td1.innerHTML.toLowerCase().indexOf(inputLower) >= 0)||(td2.innerHTML.toLowerCase().indexOf(inputLower) >= 0)) { // If the data within the cells matches the searched value
+                tr[i].style.display = ""; // Make  row visible
+            } else { // Otherwise
+                tr[i].style.display = "none"; // Make invisible
             }
         }
     }
 }
 
 function addRow(){
-    var x = document.getElementById("name").value;
+    var x = document.getElementById("name").value; // get admin input values
     var y = document.getElementById("userSays").value;
     var z = document.getElementById("responses").value;
-    if (x.length>=1 && y.length>=1 && z.length>=1) {
-        var table = document.getElementById("display");
+    if (x.length>=1 && y.length>=1 && z.length>=1) { // check data is added to each
+        var table = document.getElementById("display"); // add new row to the table
         var row = table.insertRow(0);
         var cell1 = row.insertCell(0);
         var cell2 = row.insertCell(1);
         var cell3 = row.insertCell(2);
         var cell4 = row.insertCell(3);
         var cell5 = row.insertCell(4);
-        cell1.innerHTML = document.getElementById("name").value;
+        cell1.innerHTML = document.getElementById("name").value; // and set the cell values to the inputs
         cell2.innerHTML = document.getElementById("userSays").value;
         cell3.innerHTML = document.getElementById("responses").value;
-        cell4.innerHTML = "<button onclick='return false;' style='color: green; text-shadow: 0 1px 0 #fff;'>/<button>";
-        cell5.innerHTML = "<button onclick='return false;' style='color: red; text-shadow: 0 1px 0 #fff;'>X<button>";
+        cell4.innerHTML = "<button onclick='return false;' style='color: green;'>/<button>"; // adding the edit and delete buttons
+        cell5.innerHTML = "<button onclick='return false;' style='color: red;'>X<button>";
     }
 }
 function load(){
     console.log("loaded admin.js");
+    // when the page loads
+    // got to /intents to get all the intent information from dialogflow
     $.ajax({
         type: "GET",
         url:'/intents',
         success: function(data) {
-            // data.forEach(displayIntent());
+            // for each intent received, add it to the table
             for (var i=0; i<data.length;i++){
                 displayIntent(data[i]);
             }
@@ -49,16 +53,16 @@ function load(){
 }
 
 function displayIntent(intent){
-    var table = document.getElementById("display");
-    var row = table.insertRow(0);
-    var cell1 = row.insertCell(0);
+    var table = document.getElementById("display"); // get the display table
+    var row = table.insertRow(0); // insert a row
+    var cell1 = row.insertCell(0); // insert 5 cells
     var cell2 = row.insertCell(1);
     var cell3 = row.insertCell(2);
     var cell4 = row.insertCell(3);
     var cell5 = row.insertCell(4);
-    cell1.innerHTML = intent.name; //name
-    cell2.innerHTML = intent.userSays; //userSays
-    cell3.innerHTML = intent.responses; //responses
-    cell4.innerHTML = "<button onclick='return false;' style='color: green;'>/<button>";
-    cell5.innerHTML = "<button onclick='return false;' style='color: red;'>X<button>";
+    cell1.innerHTML = intent.name; //set cell data to intent name
+    cell2.innerHTML = intent.userSays; //set cell data to intent's userSays
+    cell3.innerHTML = intent.responses; //set cell data to intent's responses
+    cell4.innerHTML = "<button onclick='return false;' style='color: green;'>/<button>"; // add edit button
+    cell5.innerHTML = "<button onclick='return false;' style='color: red;'>X<button>"; // add delete button
 }
