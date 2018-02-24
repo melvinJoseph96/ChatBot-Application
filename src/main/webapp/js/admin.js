@@ -1,6 +1,6 @@
 function search() {
     var table = document.getElementById("display"); // Get the table
-    var input = document.getElementById("search"); // Get admin input
+    var input = document.getElementById("searchBar"); // Get admin input
     var inputLower = input.value.toLowerCase(); // Put all characters to lower case
     var tr = table.getElementsByTagName("tr"); // Get all rows from table
     for (var i = 0; i < tr.length; i++) { // For each row in the table
