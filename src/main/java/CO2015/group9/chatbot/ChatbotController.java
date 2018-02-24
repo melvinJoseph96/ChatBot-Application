@@ -33,7 +33,7 @@ public class ChatbotController {
     }
 
     @RequestMapping(value = "/intents", method = RequestMethod.GET)
-    public List<Intent> getIntents(HttpServletRequest request){
+    public List<Intent> getIntents(){
         AdminLogic admin = new AdminLogic();
         return admin.getIntents();
     }

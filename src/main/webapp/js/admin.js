@@ -1,8 +1,18 @@
 function search() {
-
-}
-function login(){
-
+    var input = document.getElementById("searchBar");
+    var table = document.getElementById("display");
+    var searchLower = input.value.toLowerCase();
+    var tr = table.getElementsByTagName("tr");
+    for (var i = 0; i < tr.length; i++) {
+        var td = tr[i].getElementsByTagName("td")[2];
+        if (td) {
+            if (td.innerHTML.toLowerCase().indexOf(searchLower) > -1) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+            }
+        }
+    }
 }
 
 function addRow(){

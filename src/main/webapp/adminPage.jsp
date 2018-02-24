@@ -14,8 +14,7 @@
     </div>
     <div id="content">
         <div id="search">
-            <input type="text" placeholder="Search" maxlength="200" size="100" height="30">
-            <button type="submit" onclick="search()" ><img src="searchIcon.png" width="23" height="23"></button>
+            <input id="searchBar" type="text" placeholder="Search" maxlength="200" size="100" height="30" onkeyup="search()">
         </div>
         <div id="allIntents">
             <div id="newIntent">
