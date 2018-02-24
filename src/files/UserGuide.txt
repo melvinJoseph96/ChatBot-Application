@@ -50,6 +50,8 @@ Type into the message box on the chatbot any questions you may have about FDM. A
 
 Type /admin onto the end of the URL and hit enter. A login page will then be displayed where you must enter valid admin details. Once you've done that and redirected to /controlpanel, the table of data containing the intent information is displayed. The admin can then make changes to the data as they wish.
 
+## An admin can search through the intents
 
+Click on the search bar found at the top of the admin control panel. Begin typing into this text box, it can be he intent's name, the user's question or the chatbot's response. As you type in characters, the intents that match your input will be displayed. All other intents that do not match your input are removed from the page.
 
 
