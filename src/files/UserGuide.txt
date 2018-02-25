@@ -58,3 +58,17 @@ Click on the search bar found at the top of the admin control panel. Begin typin
 
 Type your message into the text box using keywords such as "email", "send", "message" etc the chatbot will display a message saying "Which team you want to send an email to?" and some buttons below with your options. After clicking the button you want, it will create an empty email ready for you to write to the team you chose.
 
+## Sound plays when chatbot message received
+
+Once you have sent the chatbot a message, wait. Once the chatbot has a response, the chatbot will play a sound to indicate that the user has received a message and then the message will appear on screen.
+
+
+
+
+
+
+
+
+
+
+
