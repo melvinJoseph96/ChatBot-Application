@@ -23,7 +23,7 @@ $(function() { // On page load
                         datatype: "json",
                         contentType: "application/json",
                         success: function(data) {
-                            if (data.message = "Which team you want to send an email to?"){
+                            if (data.message == "Which team you want to send an email to?"){
                                 addMessage("bot",data.message )
                                 addMessage("bot", data.message.replace(data.message,'<button type="button" onclick="location.href=\'mailto:sales@example.com\'"> Sales </button>' +
                                     ' <button type="button" onclick="location.href=\'mailto:marketing@example.com\'"> Marketing</button>'+
