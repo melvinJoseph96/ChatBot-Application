@@ -11,6 +11,7 @@
     </head>
     <body>
     <div id="adminpanel" style="position:absolute;top:3%;right:3%;"><a href="adminPage.jsp">Admin Panel</a></div>
+    <audio id="messageReceived" src="message.mp3"></audio>
         <div id="main">
             <div id="chatbot">
                 <div id="titlebar">
