@@ -27,16 +27,14 @@ $(function() { // On page load
                                 addMessage("bot",data.message )
                                 addMessage("bot", data.message.replace(data.message,'<button type="button" onclick="location.href=\'mailto:sales@example.com\'"> Sales </button>' +
                                     ' <button type="button" onclick="location.href=\'mailto:marketing@example.com\'"> Marketing</button>'+
-                                    ' <button type="button" onclick="location.href=\'mailto:finance@example.com\'"> Finance</button>' ))
-                                addMessage("bot", data.message.replace(data.message,'<button type="button" onclick="location.href=\'mailto:it@example.com\'"> IT </button>' +
+                                    ' <button type="button" onclick="location.href=\'mailto:finance@example.com\'"> Finance</button>' +
+                                    ' <button type="button" onclick="location.href=\'mailto:it@example.com\'"> IT </button>' +
                                     ' <button type="button" onclick="location.href=\'mailto:hr@example.com\'"> HR</button>'+
                                     ' <button type="button" onclick="location.href=\'mailto:recruitment@example.com\'"> Recruitment</button>'+
                                     ' <button type="button" onclick="location.href=\'mailto:other@example.com\'"> Other</button>' ))
 
                             }
-
-                            // if (data.message.match(/[\w.]+@[a-zA-Z_-]+?(?:\.[a-zA-Z]{2,6})+/gim)){
-                            // addMessage("bot", data.message.replace(data.message,'<a href="mailto:someone@example.com" >Click here to send an email.</a>' ))}
+                        //data.message.replace(data.message,'<a href="mailto:someone@example.com" >Click here to send an email.</a>' ))
                             else
                             addMessage("bot", data.message) // Display the response message in the chat box
                             $('#messages').scrollTop($('#messages')[0].scrollHeight); // Make sure the chatbox is scrolled to the bottom
