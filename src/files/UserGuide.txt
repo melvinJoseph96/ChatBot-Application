@@ -54,4 +54,7 @@ Type /admin onto the end of the URL and hit enter. A login page will then be dis
 
 Click on the search bar found at the top of the admin control panel. Begin typing into this text box, it can be he intent's name, the user's question or the chatbot's response. As you type in characters, the intents that match your input will be displayed. All other intents that do not match your input are removed from the page.
 
+## A user can select which team their email gets sent to
+
+Type your message into the text box using keywords such as "email", "send", "message" etc the chatbot will display a message saying "Which team you want to send an email to?" and some buttons below with your options. After clicking the button you want, it will create an empty email ready for you to write to the team you chose.
 
