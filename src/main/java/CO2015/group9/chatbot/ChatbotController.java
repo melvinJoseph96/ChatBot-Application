@@ -48,4 +48,10 @@ public class ChatbotController {
         // create a new intent from the data given by the admin
         return new Intent(name,userSays,responses);
     }
+
+    @RequestMapping(value = "/delete", method = RequestMethod.POST)
+    public void deleteIntent(@RequestParam String id) {
+        AdminLogic admin = new AdminLogic();
+        admin.deleteIntent(id);
+    }
 }

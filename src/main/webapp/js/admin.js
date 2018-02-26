@@ -78,5 +78,9 @@ function displayIntent(intent){
     cell2.innerHTML = intent.userSays; //set cell data to intent's userSays
     cell3.innerHTML = intent.responses; //set cell data to intent's responses
     cell4.innerHTML = "<button onclick='return false;' style='color: green;'>/<button>"; // add edit button
-    cell5.innerHTML = "<button onclick='return false;' style='color: red;'>X<button>"; // add delete button
+    cell5.innerHTML = "<button onclick='return deleteIntent(\"" + intent.id + "\");' style='color: red;'>X<button>"; // add delete button
+}
+
+function deleteIntent(name) {
+    alert(name);
 }
