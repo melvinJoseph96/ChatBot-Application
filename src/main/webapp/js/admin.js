@@ -24,11 +24,6 @@ function addRow(){
     if (x.length>=1 && y.length>=1 && z.length>=1) { // check data is added to each
         // if so
         // set up the controller parameters
-        var data = {};
-        data["name"] = x;
-        data["userSaysInput"] = y;
-        data["responseInput"] = z;
-        // post request to /add
         $.ajax({
             type: "POST",
             url: '/add',
@@ -81,6 +76,24 @@ function displayIntent(intent){
     cell5.innerHTML = "<button onclick='return deleteIntent(\"" + intent.id + "\");' style='color: red;'>X<button>"; // add delete button
 }
 
-function deleteIntent(name) {
-    alert(name);
+
+//I need to go to work I will finish it later
+function deleteIntent(id) {
+    $.ajax({
+        type: "POST",
+        url: '/delete',
+        data: JSON.stringify({
+            "id": id
+        }),
+        datatype: "json",
+        contentType: "application/json",
+        success: function () {
+            console.log("intent deleted");
+            alert("great success");
+        },
+        error: function () {
+            console.log("error while deleting intent");
+            alert("no success");
+        }
+    });
 }
