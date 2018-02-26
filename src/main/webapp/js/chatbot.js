@@ -71,7 +71,7 @@ function processing(inputMessage){
                 addMessage("bot",data.message.replace(data.message,'<button type="button" onclick= "email()" > Email </button>' +
                     ' <button type="button" onclick="other()"> Other.. </button>'))
             }
-            else if (data.message == "Contact us"){
+            else if (data.message == "Here is our contact details:"){
                 addMessage("bot", data.message)
                 addMessage("bot",data.message.replace(data.message,'<p>London <br> 020 3056 8240 <br> Cottons Centre, Cottons Lane <br>' +
                     ' London, SE1 2QG <br> <br> Leeds <br> 0113 331 5048 <br> No. 1 Whitehall Riverside <br> Leeds, West Yorkshire LS1 4BN <br> <br>' +
