@@ -112,16 +112,34 @@ public class AdminLogic {
         return intents;
     }
 
-    public void addIntent(String name) {
+    public void addIntent(String name,ArrayList<String> userSays, ArrayList<String> responses) {
         try {
+            String body = "{\"contexts\": [], \"events\": [], \"fallbackIntent\": false, \"name\": \"" +
+                    name + "\",\"priority\": 500000,\"responses\": [{\"action\": \"\",\"affectedContexts\": []," +
+                    "\"defaultResponsePlatforms\": {},\"messages\": [{\"speech\":[";
+            // add response messages
+            for(int i=0;i<responses.size();i++){
+                if (i == responses.size()-1){
+                    body = body + "\"" + responses.get(i) +"\"";
+                }
+                body = body + "\"" + responses.get(i) +"\",";
+            }
+            body = body + "],}],\"parameters\": []," +
+                "\"resetContexts\": false}],\"templates\": [],\"userSays\": [";
+            // get all userSays strings
+            for(int i=0;i<userSays.size();i++){
+                if (i == userSays.size()-1){
+                    body = body + "{\"count\": 0," +
+                            "\"data\": [ {\"text\":\""+ userSays.get(i)+"\"}],}";
+                }
+                body = body + "{\"count\": 0," +
+                        "\"data\": [ {\"text\":\""+ userSays.get(i)+"\"}],},";
+            }
+            body = body + "],\"webhookForSlotFilling\": false,\"webhookUsed\": false}";
             HttpResponse<JsonNode> httpResponse = Unirest.post("https://api.dialogflow.com/v1/intents/")
                     .header("Authorization", apiKey)
                     .header("Content-Type", "application/json")
-                    .body("{\"contexts\": [], \"events\": [], \"fallbackIntent\": false, \"name\": \"" +
-                            name + "\",\"priority\": 500000,\"responses\": [{\"action\": \"\",\"affectedContexts\": []," +
-                            "\"defaultResponsePlatforms\": {},\"messages\": [{}],\"parameters\": []," +
-                            "\"resetContexts\": false}],\"templates\": [],\"userSays\": [{\"count\": 0," +
-                            "\"data\": [ {}]}],\"webhookForSlotFilling\": false,\"webhookUsed\": false}")
+                    .body(body)
                     .asJson();
         } catch (UnirestException e) {
             e.printStackTrace();
@@ -200,10 +218,25 @@ public class AdminLogic {
 //        }
 //    }
 
+    public ArrayList<String> toArrayList(String input){
+        ArrayList<String> array = new ArrayList<>(); // Create new array
+        StringBuilder sb = new StringBuilder();
+        for (int i=0;i<input.length();i++){ // Go through each character in the input
+            if (input.charAt(i) == ','){ // if the character is a comma
+                array.add(sb.toString()); // the word is finished so add it to the array
+                sb = new StringBuilder();
+            }
+            else {
+                sb.append(input.charAt(i)); // if the char is not a comma, add the char to the string builder
+            }
+        }
+        return array; // Return array of split strings
+    }
+
     public static void main(String[] args) {
         AdminLogic test = new AdminLogic();
         test.getIntents();
-        test.addIntent("hbvdsafjhgfdfsghbd");
+        test.addIntent("hbvdsafjhgfdfsghbd",new ArrayList<>(),new ArrayList<>());
         System.out.println(test.getIntentDetails("fa39fa7a-2737-41f9-9b72-7e26aa37ea3d"));
         test.deleteIntent("c822f665-946c-47a1-b898-51d7351db821");
 //        test.addResponse("8a043471-028d-4645-af0a-55a698385337", "nusr 7");

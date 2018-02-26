@@ -22,18 +22,29 @@ function addRow(){
     var y = document.getElementById("userSays").value;
     var z = document.getElementById("responses").value;
     if (x.length>=1 && y.length>=1 && z.length>=1) { // check data is added to each
-        var table = document.getElementById("display"); // add new row to the table
-        var row = table.insertRow(0);
-        var cell1 = row.insertCell(0);
-        var cell2 = row.insertCell(1);
-        var cell3 = row.insertCell(2);
-        var cell4 = row.insertCell(3);
-        var cell5 = row.insertCell(4);
-        cell1.innerHTML = document.getElementById("name").value; // and set the cell values to the inputs
-        cell2.innerHTML = document.getElementById("userSays").value;
-        cell3.innerHTML = document.getElementById("responses").value;
-        cell4.innerHTML = "<button onclick='return false;' style='color: green;'>/<button>"; // adding the edit and delete buttons
-        cell5.innerHTML = "<button onclick='return false;' style='color: red;'>X<button>";
+        // if so
+        // set up the controller parameters
+        var data = {};
+        data["name"] = x;
+        data["userSaysInput"] = y;
+        data["responseInput"] = z;
+        // post request to /add
+        $.ajax({
+            type: "POST",
+            url: '/add',
+            data: JSON.stringify(data),
+            datatype: "json",
+            contentType: "application/json",
+            success: function (data) {
+                // log the success
+                console.log("intent added");
+                // display the intent on the table
+                displayIntent(data);
+            },
+            error: function () {
+                console.log("error occurred while adding intent")
+            }
+        });
     }
 }
 function load(){
@@ -48,6 +59,9 @@ function load(){
             for (var i=0; i<data.length;i++){
                 displayIntent(data[i]);
             }
+        },
+        error: function(){
+            console.log("intents failed to load");
         }
     });
 }
