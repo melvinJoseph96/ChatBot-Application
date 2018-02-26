@@ -9,7 +9,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class AdminLogic {
 
@@ -170,53 +169,53 @@ public class AdminLogic {
         }
     }
 
-//    public void addResponse(String id, String newResponse) {
-//        ArrayList<Intent> intents = getIntents();
-//        Intent intent = intents.stream().filter(x -> x.getId().equals(id)).findAny().orElse(null);
-//        if (intent != null) {
-//            String intentName = intent.getName();
-//            String userSaysAsJSON = intent.getUserSaysAsJSON();
-//            String newResponseFormatted = ",\"" + newResponse + "\"";
-//            String responsesAsJSON = intent.getReponsesAsJSON();
-//
-//            try {
-//                HttpResponse<JsonNode> httpResponse = Unirest.put("https://api.dialogflow.com/v1/intents/" + id)
-//                        .header("Authorization", apiKey)
-//                        .header("Content-Type", "application/json")
-//                        .body("{    \"name\": \"" + intentName + "\",\"responses\": [{\"messages\": [{\"type\": 0,\"speech\": [" +
-//                                responsesAsJSON + newResponseFormatted + "]}]}],\"userSays\": [" + userSaysAsJSON + "]}")
-//                        .asJson();
-//            } catch (UnirestException e) {
-//                e.printStackTrace();
-//            }
-//        } else {
-//            System.out.println("AddResponse error: Intent is null");
-//        }
-//    }
-//
-//    public void addUserSays(String id, String newUserSays) {
-//        ArrayList<Intent> intents = getIntents();
-//        Intent intent = intents.stream().filter(x -> x.getId().equals(id)).findAny().orElse(null);
-//        if (intent != null) {
-//            String intentName = intent.getName();
-//            String userSaysAsJSON = intent.getUserSaysAsJSON();
-//            String responsesAsJSON = intent.getReponsesAsJSON();
-//            String newUserSaysFormatted = ",{\"data\": [{\"text\": \"" + newUserSays + "\"}]}";
-//
-//            try {
-//                HttpResponse<JsonNode> httpResponse = Unirest.put("https://api.dialogflow.com/v1/intents/" + id)
-//                        .header("Authorization", apiKey)
-//                        .header("Content-Type", "application/json")
-//                        .body("{    \"name\": \"" + intentName + "\",\"responses\": [{\"messages\": [{\"type\": 0,\"speech\": [" +
-//                                responsesAsJSON + "]}]}],\"userSays\": [" + userSaysAsJSON + newUserSaysFormatted + "]}")
-//                        .asJson();
-//            } catch (UnirestException e) {
-//                e.printStackTrace();
-//            }
-//        } else {
-//            System.out.println("AddUserSays error: Intent is null");
-//        }
-//    }
+    public void addResponse(String id, String newResponse) {
+        ArrayList<Intent> intents = getIntents();
+        Intent intent = intents.stream().filter(x -> x.getId().equals(id)).findAny().orElse(null);
+        if (intent != null) {
+            String intentName = intent.getName();
+            String userSaysAsJSON = intent.getUserSaysAsJSON();
+            String newResponseFormatted = ",\"" + newResponse + "\"";
+            String responsesAsJSON = intent.getResponsesAsJSON();
+
+            try {
+                HttpResponse<JsonNode> httpResponse = Unirest.put("https://api.dialogflow.com/v1/intents/" + id)
+                        .header("Authorization", apiKey)
+                        .header("Content-Type", "application/json")
+                        .body("{    \"name\": \"" + intentName + "\",\"responses\": [{\"messages\": [{\"type\": 0,\"speech\": [" +
+                                responsesAsJSON + newResponseFormatted + "]}]}],\"userSays\": [" + userSaysAsJSON + "]}")
+                        .asJson();
+            } catch (UnirestException e) {
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("AddResponse error: Intent is null");
+        }
+    }
+
+    public void addUserSays(String id, String newUserSays) {
+        ArrayList<Intent> intents = getIntents();
+        Intent intent = intents.stream().filter(x -> x.getId().equals(id)).findAny().orElse(null);
+        if (intent != null) {
+            String intentName = intent.getName();
+            String userSaysAsJSON = intent.getUserSaysAsJSON();
+            String responsesAsJSON = intent.getResponsesAsJSON();
+            String newUserSaysFormatted = ",{\"data\": [{\"text\": \"" + newUserSays + "\"}]}";
+
+            try {
+                HttpResponse<JsonNode> httpResponse = Unirest.put("https://api.dialogflow.com/v1/intents/" + id)
+                        .header("Authorization", apiKey)
+                        .header("Content-Type", "application/json")
+                        .body("{    \"name\": \"" + intentName + "\",\"responses\": [{\"messages\": [{\"type\": 0,\"speech\": [" +
+                                responsesAsJSON + "]}]}],\"userSays\": [" + userSaysAsJSON + newUserSaysFormatted + "]}")
+                        .asJson();
+            } catch (UnirestException e) {
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("AddUserSays error: Intent is null");
+        }
+    }
 
     public ArrayList<String> toArrayList(String input){
         ArrayList<String> array = new ArrayList<>(); // Create new array
@@ -236,11 +235,11 @@ public class AdminLogic {
     public static void main(String[] args) {
         AdminLogic test = new AdminLogic();
         test.getIntents();
-        test.addIntent("hbvdsafjhgfdfsghbd",new ArrayList<>(),new ArrayList<>());
-        System.out.println(test.getIntentDetails("fa39fa7a-2737-41f9-9b72-7e26aa37ea3d"));
-        test.deleteIntent("c822f665-946c-47a1-b898-51d7351db821");
-//        test.addResponse("8a043471-028d-4645-af0a-55a698385337", "nusr 7");
-//        test.addUserSays("8a043471-028d-4645-af0a-55a698385337", "nubedsdr 5");
+        // test.addIntent("hbvdsafjhgfdfsghbd",new ArrayList<>(),new ArrayList<>());
+        //    System.out.println(test.getIntentDetails("fa39fa7a-2737-41f9-9b72-7e26aa37ea3d"));
+        // test.deleteIntent("c822f665-946c-47a1-b898-51d7351db821");
+        // test.addResponse("8a043471-028d-4645-af0a-55a698385337", "nusr 7");
+        // test.addUserSays("8a043471-028d-4645-af0a-55a698385337", "nubedsdr 5");
     }
 
 }
