@@ -146,7 +146,9 @@ public class AdminLogic {
     }
 
     public void deleteIntent(String id) {
+        if (id.contains("=")) {
 
+        }
         try {
             HttpResponse<JsonNode> httpResponse = Unirest.delete("https://api.dialogflow.com/v1/intents/" + id)
                     .header("Authorization", apiKey)

@@ -77,23 +77,24 @@ function displayIntent(intent){
 }
 
 
-//I need to go to work I will finish it later
 function deleteIntent(id) {
     $.ajax({
         type: "POST",
         url: '/delete',
-        data: JSON.stringify({
-            "id": id
-        }),
-        datatype: "json",
-        contentType: "application/json",
+        data: id,
+        contentType: "text/plain",
         success: function () {
             console.log("intent deleted");
-            alert("great success");
+            //when intent is succesfully deleted it is also removed from the currently displayed table
+            var table = document.getElementById("display");
+            while (table.hasChildNodes()) {
+                table.removeChild(table.firstChild);
+            }
+            load();
+            console.log("intent removed from the table")
         },
         error: function () {
             console.log("error while deleting intent");
-            alert("no success");
         }
     });
 }

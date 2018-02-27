@@ -51,8 +51,7 @@ public class ChatbotController {
 
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     public void deleteIntent(@RequestBody String id) {
-        System.out.println(id);
-        //AdminLogic admin = new AdminLogic();
-        // admin.deleteIntent(id);
+        AdminLogic admin = new AdminLogic();
+        admin.deleteIntent(id);
     }
 }

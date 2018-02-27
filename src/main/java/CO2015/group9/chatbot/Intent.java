@@ -70,7 +70,7 @@ public class Intent {
 
     @Override
     public String toString(){
-        return name + " " + userSays + " " + responses;
+        return id + " " + name + " " + userSays + " " + responses;
     }
 
 }
