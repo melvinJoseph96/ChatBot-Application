@@ -93,3 +93,18 @@ function other() {
     var inputMessage = "phone";
     processing(inputMessage)
 }
+
+function soundChangeOff(){
+    $('#imageSoundOn').fadeOut();
+    setTimeout(function () {
+        $('#imageSoundOff').fadeIn();
+    }, 500);
+    $('#messageReceived').fadeIn();
+}
+function soundChangeOn(){
+    $('#imageSoundOff').fadeOut();
+    setTimeout(function () {
+        $('#imageSoundOn').fadeIn();
+    }, 500);
+    $('#messageReceived').fadeOut();
+}

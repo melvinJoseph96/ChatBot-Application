@@ -20,6 +20,8 @@
                     <div class="dialog">
                         <a href="#" class="close-X" onclick="minimise()"></a>
                     </div>
+                    <img id="imageSoundOn" src="soundOff.png" width="20" height="20" onclick="soundChangeOff()">
+                    <img id="imageSoundOff" src="soundOn.png" width="20" height="20" onclick="soundChangeOn()">
                 </div>
                 <div id="messages">
 
