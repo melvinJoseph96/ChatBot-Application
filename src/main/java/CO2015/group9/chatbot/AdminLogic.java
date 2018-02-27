@@ -78,35 +78,31 @@ public class AdminLogic {
                 }
             }
 
-            for (int j = 0; j < JSONResponses.length(); j++) {
-                if (JSONResponses.getJSONObject(j) != null) {
-                    JSONObject ob3 = JSONResponses.getJSONObject(j);
-                    JSONArray resp = ob3.getJSONArray("messages");
-                    for (int k = 0; k < resp.length(); k++) {
-                        if (resp.getJSONObject(k) != null) {
-                            JSONObject ob4 = resp.getJSONObject(k);
-                            if (ob4.has("speech")) {
-                                Object p = ob4.get("speech");
-                                String pStr = p.toString();
-                                StringBuilder sb = new StringBuilder();
-                                for (int t=0;t<pStr.length();t++){
-                                    if (!(pStr.charAt(t) == '[')&&!(pStr.charAt(t) == ']')&&!(pStr.charAt(t) == '"')){
-                                        sb.append(pStr.charAt(t));
-                                    }
-                                }
-                                responses.add(sb.toString());
-                            }
-                        }
-                    }
-                }
+
+            JSONObject responsesObject = JSONResponses
+                    .getJSONObject(0)
+                    .getJSONArray("messages")
+                    .getJSONObject(0);
+
+            int responsesArrLength = 0;
+            if (responsesObject.get("speech") instanceof JSONArray) {
+                System.out.println("array");
+                responsesArrLength = responsesObject
+                        .getJSONArray("speech")
+                        .length();
+            } else {
+                responses.add(responsesObject.getString("speech"));
+            }
+
+            for (int k = 0; k < responsesArrLength; k++) {
+                responses.add(responsesObject
+                        .getJSONArray("speech")
+                        .getString(k));
             }
             intents.add(new Intent(intentId, name, userSays, responses));
         }
-        System.out.println("");
-        System.out.println("");
+
         System.out.println("qwerty" + intents);
-        System.out.println("");
-        System.out.println("");
 
         return intents;
     }
