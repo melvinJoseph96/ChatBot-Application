@@ -20,18 +20,30 @@
                     <div class="dialog">
                         <a href="#" class="close-X" onclick="minimise()"></a>
                     </div>
-                    <img id="imageSoundOn" src="soundOff.png" width="20" height="20" onclick="soundChangeOff()">
-                    <img id="imageSoundOff" src="soundOn.png" width="20" height="20" onclick="soundChangeOn()">
+                    <img id="imageSoundOn" src="soundOff.png" title="mute" width="20" height="20" onclick="soundChangeOff()">
+                    <img id="imageSoundOff" src="soundOn.png" title="un-mute" width="20" height="20" onclick="soundChangeOn()">
                 </div>
                 <div id="messages">
 
                 </div>
                 <input id="input" type="text" placeholder="Type a message and hit enter to send...">
+                <img id="saveLog" src="email.png" width="20px" height="15px" onclick="save()" title="Email the chat log">
             </div>
             <div id="collapse">
                 <div id="greenA">&#8226;</div>
                 Chat With Us
                 <button onclick="reopen()" style='color: white; background-color: transparent;float: right;border:none;font-size: 20px'><b>-</b></button>
+            </div>
+        </div>
+        <div id="emailPopUp">
+            <div id="boxed">
+                <h1 style="font-size: 40px;">Email Your Chat Log</h1>
+
+                <label for="email">Enter Your Email:</label>
+                <br>
+                <input type="text" id="email">
+                <button id="submitEmail" onclick="sendEmail()">Send</button>
+
             </div>
         </div>
     </body>

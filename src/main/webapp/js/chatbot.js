@@ -129,3 +129,13 @@ function time(){
     toReturn = toReturn + mins;
     return toReturn;
 }
+
+function save(){
+    $('#emailPopUp').fadeIn();
+}
+function sendEmail(){
+    var email = document.getElementById("email").value;
+    var body = document.getElementById("messages").innerText;
+    window.open('mailto:'+email+'?subject=Your FDM Chat Log&body=' + body);
+    $('#emailPopUp').fadeOut();
+}
