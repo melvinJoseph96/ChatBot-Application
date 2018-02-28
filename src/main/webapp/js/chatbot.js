@@ -22,6 +22,10 @@ $(function() { // On page load
 });
 
 function addMessage(id, message){
+    if (id === "bot") {
+        var sound = document.getElementById("messageReceived");
+        sound.play();
+    }
 	$('#messages').append("<div class=\"message " + id + "\"><div class=\"messagetext\">" + message + "</div> " +
         "<p style='font-size: 10px; color: gray'>" + time() + "</p></div>") // add time
 }
@@ -52,9 +56,6 @@ function processing(inputMessage){
         datatype: "json",
         contentType: "application/json",
         success: function(data) {
-
-            var sound = document.getElementById("messageReceived");
-            sound.play();
 
             if (data.message === "Which team you want to send an email to?") {
                 addMessage("bot", data.message);
