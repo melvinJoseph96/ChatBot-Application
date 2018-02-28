@@ -65,3 +65,8 @@ Once you have sent the chatbot a message, wait. Once the chatbot has a response,
 ## A user can select the best way for them to be contacted
 
 Type your message into the text box using keywords such as "information", "contact" etc,  the chatbot will display a message saying "How do you want to contact us?" and two buttons, email or other. If you click on the email button you can choose one team of many to get in touch with. If you click on the other button, the chabot will display all our contact information like where we are, telephone numbers etc.
+
+## A user can press a mute button to silence the sound of the chatbot
+
+Found at the top right hand side of the chatbot, there is a speaker icon. This signifies that the sound is on. By pressing the icon, a mute icon appears. This looks like the speaker icon but crossed out. The sound of the chatbot can no longer be heard. If you press the icon again, you can return the sound.
+
