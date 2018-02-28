@@ -96,15 +96,20 @@ function other() {
 
 function soundChangeOff(){
     $('#imageSoundOn').fadeOut();
+    // fade the mute icon out
     setTimeout(function () {
         $('#imageSoundOff').fadeIn();
-    }, 500);
-    $('#messageReceived').fadeIn();
+    }, 700);
+    // mute sound
+    var msgRec = document.getElementById("messageReceived");
+    msgRec.muted = true;
 }
 function soundChangeOn(){
     $('#imageSoundOff').fadeOut();
     setTimeout(function () {
         $('#imageSoundOn').fadeIn();
-    }, 500);
-    $('#messageReceived').fadeOut();
+    }, 700);
+    // return sound to chatbot
+    var msgRec = document.getElementById("messageReceived");
+    msgRec.muted = false;
 }
