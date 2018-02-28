@@ -22,7 +22,8 @@ $(function() { // On page load
 });
 
 function addMessage(id, message){
-	$('#messages').append("<div class=\"message " + id + "\"><div class=\"messagetext\">" + message + "</div></div>")
+	$('#messages').append("<div class=\"message " + id + "\"><div class=\"messagetext\">" + message + "</div> " +
+        "<p style='font-size: 10px; color: gray'>" + time() + "</p></div>") // add time
 }
 function minimise(){
     $('#titlebar').fadeOut(); //Remove titlebar from screen
@@ -77,9 +78,10 @@ function processing(inputMessage){
                     ' London, SE1 2QG <br> <br> Leeds <br> 0113 331 5048 <br> No. 1 Whitehall Riverside <br> Leeds, West Yorkshire LS1 4BN <br> <br>' +
                     ' Glasgow <br> 0141 218 3100 <br> 1 West Regent Street, 6th Floor <br> Glasgow, G2 1RW</p>'))
             }
-            else
+            else {
                 addMessage("bot", data.message); // Display the response message in the chat box
-            $('#messages').scrollTop($('#messages')[0].scrollHeight); // Make sure the chatbox is scrolled to the bottom
+                $('#messages').scrollTop($('#messages')[0].scrollHeight); // Make sure the chatbox is scrolled to the bottom
+            }
         }
     });
 }
@@ -112,4 +114,17 @@ function soundChangeOn(){
     // return sound to chatbot
     var msgRec = document.getElementById("messageReceived");
     msgRec.muted = false;
+}
+function time(){
+    var date = new Date();
+    var toReturn = date.getHours().toString() + ":";
+    var mins = date.getMinutes().toString();
+    if (mins.length === 1){ // if in first 10 mins
+        mins = "0" + mins;
+    }
+    if (mins.length === 0) { // at O'Clock
+        mins = "00";
+    }
+    toReturn = toReturn + mins;
+    return toReturn;
 }
