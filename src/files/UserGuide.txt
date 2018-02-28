@@ -70,3 +70,6 @@ Type your message into the text box using keywords such as "information", "conta
 
 Found at the top right hand side of the chatbot, there is a speaker icon. This signifies that the sound is on. By pressing the icon, a mute icon appears. This looks like the speaker icon but crossed out. The sound of the chatbot can no longer be heard. If you press the icon again, you can return the sound.
 
+## A user can see the time they sent and received messages
+
+Underneath each message displayed on the chatbot, the time the user received or sent their message is shown in a smaller, grey font. It is in the form HourHour:MinuteMinute and is in 24 hour format i.e. 12:30 meaning half past 12 in the afternoon.
