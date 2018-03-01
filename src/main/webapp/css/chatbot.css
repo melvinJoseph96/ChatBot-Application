@@ -1,10 +1,16 @@
 .body {
+	margin: 0; padding: 0; height: 100%; overflow: hidden;
+}
+#fdm {
+	position:absolute; left: 0; right: 0; bottom: 0; top: 0px;
+}
+#main {
+	display:none;
+	z-index: 1;
+	position: fixed;
 	font-family: Helvetica, Arial, sans-serif;
 }
-#main{
-	display:none;
-}
-#chatbot{
+#chatbot {
 	width: 270px;
 	height: auto;
 	padding: 4px;
@@ -157,7 +163,7 @@
 #emailPopUp {
 	display: none;
 	position: fixed;
-	z-index: 1;
+	z-index: 2;
 	background-color: #212121;
 	opacity: 0.6;
 	width: 100%;
@@ -171,4 +177,10 @@
 }
 #boxed h1 {
 	padding-bottom: 20px;
+}
+#close{
+	float: right;
+	color: black;
+	background-color: transparent;
+	border: none;
 }

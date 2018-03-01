@@ -145,3 +145,6 @@ function sendEmail(){
     setTimeout(function() { mail.close() }, 500); // close the tab that opened
     $('#emailPopUp').fadeOut();
 }
+function closeEmail(){
+    $('#emailPopUp').fadeOut();
+}

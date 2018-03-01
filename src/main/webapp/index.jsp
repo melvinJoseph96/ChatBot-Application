@@ -10,6 +10,9 @@
 
     </head>
     <body>
+    <div id="fdm">
+        <iframe src="https://www.fdmgroup.com" width="100%" height="100%" frameborder="0"></iframe>
+    </div>
     <div id="adminpanel" style="position:absolute;top:3%;right:3%;"><a href="adminPage.jsp">Admin Panel</a></div>
     <audio id="messageReceived" src="message.mp3"></audio>
         <div id="main">
@@ -37,6 +40,7 @@
         </div>
         <div id="emailPopUp">
             <div id="boxed">
+                <button id="close" onclick="closeEmail()">X</button>
                 <h1 style="font-size: 40px;">Email Your Chat Log</h1>
 
                 <label for="email">Enter Your Email:</label>
