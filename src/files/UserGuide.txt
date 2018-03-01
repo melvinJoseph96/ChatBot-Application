@@ -73,3 +73,7 @@ Found at the top right hand side of the chatbot, there is a speaker icon. This s
 ## A user can see the time they sent and received messages
 
 Underneath each message displayed on the chatbot, the time the user received or sent their message is shown in a smaller, grey font. It is in the form HourHour:MinuteMinute and is in 24 hour format i.e. 12:30 meaning half past 12 in the afternoon.
+
+## A user can email themselves their chat log
+
+After you have finished your conversation with the chatbot, click the icon found at the bottom left of teh chatbot that looks like a letter. This will then cause a box to appear over the screen that prompts you to enter your email. Type in your email into the boc and press the send button. Your email application will then appear with the information already entered into it. Just press send. You will then receive an email containing your chat log.
