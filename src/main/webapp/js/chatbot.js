@@ -136,6 +136,12 @@ function save(){
 function sendEmail(){
     var email = document.getElementById("email").value;
     var body = document.getElementById("messages").innerText;
-    window.open('mailto:'+email+'?subject=Your FDM Chat Log&body=' + body);
+    for (var i=0;i<body.length;i++){
+        if (body.charAt(i) === ':'){ // if the character is :, a space is inserted after the next two numbers
+            body = body.substring(0,i+3) + "     " + body.substring(i+3, body.length); // makes the email more readable
+        }
+    }
+    var mail = window.open('mailto:'+email+'?subject=Your FDM Chat Log&body=' + body); // fill in the email address, subject and the body
+    setTimeout(function() { mail.close() }, 500); // close the tab that opened
     $('#emailPopUp').fadeOut();
 }
