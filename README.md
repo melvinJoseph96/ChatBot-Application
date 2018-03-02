@@ -1,7 +1,8 @@
 # Chat Bot CO2015 Software Project
 [![Build Status](https://travis-ci.com/UOL-CS/co2015-1718-group-09.svg?token=pwHxfSX7kGNaLgqR45mL&branch=master)](https://travis-ci.com/UOL-CS/co2015-1718-group-09)
 
-**Dialogflow Developer Access Token:** f6b365252ccc42ceaf7b5012e2945b68
+**Dialogflow Developer Access Token:** f6b365252ccc42ceaf7b5012e2945b68  
+**Google Cloud Translation Access Token:** ya29.c.El9yBW7fAdjZ9l9GiS-j4YmitM7RlA0FAXMVfY9h4WyCQ3MLX_Q5FX-pP5bULsviDPX4IQpTFsjUKSx4nMsSXTdixeuWCRZiJgYxgqiFRGHdzymsryPCv-_LrC-nEo1vqQ  
 ## Key Dates
 
 **21st Feb** `Sprint 1 Deadline`
