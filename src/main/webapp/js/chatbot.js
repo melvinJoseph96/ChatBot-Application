@@ -65,7 +65,8 @@ function processing(inputMessage){
                     ' <button type="button" onclick="location.href=\'mailto:it@example.com\'"> IT </button>' +
                     ' <button type="button" onclick="location.href=\'mailto:hr@example.com\'"> HR</button>'+
                     ' <button type="button" onclick="location.href=\'mailto:recruitment@example.com\'"> Recruitment</button>'+
-                    ' <button type="button" onclick="location.href=\'mailto:other@example.com\'"> Other</button>' ))
+                    ' <button type="button" onclick="location.href=\'mailto:other@example.com\'"> Other</button>' +
+                    ' <button type="button" onclick="help()"> I do not know </button>' ))
 
             }
             else if (data.message === "How do you want to contact us?") {
@@ -94,6 +95,11 @@ function email() {
 
 function other() {
     var inputMessage = "phone";
+    processing(inputMessage)
+}
+
+function help() {
+    var inputMessage = "help"
     processing(inputMessage)
 }
 
