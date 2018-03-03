@@ -87,7 +87,7 @@ function processing(inputMessage){
             }
             else if (data.message === "https://www.fdmgroup.com/careers/graduates/"){ // when the message is a link to graduate careers
                 addMessage("bot","Click here to view our graduate careers page:");
-                link("https://www.fdmgroup.com/careers/graduates/", "gradCareers.png");
+                link("gradCareers.jsp", "gradCareers.png");
             }
             else {
                 addMessage("bot", data.message); // Display the response message in the chat box
