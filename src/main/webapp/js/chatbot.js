@@ -3,15 +3,6 @@ $(function() { // On page load
     console.log("loaded chatbot.js");
     var greetingMessage = "Hello!";
 
-    $(function(){
-        $('#vid').css({ width: $(window).innerWidth() + 'px', height: $(window).innerHeight() + 'px' });
-
-        // If you want to keep full screen on window resize
-        $(window).resize(function(){
-            $('#vid').css({ width: $(window).innerWidth() + 'px', height: $(window).innerHeight() + 'px' });
-        });
-    });
-
     setTimeout(function () {
         $("#main").fadeIn(); // display main div that contains chatbot after 5000ms
         addMessage("bot", greetingMessage);
