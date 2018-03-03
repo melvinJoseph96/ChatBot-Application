@@ -85,3 +85,8 @@ On load of the web application, the FDM page is shown. It is visible underneath 
 ## The chatbot can re-direct the user to different parts of the website
 
 When you ask a question that the chatbot provides with an image, i.e. "Where can I apply for a graduate job", by clicking onto the image, as prompted by the chatbot, the page will be re-directed to the one linked.
+
+## An admin can delete an intent
+
+On the control panel, locate the intent you wish to delete. You can do this by scrolling down until you find it or by using the search bar. Once you have found the intent, click the red X button found to the right of the intent information. This will then cause the information to reload and the intent will be deleted.
+
