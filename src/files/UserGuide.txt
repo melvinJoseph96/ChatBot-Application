@@ -77,3 +77,7 @@ Underneath each message displayed on the chatbot, the time the user received or 
 ## A user can email themselves their chat log
 
 After you have finished your conversation with the chatbot, click the icon found at the bottom left of teh chatbot that looks like a letter. This will then cause a box to appear over the screen that prompts you to enter your email. Type in your email into the boc and press the send button. Your email application will then appear with the information already entered into it. Just press send. You will then receive an email containing your chat log.
+
+## The FDM page is viewable
+
+On load of the web application, the FDM page is shown. It is visible underneath the chatbot.
