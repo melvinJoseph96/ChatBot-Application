@@ -85,6 +85,10 @@ function processing(inputMessage){
                 var email = data.message;
                 window.location.href = "mailto:" + email;
             }
+            else if (data.message === "https://www.fdmgroup.com/careers/graduates/"){ // when the message is a link to graduate careers
+                addMessage("bot","Click here to view our graduate careers page:");
+                link("https://www.fdmgroup.com/careers/graduates/", "gradCareers.png");
+            }
             else {
                 addMessage("bot", data.message); // Display the response message in the chat box
                 $('#messages').scrollTop($('#messages')[0].scrollHeight); // Make sure the chatbox is scrolled to the bottom
@@ -161,4 +165,15 @@ function sendEmail(){
 }
 function closeEmail(){
     $('#emailPopUp').fadeOut();
+}
+function link(hrefLink, imgName){
+    var messageDiv = document.getElementById("messages"); // get the message div to add the link to
+    var link = document.createElement("a"); // create a link that leads to the page
+    link.setAttribute("href", hrefLink);
+    var image = document.createElement("img"); // create image for the link
+    image.setAttribute("src", imgName);
+    image.setAttribute("height", "130");
+    image.setAttribute("width", "170");
+    link.appendChild(image); // make the image the link
+    messageDiv.appendChild(link); // add the link to the chatbot
 }
