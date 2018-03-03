@@ -1,6 +1,16 @@
+
 $(function() { // On page load
     console.log("loaded chatbot.js");
     var greetingMessage = "Hello!";
+
+    $(function(){
+        $('#vid').css({ width: $(window).innerWidth() + 'px', height: $(window).innerHeight() + 'px' });
+
+        // If you want to keep full screen on window resize
+        $(window).resize(function(){
+            $('#vid').css({ width: $(window).innerWidth() + 'px', height: $(window).innerHeight() + 'px' });
+        });
+    });
 
     setTimeout(function () {
         $("#main").fadeIn(); // display main div that contains chatbot after 5000ms
@@ -128,7 +138,10 @@ function soundChangeOn(){
 }
 function time(){
     var date = new Date();
-    var toReturn = date.getHours().toString() + ":";
+    var hrs = date.getHours().toString();
+    if (hrs.length === 1){ // if in first 10 hrs
+        hrs = "0" + hrs;
+    }
     var mins = date.getMinutes().toString();
     if (mins.length === 1){ // if in first 10 mins
         mins = "0" + mins;
@@ -136,7 +149,7 @@ function time(){
     if (mins.length === 0) { // at O'Clock
         mins = "00";
     }
-    toReturn = toReturn + mins;
+    toReturn = hrs + ":" + mins;
     return toReturn;
 }
 

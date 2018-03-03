@@ -98,3 +98,4 @@ function deleteIntent(id) {
         }
     });
 }
+document.getElementsByClassName("body")
