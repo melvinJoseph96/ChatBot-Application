@@ -29,4 +29,10 @@ public class IndexController {
     @RequestMapping(value = "/controlpanel", method = RequestMethod.GET)
     public String controlPanel() { return "adminPage.jsp";}
 
+    @RequestMapping(value = "/gradCareers", method = RequestMethod.GET)
+    public String displayGradCareers() { return "gradCareers.jsp";}
+
+    @RequestMapping(value = "/exforcesCareers", method = RequestMethod.GET)
+    public String displayExForcesCareers() { return "exforcesCareers.jsp";}
+
 }

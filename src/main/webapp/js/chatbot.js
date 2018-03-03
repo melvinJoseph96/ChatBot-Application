@@ -87,7 +87,11 @@ function processing(inputMessage){
             }
             else if (data.message === "https://www.fdmgroup.com/careers/graduates/"){ // when the message is a link to graduate careers
                 addMessage("bot","Click here to view our graduate careers page:");
-                link("gradCareers.jsp", "gradCareers.png");
+                link("/gradCareers", "grad.png");
+            }
+            else if (data.message === "https://www.fdmgroup.com/careers/ex-forces/"){ // when the message is a link to ex-forces careers
+                addMessage("bot","Click here to view our ex-forces careers page:");
+                link("/exforcesCareers", "exforces.png");
             }
             else {
                 addMessage("bot", data.message); // Display the response message in the chat box
@@ -108,7 +112,7 @@ function other() {
 }
 
 function help() {
-    var inputMessage = "help"
+    var inputMessage = "help";
     processing(inputMessage)
 }
 
@@ -169,11 +173,12 @@ function closeEmail(){
 function link(hrefLink, imgName){
     var messageDiv = document.getElementById("messages"); // get the message div to add the link to
     var link = document.createElement("a"); // create a link that leads to the page
-    link.setAttribute("href", hrefLink);
+    link.setAttribute("href", hrefLink); // link to the page provided in the parameter
     var image = document.createElement("img"); // create image for the link
-    image.setAttribute("src", imgName);
-    image.setAttribute("height", "130");
-    image.setAttribute("width", "170");
+    image.src = imgName; // set the image source to the one provided in the parameter
+    image.setAttribute("height", "120"); // set image height so it fits in the message box
+    image.setAttribute("width", "150"); // set image width
     link.appendChild(image); // make the image the link
     messageDiv.appendChild(link); // add the link to the chatbot
+    return false;
 }

@@ -67,7 +67,6 @@
                 <br>
                 <input type="text" id="email">
                 <button id="submitEmail" onclick="sendEmail()">Send</button>
-
             </div>
         </div>
     </body>

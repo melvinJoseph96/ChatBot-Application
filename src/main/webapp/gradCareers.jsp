@@ -18,11 +18,11 @@
         <!- shows what the chatbot will look like a page similar to FDM's ->
 
         <div id="content">
-            <h1 style="font-size: 50px">Careers</h1>
             <div id="boxes">
-                <p class="box">Grad</p>
-                <p class="box">Worker</p>
-                <p class="box">Ex-Forces</p>
+                <h1 style="font-size: 50px; margin-top:20px;">Graduates</h1>
+                <div class="box">
+                    <p>Information about graduate work</p>
+                </div>
             </div>
         </div>
     </div>
