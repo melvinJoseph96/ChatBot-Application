@@ -81,3 +81,7 @@ After you have finished your conversation with the chatbot, click the icon found
 ## The FDM page is viewable
 
 On load of the web application, the FDM page is shown. It is visible underneath the chatbot.
+
+## The chatbot can re-direct the user to different parts of the website
+
+When you ask a question that the chatbot provides with an image, i.e. "Where can I apply for a graduate job", by clicking onto the image, as prompted by the chatbot, the page will be re-directed to the one linked.
