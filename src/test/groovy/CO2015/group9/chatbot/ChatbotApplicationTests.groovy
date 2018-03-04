@@ -20,6 +20,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view
+import static org.junit.Assert.assertEquals;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -109,10 +110,35 @@ class ChatbotApplicationTests extends Specification {
 //        data[1] = "b"
 //        data[2] = "c"
 //        when: "I do a post '/add'"
-//        result = this.mockMvc.perform(post('/add'))
+//        result = this.mockMvc.perform(post('/add')
 //                .contentType(MediaType.APPLICATION_JSON)
-//                .param("data",data)
+//                .content("{\"data\":" + "\""+data.toString() + "\"}"))
 //        then: "The request should be successful"
 //        result.andExpect(status().is2xxSuccessful())
 //    }
+    @Test
+    def "test delete method"(){
+        given: // new intent created
+        AdminLogic admin = new AdminLogic()
+        String name = "test"
+        ArrayList<String> userSays = new ArrayList<>()
+        ArrayList<String> responses = new ArrayList<>()
+        admin.addIntent(name, userSays,responses)
+        when:
+        String id
+        // find the intent  by getting all intents
+        ArrayList<Intent> intentsbefore = admin.getIntents()
+        for (int i=0;i<intentsbefore.size();i++){
+            // retrieve the id
+            if (intentsbefore.get(i).name == name && intentsbefore.get(i).userSays == userSays && intentsbefore.get(i).responses == responses){
+                id = intentsbefore.get(i).id
+            }
+        }
+        // delete the intent
+        admin.deleteIntent(id)
+        ArrayList<Intent> intentsafter = admin.getIntents()
+        then: // there should be one less intent in after list
+        intentsafter.size() == intentsbefore.size() - 1
+
+    }
 }

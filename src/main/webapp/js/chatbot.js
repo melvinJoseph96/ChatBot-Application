@@ -1,6 +1,5 @@
 $(function() { // On page load
     console.log("loaded chatbot.js");
-    console.log(sessionStorage['chat-log']);
     if (sessionStorage.getItem("chat-log") === null) { // if this is a new session
         var greetingMessage = "Hello!"; // greeting message
 
@@ -10,7 +9,6 @@ $(function() { // On page load
         }, 5000);
     }
     else {
-        console.log(sessionStorage['chat-log']);
         document.getElementById("messages").innerHTML = sessionStorage.getItem("chat-log");
         $("#main").fadeIn();
     }
@@ -38,7 +36,6 @@ function addMessage(id, message){
         "<p style='font-size: 10px; color: gray'>" + time() + "</p></div>"); // add time
     chatLog = document.getElementById("messages").innerHTML; // get the whole chat log
     sessionStorage['chat-log'] = chatLog; // save it as a session cookie
-    console.log(sessionStorage['chat-log']);
 }
 function minimise(){
     $('#titlebar').fadeOut(); //Remove titlebar from screen
@@ -108,7 +105,6 @@ function processing(inputMessage){
             }
             chatLog = document.getElementById("messages").innerHTML; // get the whole chatbot html
             sessionStorage['chat-log'] = chatLog; // save it as a session cookie
-            console.log(sessionStorage['chat-log']);
         }
     });
 }

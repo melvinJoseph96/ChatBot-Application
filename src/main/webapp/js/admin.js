@@ -73,7 +73,7 @@ function displayIntent(intent){
     cell1.innerHTML = intent.name; //set cell data to intent name
     cell2.innerHTML = intent.userSays; //set cell data to intent's userSays
     cell3.innerHTML = intent.responses; //set cell data to intent's responses
-    cell4.innerHTML = "<button onclick='return false;' style='color: green;'>/<button>"; // add edit button
+    cell4.innerHTML = "<button onclick='update("+cell1+","+cell2+","+cell3+");' style='color: green;'>/<button>"; // add edit button
     cell5.innerHTML = "<button onclick='return deleteIntent(\"" + intent.id + "\");' style='color: red;'>X<button>"; // add delete button
 }
 
@@ -99,3 +99,8 @@ function deleteIntent(id) {
         }
     });
 }
+
+function update(one, two, three){
+    one.innerHTML = "<input type='text' placeholder='"+one.innerText+"'>";
+}
+
