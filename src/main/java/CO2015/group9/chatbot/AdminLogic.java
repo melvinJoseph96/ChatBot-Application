@@ -153,6 +153,7 @@ public class AdminLogic {
             // add this list to messages object
             JSONObject messagesOb = new JSONObject();
             messagesOb.put("speech",responesText);
+            messagesOb.put("type",0);
             // add to the messageArray
             JSONArray messageArray = new JSONArray();
             messageArray.put(messagesOb);
