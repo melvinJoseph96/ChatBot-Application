@@ -90,4 +90,7 @@ When you ask a question that the chatbot provides with an image, i.e. "Where can
 
 On the control panel, locate the intent you wish to delete. You can do this by scrolling down until you find it or by using the search bar. Once you have found the intent, click the red X button found to the right of the intent information. This will then cause the information to reload and the intent will be deleted.
 
+## Navigating the website will bring up the same chat log
+
+By navigating the website, the same chat log will appear on the chatbot on all pages that display the chatbot. Adding text to the chat will be shown on all pages.
 
