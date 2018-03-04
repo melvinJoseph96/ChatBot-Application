@@ -100,4 +100,19 @@ class ChatbotApplicationTests extends Specification {
         then: "I should see the view 'exforcesCareers'"
         result.andExpect(status().isOk()).andExpect(view().name('exforcesCareers.jsp'))
     }
+//    @Test
+//    def "Response for HTTP request '/add'"() {
+//        given: "the context of the controller is set up"
+//        mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build()
+//        data = new String[3]
+//        data[0] = "a"
+//        data[1] = "b"
+//        data[2] = "c"
+//        when: "I do a post '/add'"
+//        result = this.mockMvc.perform(post('/add'))
+//                .contentType(MediaType.APPLICATION_JSON)
+//                .param("data",data)
+//        then: "The request should be successful"
+//        result.andExpect(status().is2xxSuccessful())
+//    }
 }

@@ -1,12 +1,23 @@
+// var chatLog ="";
+// sessionStorage['chat-log'] = chatLog;
+console.log(sessionStorage['chat-log']);
 
 $(function() { // On page load
     console.log("loaded chatbot.js");
-    var greetingMessage = "Hello!";
 
-    setTimeout(function () {
-        $("#main").fadeIn(); // display main div that contains chatbot after 5000ms
-        addMessage("bot", greetingMessage);
-    }, 5000);
+    chatLog = sessionStorage['chat-log']; // get sessions chat log
+    if (chatLog === "") { // if this is a new session
+        var greetingMessage = "Hello!"; // greeting message
+
+        setTimeout(function () { // time delay
+            $("#main").fadeIn(); // display main div that contains chatbot after 5000ms
+            addMessage("bot", greetingMessage);
+        }, 5000);
+    }
+    else {
+        $("#main").innerHTML = chatLog;
+        $("#main").fadeIn();
+    }
 
     $('#input').on('keypress', function(e) { // When a key is pressed
 	    if(e.keyCode === 13 || e.which === 13){ // And the key is enter
@@ -96,7 +107,8 @@ function processing(inputMessage){
             else {
                 addMessage("bot", data.message); // Display the response message in the chat box
             }
-            $('#messages').scrollTop($('#messages')[0].scrollHeight); // Make sure the chatbox is scrolled to the bottom
+            chatLog = document.getElementById("main").innerHTML; // get the whole chatbot html
+            sessionStorage['chat-log'] = chatLog; // save it as a session cookie
         }
     });
 }
