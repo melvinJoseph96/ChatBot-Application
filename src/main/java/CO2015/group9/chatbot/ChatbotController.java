@@ -39,11 +39,12 @@ public class ChatbotController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public Intent addIntent(@RequestParam String name, @RequestParam String userSaysInput, @RequestParam String responseInput){
+    public Intent addIntent(@RequestBody String[] data){
         AdminLogic admin = new AdminLogic();
         // put the admin inputs into arrays
-        ArrayList<String> userSays = admin.toArrayList(userSaysInput);
-        ArrayList<String> responses = admin.toArrayList(responseInput);
+        ArrayList<String> userSays = admin.toArrayList(data[1]);
+        ArrayList<String> responses = admin.toArrayList(data[2]);
+        String name = data[0];
         admin.addIntent(name,userSays,responses);
         // create a new intent from the data given by the admin
         return new Intent(name,userSays,responses);

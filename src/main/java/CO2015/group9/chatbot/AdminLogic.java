@@ -107,147 +107,73 @@ public class AdminLogic {
         return intents;
     }
 
-    public void addIntent(String name,ArrayList<String> userSays, ArrayList<String> responses) {
+    public Intent addIntent(String name,ArrayList<String> userSays, ArrayList<String> responses) {
         try {
             // original body code, creates intent with just name
-            String bodyOrig = "{\"contexts\": [], \"events\": [], \"fallbackIntent\": false, \"name\": \"" +
+            String bodyOriginal = "{\"contexts\": [], \"events\": [], \"fallbackIntent\": false, \"name\": \"" +
                     name + "\",\"priority\": 500000,\"responses\": [{\"action\": \"\",\"affectedContexts\": []," +
                     "\"defaultResponsePlatforms\": {},\"messages\": [{}],\"parameters\": []," +
                     "\"resetContexts\": false}],\"templates\": [],\"userSays\": [{\"count\": 0," +
                     "\"data\": [ {}]}],\"webhookForSlotFilling\": false,\"webhookUsed\": false}";
-            // body edit to try add responses and user says; doesn't work
-            String body = "{\"contexts\": [], \"events\": [], \"fallbackIntent\": false, \"name\": \"" +
-                    name + "\",\"priority\": 500000,\"responses\": [{\"action\": \"\",\"affectedContexts\": []," +
-                    "\"defaultResponsePlatforms\": {},\"messages\": [{\"speech\":[";
-            // googles template
-            String bodyTemplate = "{\n" +
-                    "  \"contexts\": [\n" +
-                    "  ],\n" +
-                    "  \"events\": [],\n" +
-                    "  \"fallbackIntent\": false,\n" +
-                    "  \"name\": \""+  name +"\",\n" +
-                    "  \"priority\": 500000,\n" +
-                    "  \"responses\": [\n" +
-                    "    {\n" +
-                    "      \"action\": \"add.list\",\n" +
-                    "      \"affectedContexts\": [\n" +
-                    "        {\n" +
-                    "          \"lifespan\": 5,\n" +
-                    "          \"name\": \"shop\",\n" +
-                    "          \"parameters\": {}\n" +
-                    "        },\n" +
-                    "        {\n" +
-                    "          \"lifespan\": 5,\n" +
-                    "          \"name\": \"chosen-fruit\",\n" +
-                    "          \"parameters\": {}\n" +
-                    "        }\n" +
-                    "      ],\n" +
-                    "      \"defaultResponsePlatforms\": {\n" +
-                    "        \"google\": true\n" +
-                    "      },\n" +
-                    "      \"messages\": [\n" +
-                    "        {\n" +
-                    "          \"platform\": \"google\",\n" +
-                    "          \"textToSpeech\": \"Okay. How many $fruit?\",\n" +
-                    "          \"type\": \"simple_response\"\n" +
-                    "        },\n" +
-                    "        {\n" +
-                    "          \"speech\": \"Okay how many $fruit?\",\n" +
-                    "          \"type\": 0\n" +
-                    "        }\n" +
-                    "      ],\n" +
-                    "      \"parameters\": [\n" +
-                    "        {\n" +
-                    "          \"dataType\": \"@fruit\",\n" +
-                    "          \"isList\": true,\n" +
-                    "          \"name\": \"fruit\",\n" +
-                    "          \"prompts\": [\n" +
-                    "            \"I didn't get that. What fruit did you want?\"\n" +
-                    "          ],\n" +
-                    "          \"required\": true,\n" +
-                    "          \"value\": \"$fruit\"\n" +
-                    "        }\n" +
-                    "      ],\n" +
-                    "      \"resetContexts\": false\n" +
-                    "    }\n" +
-                    "  ],\n" +
-                    "  \"templates\": [\n" +
-                    "    \"@fruit:fruit \",\n" +
-                    "    \"Add @fruit:fruit \",\n" +
-                    "    \"I need @fruit:fruit \"\n" +
-                    "  ],\n" +
-                    "  \"userSays\": [\n" +
-                    "    {\n" +
-                    "      \"count\": 0,\n" +
-                    "      \"data\": [\n" +
-                    "        {\n" +
-                    "          \"alias\": \"fruit\",\n" +
-                    "          \"meta\": \"@fruit\",\n" +
-                    "          \"text\": \"oranges\",\n" +
-                    "          \"userDefined\": true\n" +
-                    "        }\n" +
-                    "      ]\n" +
-                    "    },\n" +
-                    "    {\n" +
-                    "      \"count\": 0,\n" +
-                    "      \"data\": [\n" +
-                    "        {\n" +
-                    "          \"text\": \"Add \"\n" +
-                    "        },\n" +
-                    "        {\n" +
-                    "          \"alias\": \"fruit\",\n" +
-                    "          \"meta\": \"@fruit\",\n" +
-                    "          \"text\": \"bananas\",\n" +
-                    "          \"userDefined\": true\n" +
-                    "        }\n" +
-                    "      ]\n" +
-                    "    },\n" +
-                    "    {\n" +
-                    "      \"count\": 0,\n" +
-                    "      \"data\": [\n" +
-                    "        {\n" +
-                    "          \"text\": \"I need \"\n" +
-                    "        },\n" +
-                    "        {\n" +
-                    "          \"alias\": \"fruit\",\n" +
-                    "          \"meta\": \"@fruit\",\n" +
-                    "          \"text\": \"apples\",\n" +
-                    "          \"userDefined\": true\n" +
-                    "        }\n" +
-                    "      ]\n" +
-                    "    }\n" +
-                    "  ],\n" +
-                    "  \"webhookForSlotFilling\": false,\n" +
-                    "  \"webhookUsed\": false\n" +
-                    "}'";
-            // add response messages
-            for(int i=0;i<responses.size();i++){
-                if (i == responses.size()-1){
-                    body = body + "\"" + responses.get(i) +"\"";
-                }
-                body = body + "\"" + responses.get(i) +"\",";
-            }
-            body = body + "],}],\"parameters\": []," +
-                "\"resetContexts\": false}],\"templates\": [],\"userSays\": [";
-            // get all userSays strings
-            for(int i=0;i<userSays.size();i++){
-                if (i == userSays.size()-1){
-                    body = body + "{\"count\": 0," +
-                            "\"data\": [ {\"text\":\""+ userSays.get(i)+"\"}],}";
-                }
-                body = body + "{\"count\": 0," +
-                        "\"data\": [ {\"text\":\""+ userSays.get(i)+"\"}],},";
-            }
-            body = body + "],\"webhookForSlotFilling\": false,\"webhookUsed\": false}";
+            // body for the HTTP response
+            JSONObject body = new JSONObject();
+            // add the name to the body
+            body.put("name",name);
+            // create JsonArray for user says data
+            JSONArray userSaysArray = new JSONArray();
 
+            // add each user says to the userSaysArray
+            for (int i =0; i<userSays.size();i++){
+                // create the object that the data goes into
+                JSONObject dataObject = new JSONObject();
+                // this is where the text goes for the user says object
+                JSONArray dataArray = new JSONArray();
+                // where we specify the "text" value
+                JSONObject dataText = new JSONObject();
+
+                // add the user says to text
+                dataText.put("text",userSays.get(i));
+                //add this text to the array
+                dataArray.put(dataText);
+                // add to the data object
+                dataObject.put("data",dataArray);
+                // finally add it to the array of userSays
+                userSaysArray.put(dataObject);
+            }
+            // add the user says data to the body
+            body.put("userSays",userSaysArray);
+
+            // array of responses
+            JSONArray responsesArray = new JSONArray();
+            // iterate through each response and add to JsonArray of strings
+            JSONArray responesText = new JSONArray();
+            for (int i=0;i<responses.size();i++){
+                responesText.put(responses.get(i));
+            }
+            // add this list to messages object
+            JSONObject messagesOb = new JSONObject();
+            messagesOb.put("speech",responesText);
+            // add to the messageArray
+            JSONArray messageArray = new JSONArray();
+            messageArray.put(messagesOb);
+            // add to responses object
+            JSONObject respOb = new JSONObject();
+            respOb.put("messages",messageArray);
+            //add to the array
+            responsesArray.put(respOb);
+            // finally add to the body
+            body.put("responses",responsesArray);
+
+            // carry out the http response to dialogflow
             HttpResponse<JsonNode> httpResponse = Unirest.post("https://api.dialogflow.com/v1/intents/")
                     .header("Authorization", apiKey)
                     .header("Content-Type", "application/json")
-                    .body(bodyOrig)
+                    .body(body)
                     .asJson();
         } catch (UnirestException e) {
             e.printStackTrace();
         }
+        return new Intent(name,userSays,responses);
     }
 
     public void deleteIntent(String id) {
@@ -328,6 +254,10 @@ public class AdminLogic {
             if (input.charAt(i) == ','){ // if the character is a comma
                 array.add(sb.toString()); // the word is finished so add it to the array
                 sb = new StringBuilder();
+            }
+            else if (i == input.length()-1){ // if this is the final character
+                sb.append(input.charAt(i));
+                array.add(sb.toString());
             }
             else {
                 sb.append(input.charAt(i)); // if the char is not a comma, add the char to the string builder

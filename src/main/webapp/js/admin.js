@@ -21,6 +21,7 @@ function addRow(){
     var x = document.getElementById("name").value; // get admin input values
     var y = document.getElementById("userSays").value;
     var z = document.getElementById("responses").value;
+    var data = [x,y,z];
     if (x.length>=1 && y.length>=1 && z.length>=1) { // check data is added to each
         // if so
         // set up the controller parameters
@@ -98,4 +99,3 @@ function deleteIntent(id) {
         }
     });
 }
-document.getElementsByClassName("body")
