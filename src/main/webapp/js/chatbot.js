@@ -109,6 +109,8 @@ function processing(inputMessage){
             chatLog = document.getElementById("messages").innerHTML; // get the whole chatbot html
             sessionStorage['chat-log'] = chatLog; // save it as a session cookie
             console.log(sessionStorage['chat-log']);
+            $('#messages').scrollTop($('#messages')[0].scrollHeight); // Make sure the chatbox is scrolled to the bottom
+
         }
     });
 }
