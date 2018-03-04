@@ -139,6 +139,30 @@ class ChatbotApplicationTests extends Specification {
         ArrayList<Intent> intentsafter = admin.getIntents()
         then: // there should be one less intent in after list
         intentsafter.size() == intentsbefore.size() - 1
+    }
 
+    @Test
+    def "test add intent method"(){
+        given: // given some intent details
+        AdminLogic admin = new AdminLogic()
+        String name = "testing"
+        ArrayList<String> usersays = new ArrayList<>()
+        usersays.add("test")
+        ArrayList<String> responses = new ArrayList<>()
+        responses.add("test")
+        when: // you add a new intent
+        ArrayList<Intent> before = admin.getIntents()
+        admin.addIntent(name,usersays,responses)
+        ArrayList<Intent> after = admin.getIntents()
+        String id
+        for (int i=0;i<after.size();i++){
+            // retrieve the id
+            if (after.get(i).name == name){
+                id = after.get(i).id
+            }
+        }
+        admin.deleteIntent(id) // make sure to remove the test intent
+        then: // length of before should be one less than after
+        before.size() == after.size() - 1
     }
 }
