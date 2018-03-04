@@ -109,9 +109,117 @@ public class AdminLogic {
 
     public void addIntent(String name,ArrayList<String> userSays, ArrayList<String> responses) {
         try {
+            // original body code, creates intent with just name
+            String bodyOrig = "{\"contexts\": [], \"events\": [], \"fallbackIntent\": false, \"name\": \"" +
+                    name + "\",\"priority\": 500000,\"responses\": [{\"action\": \"\",\"affectedContexts\": []," +
+                    "\"defaultResponsePlatforms\": {},\"messages\": [{}],\"parameters\": []," +
+                    "\"resetContexts\": false}],\"templates\": [],\"userSays\": [{\"count\": 0," +
+                    "\"data\": [ {}]}],\"webhookForSlotFilling\": false,\"webhookUsed\": false}";
+            // body edit to try add responses and user says; doesn't work
             String body = "{\"contexts\": [], \"events\": [], \"fallbackIntent\": false, \"name\": \"" +
                     name + "\",\"priority\": 500000,\"responses\": [{\"action\": \"\",\"affectedContexts\": []," +
                     "\"defaultResponsePlatforms\": {},\"messages\": [{\"speech\":[";
+            // googles template
+            String bodyTemplate = "{\n" +
+                    "  \"contexts\": [\n" +
+                    "  ],\n" +
+                    "  \"events\": [],\n" +
+                    "  \"fallbackIntent\": false,\n" +
+                    "  \"name\": \""+  name +"\",\n" +
+                    "  \"priority\": 500000,\n" +
+                    "  \"responses\": [\n" +
+                    "    {\n" +
+                    "      \"action\": \"add.list\",\n" +
+                    "      \"affectedContexts\": [\n" +
+                    "        {\n" +
+                    "          \"lifespan\": 5,\n" +
+                    "          \"name\": \"shop\",\n" +
+                    "          \"parameters\": {}\n" +
+                    "        },\n" +
+                    "        {\n" +
+                    "          \"lifespan\": 5,\n" +
+                    "          \"name\": \"chosen-fruit\",\n" +
+                    "          \"parameters\": {}\n" +
+                    "        }\n" +
+                    "      ],\n" +
+                    "      \"defaultResponsePlatforms\": {\n" +
+                    "        \"google\": true\n" +
+                    "      },\n" +
+                    "      \"messages\": [\n" +
+                    "        {\n" +
+                    "          \"platform\": \"google\",\n" +
+                    "          \"textToSpeech\": \"Okay. How many $fruit?\",\n" +
+                    "          \"type\": \"simple_response\"\n" +
+                    "        },\n" +
+                    "        {\n" +
+                    "          \"speech\": \"Okay how many $fruit?\",\n" +
+                    "          \"type\": 0\n" +
+                    "        }\n" +
+                    "      ],\n" +
+                    "      \"parameters\": [\n" +
+                    "        {\n" +
+                    "          \"dataType\": \"@fruit\",\n" +
+                    "          \"isList\": true,\n" +
+                    "          \"name\": \"fruit\",\n" +
+                    "          \"prompts\": [\n" +
+                    "            \"I didn't get that. What fruit did you want?\"\n" +
+                    "          ],\n" +
+                    "          \"required\": true,\n" +
+                    "          \"value\": \"$fruit\"\n" +
+                    "        }\n" +
+                    "      ],\n" +
+                    "      \"resetContexts\": false\n" +
+                    "    }\n" +
+                    "  ],\n" +
+                    "  \"templates\": [\n" +
+                    "    \"@fruit:fruit \",\n" +
+                    "    \"Add @fruit:fruit \",\n" +
+                    "    \"I need @fruit:fruit \"\n" +
+                    "  ],\n" +
+                    "  \"userSays\": [\n" +
+                    "    {\n" +
+                    "      \"count\": 0,\n" +
+                    "      \"data\": [\n" +
+                    "        {\n" +
+                    "          \"alias\": \"fruit\",\n" +
+                    "          \"meta\": \"@fruit\",\n" +
+                    "          \"text\": \"oranges\",\n" +
+                    "          \"userDefined\": true\n" +
+                    "        }\n" +
+                    "      ]\n" +
+                    "    },\n" +
+                    "    {\n" +
+                    "      \"count\": 0,\n" +
+                    "      \"data\": [\n" +
+                    "        {\n" +
+                    "          \"text\": \"Add \"\n" +
+                    "        },\n" +
+                    "        {\n" +
+                    "          \"alias\": \"fruit\",\n" +
+                    "          \"meta\": \"@fruit\",\n" +
+                    "          \"text\": \"bananas\",\n" +
+                    "          \"userDefined\": true\n" +
+                    "        }\n" +
+                    "      ]\n" +
+                    "    },\n" +
+                    "    {\n" +
+                    "      \"count\": 0,\n" +
+                    "      \"data\": [\n" +
+                    "        {\n" +
+                    "          \"text\": \"I need \"\n" +
+                    "        },\n" +
+                    "        {\n" +
+                    "          \"alias\": \"fruit\",\n" +
+                    "          \"meta\": \"@fruit\",\n" +
+                    "          \"text\": \"apples\",\n" +
+                    "          \"userDefined\": true\n" +
+                    "        }\n" +
+                    "      ]\n" +
+                    "    }\n" +
+                    "  ],\n" +
+                    "  \"webhookForSlotFilling\": false,\n" +
+                    "  \"webhookUsed\": false\n" +
+                    "}'";
             // add response messages
             for(int i=0;i<responses.size();i++){
                 if (i == responses.size()-1){
@@ -134,7 +242,7 @@ public class AdminLogic {
             HttpResponse<JsonNode> httpResponse = Unirest.post("https://api.dialogflow.com/v1/intents/")
                     .header("Authorization", apiKey)
                     .header("Content-Type", "application/json")
-                    .body(body)
+                    .body(bodyOrig)
                     .asJson();
         } catch (UnirestException e) {
             e.printStackTrace();

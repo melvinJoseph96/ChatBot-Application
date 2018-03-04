@@ -176,8 +176,8 @@ function link(hrefLink, imgName){
     link.setAttribute("href", hrefLink); // link to the page provided in the parameter
     var image = document.createElement("img"); // create image for the link
     image.src = imgName; // set the image source to the one provided in the parameter
-    image.setAttribute("height", "120"); // set image height so it fits in the message box
-    image.setAttribute("width", "150"); // set image width
+    image.setAttribute("height", "80"); // set image height so it fits in the message box
+    image.setAttribute("width", "110"); // set image width
     link.appendChild(image); // make the image the link
     messageDiv.appendChild(link); // add the link to the chatbot
     return false;
