@@ -239,6 +239,7 @@ public class AdminLogic {
                         "\"data\": [ {\"text\":\""+ userSays.get(i)+"\"}],},";
             }
             body = body + "],\"webhookForSlotFilling\": false,\"webhookUsed\": false}";
+
             HttpResponse<JsonNode> httpResponse = Unirest.post("https://api.dialogflow.com/v1/intents/")
                     .header("Authorization", apiKey)
                     .header("Content-Type", "application/json")

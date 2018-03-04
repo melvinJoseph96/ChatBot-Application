@@ -2,17 +2,14 @@ package CO2015.group9.chatbot;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class IndexController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String index(RedirectAttributes redirectAttributes){
+    public String index(){
         return "index.jsp";
     }
 
@@ -25,7 +22,7 @@ public class IndexController {
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)
-    public String register(RedirectAttributes redirectAttributes){
+    public String register(){
         return "register.jsp";
     }
 
@@ -33,9 +30,9 @@ public class IndexController {
     public String controlPanel() { return "adminPage.jsp";}
 
     @RequestMapping(value = "/gradCareers", method = RequestMethod.GET)
-    public String displayGradCareers(RedirectAttributes redirectAttributes) { return "gradCareers.jsp";}
+    public String displayGradCareers() { return "gradCareers.jsp";}
 
     @RequestMapping(value = "/exforcesCareers", method = RequestMethod.GET)
-    public String displayExForcesCareers(RedirectAttributes redirectAttributes) { return "exforcesCareers.jsp";}
+    public String displayExForcesCareers() { return "exforcesCareers.jsp";}
 
 }
