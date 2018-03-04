@@ -94,3 +94,6 @@ On the control panel, locate the intent you wish to delete. You can do this by s
 
 By navigating the website, the same chat log will appear on the chatbot on all pages that display the chatbot. Adding text to the chat will be shown on all pages.
 
+## Admin can add an intent
+
+When on the admin control panel, click onto the first text input box found in the centre of the top of the page, above the intent table. The bar is a darker grey than the intent table. In the first input box, type the intent name. In the second, found to the right of the thirst, type the phrases a user might say. Separate each intent with a ',' and avoid using them in your inputs. They should be short and to the point anyway. Type your responses into the third input box in the same format as the user phrases. Once all boxes are filled in, press the white '+' found on the far right of the bar. THe intent will be added and visible on the top of the intent table.
