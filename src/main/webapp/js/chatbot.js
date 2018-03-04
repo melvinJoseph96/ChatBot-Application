@@ -1,12 +1,7 @@
-// var chatLog ="";
-// sessionStorage['chat-log'] = chatLog;
-console.log(sessionStorage['chat-log']);
-
 $(function() { // On page load
     console.log("loaded chatbot.js");
-
-    chatLog = sessionStorage['chat-log']; // get sessions chat log
-    if (chatLog === "") { // if this is a new session
+    console.log(sessionStorage['chat-log']);
+    if (sessionStorage.getItem("chat-log") === null) { // if this is a new session
         var greetingMessage = "Hello!"; // greeting message
 
         setTimeout(function () { // time delay
@@ -15,7 +10,8 @@ $(function() { // On page load
         }, 5000);
     }
     else {
-        $("#main").innerHTML = chatLog;
+        console.log(sessionStorage['chat-log']);
+        document.getElementById("messages").innerHTML = sessionStorage.getItem("chat-log");
         $("#main").fadeIn();
     }
 
@@ -39,7 +35,10 @@ function addMessage(id, message){
         sound.play();
     }
 	$('#messages').append("<div class=\"message " + id + "\"><div class=\"messagetext\">" + message + "</div> " +
-        "<p style='font-size: 10px; color: gray'>" + time() + "</p></div>") // add time
+        "<p style='font-size: 10px; color: gray'>" + time() + "</p></div>"); // add time
+    chatLog = document.getElementById("messages").innerHTML; // get the whole chat log
+    sessionStorage['chat-log'] = chatLog; // save it as a session cookie
+    console.log(sessionStorage['chat-log']);
 }
 function minimise(){
     $('#titlebar').fadeOut(); //Remove titlebar from screen
@@ -107,8 +106,9 @@ function processing(inputMessage){
             else {
                 addMessage("bot", data.message); // Display the response message in the chat box
             }
-            chatLog = document.getElementById("main").innerHTML; // get the whole chatbot html
+            chatLog = document.getElementById("messages").innerHTML; // get the whole chatbot html
             sessionStorage['chat-log'] = chatLog; // save it as a session cookie
+            console.log(sessionStorage['chat-log']);
         }
     });
 }
