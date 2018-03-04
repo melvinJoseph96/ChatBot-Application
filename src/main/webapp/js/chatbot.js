@@ -95,8 +95,8 @@ function processing(inputMessage){
             }
             else {
                 addMessage("bot", data.message); // Display the response message in the chat box
-                $('#messages').scrollTop($('#messages')[0].scrollHeight); // Make sure the chatbox is scrolled to the bottom
             }
+            $('#messages').scrollTop($('#messages')[0].scrollHeight); // Make sure the chatbox is scrolled to the bottom
         }
     });
 }
