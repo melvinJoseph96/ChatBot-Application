@@ -68,7 +68,7 @@ function processing(inputMessage){
         contentType: "application/json",
         success: function(data) {
 
-            if (data.message === "Which team you want to send an email to?") {
+            if (data.message === "Which team you want to send an email to?") { //the user can choose a team to send an email to
                 addMessage("bot", data.message);
                 addMessage("bot", data.message.replace(data.message,'<button type="button" onclick="location.href=\'mailto:sales@example.com\'"> Sales </button>' +
                     ' <button type="button" onclick="location.href=\'mailto:marketing@example.com\'"> Marketing</button>'+
@@ -80,18 +80,18 @@ function processing(inputMessage){
                     ' <button type="button" onclick="help()"> I do not know </button>' ))
 
             }
-            else if (data.message === "How do you want to contact us?") {
+            else if (data.message === "How do you want to contact us?") { //when the user has to decide how to contact FDM
                 addMessage("bot", data.message);
                 addMessage("bot",data.message.replace(data.message,'<button type="button" onclick= "email()" > Email </button>' +
                     ' <button type="button" onclick="other()"> Other.. </button>'))
             }
-            else if (data.message === "Here is our contact details:") {
+            else if (data.message === "Here is our contact details:") { //when the user wants to know FDM's contact info
                 addMessage("bot", data.message);
                 addMessage("bot",data.message.replace(data.message,'<p>London <br> 020 3056 8240 <br> Cottons Centre, Cottons Lane <br>' +
                     ' London, SE1 2QG <br> <br> Leeds <br> 0113 331 5048 <br> No. 1 Whitehall Riverside <br> Leeds, West Yorkshire LS1 4BN <br> <br>' +
                     ' Glasgow <br> 0141 218 3100 <br> 1 West Regent Street, 6th Floor <br> Glasgow, G2 1RW</p>'))
             }
-            else if (data.message.match("[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}")){
+            else if (data.message.match("[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}")){ // when the message is an email
                 var email = data.message;
                 window.location.href = "mailto:" + email;
             }
