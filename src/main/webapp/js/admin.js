@@ -73,7 +73,7 @@ function displayIntent(intent){
     cell1.innerHTML = intent.name; //set cell data to intent name
     cell2.innerHTML = intent.userSays; //set cell data to intent's userSays
     cell3.innerHTML = intent.responses; //set cell data to intent's responses
-    cell4.innerHTML = "<button onclick='update("+cell1+","+cell2+","+cell3+");' style='color: green;'>/<button>"; // add edit button
+    cell4.innerHTML = "<button onclick='update(\"" + intent.name + "\")' style='color: green;'>/<button>"; // add edit button
     cell5.innerHTML = "<button onclick='return deleteIntent(\"" + intent.id + "\");' style='color: red;'>X<button>"; // add delete button
 }
 
@@ -100,7 +100,28 @@ function deleteIntent(id) {
     });
 }
 
-function update(one, two, three){
-    one.innerHTML = "<input type='text' placeholder='"+one.innerText+"'>";
+function update(name){
+    // find the row you want to update
+    var table = document.getElementById("display");
+    var tr = table.getElementsByTagName("tr"); // Get all rows from table
+    for (var i = 0; i < tr.length; i++) {
+        var td0 = tr[i].getElementsByTagName("td")[0]; // Get the cell at index 0 (1st column)
+        var td1 = tr[i].getElementsByTagName("td")[1]; // Get the cell at index 1 (2nd column)
+        var td2 = tr[i].getElementsByTagName("td")[2]; // Get the cell at index 2 (3rd column)
+        var td3 = tr[i].getElementsByTagName("td")[3]; // Get the cell at index 3 (4th column)
+        var td4 = tr[i].getElementsByTagName("td")[4]; // Get the cell at index 4 (5th column)
+        if (td0.innerText === name) { // if the intent row is found
+            td0.innerHTML = "<input type='text' value='"+name+ "'>"; // change the cells to input boxes with the values inside
+            td1.innerHTML = "<input type='text' value='"+td1.innerText+ "'>";
+            td2.innerHTML = "<input type='text' value='"+td2.innerText+ "'>";
+            td3.innerHTML = "<button onclick='submit2(\"" + td0 + "\",\"" + td1 + "\",\"" + td2 +"\",\"" + td3 + "\",\"" + td4 + "\")' style='color: white'>+</button>"
+            td4.innerHTML = "";
+        }
+    }
 }
 
+function submit2(cell1,cell2,cell3,cell4,cell5){
+    console.log(cell1);
+    console.log(cell1.innerHTML);
+    console.log(cell1.innerText);
+}
