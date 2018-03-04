@@ -77,7 +77,7 @@ function processing(inputMessage){
                     ' <button type="button" onclick="location.href=\'mailto:hr@example.com\'"> HR</button>'+
                     ' <button type="button" onclick="location.href=\'mailto:recruitment@example.com\'"> Recruitment</button>'+
                     ' <button type="button" onclick="location.href=\'mailto:other@example.com\'"> Other</button>' +
-                    ' <button type="button" onclick="help()"> I do not know </button>' ))
+                    ' <button type="button" onclick="dontKnow()"> I do not know </button>' ))
 
             }
             else if (data.message === "How do you want to contact us?") { //when the user has to decide how to contact FDM
@@ -115,18 +115,18 @@ function processing(inputMessage){
     });
 }
 
-function email() {
+function email() { //this method is when the user clicks on email button
     var inputMessage = "email";
     processing(inputMessage)
 }
 
-function other() {
+function other() { //this method is when the user clicks on other button
     var inputMessage = "phone";
     processing(inputMessage)
 }
 
-function help() {
-    var inputMessage = "help";
+function dontKnow() { //this method is when the user clicks on I do not know button
+    var inputMessage = "idk";
     processing(inputMessage)
 }
 
