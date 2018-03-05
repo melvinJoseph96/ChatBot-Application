@@ -57,7 +57,7 @@ body {
 }
 button {
     border: transparent;
-    background-color: transparent;
+    background-color: black;
     font-weight: bold;
     color: white;
 }
