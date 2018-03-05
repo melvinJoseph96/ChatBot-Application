@@ -6,8 +6,6 @@ $(function() { // On page load
         setTimeout(function () { // time delay
             $("#main").fadeIn(); // display main div that contains chatbot after 5000ms
             addMessage("bot", greetingMessage);
-            var msg = new SpeechSynthesisUtterance('Hello World');
-            window.speechSynthesis.speak(msg);
         }, 5000);
     }
     else {
@@ -33,6 +31,12 @@ function addMessage(id, message){
     if (id === "bot") {
         var sound = document.getElementById("messageReceived");
         sound.play();
+        var speechSetting = document.getElementById("speechControl").title;
+        console.log(speechSetting);
+        if (speechSetting === "Turn chat bot speech off"){
+            var msg = new SpeechSynthesisUtterance(message); //if the user wants the chatbot to talk
+            window.speechSynthesis.speak(msg); // use speech synthesis on the message
+        }
     }
 	$('#messages').append("<div class=\"message " + id + "\"><div class=\"messagetext\">" + message + "</div> " +
         "<p style='font-size: 10px; color: gray'>" + time() + "</p></div>"); // add time
@@ -107,7 +111,6 @@ function processing(inputMessage){
             }
             chatLog = document.getElementById("messages").innerHTML; // get the whole chatbot html
             sessionStorage['chat-log'] = chatLog; // save it as a session cookie
-            console.log(sessionStorage['chat-log']);
             $('#messages').scrollTop($('#messages')[0].scrollHeight); // Make sure the chatbox is scrolled to the bottom
 
         }
@@ -194,4 +197,14 @@ function link(hrefLink, imgName){
     link.appendChild(image); // make the image the link
     messageDiv.appendChild(link); // add the link to the chatbot
     return false;
+}
+
+function speech(){
+    var speechSetting = document.getElementById("speechControl").title;
+    if (speechSetting === "Turn chat bot speech on"){
+        document.getElementById("speechControl").title = "Turn chat bot speech off";
+    }
+    else {
+        document.getElementById("speechControl").title = "Turn chat bot speech on";
+    }
 }

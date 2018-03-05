@@ -106,3 +106,7 @@ First you need to say to the chatbot that you want to send an email. The chatbot
 
 Unless you have access to an admin login account, you cannot access the control panel. To gain access you must type in your admin details into the login page on /admin.
 
+## A user can make the chatbot speak out its messages
+
+Located on the left hand side of the chat bot's input bar, found at the bottom, there is a round, blue icon. When you hover the mouse over this icon, text will appear stating if, by clicking the icon, the speech setting will turn on or off. By clicking the button, every time the chatbot sends a message, sound will be played that reads out the chatbot message. To turn it off again, press the same button.
+
