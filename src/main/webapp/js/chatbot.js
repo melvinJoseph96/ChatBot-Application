@@ -73,20 +73,20 @@ function processing(inputMessage){
 
             if (data.message === "Which team you want to send an email to?") { //the user can choose a team to send an email to
                 addMessage("bot", data.message);
-                addMessage("bot", data.message.replace(data.message,'<button type="button" onclick="location.href=\'mailto:sales@example.com\'"> Sales </button>' +
-                    ' <button type="button" onclick="location.href=\'mailto:marketing@example.com\'"> Marketing</button>'+
-                    ' <button type="button" onclick="location.href=\'mailto:finance@example.com\'"> Finance</button>' +
-                    ' <button type="button" onclick="location.href=\'mailto:it@example.com\'"> IT </button>' +
-                    ' <button type="button" onclick="location.href=\'mailto:hr@example.com\'"> HR</button>'+
-                    ' <button type="button" onclick="location.href=\'mailto:recruitment@example.com\'"> Recruitment</button>'+
-                    ' <button type="button" onclick="location.href=\'mailto:other@example.com\'"> Other</button>' +
-                    ' <button type="button" onclick="dontKnow()"> I do not know </button>' ))
+                addMessage("bot", data.message.replace(data.message,'<button type="button" class="button" onclick="location.href=\'mailto:sales@example.com\'"> Sales </button>' +
+                    ' <button type="button" class="button" onclick="location.href=\'mailto:marketing@example.com\'"> Marketing</button>'+
+                    ' <button type="button" class="button" onclick="location.href=\'mailto:finance@example.com\'"> Finance</button>' +
+                    ' <button type="button" class="button" onclick="location.href=\'mailto:it@example.com\'"> IT </button>' +
+                    ' <button type="button" class="button" onclick="location.href=\'mailto:hr@example.com\'"> HR</button>'+
+                    ' <button type="button" class="button" onclick="location.href=\'mailto:recruitment@example.com\'"> Recruitment</button>'+
+                    ' <button type="button" class="button" onclick="location.href=\'mailto:other@example.com\'"> Other</button>' +
+                    ' <button type="button" class="button" onclick="dontKnow()"> I do not know </button>' ))
 
             }
             else if (data.message === "How do you want to contact us?") { //when the user has to decide how to contact FDM
                 addMessage("bot", data.message);
-                addMessage("bot",data.message.replace(data.message,'<button type="button" onclick= "email()" > Email </button>' +
-                    ' <button type="button" onclick="other()"> Other.. </button>'))
+                addMessage("bot",data.message.replace(data.message,'<button type="button" class="button" onclick= "email()" > Email </button>' +
+                    ' <button type="button" class="button" onclick="other()"> Other.. </button>'))
             }
             else if (data.message === "Here is our contact details:") { //when the user wants to know FDM's contact info
                 addMessage("bot", data.message);
