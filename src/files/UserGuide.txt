@@ -101,3 +101,8 @@ When on the admin control panel, click onto the first text input box found in th
 ## A user can be recommended a team for the email to be sent to
 
 First you need to say to the chatbot that you want to send an email. The chatbot will respond with a button for every team you can send an email to and a "I do not know" button. Click on the "I do not know" button, then the chatbot will display a message saying "Please, write briefly the reason you want to email us about:". Type into the text box the reason you want to send an email (ex. What jobs are available?) and then the chatbot will create an empty email, ready for you to write, to the relevant team.
+
+## A user cannot access the admin control panel
+
+Unless you have access to an admin login account, you cannot access the control panel. To gain access you must type in your admin details into the login page on /admin.
+

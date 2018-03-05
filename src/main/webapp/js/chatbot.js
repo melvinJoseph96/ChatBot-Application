@@ -6,6 +6,8 @@ $(function() { // On page load
         setTimeout(function () { // time delay
             $("#main").fadeIn(); // display main div that contains chatbot after 5000ms
             addMessage("bot", greetingMessage);
+            var msg = new SpeechSynthesisUtterance('Hello World');
+            window.speechSynthesis.speak(msg);
         }, 5000);
     }
     else {
