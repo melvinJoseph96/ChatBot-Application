@@ -29,6 +29,7 @@ input[type=text], input[type=password] {
     margin: 8px 0;
     display: inline-block;
     border: 1px solid #ccc;
+    box-sizing: border-box;
 }
 
 button {
@@ -42,8 +43,10 @@ button {
 }
 
 .container {
-    padding: 10px 30% 10px 30%;
-    margin-top: 10%;
+    margin-top: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 400px;
 }
 
 #buttons {
@@ -53,4 +56,15 @@ button {
 
 #logo {
     background-color: #212121;
+}
+
+.error{
+    background-color: black;
+    color: white;
+    padding: 8px;
+}
+
+.error:empty
+{
+    display:none;
 }
