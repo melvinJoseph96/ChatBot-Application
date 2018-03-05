@@ -73,12 +73,12 @@ function processing(inputMessage){
 
             if (data.message === "Which team you want to send an email to?") { //the user can choose a team to send an email to
                 addMessage("bot", data.message);
-                addMessage("bot", data.message.replace(data.message,'<button type="button" class="button" onclick="location.href=\'mailto:sales@example.com\'"> Sales </button>' +
+                addMessage("bot", data.message.replace(data.message,'<button type="button" class="button" onclick="location.href=\'mailto:sales_pool@fdmgroup.com\'"> Sales </button>' +
                     ' <button type="button" class="button" onclick="location.href=\'mailto:marketing@example.com\'"> Marketing</button>'+
                     ' <button type="button" class="button" onclick="location.href=\'mailto:finance@example.com\'"> Finance</button>' +
                     ' <button type="button" class="button" onclick="location.href=\'mailto:it@example.com\'"> IT </button>' +
                     ' <button type="button" class="button" onclick="location.href=\'mailto:hr@example.com\'"> HR</button>'+
-                    ' <button type="button" class="button" onclick="location.href=\'mailto:recruitment@example.com\'"> Recruitment</button>'+
+                    ' <button type="button" class="button" onclick="location.href=\'mailto:recruitment_pool@fdmgroup.com\'"> Recruitment</button>'+
                     ' <button type="button" class="button" onclick="location.href=\'mailto:other@example.com\'"> Other</button>' +
                     ' <button type="button" class="button" onclick="dontKnow()"> I do not know </button>' ))
 
