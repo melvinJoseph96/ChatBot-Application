@@ -181,9 +181,10 @@
 }
 #saveLog{
 	float: right;
-	margin-top: 8px;
-	margin-right: 5px;
 	margin-left: -50px;
+	border-top: 1px solid #f1f0f0;
+	padding: 7px 2px 7px 7px;
+	background-color: white;
 }
 
 #emailPopUp {
@@ -254,4 +255,18 @@
 	width: 20%;
 	float: left;
 	overflow:hidden;
+}
+#inputBar {
+	width: 100%;
+	background-color: white;
+}
+#speechControl{
+	float: left;
+	padding:4px 2px 5px 2px;
+	background-color: white;
+	border-top: 1px solid #f1f0f0;
+}
+#input{
+	width: 90%;
+	border-left:none;
 }
