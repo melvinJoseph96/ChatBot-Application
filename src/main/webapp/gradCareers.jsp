@@ -42,8 +42,11 @@
             <div id="messages">
 
             </div>
-            <input id="input" type="text" placeholder="Type a message and hit enter to send...">
-            <img id="saveLog" src="email.png" width="20px" height="15px" onclick="save()" title="Email the chat log">
+            <div id="inputBar">
+                <img src="speech.png" id="speechControl" width="20px" height="20px" onclick="speech()" title="Turn chat bot speech on">
+                <input id="input" type="text" placeholder="Type a message and hit enter">
+                <img id="saveLog" src="email.png" width="20px" height="15px" onclick="save()" title="Email the chat log">
+            </div>
         </div>
         <div id="collapse">
             <div id="greenA">&#8226;</div>

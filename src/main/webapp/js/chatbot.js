@@ -45,7 +45,7 @@ function addMessage(id, message){
 }
 function minimise(){
     $('#titlebar').fadeOut(); //Remove titlebar from screen
-    $('#input').fadeOut(); //Remove text box from screen
+    $('#inputBar').fadeOut(); //Remove text box from screen
     $('#messages').fadeOut(); //Remove messages from screen
     $('#collapse').fadeIn(); //Display collapsed chatbot
     $('.expand').fadeIn(); //Expand button appears
@@ -55,7 +55,7 @@ function reopen(){
     $('#collapse').fadeOut(); //Remove collapsed title bar from screen
     $('.expand').fadeOut(); //Remove button from screen
     $('#titlebar').fadeIn(); //Add titlebar to screen
-    $('#input').fadeIn(); //Add text box to screen
+    $('#inputBar').fadeIn(); //Add text box to screen
     $('#messages').fadeIn(); //Add messages to screen
 }
 
