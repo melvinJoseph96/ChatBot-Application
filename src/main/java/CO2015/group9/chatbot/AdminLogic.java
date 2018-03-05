@@ -284,17 +284,59 @@ public class AdminLogic {
         return toReturn;
     }
 
-    //translating function which detects source language
+
+    //translating function which detects source language and then translates
     public String translate(String query, String target) {
-        return "";
+        String toReturn = query;
+        try {
+            HttpResponse<JsonNode> httpResponse = Unirest.post("https://translation.googleapis.com/language/translate/v2")
+                    .header("Authorization", translationApiKey)
+                    .header("Content-Type", "application/json")
+                    .body("{   'q': '" + query + "'," +
+                            "  'target': '" + target + "'," +
+                            "  'format': 'text'}")
+                    .asJson();
+            toReturn = httpResponse
+                    .getBody()
+                    .getObject()
+                    .getJSONObject("data")
+                    .getJSONArray("translations")
+                    .getJSONObject(0)
+                    .getString("translatedText");
+        } catch (UnirestException e) {
+            e.printStackTrace();
+        }
+        return toReturn;
     }
 
+    public String detectUserLang(String query) {
+        String toReturn = null;
+        try {
+            HttpResponse<JsonNode> httpResponse = Unirest.post("https://translation.googleapis.com/language/translate/v2")
+                    .header("Authorization", translationApiKey)
+                    .header("Content-Type", "application/json")
+                    .body("{   'q': '" + query + "'," +
+                            "  'target': 'en'," +
+                            "  'format': 'text'}")
+                    .asJson();
+            toReturn = httpResponse.getBody()
+                    .getObject()
+                    .getJSONObject("data")
+                    .getJSONArray("translations")
+                    .getJSONObject(0)
+                    .getString("detectedSourceLanguage"); //language as ISO-639-1 code
+        } catch (UnirestException e) {
+            e.printStackTrace();
+        }
+        return toReturn;
+    }
 
 
     public static void main(String[] args) {
         AdminLogic test = new AdminLogic();
         test.getIntents();
         test.translate("Co to jest FDM", "pl", "en");
+        test.detectUserLang("Co to jest FDM?");
         // test.addIntent("hbvdsafjhgfdfsghbd",new ArrayList<>(),new ArrayList<>());
         //    System.out.println(test.getIntentDetails("fa39fa7a-2737-41f9-9b72-7e26aa37ea3d"));
         // test.deleteIntent("c822f665-946c-47a1-b898-51d7351db821");
