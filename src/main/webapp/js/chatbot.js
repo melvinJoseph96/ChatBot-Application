@@ -2,7 +2,6 @@ $(function() { // On page load
     console.log("loaded chatbot.js");
     if (sessionStorage.getItem("chat-log") === null) { // if this is a new session
         var greetingMessage = "Hello!"; // greeting message
-
         setTimeout(function () { // time delay
             $("#main").fadeIn(); // display main div that contains chatbot after 5000ms
             addMessage("bot", greetingMessage);
@@ -34,8 +33,7 @@ function addMessage(id, message){
         var speechSetting = document.getElementById("speechControl").title;
         console.log(speechSetting);
         if (speechSetting === "Turn chat bot speech off"){
-            var msg = new SpeechSynthesisUtterance(message); //if the user wants the chatbot to talk
-            window.speechSynthesis.speak(msg); // use speech synthesis on the message
+            responsiveVoice.speak(message);
         }
     }
 	$('#messages').append("<div class=\"message " + id + "\"><div class=\"messagetext\">" + message + "</div> " +
