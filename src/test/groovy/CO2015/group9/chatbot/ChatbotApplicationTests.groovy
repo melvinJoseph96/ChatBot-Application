@@ -8,6 +8,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.http.MediaType
+import org.springframework.security.test.context.support.WithMockUser
 import org.springframework.test.context.ContextConfiguration
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner
 import org.springframework.test.web.servlet.MockMvc
@@ -21,6 +22,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view
 import static org.junit.Assert.assertEquals;
+import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.*;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -164,5 +166,27 @@ class ChatbotApplicationTests extends Specification {
         admin.deleteIntent(id) // make sure to remove the test intent
         then: // length of before should be one less than after
         before.size() == after.size() - 1
+    }
+
+    @Test
+    @WithMockUser(roles="")
+    def "Admin page without logging in"() {
+        given: "the context of the controller is set up"
+        mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).apply(springSecurity()).build()
+        when: "I do a get '/controlpanel' as an unregistered user"
+        result = this.mockMvc.perform(get('/controlpanel'))
+        then: "I should not be able to access the 'adminPage.jsp' view"
+        result.andExpect(status().is(403))
+    }
+
+    @Test
+    @WithMockUser(roles="ADMIN")
+    def "Admin page as admin"() {
+        given: "the context of the controller is set up"
+        mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build()
+        when: "I do a get '/controlpanel'"
+        result = this.mockMvc.perform(get('/controlpanel'))
+        then: "I should see the view 'adminPage.jsp'"
+        result.andExpect(status().isOk()).andExpect(view().name('adminPage.jsp'))
     }
 }
