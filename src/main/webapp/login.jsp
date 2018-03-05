@@ -20,7 +20,7 @@
         <label for="password"><b>Password</b></label>
         <input type="password" placeholder="Enter Password" name="password" required>
         <div id="buttons">
-            <button type="submit" onclick="location.href='/controlpanel'">Login</button>
+            <button type="submit">Login</button>
             <button onclick="location.href='/register'">Register</button>
         </div>
         <c:if test="${not empty error}">
