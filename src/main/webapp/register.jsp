@@ -28,7 +28,7 @@
             <input type="password" placeholder="Enter Password" name="password" required>
             <div id="buttons">
                 <button type="submit">Register</button>
-                <button>Back</button>
+                <button onclick="location.href='/admin'">Back</button>
             </div>
         </div>
     </form>
