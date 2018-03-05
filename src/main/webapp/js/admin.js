@@ -73,7 +73,7 @@ function displayIntent(intent){
     cell1.innerHTML = intent.name; //set cell data to intent name
     cell2.innerHTML = intent.userSays; //set cell data to intent's userSays
     cell3.innerHTML = intent.responses; //set cell data to intent's responses
-    cell4.innerHTML = "<button onclick='update(\"" + intent.name + "\")' style='color: green;'>/<button>"; // add edit button
+    cell4.innerHTML = "<button onclick='update(\"" + intent.name + "\",\"" + intent.id + "\")' style='color: green;'>/<button>"; // add edit button
     cell5.innerHTML = "<button onclick='return deleteIntent(\"" + intent.id + "\");' style='color: red;'>X<button>"; // add delete button
 }
 
@@ -100,7 +100,7 @@ function deleteIntent(id) {
     });
 }
 
-function update(name){
+function update(name,id){
     // find the row you want to update
     var table = document.getElementById("display");
     var tr = table.getElementsByTagName("tr"); // Get all rows from table
@@ -114,14 +114,23 @@ function update(name){
             td0.innerHTML = "<input type='text' value='"+name+ "'>"; // change the cells to input boxes with the values inside
             td1.innerHTML = "<input type='text' value='"+td1.innerText+ "'>";
             td2.innerHTML = "<input type='text' value='"+td2.innerText+ "'>";
-            td3.innerHTML = "<button onclick='submit2(\"" + td0 + "\",\"" + td1 + "\",\"" + td2 +"\",\"" + td3 + "\",\"" + td4 + "\")' style='color: white'>+</button>"
+            td3.innerHTML = "<button onclick='submit2(this,\"" + id + "\")' style='color: white'>+</button>";
             td4.innerHTML = "";
         }
     }
 }
 
-function submit2(cell1,cell2,cell3,cell4,cell5){
-    console.log(cell1);
-    console.log(cell1.innerHTML);
-    console.log(cell1.innerText);
+function submit2(data,id){
+    var row = data.parentNode.parentNode;
+    var one = row.getElementsByTagName("td")[0];
+    var two = row.getElementsByTagName("td")[1];
+    var three = row.getElementsByTagName("td")[2];
+    var four = row.getElementsByTagName("td")[3];
+    var five = row.getElementsByTagName("td")[4];
+    one.innerText = one.getElementsByTagName("input")[0].value;
+    two.innerText = two.getElementsByTagName("input")[0].value;
+    three.innerText = three.getElementsByTagName("input")[0].value;
+    four.innerHTML = "<button onclick='update(\"" + one.innerText + "\")' style='color: green;'>/<button>"; // add edit button
+    five.innerHTML = "<button onclick='return deleteIntent(\"" + id + "\");' style='color: red;'>X<button>"; // add delete button
+
 }
