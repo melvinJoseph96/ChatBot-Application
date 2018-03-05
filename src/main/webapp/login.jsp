@@ -19,13 +19,11 @@
         <input type="text" placeholder="Enter Username" name="username" required>
         <label for="password"><b>Password</b></label>
         <input type="password" placeholder="Enter Password" name="password" required>
+        <div class="error"><c:if test="${not empty error}">${error}</c:if></div>
         <div id="buttons">
             <button type="submit">Login</button>
             <button onclick="location.href='/register'">Register</button>
         </div>
-        <c:if test="${not empty error}">
-            ${error}
-        </c:if>
     </div>
 </form>
 </body>
