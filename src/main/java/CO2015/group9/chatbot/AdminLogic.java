@@ -13,7 +13,9 @@ import java.util.ArrayList;
 public class AdminLogic {
 
 
-    private final String apiKey = "Bearer f6b365252ccc42ceaf7b5012e2945b68";
+    private final String dialogFlowApiKey = "Bearer f6b365252ccc42ceaf7b5012e2945b68";
+    private final String translationApiKey = "Bearer ya29.Glt1BUCCV3MgNT9SFKvAIiy9ljhiXuSABAebWG70jmohhanneL3_jRpm0ckoIwJMvhBorYQiZSFxjLp_gooo0trLTuAeNY80_Fh9gKv87b8sMACMigyKN69BI5Rr";
+
 
 
     public JSONObject getIntentDetails(String id) {
@@ -21,7 +23,7 @@ public class AdminLogic {
 
         try {
             HttpResponse<JsonNode> httpResponse = Unirest.get("https://api.dialogflow.com/v1/intents/" + id)
-                    .header("Authorization", apiKey)
+                    .header("Authorization", dialogFlowApiKey)
                     .header("Content-Type", "application/json").asJson();
             toReturn = httpResponse.getBody().getObject();
         } catch (UnirestException e) {
@@ -38,7 +40,7 @@ public class AdminLogic {
 
         try {
             HttpResponse<JsonNode> httpResponse = Unirest.get("https://api.dialogflow.com/v1/intents")
-                    .header("Authorization", apiKey)
+                    .header("Authorization", dialogFlowApiKey)
                     .header("Content-Type", "application/json").asJson();
             JSONIntents = httpResponse.getBody().getArray();
         } catch (UnirestException e) {
@@ -64,7 +66,6 @@ public class AdminLogic {
             }
 
             for (int j = 0; j < userSaysArrLength; j++) {
-
                 try {
 
                     userSays.add(JSONUserSays
@@ -86,7 +87,6 @@ public class AdminLogic {
 
             int responsesArrLength = 0;
             if (responsesObject.get("speech") instanceof JSONArray) {
-                System.out.println("array");
                 responsesArrLength = responsesObject
                         .getJSONArray("speech")
                         .length();
@@ -101,9 +101,7 @@ public class AdminLogic {
             }
             intents.add(new Intent(intentId, name, userSays, responses));
         }
-
-        System.out.println("qwerty" + intents);
-
+        System.out.println("Intent list: " + intents);
         return intents;
     }
 
@@ -167,7 +165,7 @@ public class AdminLogic {
 
             // carry out the http response to dialogflow
             HttpResponse<JsonNode> httpResponse = Unirest.post("https://api.dialogflow.com/v1/intents/")
-                    .header("Authorization", apiKey)
+                    .header("Authorization", dialogFlowApiKey)
                     .header("Content-Type", "application/json")
                     .body(body)
                     .asJson();
@@ -180,7 +178,7 @@ public class AdminLogic {
     public void deleteIntent(String id) {
         try {
             HttpResponse<JsonNode> httpResponse = Unirest.delete("https://api.dialogflow.com/v1/intents/" + id)
-                    .header("Authorization", apiKey)
+                    .header("Authorization", dialogFlowApiKey)
                     .header("Content-Type", "application/json").asJson();
         } catch (UnirestException e) {
             e.printStackTrace();
@@ -193,7 +191,7 @@ public class AdminLogic {
 
         try {
             HttpResponse<JsonNode> httpResponse = Unirest.delete("https://api.dialogflow.com/v1/intents/" + id)
-                    .header("Authorization", apiKey)
+                    .header("Authorization", dialogFlowApiKey)
                     .header("Content-Type", "application/json").asJson();
         } catch (UnirestException e) {
             e.printStackTrace();
@@ -211,7 +209,7 @@ public class AdminLogic {
 
             try {
                 HttpResponse<JsonNode> httpResponse = Unirest.put("https://api.dialogflow.com/v1/intents/" + id)
-                        .header("Authorization", apiKey)
+                        .header("Authorization", dialogFlowApiKey)
                         .header("Content-Type", "application/json")
                         .body("{    \"name\": \"" + intentName + "\",\"responses\": [{\"messages\": [{\"type\": 0,\"speech\": [" +
                                 responsesAsJSON + newResponseFormatted + "]}]}],\"userSays\": [" + userSaysAsJSON + "]}")
@@ -235,7 +233,7 @@ public class AdminLogic {
 
             try {
                 HttpResponse<JsonNode> httpResponse = Unirest.put("https://api.dialogflow.com/v1/intents/" + id)
-                        .header("Authorization", apiKey)
+                        .header("Authorization", dialogFlowApiKey)
                         .header("Content-Type", "application/json")
                         .body("{    \"name\": \"" + intentName + "\",\"responses\": [{\"messages\": [{\"type\": 0,\"speech\": [" +
                                 responsesAsJSON + "]}]}],\"userSays\": [" + userSaysAsJSON + newUserSaysFormatted + "]}")
@@ -267,9 +265,36 @@ public class AdminLogic {
         return array; // Return array of split strings
     }
 
+    //translating function with defined source language
+    public String translate(String query, String source, String target) { //source and target of the format of ISO-639-1 Code
+        String toReturn = query;
+        try {
+            HttpResponse<JsonNode> httpResponse = Unirest.post("https://translation.googleapis.com/language/translate/v2")
+                    .header("Authorization", translationApiKey)
+                    .header("Content-Type", "application/json")
+                    .body("{   'q': '" + query + "'," +
+                            "  'source': '" + source + "'," +
+                            "  'target': '" + target + "'," +
+                            "  'format': 'text'}")
+                    .asJson();
+            toReturn = httpResponse.getBody().getObject().getJSONObject("data").getJSONArray("translations").getJSONObject(0).getString("translatedText");
+        } catch (UnirestException e) {
+            e.printStackTrace();
+        }
+        return toReturn;
+    }
+
+    //translating function which detects source language
+    public String translate(String query, String target) {
+        return "";
+    }
+
+
+
     public static void main(String[] args) {
         AdminLogic test = new AdminLogic();
         test.getIntents();
+        test.translate("Co to jest FDM", "pl", "en");
         // test.addIntent("hbvdsafjhgfdfsghbd",new ArrayList<>(),new ArrayList<>());
         //    System.out.println(test.getIntentDetails("fa39fa7a-2737-41f9-9b72-7e26aa37ea3d"));
         // test.deleteIntent("c822f665-946c-47a1-b898-51d7351db821");
