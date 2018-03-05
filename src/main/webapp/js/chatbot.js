@@ -33,7 +33,9 @@ function addMessage(id, message){
         var speechSetting = document.getElementById("speechControl").title;
         console.log(speechSetting);
         if (speechSetting === "Turn chat bot speech off"){
+            if (!message.match("<")){
             responsiveVoice.speak(message);
+            }
         }
     }
 	$('#messages').append("<div class=\"message " + id + "\"><div class=\"messagetext\">" + message + "</div> " +
