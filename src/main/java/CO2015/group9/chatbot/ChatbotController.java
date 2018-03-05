@@ -55,4 +55,16 @@ public class ChatbotController {
         AdminLogic admin = new AdminLogic();
         admin.deleteIntent(id);
     }
+
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    public void updateIntent(@RequestBody String[] data ) {
+        AdminLogic admin = new AdminLogic();
+        String id = data[0];
+        String name = data[1];
+        ArrayList<String> userSays = admin.toArrayList(data[2]);
+        ArrayList<String> responses = admin.toArrayList(data[3]);
+//        admin.addUserSays(id,userSays);
+//        admin.addResponse(id,responses);
+
+    }
 }

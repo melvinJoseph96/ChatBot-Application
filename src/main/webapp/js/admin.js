@@ -122,15 +122,31 @@ function update(name,id){
 
 function submit2(data,id){
     var row = data.parentNode.parentNode;
-    var one = row.getElementsByTagName("td")[0];
+    var one = row.getElementsByTagName("td")[0]; // fetch each cell of the row
     var two = row.getElementsByTagName("td")[1];
     var three = row.getElementsByTagName("td")[2];
     var four = row.getElementsByTagName("td")[3];
     var five = row.getElementsByTagName("td")[4];
-    one.innerText = one.getElementsByTagName("input")[0].value;
-    two.innerText = two.getElementsByTagName("input")[0].value;
-    three.innerText = three.getElementsByTagName("input")[0].value;
+    var inputOne = one.getElementsByTagName("input")[0].value;
+    var inputTwo = two.getElementsByTagName("input")[0].value;
+    var inputThree = three.getElementsByTagName("input")[0].value;
+    one.innerText =  inputOne;// put the input box values into the cell
+    two.innerText = inputTwo;
+    three.innerText = inputThree;
     four.innerHTML = "<button onclick='update(\"" + one.innerText + "\")' style='color: green;'>/<button>"; // add edit button
     five.innerHTML = "<button onclick='return deleteIntent(\"" + id + "\");' style='color: red;'>X<button>"; // add delete button
-
+    var data = [id,inputOne,inputTwo,inputThree];
+    $.ajax({
+        type: "POST",
+        url: '/update',
+        data: JSON.stringify(data),
+        datatype: "json",
+        contentType: "application/json",
+        success: function () {
+            console.log("intent updated");
+        },
+        error: function () {
+            console.log("error while updating intent");
+        }
+    });
 }
