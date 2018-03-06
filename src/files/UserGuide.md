@@ -114,3 +114,6 @@ Located on the left hand side of the chat bot's input bar, found at the bottom, 
 
 When the admin has logged into the control panel, you are able to edit each intent by clicking the green slash at the end of it. This opens up the intent in an editable text box where the admin can change either the name, keywords or response to whatever they want. Then by pressing the plus button (+), this updates the intent.
 
+## An admin can get to the admin login page through the chat bot
+
+If an admin is using the chatbot and wants to jump staright into the admin login page, they can do this by typing in the keyword "/openadminpanel" in the chatbot . This directs the user to the login page where they can put in their credentials to enter the panel.
