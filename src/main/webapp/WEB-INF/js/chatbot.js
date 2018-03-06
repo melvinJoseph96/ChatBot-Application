@@ -1,7 +1,7 @@
 $(function() { // On page load
     console.log("loaded chatbot.js");
     if (sessionStorage.getItem("chat-log") === null) { // if this is a new session
-        var greetingMessage = "Hello!"; // greeting message
+        var greetingMessage = "Hello!, how can I help you?"; // greeting message
         setTimeout(function () { // time delay
             $("#main").fadeIn(); // display main div that contains chatbot after 5000ms
             addMessage("bot", greetingMessage);
@@ -167,6 +167,10 @@ function processing(inputMessage){
             else if (data.message === "https://www.fdmgroup.com/careers/ex-forces/"){ // when the message is a link to ex-forces careers
                 addMessage("bot","Click here to view our ex-forces careers page:");
                 link("/exforcesCareers", "exforces.png");
+            }
+            else if(data.message === "Taking you to admin panel"){
+                window.location.href = "/admin"
+
             }
             else {
                 addMessage("bot", data.message); // Display the response message in the chat box

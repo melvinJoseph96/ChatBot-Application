@@ -45,13 +45,13 @@ public class ChatbotController {
         return admin.detectUserLang(message);
     }
 
-    @RequestMapping(value = "/intents", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/intents", method = RequestMethod.GET)
     public List<Intent> getIntents(){
         AdminLogic admin = new AdminLogic();
         return admin.getIntents();
     }
 
-    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    @RequestMapping(value = "/admin/add", method = RequestMethod.POST)
     public Intent addIntent(@RequestBody String[] data){
         AdminLogic admin = new AdminLogic();
         // put the admin inputs into arrays
@@ -63,13 +63,13 @@ public class ChatbotController {
         return new Intent(name,userSays,responses);
     }
 
-    @RequestMapping(value = "/delete", method = RequestMethod.POST)
+    @RequestMapping(value = "/admin/delete", method = RequestMethod.POST)
     public void deleteIntent(@RequestBody String id) {
         AdminLogic admin = new AdminLogic();
         admin.deleteIntent(id);
     }
 
-    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    @RequestMapping(value = "/admin/update", method = RequestMethod.POST)
     public void updateIntent(@RequestBody String[] data ) {
         AdminLogic admin = new AdminLogic();
         String id = data[0];
