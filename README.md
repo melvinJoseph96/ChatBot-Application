@@ -11,6 +11,9 @@
 
 **20th March** `Sprint 3 Deadline`
 
+## User Guide  
+[See the User Guide](https://github.com/UOL-CS/co2015-1718-group-09/blob/master/src/files/UserGuide.md)
+
 ## Definition of Done
 | Item | Description | Evidence Required |
 | ---- | ----------- | ----------------- |
