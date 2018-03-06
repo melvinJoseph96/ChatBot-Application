@@ -335,28 +335,32 @@ public class AdminLogic {
     }
 
     //I will finish this later
-//    public String detectUserLang(String query) {
-//        String toReturn = null;
-//        String bodySpam = "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"";
-//        try {
-//            HttpResponse<JsonNode> httpResponse = Unirest.post("https://translation.googleapis.com/language/translate/v2")
-//                    .header("Content-Type", "multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW")
-//                    .body(bodySpam+"key\"\r\n\r\n"+translationApiKey+
-//                            "\r\n"+bodySpam+"q\"\r\n\r\n"+query+
-//                            "------WebKitFormBoundary7MA4YWxkTrZu0gW--")
-//                    .asJson();
-//            toReturn = httpResponse
-//                    .getBody()
-//                    .getObject()
-//                    .getJSONObject("data")
-//                    .getJSONArray("translations")
-//                    .getJSONObject(0)
-//                    .getString("translatedText");
-//        } catch (UnirestException e) {
-//            e.printStackTrace();
-//        }
-//        return toReturn;
-//    }
+    public String detectUserLang(String query) {
+        String toReturn = null;
+        String bodySpam = "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"";
+        try {
+            HttpResponse<JsonNode> httpResponse = Unirest.post("https://translation.googleapis.com/language/translate/v2/detect")
+                    .header("Content-Type", "multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW")
+                    .body(bodySpam +
+                            "key\"\r\n\r\nAIzaSyC14FnMKS7uEzFh1nwO7YbiydCd8H8_A00\r\n"
+                            + bodySpam +
+                            "q\"\r\n\r\n"
+                            + query +
+                            "\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--")
+                    .asJson();
+            toReturn = httpResponse
+                    .getBody()
+                    .getObject()
+                    .getJSONObject("data")
+                    .getJSONArray("detections")
+                    .getJSONArray(0)
+                    .getJSONObject(0)
+                    .getString("language");
+        } catch (UnirestException e) {
+            e.printStackTrace();
+        }
+        return toReturn;
+    }
 
     String userSaysFormatting(ArrayList<String> userSays) {
         StringBuilder str = new StringBuilder();
@@ -390,6 +394,7 @@ public class AdminLogic {
         test.getIntents();
         test.translate("Co to jest FDM", "pl", "en");
         test.translate("Co to jest FDM", "en");
+        test.detectUserLang("chrząszcz brzmi w trzcinie w strzebeszynie");
 //        ArrayList<String> us = new ArrayList<>();
 //        ArrayList<String> r = new ArrayList<>();
 //        us.add("test1");
