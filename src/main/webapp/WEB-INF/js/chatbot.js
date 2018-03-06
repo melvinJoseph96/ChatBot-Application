@@ -34,7 +34,15 @@ $(function() { // On page load
                         if (data === "en") {
                             processing(inputMessage)
                         } else {
-                            addMessage("bot", "Would you like to talk in " + data);
+                            var langFull = data;
+                            $.getJSON('js/langcodes.json', function (json) {
+                                for (var i in json) {
+                                    if (data === json[i].code) {
+                                        langFull = json[i].name
+                                    }
+                                }
+                                addMessage("bot", "Would you like to talk in " + langFull);
+                            });
                         }
                     }
                 });
