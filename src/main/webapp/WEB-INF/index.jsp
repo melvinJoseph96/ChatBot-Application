@@ -12,7 +12,7 @@
     <body>
     <div id="fdm">
         <div id="bar">
-            <img src="fdm-logo-anim.gif" width="120" height="60">
+            <img src="media/fdm-logo-anim.gif" width="120" height="60">
             <h1 style="font-size: 30px;padding: 5px">FDM Home</h1>
         </div>
         <!- video is here for demo purposes only ->
@@ -34,7 +34,7 @@
         </div>
     </div>
     <!- END ->
-    <audio id="messageReceived" src="message.mp3"></audio>
+    <audio id="messageReceived" src="media/message.mp3"></audio>
         <div id="main">
             <div id="chatbot">
                 <div id="titlebar">
@@ -43,16 +43,16 @@
                     <div class="dialog">
                         <a href="#" class="close-X" onclick="minimise()"></a>
                     </div>
-                    <img id="imageSoundOn" src="soundOff.png" title="mute" width="20" height="20" onclick="soundChangeOff()">
-                    <img id="imageSoundOff" src="soundOn.png" title="un-mute" width="20" height="20" onclick="soundChangeOn()">
+                    <img id="imageSoundOn" src="media/soundOff.png" title="mute" width="20" height="20" onclick="soundChangeOff()">
+                    <img id="imageSoundOff" src="media/soundOn.png" title="un-mute" width="20" height="20" onclick="soundChangeOn()">
                 </div>
                 <div id="messages">
 
                 </div>
                 <div id="inputBar">
-                    <img src="speech.png" id="speechControl" width="20px" height="20px" onclick="speech()" title="Turn chat bot speech on">
+                    <img src="media/speech.png" id="speechControl" width="20px" height="20px" onclick="speech()" title="Turn chat bot speech on">
                     <input id="input" type="text" placeholder="Type a message and hit enter">
-                    <img id="saveLog" src="email.png" width="20px" height="15px" onclick="save()" title="Email the chat log">
+                    <img id="saveLog" src="media/email.png" width="20px" height="15px" onclick="save()" title="Email the chat log">
                 </div>
             </div>
             <div id="collapse">

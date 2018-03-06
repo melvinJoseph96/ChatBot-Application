@@ -8,7 +8,7 @@
 </head>
 <body>
 <div id="bar">
-    <img src="fdm-logo-anim.gif" width="120" height="60">
+    <img src="media/fdm-logo-anim.gif" width="120" height="60">
     <h1>Admin Register Panel</h1>
 </div>
     </div>
