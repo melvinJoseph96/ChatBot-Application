@@ -198,27 +198,22 @@ public class AdminLogic {
         }
     }
 
-    public void updateIntent(String id, ArrayList<String> userSays, ArrayList<String> responses) {
-        ArrayList<Intent> intents = getIntents();
-        Intent intent = intents.stream().filter(x -> x.getId().equals(id)).findAny().orElse(null);
+    public void updateIntent(String id, String name, ArrayList<String> userSays, ArrayList<String> responses) {
         String userSaysFormatted = userSaysFormatting(userSays);
         String responsesFormatted = responsesFormatting(responses);
-        if (intent != null) {
-            String intentName = intent.getName();
+
             try {
                 HttpResponse<JsonNode> httpResponse = Unirest.put("https://api.dialogflow.com/v1/intents/" + id)
                         .header("Authorization", dialogFlowApiKey)
                         .header("Content-Type", "application/json")
-                        .body("{    \"name\": \"" + intentName + "\",\"responses\": [{\"messages\": [{\"type\": 0,\"speech\": [" +
+                        .body("{    \"name\": \"" + name + "\",\"responses\": [{\"messages\": [{\"type\": 0,\"speech\": [" +
                                 responsesFormatted + "]}]}],\"userSays\": [" + userSaysFormatted + "]}")
                         .asJson();
             } catch (UnirestException e) {
                 e.printStackTrace();
             }
-        } else {
-            System.out.println("error: Intent is null");
         }
-    }
+
 
 //    public void addResponse(String id, String newResponse) {
 //        ArrayList<Intent> intents = getIntents();
@@ -395,21 +390,21 @@ public class AdminLogic {
         test.getIntents();
         test.translate("Co to jest FDM", "pl", "en");
         test.translate("Co to jest FDM", "en");
-        ArrayList<String> us = new ArrayList<>();
-        ArrayList<String> r = new ArrayList<>();
-        us.add("test1");
-        us.add("test2");
-        us.add("test3");
-        r.add("rtest1");
-        r.add("rtest2");
-        r.add("rtest3");
-        test.updateIntent("42470a2b-1f18-480a-86a5-026e5da4a883", us, r);
-        // test.detectUserLang("Co to jest FDM?");
-        // test.addIntent("hbvdsafjhgfdfsghbd",new ArrayList<>(),new ArrayList<>());
-        // System.out.println(test.getIntentDetails("fa39fa7a-2737-41f9-9b72-7e26aa37ea3d"));
-        // test.deleteIntent("c822f665-946c-47a1-b898-51d7351db821");
-        // test.addResponse("42470a2b-1f18-480a-86a5-026e5da4a883", "testresponse");
-        // test.addUserSays("8a043471-028d-4645-af0a-55a698385337", "nubedsdr 5");
+//        ArrayList<String> us = new ArrayList<>();
+//        ArrayList<String> r = new ArrayList<>();
+//        us.add("test1");
+//        us.add("test2");
+//        us.add("test3");
+//        r.add("rtest1");
+//        r.add("rtest2");
+//        r.add("rtest3");
+//        test.updateIntent("42470a2b-1f18-480a-86a5-026e5da4a883", "testchanged", us, r);
+//         test.detectUserLang("Co to jest FDM?");
+//         test.addIntent("hbvdsafjhgfdfsghbd",new ArrayList<>(),new ArrayList<>());
+//         System.out.println(test.getIntentDetails("fa39fa7a-2737-41f9-9b72-7e26aa37ea3d"));
+//         test.deleteIntent("c822f665-946c-47a1-b898-51d7351db821");
+//         test.addResponse("42470a2b-1f18-480a-86a5-026e5da4a883", "testresponse");
+//         test.addUserSays("8a043471-028d-4645-af0a-55a698385337", "nubedsdr 5");
     }
 
 }

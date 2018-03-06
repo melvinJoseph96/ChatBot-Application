@@ -63,7 +63,7 @@ public class ChatbotController {
         String name = data[1];
         ArrayList<String> userSays = admin.toArrayList(data[2]);
         ArrayList<String> responses = admin.toArrayList(data[3]);
-        admin.updateIntent(id, userSays, responses);
+        admin.updateIntent(id, name, userSays, responses);
 
     }
 }
