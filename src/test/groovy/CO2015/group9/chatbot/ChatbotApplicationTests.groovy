@@ -17,6 +17,8 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders
 import org.springframework.web.context.WebApplicationContext
 import org.springframework.test.context.web.WebAppConfiguration
 import spock.lang.Specification
+
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
@@ -188,5 +190,110 @@ class ChatbotApplicationTests extends Specification {
         result = this.mockMvc.perform(get('/controlpanel'))
         then: "I should see the view 'adminPage.jsp'"
         result.andExpect(status().isOk()).andExpect(view().name('adminPage.jsp'))
+    }
+    @Test
+    def "testing update function for updating the userSays"(){
+        given: // set up damin logic instance and set the data for the intent
+        AdminLogic admin = new AdminLogic()
+        String name = "test12rr"
+        ArrayList<String> userSaysOld = new ArrayList<>()
+        userSaysOld.add("aaa")
+        ArrayList<String> responses = new ArrayList<>()
+        responses.add("bbb")
+        when:
+        admin.addIntent(name,userSaysOld,responses)//create a new intent to manipulate
+        String id
+        // get the id and other details of the intent that has been stored
+        ArrayList<Intent> intentsbefore = admin.getIntents()
+        for (int i=0;i<intentsbefore.size();i++){
+            // retrieve the id
+            if (intentsbefore.get(i).name == name && intentsbefore.get(i).userSays == userSaysOld && intentsbefore.get(i).responses == responses){
+                id = intentsbefore.get(i).id
+            }
+        }
+        ArrayList<String> userSaysNew = new ArrayList<>() //change the userSays details
+        userSaysNew.add("zzz")
+        admin.updateIntent(id, name, userSaysNew, responses) // update the intent
+        ArrayList<Intent> intentsafter = admin.getIntents()
+        Intent changed
+        for (int i=0; i<intentsafter.size();i++){
+            if (intentsafter.get(i).name == name && intentsafter.get(i).responses == responses){
+                changed = intentsafter.get(i)
+            }
+        }
+        admin.deleteIntent(changed.id)
+        then:
+        changed.userSays == userSaysNew
+    }
+
+    @Test
+    def "testing update function for updating the responses"(){
+        given: // set up damin logic instance and set the data for the intent
+        AdminLogic admin = new AdminLogic()
+        String name = "test12rr"
+        ArrayList<String> userSays = new ArrayList<>()
+        userSays.add("aaa")
+        ArrayList<String> responsesOld = new ArrayList<>()
+        responsesOld.add("bbb")
+        when:
+        admin.addIntent(name,userSays,responsesOld)//create a new intent to manipulate
+        String id
+        // get the id and other details of the intent that has been stored
+        ArrayList<Intent> intentsbefore = admin.getIntents()
+        for (int i=0;i<intentsbefore.size();i++){
+            // retrieve the id
+            if (intentsbefore.get(i).name == name && intentsbefore.get(i).userSays == userSays && intentsbefore.get(i).responses == responsesOld){
+                id = intentsbefore.get(i).id
+            }
+        }
+        ArrayList<String> responsesNew = new ArrayList<>() //change the userSays details
+        responsesNew.add("zzz")
+        admin.updateIntent(id, name, userSays, responsesNew) // update the intent
+        ArrayList<Intent> intentsafter = admin.getIntents()
+        Intent changed
+        for (int i=0; i<intentsafter.size();i++){
+            if (intentsafter.get(i).name == name && intentsafter.get(i).userSays == userSays){
+                changed = intentsafter.get(i)
+            }
+        }
+        admin.deleteIntent(changed.id)
+        then:
+        changed.responses == responsesNew
+    }
+    @Test
+    def "testing update function for updating the responses and userSays"(){
+        given: // set up damin logic instance and set the data for the intent
+        AdminLogic admin = new AdminLogic()
+        String name = "test12rrtt"
+        ArrayList<String> userSaysOld = new ArrayList<>()
+        userSaysOld.add("aaa")
+        ArrayList<String> responsesOld = new ArrayList<>()
+        responsesOld.add("bbb")
+        when:
+        admin.addIntent(name,userSaysOld,responsesOld)//create a new intent to manipulate
+        String id
+        // get the id and other details of the intent that has been stored
+        ArrayList<Intent> intentsbefore = admin.getIntents()
+        for (int i=0;i<intentsbefore.size();i++){
+            // retrieve the id
+            if (intentsbefore.get(i).name == name && intentsbefore.get(i).userSays == userSaysOld && intentsbefore.get(i).responses == responsesOld){
+                id = intentsbefore.get(i).id
+            }
+        }
+        ArrayList<String> responsesNew = new ArrayList<>() //change the userSays details
+        responsesNew.add("zzz")
+        ArrayList<String> userSaysNew = new ArrayList<>() //change the userSays details
+        userSaysNew.add("yyy")
+        admin.updateIntent(id, name, userSaysNew, responsesNew) // update the intent
+        ArrayList<Intent> intentsafter = admin.getIntents()
+        Intent changed
+        for (int i=0; i<intentsafter.size();i++){
+            if (intentsafter.get(i).name == name){
+                changed = intentsafter.get(i)
+            }
+        }
+        admin.deleteIntent(changed.id)
+        then:
+        (changed.responses == responsesNew) && (changed.userSays == userSaysNew)
     }
 }
