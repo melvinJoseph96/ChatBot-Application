@@ -11,18 +11,24 @@ $(function() { // On page load
         document.getElementById("messages").innerHTML = sessionStorage.getItem("chat-log");
         $("#main").fadeIn();
     }
-
-    var firstMessage = true;
+    var action = "firstMessage";
+    var currentLang = "en";
     $('#input').on('keypress', function(e) { // When a key is pressed
 	    if(e.keyCode === 13 || e.which === 13){ // And the key is enter
 	        var inputMessage = $('#input').val(); // Get the user's message
-            if (inputMessage !== null && inputMessage !== "" && !firstMessage) { // Make sure it's not empty
-	        	if(inputMessage.length !== 0 && inputMessage.trim()){
-	        		addMessage("user", inputMessage); // Display the sent message in the chat box
-                    $('#input').val(""); // Clear the message text box ready for another message
-                    processing(inputMessage)
-	        	}
-            } else if (inputMessage !== null && inputMessage !== "" && firstMessage) {
+            inputMessage = inputMessage.trim();
+            var notEmpty = inputMessage !== null && inputMessage.trim().length !== 0;
+
+            if (notEmpty && action === "default" && currentLang === "en") { // Make sure it's not empty
+                addMessage("user", inputMessage); // Display the sent message in the chat box
+                $('#input').val(""); // Clear the message text box ready for another message
+                processing(inputMessage)
+
+            } else if (notEmpty && action === "default" && currentLang !== "en") {
+                addMessage("user", inputMessage); // Display the sent message in the chat box
+                $('#input').val(""); // Clear the message text box ready for another message
+                processing(inputMessage)
+            } else if (notEmpty && action === "firstMessage") {
                 addMessage("user", inputMessage);
                 $('#input').val("");
                 $.ajax({
@@ -30,23 +36,53 @@ $(function() { // On page load
                     url: "/detect",
                     data: inputMessage,
                     contentType: "text/plain",
-                    success: function (data) {
-                        if (data === "en") {
-                            processing(inputMessage)
+                    success: function (response) {
+                        if (response === "en") {
+                            processing(inputMessage);
+                            action = "default"
                         } else {
-                            var langFull = data;
-                            $.getJSON('js/langcodes.json', function (json) {
-                                for (var i in json) {
-                                    if (data === json[i].code) {
-                                        langFull = json[i].name
-                                    }
-                                }
-                                addMessage("bot", "Would you like to talk in " + langFull);
-                            });
+                            addMessage("bot", "Would you like to talk in " + getFullLang(response) + "?");
+                            action = "languageChange";
                         }
+                        currentLang = response;
                     }
                 });
-                firstMessage = false;
+            } else if (notEmpty && action === "languageChange") {
+                addMessage("user", inputMessage); // Display the sent message in the chat box
+                $('#input').val(""); // Clear the message text box ready for another message
+                var inputTranslated = "yes";
+                $.ajax({
+                    type: "POST",
+                    url: "/translate",
+                    data: JSON.stringify({
+                        "query": inputMessage,
+                        "source": currentLang,
+                        "target": "en"
+                    }),
+                    contentType: "application/json",
+                    success: function (response) {
+                        inputTranslated = response;
+                    }
+                });
+                if (inputMessage === "yes" || inputMessage === "ok" || inputTranslated === "yes") {
+                    $.ajax({
+                        type: "POST",
+                        url: "/translate",
+                        data: JSON.stringify({
+                            "query": "You can speak " + getFullLang(currentLang) + " now",
+                            "source": "en",
+                            "target": currentLang
+                        }),
+                        contentType: "application/json",
+                        success: function (response) {
+                            addMessage("bot", response);
+                        }
+                    });
+                } else if (inputMessage === "no" || inputMessage === "nope" || inputTranslated === "no") {
+                    addMessage("bot", "Let's continue in English then");
+                    currentLang = "en";
+                }
+                action = "default";
             }
 	    }
 	});
@@ -239,7 +275,26 @@ function speech(){
     }
 }
 
+function getFullLang(lang) {
 
+    $.ajaxSetup({
+        async: false
+    });
 
+    var toReturn = lang;
+    $.getJSON('js/langcodes.json', function (json) {
+        for (var i in json) {
+            if (lang === json[i].code) {
+                toReturn = json[i].name;
+            }
+        }
+    });
+
+    $.ajaxSetup({
+        async: true
+    });
+
+    return toReturn;
+}
 
 
