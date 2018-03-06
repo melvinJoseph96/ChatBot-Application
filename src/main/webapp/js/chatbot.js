@@ -12,16 +12,34 @@ $(function() { // On page load
         $("#main").fadeIn();
     }
 
+    var firstMessage = true;
     $('#input').on('keypress', function(e) { // When a key is pressed
 	    if(e.keyCode === 13 || e.which === 13){ // And the key is enter
 	        var inputMessage = $('#input').val(); // Get the user's message
-	        if(inputMessage !== null && inputMessage !== ""){ // Make sure it's not empty
+            if (inputMessage !== null && inputMessage !== "" && !firstMessage) { // Make sure it's not empty
 	        	if(inputMessage.length !== 0 && inputMessage.trim()){
 	        		addMessage("user", inputMessage); // Display the sent message in the chat box
                     $('#input').val(""); // Clear the message text box ready for another message
                     processing(inputMessage)
 	        	}
-	    	}
+            } else if (inputMessage !== null && inputMessage !== "" && firstMessage) {
+                addMessage("user", inputMessage);
+                $('#input').val("");
+                $.ajax({
+                    type: "POST",
+                    url: "/detect",
+                    data: inputMessage,
+                    contentType: "text/plain",
+                    success: function (data) {
+                        if (data === "en") {
+                            processing(inputMessage)
+                        } else {
+                            addMessage("bot", "Would you like to talk in " + data);
+                        }
+                    }
+                });
+                firstMessage = false;
+            }
 	    }
 	});
 });

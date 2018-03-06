@@ -32,6 +32,12 @@ public class ChatbotController {
         }
     }
 
+    @RequestMapping(value = "/detect", method = RequestMethod.POST)
+    public String detectLang(@RequestBody String message) {
+        AdminLogic admin = new AdminLogic();
+        return admin.detectUserLang(message);
+    }
+
     @RequestMapping(value = "/intents", method = RequestMethod.GET)
     public List<Intent> getIntents(){
         AdminLogic admin = new AdminLogic();
