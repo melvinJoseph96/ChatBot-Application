@@ -9,6 +9,7 @@ body {
     margin: 0;
     padding: 5px 0 5px 0;
     overflow: hidden;
+    position: fixed;
 }
 #bar h1 {
     color: white;
@@ -83,4 +84,19 @@ button {
 }
 #displayIntents tr:nth-child(even){
     background: #dfdfdf;
+}
+#menuIcon{
+    padding-top: 20px;
+}
+#menuButton{
+    background-color: transparent;
+    border: none;
+    float: left;
+}
+#menu {
+    display: none;
+    background-color: #212121;
+    width: 20%;
+    height: 100%;
+    z-index: 1;
 }
