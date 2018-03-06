@@ -7,9 +7,10 @@
     <script src="js/admin.js"></script>
 </head>
 <body>
-    <div id="bar">
-        <img src="fdm-logo-anim.gif" width="120" height="60">
-        <h1>Admin Login</h1>
+<div id="bar">
+    <img src="fdm-logo-anim.gif" width="120" height="60">
+    <h1>Admin Register Panel</h1>
+</div>
     </div>
     <form action="">
         <div class="container">
@@ -27,7 +28,7 @@
             <input type="password" placeholder="Enter Password" name="password" required>
             <div id="buttons">
                 <button type="submit">Register</button>
-                <button>Back</button>
+                <button onclick="location.href='/admin'">Back</button>
             </div>
         </div>
     </form>

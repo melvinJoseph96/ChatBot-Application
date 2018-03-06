@@ -110,3 +110,6 @@ Unless you have access to an admin login account, you cannot access the control 
 
 Located on the left hand side of the chat bot's input bar, found at the bottom, there is a round, blue icon. When you hover the mouse over this icon, text will appear stating if, by clicking the icon, the speech setting will turn on or off. By clicking the button, every time the chatbot sends a message, sound will be played that reads out the chatbot message. To turn it off again, press the same button.
 
+## An admin can update chatbot data
+
+When the admin has logged into the control panel, you are able to edit each intent by clicking the green slash at the end of it. This opens up the intent in an editable text box where the admin can change either the name, keywords or response to whatever they want. Then by pressing the plus button (+), this updates the intent.
