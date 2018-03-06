@@ -73,8 +73,8 @@ function displayIntent(intent){
     cell1.innerHTML = intent.name; //set cell data to intent name
     cell2.innerHTML = intent.userSays; //set cell data to intent's userSays
     cell3.innerHTML = intent.responses; //set cell data to intent's responses
-    cell4.innerHTML = "<button onclick='update(\"" + intent.name + "\",\"" + intent.id + "\")' style='color: green;'>/<button>"; // add edit button
-    cell5.innerHTML = "<button onclick='return deleteIntent(\"" + intent.id + "\");' style='color: red;'>X<button>"; // add delete button
+    cell4.innerHTML = "<button id='editButton' onclick='update(\"" + intent.name + "\",\"" + intent.id + "\")' style='color: green;'>/<button>"; // add edit button
+    cell5.innerHTML = "<button id='deleteButton' onclick='return deleteIntent(\"" + intent.id + "\");' style='color: red;'>X<button>"; // add delete button
 }
 
 
@@ -149,4 +149,8 @@ function submit2(data,id){
             console.log("error while updating intent");
         }
     });
+}
+function menuOpen() {
+    console.log("click");
+    $('#menu').fadeIn();
 }

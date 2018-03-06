@@ -9,8 +9,11 @@
 </head>
 <body onload="load()">
     <div id="bar">
+        <img src="menu.png" onclick="menuOpen()" id="menuIcon" width="50" height="45">
         <img src="fdm-logo-anim.gif" width="120" height="60">
         <h1>Admin Control Panel</h1>
+    </div>
+    <div id="menu">
     </div>
     <div id="content">
         <div id="search">
