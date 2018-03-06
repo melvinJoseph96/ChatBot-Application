@@ -27,7 +27,7 @@ function addRow(){
         // set up the controller parameters
         $.ajax({
             type: "POST",
-            url: '/add',
+            url: '/admin/add',
             data: JSON.stringify(data),
             datatype: "json",
             contentType: "application/json",
@@ -46,10 +46,10 @@ function addRow(){
 function load(){
     console.log("loaded admin.js");
     // when the page loads
-    // got to /intents to get all the intent information from dialogflow
+    // got to /admin/intents to get all the intent information from dialogflow
     $.ajax({
         type: "GET",
-        url:'/intents',
+        url:'/admin/intents',
         success: function(data) {
             // for each intent received, add it to the table
             for (var i=0; i<data.length;i++){
@@ -81,7 +81,7 @@ function displayIntent(intent){
 function deleteIntent(id) {
     $.ajax({
         type: "POST",
-        url: '/delete',
+        url: '/admin/delete',
         data: id,
         contentType: "text/plain",
         success: function () {
@@ -138,7 +138,7 @@ function submit2(data,id){
     var data = [id,inputOne,inputTwo,inputThree];
     $.ajax({
         type: "POST",
-        url: '/update',
+        url: '/admin/update',
         data: JSON.stringify(data),
         datatype: "json",
         contentType: "application/json",

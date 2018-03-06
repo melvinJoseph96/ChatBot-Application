@@ -82,8 +82,8 @@ class ChatbotApplicationTests extends Specification {
     def "Response for HTTP request '/intents'"() {
         given: "The context of the controller is set up"
         mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build()
-        when: "I do a get '/intents'"
-        result = this.mockMvc.perform(get('/intents'))
+        when: "I do a get '/admin/intents'"
+        result = this.mockMvc.perform(get('/admin/intents'))
         then: "The request should be successful"
         result.andExpect(status().is2xxSuccessful())
     }
@@ -106,15 +106,15 @@ class ChatbotApplicationTests extends Specification {
         result.andExpect(status().isOk()).andExpect(view().name('exforcesCareers.jsp'))
     }
 //    @Test
-//    def "Response for HTTP request '/add'"() {
+//    def "Response for HTTP request '/admin/add'"() {
 //        given: "the context of the controller is set up"
 //        mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build()
 //        data = new String[3]
 //        data[0] = "a"
 //        data[1] = "b"
 //        data[2] = "c"
-//        when: "I do a post '/add'"
-//        result = this.mockMvc.perform(post('/add')
+//        when: "I do a post '/admin/add'"
+//        result = this.mockMvc.perform(post('/admin/add')
 //                .contentType(MediaType.APPLICATION_JSON)
 //                .content("{\"data\":" + "\""+data.toString() + "\"}"))
 //        then: "The request should be successful"
@@ -124,7 +124,7 @@ class ChatbotApplicationTests extends Specification {
     def "test delete method"(){
         given: // new intent created
         AdminLogic admin = new AdminLogic()
-        String name = "test"
+        String name = UUID.randomUUID()
         ArrayList<String> userSays = new ArrayList<>()
         ArrayList<String> responses = new ArrayList<>()
         admin.addIntent(name, userSays,responses)
