@@ -50,7 +50,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .and()
                 .authorizeRequests()
-                .antMatchers("/controlpanel").hasAnyRole("ADMIN", "STAFF");
+                .antMatchers("/controlpanel").hasAnyRole("ADMIN", "STAFF")
+                .antMatchers("/admin/**").hasAnyRole("ADMIN", "STAFF");
     }
 
 }
