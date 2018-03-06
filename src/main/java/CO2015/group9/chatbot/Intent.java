@@ -42,31 +42,31 @@ public class Intent {
         return responses;
     }
 
-    String getUserSaysAsJSON() {
-        StringBuilder str = new StringBuilder();
-        for (String x : userSays) {
-            str
-                    .append("{\"data\": [{\"text\": \"")
-                    .append(x)
-                    .append("\"}]},");
-        }
-        str.setLength(str.length() - 1);
-        System.out.println("JSONuser" + str.toString());
-        return str.toString();
-    }
-
-    String getResponsesAsJSON() {
-        StringBuilder str = new StringBuilder();
-        for (String x : responses) {
-            str
-                    .append("\"")
-                    .append(x)
-                    .append("\",");
-        }
-        str.setLength(str.length() - 1);
-        System.out.println("JSONres" + str.toString());
-        return str.toString();
-    }
+//    String getUserSaysAsJSON() {
+//        StringBuilder str = new StringBuilder();
+//        for (String x : userSays) {
+//            str
+//                    .append("{\"data\": [{\"text\": \"")
+//                    .append(x)
+//                    .append("\"}]},");
+//        }
+//        str.setLength(str.length() - 1);
+//        System.out.println("JSONuser" + str.toString());
+//        return str.toString();
+//    }
+//
+//    String getResponsesAsJSON() {
+//        StringBuilder str = new StringBuilder();
+//        for (String x : responses) {
+//            str
+//                    .append("\"")
+//                    .append(x)
+//                    .append("\",");
+//        }
+//        str.setLength(str.length() - 1);
+//        System.out.println("JSONres" + str.toString());
+//        return str.toString();
+//    }
 
     @Override
     public String toString(){

@@ -198,53 +198,75 @@ public class AdminLogic {
         }
     }
 
-    public void addResponse(String id, String newResponse) {
+    public void updateIntent(String id, ArrayList<String> userSays, ArrayList<String> responses) {
         ArrayList<Intent> intents = getIntents();
         Intent intent = intents.stream().filter(x -> x.getId().equals(id)).findAny().orElse(null);
+        String userSaysFormatted = userSaysFormatting(userSays);
+        String responsesFormatted = responsesFormatting(responses);
         if (intent != null) {
             String intentName = intent.getName();
-            String userSaysAsJSON = intent.getUserSaysAsJSON();
-            String newResponseFormatted = ",\"" + newResponse + "\"";
-            String responsesAsJSON = intent.getResponsesAsJSON();
-
             try {
                 HttpResponse<JsonNode> httpResponse = Unirest.put("https://api.dialogflow.com/v1/intents/" + id)
                         .header("Authorization", dialogFlowApiKey)
                         .header("Content-Type", "application/json")
                         .body("{    \"name\": \"" + intentName + "\",\"responses\": [{\"messages\": [{\"type\": 0,\"speech\": [" +
-                                responsesAsJSON + newResponseFormatted + "]}]}],\"userSays\": [" + userSaysAsJSON + "]}")
+                                responsesFormatted + "]}]}],\"userSays\": [" + userSaysFormatted + "]}")
                         .asJson();
             } catch (UnirestException e) {
                 e.printStackTrace();
             }
         } else {
-            System.out.println("AddResponse error: Intent is null");
+            System.out.println("error: Intent is null");
         }
     }
 
-    public void addUserSays(String id, String newUserSays) {
-        ArrayList<Intent> intents = getIntents();
-        Intent intent = intents.stream().filter(x -> x.getId().equals(id)).findAny().orElse(null);
-        if (intent != null) {
-            String intentName = intent.getName();
-            String userSaysAsJSON = intent.getUserSaysAsJSON();
-            String responsesAsJSON = intent.getResponsesAsJSON();
-            String newUserSaysFormatted = ",{\"data\": [{\"text\": \"" + newUserSays + "\"}]}";
-
-            try {
-                HttpResponse<JsonNode> httpResponse = Unirest.put("https://api.dialogflow.com/v1/intents/" + id)
-                        .header("Authorization", dialogFlowApiKey)
-                        .header("Content-Type", "application/json")
-                        .body("{    \"name\": \"" + intentName + "\",\"responses\": [{\"messages\": [{\"type\": 0,\"speech\": [" +
-                                responsesAsJSON + "]}]}],\"userSays\": [" + userSaysAsJSON + newUserSaysFormatted + "]}")
-                        .asJson();
-            } catch (UnirestException e) {
-                e.printStackTrace();
-            }
-        } else {
-            System.out.println("AddUserSays error: Intent is null");
-        }
-    }
+//    public void addResponse(String id, String newResponse) {
+//        ArrayList<Intent> intents = getIntents();
+//        Intent intent = intents.stream().filter(x -> x.getId().equals(id)).findAny().orElse(null);
+//        if (intent != null) {
+//            String intentName = intent.getName();
+//            String userSaysAsJSON = intent.getUserSaysAsJSON();
+//            String newResponseFormatted = ",\"" + newResponse + "\"";
+//            String responsesAsJSON = intent.getResponsesAsJSON();
+//
+//            try {
+//                HttpResponse<JsonNode> httpResponse = Unirest.put("https://api.dialogflow.com/v1/intents/" + id)
+//                        .header("Authorization", dialogFlowApiKey)
+//                        .header("Content-Type", "application/json")
+//                        .body("{    \"name\": \"" + intentName + "\",\"responses\": [{\"messages\": [{\"type\": 0,\"speech\": [" +
+//                                responsesAsJSON + newResponseFormatted + "]}]}],\"userSays\": [" + userSaysAsJSON + "]}")
+//                        .asJson();
+//            } catch (UnirestException e) {
+//                e.printStackTrace();
+//            }
+//        } else {
+//            System.out.println("AddResponse error: Intent is null");
+//        }
+//    }
+//
+//    public void addUserSays(String id, String newUserSays) {
+//        ArrayList<Intent> intents = getIntents();
+//        Intent intent = intents.stream().filter(x -> x.getId().equals(id)).findAny().orElse(null);
+//        if (intent != null) {
+//            String intentName = intent.getName();
+//            String userSaysAsJSON = intent.getUserSaysAsJSON();
+//            String responsesAsJSON = intent.getResponsesAsJSON();
+//            String newUserSaysFormatted = ",{\"data\": [{\"text\": \"" + newUserSays + "\"}]}";
+//
+//            try {
+//                HttpResponse<JsonNode> httpResponse = Unirest.put("https://api.dialogflow.com/v1/intents/" + id)
+//                        .header("Authorization", dialogFlowApiKey)
+//                        .header("Content-Type", "application/json")
+//                        .body("{    \"name\": \"" + intentName + "\",\"responses\": [{\"messages\": [{\"type\": 0,\"speech\": [" +
+//                                responsesAsJSON + "]}]}],\"userSays\": [" + userSaysAsJSON + newUserSaysFormatted + "]}")
+//                        .asJson();
+//            } catch (UnirestException e) {
+//                e.printStackTrace();
+//            }
+//        } else {
+//            System.out.println("AddUserSays error: Intent is null");
+//        }
+//    }
 
     public ArrayList<String> toArrayList(String input){
         ArrayList<String> array = new ArrayList<>(); // Create new array
@@ -341,17 +363,52 @@ public class AdminLogic {
 //        return toReturn;
 //    }
 
+    String userSaysFormatting(ArrayList<String> userSays) {
+        StringBuilder str = new StringBuilder();
+        for (String x : userSays) {
+            str
+                    .append("{\"data\": [{\"text\": \"")
+                    .append(x)
+                    .append("\"}]},");
+        }
+        str.setLength(str.length() - 1);
+        System.out.println("JSONuser" + str.toString());
+        return str.toString();
+    }
+
+    String responsesFormatting(ArrayList<String> responses) {
+        StringBuilder str = new StringBuilder();
+        for (String x : responses) {
+            str
+                    .append("\"")
+                    .append(x)
+                    .append("\",");
+        }
+        str.setLength(str.length() - 1);
+        System.out.println("JSONres" + str.toString());
+        return str.toString();
+    }
+
 
     public static void main(String[] args) {
         AdminLogic test = new AdminLogic();
         test.getIntents();
         test.translate("Co to jest FDM", "pl", "en");
         test.translate("Co to jest FDM", "en");
-        //test.detectUserLang("Co to jest FDM?");
+        ArrayList<String> us = new ArrayList<>();
+        ArrayList<String> r = new ArrayList<>();
+        us.add("test1");
+        us.add("test2");
+        us.add("test3");
+        r.add("rtest1");
+        r.add("rtest2");
+        r.add("rtest3");
+        test.updateIntent("42470a2b-1f18-480a-86a5-026e5da4a883", us, r);
+        // test.detectUserLang("Co to jest FDM?");
         // test.addIntent("hbvdsafjhgfdfsghbd",new ArrayList<>(),new ArrayList<>());
-        //    System.out.println(test.getIntentDetails("fa39fa7a-2737-41f9-9b72-7e26aa37ea3d"));
+        // System.out.println(test.getIntentDetails("fa39fa7a-2737-41f9-9b72-7e26aa37ea3d"));
         // test.deleteIntent("c822f665-946c-47a1-b898-51d7351db821");
-        // test.addResponse("8a043471-028d-4645-af0a-55a698385337", "nusr 7");
+        // test.addResponse("42470a2b-1f18-480a-86a5-026e5da4a883", "testresponse");
         // test.addUserSays("8a043471-028d-4645-af0a-55a698385337", "nubedsdr 5");
     }
 
