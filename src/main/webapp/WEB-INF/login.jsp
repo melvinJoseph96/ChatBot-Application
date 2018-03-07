@@ -15,8 +15,9 @@
         <h1>Admin Login</h1>
     </div>
     <div class="container">
-        <label for="username"><b>Username</b></label>
-        <input type="text" placeholder="Enter Username" name="username" required>
+        <br><br><br><br>
+        <label id='firstLabel' for="username"><b>Username</b></label>
+        <input id='first' type="text" placeholder="Enter Username" name="username" required>
         <label for="password"><b>Password</b></label>
         <input type="password" placeholder="Enter Password" name="password" required>
         <div class="error"><c:if test="${not empty error}">${error}</c:if></div>

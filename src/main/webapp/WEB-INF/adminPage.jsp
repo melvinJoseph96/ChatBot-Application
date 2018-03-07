@@ -15,6 +15,11 @@
     </div>
     <div id="menu">
     </div>
+    <div id="popUp">
+        <h1>Are you sure you wish to delete this intent?</h1>
+        <button id="accept">Yes</button>
+        <button id="reject">No</button>
+    </div>
     <div id="content">
         <div id="search">
             <input id="searchBar" type="text" placeholder="Search" maxlength="200" size="100" height="30" onkeyup="search()">
