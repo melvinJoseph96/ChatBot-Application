@@ -64,7 +64,7 @@ $(function() { // On page load
                     addMessage("bot", botAnswerTranslated);
                 } else if (inputMessage === "no" || inputMessage === "nope" || inputTranslated.trim().toLowerCase() === "no") {
                     currentLang = "en";
-                    addMessage("bot", "Let's continue in English then");
+                    addMessage("bot", "Let's continue in English then. You can always change the language by typing \"change language\"");
                 }
                 action = "default";
                 chatLog = document.getElementById("messages").innerHTML; // get the whole chatbot html
