@@ -19,7 +19,15 @@ $(function() { // On page load
             inputMessage = inputMessage.trim();
             var notEmpty = inputMessage !== null && inputMessage.trim().length !== 0;
 
-            if (notEmpty && action === "default") { // Make sure it's not empty
+            if (notEmpty && inputMessage === "change language" || inputMessage === "language") {
+                addMessage("user", inputMessage);
+                $('#input').val("");
+                addMessage("bot", "Please enter a name (in english) of a language you would like to use");
+                action = "languageChangePrompt";
+                chatLog = document.getElementById("messages").innerHTML; // get the whole chatbot html
+                sessionStorage['chat-log'] = chatLog; // save it as a session cookie
+                $('#messages').scrollTop($('#messages')[0].scrollHeight); // Make sure the chatbox is scrolled to the bottom
+            } else if (notEmpty && action === "default") { // Make sure it's not empty
                 addMessage("user", inputMessage); // Display the sent message in the chat box
                 $('#input').val(""); // Clear the message text box ready for another message
                 processing(inputMessage, currentLang)
@@ -37,12 +45,15 @@ $(function() { // On page load
                             action = "default"
                         } else {
                             addMessage("bot", "Would you like to talk in " + getFullLang(response) + "?");
-                            action = "languageChange";
+                            action = "languageChangeConfirm";
                         }
                         currentLang = response;
                     }
                 });
-            } else if (notEmpty && action === "languageChange") {
+                chatLog = document.getElementById("messages").innerHTML; // get the whole chatbot html
+                sessionStorage['chat-log'] = chatLog; // save it as a session cookie
+                $('#messages').scrollTop($('#messages')[0].scrollHeight); // Make sure the chatbox is scrolled to the bottom
+            } else if (notEmpty && action === "languageChangeConfirm") {
                 addMessage("user", inputMessage); // Display the sent message in the chat box
                 $('#input').val(""); // Clear the message text box ready for another message
                 inputMessage = inputMessage.trim().toLowerCase();
@@ -56,6 +67,25 @@ $(function() { // On page load
                     addMessage("bot", "Let's continue in English then");
                 }
                 action = "default";
+                chatLog = document.getElementById("messages").innerHTML; // get the whole chatbot html
+                sessionStorage['chat-log'] = chatLog; // save it as a session cookie
+                $('#messages').scrollTop($('#messages')[0].scrollHeight); // Make sure the chatbox is scrolled to the bottom
+            } else if (notEmpty && action === "languageChangePrompt") {
+                addMessage("user", inputMessage);
+                $('#input').val("");
+                var langCode = getLangCode(inputMessage.trim().toLowerCase());
+                if (langCode === "notfound") {
+                    addMessage("bot", "Sorry, we couldn't find a language like that");
+                } else {
+                    var botAnswer = "Let's talk in " + inputMessage;
+                    var botAnswerTranslated = translate(botAnswer, "en", langCode);
+                    addMessage("bot", botAnswerTranslated);
+                    currentLang = langCode;
+                }
+                action = "default";
+                chatLog = document.getElementById("messages").innerHTML; // get the whole chatbot html
+                sessionStorage['chat-log'] = chatLog; // save it as a session cookie
+                $('#messages').scrollTop($('#messages')[0].scrollHeight); // Make sure the chatbox is scrolled to the bottom
             }
 	    }
 	});
@@ -167,7 +197,7 @@ function processing(inputMessage, lang) {
             else {
                 addMessage("bot", answerToTheUser); // Display the response message in the chat box
             }
-            chatLog = document.getElementById("messages").innerHTML; // get the whole chatbot html
+            var chatLog = document.getElementById("messages").innerHTML; // get the whole chatbot html
             sessionStorage['chat-log'] = chatLog; // save it as a session cookie
             $('#messages').scrollTop($('#messages')[0].scrollHeight); // Make sure the chatbox is scrolled to the bottom
 
@@ -344,6 +374,28 @@ function getFullLang(lang) {
         for (var i in json) {
             if (lang === json[i].code) {
                 toReturn = json[i].name;
+            }
+        }
+    });
+
+    $.ajaxSetup({
+        async: true
+    });
+
+    return toReturn;
+}
+
+function getLangCode(lang) {
+
+    $.ajaxSetup({
+        async: false
+    });
+
+    var toReturn = "notfound";
+    $.getJSON('js/langcodes.json', function (json) {
+        for (var i in json) {
+            if (lang === json[i].name.trim().toLowerCase()) {
+                toReturn = json[i].code;
             }
         }
     });
