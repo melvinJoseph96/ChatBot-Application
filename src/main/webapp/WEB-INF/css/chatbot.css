@@ -38,7 +38,7 @@
 
 #titlebar{
 	height: 25px;
-	background-color: black;
+	background-color: #212121;
 	color: white;
     line-height: 25px;
     padding: 4px;
@@ -135,7 +135,7 @@
 }
 #collapse{
 	display: none;
-	background-color: black;
+	background-color: #212121;
 	color: white;
 	position: fixed;
 	bottom: 0;
@@ -146,7 +146,7 @@
 	line-height: 25px;
 }
 #collapse .button {
-	background-color: black;
+	background-color: #212121;
 	padding: 10px;
 	font-weight: bold;
 	color: white;
@@ -275,16 +275,16 @@
 	cursor: pointer;
 	outline: none;
 	color: #fff;
-	background-color: #000000;
+	background-color: #212121;
 	border: none;
 	border-radius: 15px;
 	box-shadow: 0 9px #999;
 }
 
-.button:hover {background-color: #000000}
+.button:hover {background-color: #212121}
 
 .button:active {
-	background-color: #000000;
+	background-color: #212121;
 	box-shadow: 0 5px #666;
 	transform: translateY(4px);
 }

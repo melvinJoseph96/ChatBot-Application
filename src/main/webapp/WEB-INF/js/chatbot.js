@@ -181,7 +181,8 @@ function processing(inputMessage, lang) {
                     message = translate(message, "en", lang);
                 }
                 addMessage("bot", message);
-                link("/gradCareers", "grad.png");
+                link("/gradCareers", "media/grad.png");
+                $('#messages').scrollTop($('#messages')[0].scrollHeight); // Make sure the chatbox is scrolled to the bottom
             }
             else if (answerInEng === "https://www.fdmgroup.com/careers/ex-forces/") { // when the message is a link to ex-forces careers
                 var message = "Click here to view our ex-forces careers page:";
@@ -189,7 +190,8 @@ function processing(inputMessage, lang) {
                     message = translate(message, "en", lang);
                 }
                 addMessage("bot", message);
-                link("/exforcesCareers", "exforces.png");
+                link("/exforcesCareers", "media/exforces.png");
+                $('#messages').scrollTop($('#messages')[0].scrollHeight); // Make sure the chatbox is scrolled to the bottom
             }
             else if (answerInEng === "Taking you to admin panel") {
                 window.location.href = "/admin"
