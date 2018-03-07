@@ -156,13 +156,14 @@ function processing(inputMessage, lang) {
                     ' <button type="button" class="button" onclick="location.href=\'mailto:hr@example.com\'"> HR</button>'+
                     ' <button type="button" class="button" onclick="location.href=\'mailto:recruitment_pool@fdmgroup.com\'"> Recruitment</button>'+
                     ' <button type="button" class="button" onclick="location.href=\'mailto:other@example.com\'"> Other</button>' +
-                    ' <button type="button" class="button" onclick="dontKnow()"> I do not know </button>' ))
+                    " <button type='button' class='button' onclick='dontKnow(\"" + lang + "\")'> I do not know </button>"))
 
             }
             else if (answerInEng === "How do you want to contact us?") { //when the user has to decide how to contact FDM
                 addMessage("bot", answerToTheUser);
-                addMessage("bot", answerToTheUser.replace(answerToTheUser, '<button type="button" class="button" onclick= "email()" > Email </button>' +
-                    ' <button type="button" class="button" onclick="other()"> Other.. </button>'))
+                addMessage("bot", answerToTheUser.replace(answerToTheUser,
+                    "<button type='button' class='button' onclick= 'email(\"" + lang + "\")' > Email </button>" +
+                    "<button type='button' class='button' onclick='other(\"" + lang + "\")'> Other.. </button>"))
             }
             else if (answerInEng === "Here is our contact details:") { //when the user wants to know FDM's contact info
                 addMessage("bot", answerToTheUser);
@@ -205,85 +206,20 @@ function processing(inputMessage, lang) {
     });
 }
 
-function processingWithTranslation(inputMessage, lang) {
-    var inputInEng = translate(inputMessage, lang, "en");
 
-    $.ajax({
-        type: "POST",
-        url: "chatbot",
-        data: JSON.stringify({
-            "message": inputInEng
-        }),
-        datatype: "json",
-        contentType: "application/json",
-        success: function (data) {
-
-            var translatedAnswer = translate(data.message, "en", lang);
-
-            if (data.message === "Which team you want to send an email to?") { //the user can choose a team to send an email to
-
-                addMessage("bot", data.message);
-                addMessage("bot", data.message.replace(data.message, '<button type="button" class="button" onclick="location.href=\'mailto:sales_pool@fdmgroup.com\'"> Sales </button>' +
-                    ' <button type="button" class="button" onclick="location.href=\'mailto:marketing@example.com\'"> Marketing</button>' +
-                    ' <button type="button" class="button" onclick="location.href=\'mailto:finance@example.com\'"> Finance</button>' +
-                    ' <button type="button" class="button" onclick="location.href=\'mailto:it@example.com\'"> IT </button>' +
-                    ' <button type="button" class="button" onclick="location.href=\'mailto:hr@example.com\'"> HR</button>' +
-                    ' <button type="button" class="button" onclick="location.href=\'mailto:recruitment_pool@fdmgroup.com\'"> Recruitment</button>' +
-                    ' <button type="button" class="button" onclick="location.href=\'mailto:other@example.com\'"> Other</button>' +
-                    ' <button type="button" class="button" onclick="dontKnow()"> I do not know </button>'))
-
-            }
-            else if (data.message === "How do you want to contact us?") { //when the user has to decide how to contact FDM
-                addMessage("bot", data.message);
-                addMessage("bot", data.message.replace(data.message, '<button type="button" class="button" onclick= "email()" > Email </button>' +
-                    ' <button type="button" class="button" onclick="other()"> Other.. </button>'))
-            }
-            else if (data.message === "Here is our contact details:") { //when the user wants to know FDM's contact info
-                addMessage("bot", data.message);
-                addMessage("bot", data.message.replace(data.message, '<p>London <br> 020 3056 8240 <br> Cottons Centre, Cottons Lane <br>' +
-                    ' London, SE1 2QG <br> <br> Leeds <br> 0113 331 5048 <br> No. 1 Whitehall Riverside <br> Leeds, West Yorkshire LS1 4BN <br> <br>' +
-                    ' Glasgow <br> 0141 218 3100 <br> 1 West Regent Street, 6th Floor <br> Glasgow, G2 1RW</p>'))
-            }
-            else if (data.message.match("[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}")) { // when the message is an email
-                var email = data.message;
-                window.location.href = "mailto:" + email;
-            }
-            else if (data.message === "https://www.fdmgroup.com/careers/graduates/") { // when the message is a link to graduate careers
-                addMessage("bot", "Click here to view our graduate careers page:");
-                link("/gradCareers", "grad.png");
-            }
-            else if (data.message === "https://www.fdmgroup.com/careers/ex-forces/") { // when the message is a link to ex-forces careers
-                addMessage("bot", "Click here to view our ex-forces careers page:");
-                link("/exforcesCareers", "exforces.png");
-            }
-            else if (data.message === "Taking you to admin panel") {
-                window.location.href = "/admin"
-
-            }
-            else {
-                addMessage("bot", translatedAnswer); // Display the response message in the chat box
-            }
-            chatLog = document.getElementById("messages").innerHTML; // get the whole chatbot html
-            sessionStorage['chat-log'] = chatLog; // save it as a session cookie
-            $('#messages').scrollTop($('#messages')[0].scrollHeight); // Make sure the chatbox is scrolled to the bottom
-
-        }
-    });
-}
-
-function email() { //this method is when the user clicks on email button
+function email(lang) { //this method is when the user clicks on email button
     var inputMessage = "email";
-    processing(inputMessage)
+    processing(inputMessage, lang)
 }
 
-function other() { //this method is when the user clicks on other button
+function other(lang) { //this method is when the user clicks on other button
     var inputMessage = "phone";
-    processing(inputMessage)
+    processing(inputMessage, lang)
 }
 
-function dontKnow() { //this method is when the user clicks on I do not know button
+function dontKnow(lang) { //this method is when the user clicks on I do not know button
     var inputMessage = "idk";
-    processing(inputMessage)
+    processing(inputMessage, lang)
 }
 
 function soundChangeOff(){
