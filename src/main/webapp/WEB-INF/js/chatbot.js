@@ -27,7 +27,7 @@ $(function() { // On page load
             } else if (notEmpty && action === "default" && currentLang !== "en") {
                 addMessage("user", inputMessage); // Display the sent message in the chat box
                 $('#input').val(""); // Clear the message text box ready for another message
-                processing(inputMessage)
+                processingWithTranslation(inputMessage, currentLang);
             } else if (notEmpty && action === "firstMessage") {
                 addMessage("user", inputMessage);
                 $('#input').val("");
@@ -50,37 +50,15 @@ $(function() { // On page load
             } else if (notEmpty && action === "languageChange") {
                 addMessage("user", inputMessage); // Display the sent message in the chat box
                 $('#input').val(""); // Clear the message text box ready for another message
-                var inputTranslated = "yes";
-                $.ajax({
-                    type: "POST",
-                    url: "/translate",
-                    data: JSON.stringify({
-                        "query": inputMessage,
-                        "source": currentLang,
-                        "target": "en"
-                    }),
-                    contentType: "application/json",
-                    success: function (response) {
-                        inputTranslated = response;
-                    }
-                });
-                if (inputMessage === "yes" || inputMessage === "ok" || inputTranslated === "yes") {
-                    $.ajax({
-                        type: "POST",
-                        url: "/translate",
-                        data: JSON.stringify({
-                            "query": "You can speak " + getFullLang(currentLang) + " now",
-                            "source": "en",
-                            "target": currentLang
-                        }),
-                        contentType: "application/json",
-                        success: function (response) {
-                            addMessage("bot", response);
-                        }
-                    });
-                } else if (inputMessage === "no" || inputMessage === "nope" || inputTranslated === "no") {
-                    addMessage("bot", "Let's continue in English then");
+                inputMessage = inputMessage.trim().toLowerCase();
+                var inputTranslated = translate(inputMessage, currentLang, "en");
+                if (inputMessage === "yes" || inputMessage === "ok" || inputTranslated.trim().toLowerCase() === "yes") {
+                    var botAnswer = "You can speak " + getFullLang(currentLang) + " now";
+                    var botAnswerTranslated = translate(botAnswer, "en", currentLang);
+                    addMessage("bot", botAnswerTranslated);
+                } else if (inputMessage === "no" || inputMessage === "nope" || inputTranslated.trim().toLowerCase() === "no") {
                     currentLang = "en";
+                    addMessage("bot", "Let's continue in English then");
                 }
                 action = "default";
             }
@@ -174,6 +152,70 @@ function processing(inputMessage){
             }
             else {
                 addMessage("bot", data.message); // Display the response message in the chat box
+            }
+            chatLog = document.getElementById("messages").innerHTML; // get the whole chatbot html
+            sessionStorage['chat-log'] = chatLog; // save it as a session cookie
+            $('#messages').scrollTop($('#messages')[0].scrollHeight); // Make sure the chatbox is scrolled to the bottom
+
+        }
+    });
+}
+
+function processingWithTranslation(inputMessage, lang) {
+    var inputInEng = translate(inputMessage, lang, "en");
+
+    $.ajax({
+        type: "POST",
+        url: "chatbot",
+        data: JSON.stringify({
+            "message": inputInEng
+        }),
+        datatype: "json",
+        contentType: "application/json",
+        success: function (data) {
+
+            if (data.message === "Which team you want to send an email to?") { //the user can choose a team to send an email to
+                addMessage("bot", data.message);
+                addMessage("bot", data.message.replace(data.message, '<button type="button" class="button" onclick="location.href=\'mailto:sales_pool@fdmgroup.com\'"> Sales </button>' +
+                    ' <button type="button" class="button" onclick="location.href=\'mailto:marketing@example.com\'"> Marketing</button>' +
+                    ' <button type="button" class="button" onclick="location.href=\'mailto:finance@example.com\'"> Finance</button>' +
+                    ' <button type="button" class="button" onclick="location.href=\'mailto:it@example.com\'"> IT </button>' +
+                    ' <button type="button" class="button" onclick="location.href=\'mailto:hr@example.com\'"> HR</button>' +
+                    ' <button type="button" class="button" onclick="location.href=\'mailto:recruitment_pool@fdmgroup.com\'"> Recruitment</button>' +
+                    ' <button type="button" class="button" onclick="location.href=\'mailto:other@example.com\'"> Other</button>' +
+                    ' <button type="button" class="button" onclick="dontKnow()"> I do not know </button>'))
+
+            }
+            else if (data.message === "How do you want to contact us?") { //when the user has to decide how to contact FDM
+                addMessage("bot", data.message);
+                addMessage("bot", data.message.replace(data.message, '<button type="button" class="button" onclick= "email()" > Email </button>' +
+                    ' <button type="button" class="button" onclick="other()"> Other.. </button>'))
+            }
+            else if (data.message === "Here is our contact details:") { //when the user wants to know FDM's contact info
+                addMessage("bot", data.message);
+                addMessage("bot", data.message.replace(data.message, '<p>London <br> 020 3056 8240 <br> Cottons Centre, Cottons Lane <br>' +
+                    ' London, SE1 2QG <br> <br> Leeds <br> 0113 331 5048 <br> No. 1 Whitehall Riverside <br> Leeds, West Yorkshire LS1 4BN <br> <br>' +
+                    ' Glasgow <br> 0141 218 3100 <br> 1 West Regent Street, 6th Floor <br> Glasgow, G2 1RW</p>'))
+            }
+            else if (data.message.match("[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}")) { // when the message is an email
+                var email = data.message;
+                window.location.href = "mailto:" + email;
+            }
+            else if (data.message === "https://www.fdmgroup.com/careers/graduates/") { // when the message is a link to graduate careers
+                addMessage("bot", "Click here to view our graduate careers page:");
+                link("/gradCareers", "grad.png");
+            }
+            else if (data.message === "https://www.fdmgroup.com/careers/ex-forces/") { // when the message is a link to ex-forces careers
+                addMessage("bot", "Click here to view our ex-forces careers page:");
+                link("/exforcesCareers", "exforces.png");
+            }
+            else if (data.message === "Taking you to admin panel") {
+                window.location.href = "/admin"
+
+            }
+            else {
+                var translatedAnswer = translate(data.message, "en", lang);
+                addMessage("bot", translatedAnswer); // Display the response message in the chat box
             }
             chatLog = document.getElementById("messages").innerHTML; // get the whole chatbot html
             sessionStorage['chat-log'] = chatLog; // save it as a session cookie
@@ -294,6 +336,32 @@ function getFullLang(lang) {
         async: true
     });
 
+    return toReturn;
+}
+
+function translate(query, source, target) {
+    var toReturn = query;
+    $.ajaxSetup({
+        async: false
+    });
+
+    $.ajax({
+        type: "POST",
+        url: "/translate",
+        data: JSON.stringify({
+            "query": query,
+            "source": source,
+            "target": target
+        }),
+        contentType: "application/json",
+        success: function (response) {
+            toReturn = response;
+        }
+    });
+
+    $.ajaxSetup({
+        async: true
+    });
     return toReturn;
 }
 
