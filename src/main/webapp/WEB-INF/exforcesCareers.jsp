@@ -11,7 +11,7 @@
 <body>
 <div id="fdm">
     <div id="bar">
-        <img src="fdm-logo-anim.gif" width="120" height="60">
+        <img src="media/fdm-logo-anim.gif" width="120" height="60">
         <h1 style="font-size: 30px;padding: 5px">FDM Ex-forces Careers</h1>
     </div>
     <!- for demo purposes only ->
@@ -66,5 +66,6 @@
 
     </div>
 </div>
+<script src='//vws.responsivevoice.com/v/e?key=7muhKJWW'></script>
 </body>
 </html>
