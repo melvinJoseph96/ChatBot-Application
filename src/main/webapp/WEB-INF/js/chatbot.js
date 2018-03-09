@@ -99,9 +99,11 @@ function addMessage(id, message){
         console.log("NEW MESSAGE: " + message); // used to test the text to speech javascript - logs the new message
         console.log("speech setting - " + speechSetting); // used to test text to speech - logs if the function is on or off
         if (speechSetting === "Turn chat bot speech off"){
-            if (!message.match("<")){
-            responsiveVoice.speak(message);
-            console.log("text to speech has played"); // used to test text to speech - logs whether the speech was played
+            if (document.getElementById("messageReceived").muted === false) { // only play if the chat bot is not muted
+                if (!message.match("<")) {
+                    responsiveVoice.speak(message);
+                    console.log("text to speech has played"); // used to test text to speech - logs whether the speech was played
+                }
             }
         }
         else {
@@ -238,6 +240,8 @@ function soundChangeOff(){
     // mute sound
     var msgRec = document.getElementById("messageReceived");
     msgRec.muted = true;
+    // mute text to speech
+    responsiveVoice.cancel();
 }
 function soundChangeOn(){
     $('#imageSoundOff').fadeOut();
