@@ -241,7 +241,17 @@ function soundChangeOff(){
     var msgRec = document.getElementById("messageReceived");
     msgRec.muted = true;
     // mute text to speech
-    responsiveVoice.cancel();
+    if (responsiveVoice.isPlaying()){ // if the voice over is playing
+        console.log("text to speech is playing");
+        responsiveVoice.cancel(); // cancel the speech
+        console.log("text to speech has stopped playing");
+        if (responsiveVoice.isPlaying()){ // test to see if successful
+            console.log("FAIL"); // if the speech is still playing, log a failed test
+        }
+        else{
+            console.log("PASS"); // otherwise, log the success
+        }
+    }
 }
 function soundChangeOn(){
     $('#imageSoundOff').fadeOut();
