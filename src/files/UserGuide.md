@@ -120,3 +120,8 @@ If an admin is using the chatbot and wants to jump staright into the admin login
 
 ## A user can type using their preferred language and the chat bot will respond
 If I user starts a conversation in a language that is not English, chatbot will detect it and suggest changing the language to the language it detected. If user answers yes (or its eqiuvalent in detected language), chatbot will continue the conversation in a changed language. If user answers no (or eqivalent), chatbot will continue conversation in English and inform the user about the command that allows him to change the language "change language". The chatbot can detect and use more than hundread diffrent languages.
+
+## A user can mute the text to speech feature
+
+When the chat bot is reading out its message, press the mute button found at the top right of the chat bot. The speech will then stop playing. Keeping the chat bot muted means that any more messages received from the chat bot are not spoken out loud. To return the sound to the chat bot, press the mute button.
+
