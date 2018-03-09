@@ -96,11 +96,16 @@ function addMessage(id, message){
         var sound = document.getElementById("messageReceived");
         sound.play();
         var speechSetting = document.getElementById("speechControl").title;
-        console.log(speechSetting);
+        console.log("NEW MESSAGE: " + message); // used to test the text to speech javascript - logs the new message
+        console.log("speech setting - " + speechSetting); // used to test text to speech - logs if the function is on or off
         if (speechSetting === "Turn chat bot speech off"){
             if (!message.match("<")){
             responsiveVoice.speak(message);
+            console.log("text to speech has played"); // used to test text to speech - logs whether the speech was played
             }
+        }
+        else {
+            console.log("text to speech has not played"); // used to test text to speech - logs if no speech was played
         }
     }
 	$('#messages').append("<div class=\"message " + id + "\"><div class=\"messagetext\">" + message + "</div> " +
@@ -350,7 +355,7 @@ function translate(query, source, target) {
     $.ajaxSetup({
         async: false
     });
-
+    var data = [query,source,target];
     $.ajax({
         type: "POST",
         url: "/translate",
@@ -361,7 +366,12 @@ function translate(query, source, target) {
         }),
         contentType: "application/json",
         success: function (response) {
+            console.log("ajax code was successful: /translate connection therefore successful");
             toReturn = response;
+            console.log("outcome - value of 'toReturn': " + toReturn);
+        },
+        error: function(){
+            console.log("ERROR: failed to connect to /translate");
         }
     });
 
