@@ -1,4 +1,6 @@
-package CO2015.group9.chatbot;
+package CO2015.group9.chatbot.domain;
+
+import CO2015.group9.chatbot.domain.User;
 
 import javax.persistence.*;
 import java.util.Set;

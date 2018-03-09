@@ -1,5 +1,6 @@
 package CO2015.group9.chatbot;
 
+import CO2015.group9.chatbot.domain.Intent;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
