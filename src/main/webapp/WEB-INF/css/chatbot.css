@@ -30,7 +30,7 @@
 #chatbot {
 	width: 270px;
 	height: auto;
-	padding: 4px;
+	padding: 4px 4px 0 4px;
 	position: fixed;
 	bottom: 0;
 	right: 0;
@@ -38,29 +38,33 @@
 
 #titlebar{
 	height: 25px;
-	background-color: #212121;
+	background: radial-gradient(#212121,#111111);
 	color: white;
     line-height: 25px;
     padding: 4px;
+	border-top-left-radius: 9px;
+	border-top-right-radius: 9px;
 }
 
 #green{
 	height: auto;
 	width: auto;
-	margin-right: 4px;
+	margin-right: 10px;
 	margin-left: 4px;
 	float: left;
 	font-size: 30px;
 	color: #42b72a;
+	text-shadow: 0 0 20px rgba(125,193,124,1) , 0 0 30px rgba(153,221,167,1) , 0 0 100px rgba(41,135,68,1) ;
 }
 #greenA{
 	height: auto;
 	width: auto;
-	margin-right: 4px;
+	margin-right: 10px;
 	margin-left: 4px;
 	float: left;
 	font-size: 30px;
 	color: #42b72a;
+	text-shadow: 0 0 20px rgba(125,193,124,1) , 0 0 30px rgba(153,221,167,1) , 0 0 100px rgba(41,135,68,1) ;
 }
 
 #messages{
@@ -135,15 +139,17 @@
 }
 #collapse{
 	display: none;
-	background-color: #212121;
+	background: radial-gradient(#212121,#111111);
 	color: white;
 	position: fixed;
 	bottom: 0;
 	right: 0;
 	width: 270px;
 	height: 25px;
-	padding: 4px;
 	line-height: 25px;
+	border-top-left-radius: 9px;
+	border-top-right-radius: 9px;
+	padding: 4px 4px 0 4px;
 }
 #collapse .button {
 	background-color: #212121;
@@ -167,12 +173,12 @@
 #imageSoundOff {
 	display: none;
 	float: right;
-	padding-right: 10px;
+	padding-right: 6px;
 	padding-top: 2px;
 }
 #imageSoundOn{
 	float: right;
-	padding-right:10px;
+	padding-right: 6px;
 	padding-top: 2px;
 }
 #input {
