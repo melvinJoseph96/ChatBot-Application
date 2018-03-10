@@ -1,5 +1,7 @@
 package CO2015.group9.chatbot;
 
+import CO2015.group9.chatbot.Repositories.UserRepository;
+import CO2015.group9.chatbot.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

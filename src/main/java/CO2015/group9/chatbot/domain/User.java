@@ -1,4 +1,4 @@
-package CO2015.group9.chatbot;
+package CO2015.group9.chatbot.domain;
 
 import javax.persistence.*;
 
