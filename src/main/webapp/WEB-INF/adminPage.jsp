@@ -32,7 +32,7 @@
             <h1>Dashboard</h1>
             <p>overview</p>
             <div id="refresh">
-                <button id="refreshButton" title="Refresh the data"><img src="media/refresh.png" width="16" height="16"></button>
+                <button id="refreshButton" onclick="load()" title="Refresh the data"><img src="media/refresh.png" width="16" height="16"></button>
             </div>
         </div>
 
