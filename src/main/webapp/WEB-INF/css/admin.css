@@ -57,14 +57,14 @@ body {
 }
 
 #add {
-    width: 70%;
-    background-color: #212121;
-    margin: auto;
-    padding: 5px;
+    width: 100%;
 }
 #newIntent {
-    margin: 10px;
-    text-align: center;
+    width: 98%;
+    background-color: white;
+    border-radius: 15px;
+    margin-left:1%;
+    margin-bottom:20px;
 }
 button {
     border: transparent;
@@ -72,10 +72,37 @@ button {
     font-weight: bold;
     color: white;
 }
-#add input[type="text"]{
-    border: transparent;
-    background-color: transparent;
+#add button {
+    background-color: #212121;
+    border-radius: 15px;
     color: white;
+}
+#addButton {
+    padding: 5px;
+    margin-top: 18px;
+}
+#buttonDiv2 button {
+    margin-top: -18px;
+    background-color: transparent;
+    float: right;
+    outline: none;
+}
+#buttonDiv3 button {
+    margin-top: -18px;
+    background-color: transparent;
+    float: right;
+    outline: none;
+}
+#add input[type="text"]{
+    outline: none;
+    color: black;
+    margin-top: 17px;
+    border-radius: 5px;
+    padding: 3px;
+    border: 1px solid #cccccc;
+}
+#intents {
+    width: 100%;
 }
 #displayIntents{
     margin:auto;
@@ -216,7 +243,7 @@ button {
     display: none;
 }
 #titleBarControl {
-    margin-top: -20px;
+    margin-top: 99px;
     width: 100%;
     background-color: white;
     padding-left: 10px;

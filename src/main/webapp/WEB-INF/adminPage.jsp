@@ -82,11 +82,6 @@
         </div>
     </div>
     <div id="controlPanel">
-        <div id="popUp">
-            <h1>Are you sure you wish to delete this intent?</h1>
-            <button id="accept">Yes</button>
-            <button id="reject">No</button>
-        </div>
 
         <div id="titleBarControl">
             <h1>Control Panel</h1>
@@ -108,19 +103,22 @@
                         <table id="intents">
                             <tr>
                                 <td>
-                                    <input type="text" id="name" placeholder="Enter the new name" size="35">
+                                    <input type="text" id="name" placeholder="Enter the new name" size="45">
                                 </td>
                                 <td>
-                                    <input type="text" id="userSays" placeholder="Enter the new keywords" size="35">
+                                    <input type="text" id="userSays" placeholder="Enter a new keyword and press enter" size="50">
+                                    <div id="buttonDiv2">
+                                        <button id="exSays" onclick="false;"><img src="media/expand.png" width="12" height="12"></button>
+                                    </div>
                                 </td>
                                 <td>
-                                    <input type="text" id="responses" placeholder="Enter the new chatbot response" size="35">
+                                    <input type="text" id="responses" placeholder="Enter a new chatbot response and press enter" size="50">
+                                    <div id="buttonDiv3">
+                                        <button id="exResp" onclick="false;"><img src="media/expand.png" width="12" height="12"></button>
+                                    </div>
                                 </td>
                                 <td>
-
-                                </td>
-                                <td>
-                                    <button type="submit" form="add" onclick="addRow(); return false;">+</button>
+                                    <button id="addButton" type="submit" form="add" onclick="addRow(); return false;" style="font-size: 10px">Add</button>
                                 </td>
                             </tr>
                         </table>
