@@ -128,7 +128,40 @@ button {
 }
 #dashboard {
     display: none;
-    background-color: purple;
+}
+#titleBar {
+    margin-top: 99px;
+    width: 100%;
+    background-color: white;
+    padding-left: 10px;
+}
+#titleBar h1 {
+    padding: 10px 10px 3px 0;
+}
+#titleBar p {
+    margin-top: -27px;
+    padding-bottom: 5px;
+}
+#refresh {
+    z-index: 2;
+    position: absolute;
+    right: 30px;
+    top: 122px;
+}
+#refreshButton{
+    border: none;
+    background-color: #fcfcfc;
+    outline: #cccccc;
+}
+#dataBar {
+    width: 98%;
+    background-color: white;
+    border-radius: 15px;
+    margin-left:1%;
+}
+#data {
+    width:100%;
+    text-align: center;
 }
 #controlPanel {
     display: none;

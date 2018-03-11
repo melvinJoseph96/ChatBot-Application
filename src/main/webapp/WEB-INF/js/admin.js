@@ -177,7 +177,27 @@ function menu() {
 }
 function displayDash(){
     console.log("display dashboard");
-    $('#dashboard').fadeIn();
+    $('#dashboard').fadeIn(); //display the dashboard
+    // first add data to the summary bar
+    var today = document.getElementById("today"); // get the cell for today
+    // value is the number of unanswered questions there have been today
+    today.innerHTML = "<h4>Today</h4><p style='margin-top:-15px'>19</p><p style='font-size: 10px; margin-top: -13px'>Unanswered Questions</p>"; // 19 needs to be replaced with value from database
+
+    var week = document.getElementById("week"); // get the cell for week
+    // value is the number of unanswered questions there have been this week
+    week.innerHTML = "<h4>This Week</h4><p style='margin-top:-15px'>20</p><p style='font-size: 10px; margin-top: -13px'>Unanswered Questions</p>"; // 20 needs to be replaced with value from database
+
+    var month = document.getElementById("month"); // get the cell for month
+    // value is the number of unanswered questions there have been this month
+    month.innerHTML = "<h4>This Month</h4><p style='margin-top:-15px'>30</p><p style='font-size: 10px; margin-top: -13px'>Unanswered Questions</p>"; // 30 needs to be replaced with value from database
+
+    var year = document.getElementById("year"); // get the cell for year
+    // value is the number of unanswered questions there have been this year
+    year.innerHTML = "<h4>This Year</h4><p style='margin-top:-15px'>50</p><p style='font-size: 10px; margin-top: -13px'>Unanswered Questions</p>"; // 50 needs to be replaced with value from database
+
+    var unanswered = document.getElementById("needs"); // get the cell for need
+    // value is the number of questions answered
+    unanswered.innerHTML = "<h4>Require Answers</h4><p style='margin-top:-15px;color: red'><b>17</b></p>"; // 17 needs to be replaced with value from database
 }
 function displayControl() {
     console.log("display control panel");
