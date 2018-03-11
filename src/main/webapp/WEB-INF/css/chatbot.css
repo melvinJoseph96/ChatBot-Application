@@ -22,12 +22,12 @@
 	overflow:hidden;
 }
 #main {
-	display:none;
 	z-index: 1;
 	position: fixed;
 	font-family: Helvetica, Arial, sans-serif;
 }
 #chatbot {
+	display: none;
 	width: 270px;
 	height: auto;
 	padding: 4px 4px 0 4px;
@@ -35,6 +35,7 @@
 	bottom: 0;
 	right: 0;
 }
+
 
 #titlebar{
 	height: 25px;
@@ -294,3 +295,33 @@
 	box-shadow: 0 5px #666;
 	transform: translateY(4px);
 }
+
+.button-main {
+	height: 100px;
+	width: 500px;
+	background: #212121;
+	background: -webkit-gradient(linear, 0 0, 0 bottom, from(#656565), to(#212121));
+	background: -moz-linear-gradient(#656565, #212121);
+	background: linear-gradient(#656565, #212121);
+	border: solid 1px #535353;
+	border-bottom: solid 3px #414141;
+	box-shadow: inset 0 0 0 1px #939393;
+	color: #fff;
+	text-shadow: 0 1px 0 #212121; }
+
+.button-main:hover {
+	background: #212121;
+	background: -webkit-gradient(linear, 0 0, 0 bottom, from(#212121), to(#565656));
+	background: -moz-linear-gradient(#212121, #565656);
+	background: linear-gradient(#212121, #565656);
+	border: solid 1px #464646;
+	border-bottom: solid 3px #414141;
+	box-shadow: inset 0 0 0 1px #818181; }
+
+.button-main:active {
+	background: #212121;
+	background: -webkit-gradient(linear, 0 0, 0 bottom, from(#212121), to(#444));
+	background: -moz-linear-gradient(#212121, #444);
+	background: linear-gradient(#212121, #444);
+	border: solid 1px #2f2f2f;
+	box-shadow: inset 0 10px 15px 0 #3e3e3e; }
