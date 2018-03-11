@@ -1,6 +1,7 @@
 body {
     margin: 0;
     font-family: sans-serif;
+    overflow-x: hidden;
 }
 #bar {
     background-color: #212121;
@@ -162,6 +163,17 @@ button {
 #data {
     width:100%;
     text-align: center;
+}
+#data2{
+    width: 80%;
+    background-color: white;
+    margin-left: 1%;
+    margin-top: 20px;
+    border-radius: 15px;
+    height: 510px;
+}
+#answered {
+    width: 70%;
 }
 #controlPanel {
     display: none;

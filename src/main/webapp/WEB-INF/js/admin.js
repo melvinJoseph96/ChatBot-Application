@@ -200,6 +200,9 @@ function displayDash(){
     var unanswered = document.getElementById("needs"); // get the cell for need
     // value is the number of questions answered
     unanswered.innerHTML = "<h4>Require Answers</h4><p style='margin-top:-15px;color: red'><b>17</b></p>"; // 17 needs to be replaced with value from database
+
+    //display graph of answered questions
+    displayAnswered();
 }
 function displayControl() {
     console.log("display control panel");
@@ -212,4 +215,37 @@ function displayQuestion(){
 function displaySim(){
     console.log("display chatbot simulation");
     $('#chatbotSimulator').fadeIn();
+}
+
+function displayAnswered(){
+    var ctx = document.getElementById('answered').getContext('2d'); // data for the answered questions
+    var chart = new Chart(ctx, {
+        // The type of chart is line
+        type: 'line',
+
+        // The data for our dataset
+        data: {
+            labels: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+            datasets: [{
+                label: "Answered Questions",
+                backgroundColor: 'paleturquoise',
+                borderColor: 'lightblue',
+                data: [0, 10, 5, 11, 12, 13, 6]
+            }]
+        },
+
+        // Configuration options
+        options: {
+            title: { // chart title
+                display: true,
+                text: 'The Number of Answered Questions This Week'
+            },
+            label :{
+                display: false
+            }
+        }
+    });
+}
+function displayUnanswered(){
+
 }
