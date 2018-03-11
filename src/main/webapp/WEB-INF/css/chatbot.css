@@ -321,19 +321,19 @@
 	text-shadow: 0 1px 0 #212121; }
 
 .button-main:hover {
-	background: #212121;
-	background: -webkit-gradient(linear, 0 0, 0 bottom, from(#212121), to(#565656));
-	background: -moz-linear-gradient(#212121, #565656);
-	background: linear-gradient(#212121, #565656);
+	background: black;
+	background: -webkit-gradient(linear, 0 0, 0 bottom, from(black), to(#565656));
+	background: -moz-linear-gradient(black, #565656);
+	background: linear-gradient(black, #565656);
 	border: solid 1px #464646;
 	border-bottom: solid 3px #414141;
 	box-shadow: inset 0 0 0 1px #818181; }
 
 .button-main:active {
-	background: #212121;
-	background: -webkit-gradient(linear, 0 0, 0 bottom, from(#212121), to(#444));
-	background: -moz-linear-gradient(#212121, #444);
-	background: linear-gradient(#212121, #444);
+	background: black;
+	background: -webkit-gradient(linear, 0 0, 0 bottom, from(black), to(#444));
+	background: -moz-linear-gradient(black, #444);
+	background: linear-gradient(black, #444);
 	border: solid 1px #2f2f2f;
 	box-shadow: inset 0 10px 15px 0 #3e3e3e; }
 
