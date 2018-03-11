@@ -1,3 +1,34 @@
+$(document).ready(function(){
+    $('#userSays').keypress(function(e){ // when enter key is hit for the user bar
+        if(e.keyCode==13) {
+            $('#addedUser').fadeIn(); // display the list
+            var user = document.getElementById("addedUser");
+            user.style.backgroundColor = "white";
+            var list = user.getElementsByTagName("ul")[0]; // get the list element
+            var data = document.createElement("li"); //create a list item
+            data.style.wordWrap = "break-word"; // wrap key word if too long
+            data.style.borderBottom = "1px solid #f8f8f8"; // add line under each element
+            data.innerText = document.getElementById("userSays").value; // get the inputted value
+            list.appendChild(data);
+            document.getElementById("userSays").value = "";
+        }
+    });
+    $('#responses').keypress(function(e){ // when user key is hit for the response bar
+        if(e.keyCode==13) {
+            $('#addedResp').fadeIn(); // display the list
+            var user = document.getElementById("addedResp");
+            user.style.backgroundColor = "white";
+            var list = user.getElementsByTagName("ul")[0]; // get the list element
+            var data = document.createElement("li"); //create a list item
+            data.style.wordWrap = "break-word"; // wrap key word if too long
+            data.style.borderBottom = "1px solid #f8f8f8"; // add line under each element
+            data.innerText = document.getElementById("responses").value; // get the inputted value
+            list.appendChild(data);
+            document.getElementById("responses").value = "";
+        }
+    });
+});
+
 function search() {
     var table = document.getElementById("display"); // Get the table
     var input = document.getElementById("searchBar"); // Get admin input
@@ -48,6 +79,7 @@ function load(){
     console.log(sessionStorage.getItem("current"));
     if (sessionStorage.getItem("current") === null) { // if this is a new session
         sessionStorage["current"] = "dashboard";
+        displayDash();
     }
     else if (sessionStorage.getItem("current") === "dashboard"){ // if the admin has selected the dashboard
         displayDash(); //display the dashboard

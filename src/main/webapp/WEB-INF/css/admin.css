@@ -58,6 +58,13 @@ body {
 
 #add {
     width: 100%;
+    text-align: left;
+}
+#add h2 {
+    font-size: 20px;
+    padding: 5px;
+    margin-left: 1%;
+    margin-bottom: -20px;
 }
 #newIntent {
     width: 98%;
@@ -81,17 +88,15 @@ button {
     padding: 5px;
     margin-top: 18px;
 }
-#buttonDiv2 button {
+#buttonDiv2 img {
     margin-top: -18px;
-    background-color: transparent;
     float: right;
-    outline: none;
+    margin-left: -3px;
 }
-#buttonDiv3 button {
+#buttonDiv3 img {
     margin-top: -18px;
-    background-color: transparent;
     float: right;
-    outline: none;
+    margin-left: -3px;
 }
 #add input[type="text"]{
     outline: none;
@@ -102,7 +107,8 @@ button {
     border: 1px solid #cccccc;
 }
 #intents {
-    width: 100%;
+    width: 98%;
+    margin-left: 1%;
 }
 #displayIntents{
     margin:auto;
@@ -133,7 +139,7 @@ button {
     display: none;
 }
 #menu ul {
-    margin-top: 40%;
+    margin-top: 9px;
     color: white;
 }
 #menu li {
@@ -322,4 +328,49 @@ button {
     background-color: #fcfcfc;
     outline: #cccccc;
 }
-
+#addedUser {
+    width: 370px;
+    background-color: #fcfcfc;
+    border-radius: 15px;
+    position: absolute;
+    z-index: 1;
+    top: 240px;
+    left:31.2%;
+    display: none;
+}
+#addedUser ul {
+    list-style: none;
+    color: #212121;
+    padding: 5px;
+    width: 365px;
+}
+#addedResp {
+    width: 370px;
+    background-color: #fcfcfc;
+    border-radius: 15px;
+    position: absolute;
+    z-index: 1;
+    top: 240px;
+    left:63.2%;
+    display: none;
+}
+#addedResp ul {
+    list-style: none;
+    color: #212121;
+    padding: 5px;
+    width: 365px;
+}
+#addedResp li:hover {
+    background-color: indianred;
+}
+#addedResp li:hover:before {
+    text-align: center;
+    content: "DELETE:  ";
+}
+#addedUser li:hover {
+    background-color: indianred;
+}
+#addedUser li:hover:before {
+    text-align: center;
+    content: "DELETE:  ";
+}

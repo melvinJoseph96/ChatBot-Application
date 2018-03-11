@@ -99,7 +99,8 @@
 
             <div id="allIntents">
                 <div id="newIntent">
-                    <form id="add">
+                    <div id="add">
+                        <h2>Add Intent</h2>
                         <table id="intents">
                             <tr>
                                 <td>
@@ -107,22 +108,22 @@
                                 </td>
                                 <td>
                                     <input type="text" id="userSays" placeholder="Enter a new keyword and press enter" size="50">
-                                    <div id="buttonDiv2">
-                                        <button id="exSays" onclick="false;"><img src="media/expand.png" width="12" height="12"></button>
-                                    </div>
                                 </td>
                                 <td>
                                     <input type="text" id="responses" placeholder="Enter a new chatbot response and press enter" size="50">
-                                    <div id="buttonDiv3">
-                                        <button id="exResp" onclick="false;"><img src="media/expand.png" width="12" height="12"></button>
-                                    </div>
                                 </td>
                                 <td>
-                                    <button id="addButton" type="submit" form="add" onclick="addRow(); return false;" style="font-size: 10px">Add</button>
+                                    <button id="addButton" onclick="addRow(); return false;" style="font-size: 10px">Add</button>
                                 </td>
                             </tr>
                         </table>
-                    </form>
+                        <div id="addedUser">
+                            <ul></ul>
+                        </div>
+                        <div id="addedResp">
+                            <ul></ul>
+                        </div>
+                    </div>
                     <br>
                 </div>
                 <div id="displayIntents">
