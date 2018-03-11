@@ -8,6 +8,9 @@ $(document).ready(function(){
             var data = document.createElement("li"); //create a list item
             data.style.wordWrap = "break-word"; // wrap key word if too long
             data.style.borderBottom = "1px solid #f8f8f8"; // add line under each element
+            data.onclick = function () {
+                this.parentElement.removeChild(this);
+            };
             data.innerText = document.getElementById("userSays").value; // get the inputted value
             list.appendChild(data);
             document.getElementById("userSays").value = "";
@@ -22,6 +25,9 @@ $(document).ready(function(){
             var data = document.createElement("li"); //create a list item
             data.style.wordWrap = "break-word"; // wrap key word if too long
             data.style.borderBottom = "1px solid #f8f8f8"; // add line under each element
+            data.onclick = function () {
+                this.parentElement.removeChild(this);
+            };
             data.innerText = document.getElementById("responses").value; // get the inputted value
             list.appendChild(data);
             document.getElementById("responses").value = "";
