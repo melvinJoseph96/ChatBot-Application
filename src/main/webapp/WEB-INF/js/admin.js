@@ -150,7 +150,11 @@ function submit2(data,id){
         }
     });
 }
-function menuOpen() {
-    console.log("click");
-    $('#menu').fadeIn();
+function menu() {
+    if (document.getElementById("menu").style.display === "block"){
+        $('#menu').fadeOut();
+    }
+    else {
+        $('#menu').fadeIn();
+    }
 }

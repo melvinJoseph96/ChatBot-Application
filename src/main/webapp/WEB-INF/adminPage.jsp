@@ -8,17 +8,27 @@
     <script src="js/admin.js"></script>
 </head>
 <body onload="load()">
+
     <div id="bar">
-        <img src="media/menu.png" onclick="alert()" id="menuIcon" width="50" height="45">
-        <img src="media/fdm-logo-anim.gif" width="120" height="60">
+        <a href="#" onclick="menu()"><img src="media/menu.png" width="60" height="60" id="menuIcon"></a>
+        <img src="media/fdm-logo-anim.gif" width="120" height="60" style="margin-left: -10px">
         <h1>Admin Control Panel</h1>
     </div>
+
     <div id="menu">
+
         <ul>
-            <li>Dashboard</li>
-            <li>Control Panel</li>
-            <li>Unanswered Questions</li>
+            <li style="list-style-image: url('media/house.png')"><a href="">Dashboard</a></li>
+            <li style="list-style-image: url('media/control.png')"><a href="">Control Panel</a></li>
+            <li style="list-style-image: url('media/question.png')"><a href="">Unanswered Questions</a></li>
+            <li style="list-style-image: url('media/computer.png')"><a href="">Chatbot Simulator</a></li>
         </ul>
+
+    </div>
+    <div id="popUp">
+        <h1>Are you sure you wish to delete this intent?</h1>
+        <button id="accept">Yes</button>
+        <button id="reject">No</button>
     </div>
     <div id="content">
         <div id="search">
