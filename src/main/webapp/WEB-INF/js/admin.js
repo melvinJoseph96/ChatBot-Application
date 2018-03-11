@@ -177,6 +177,8 @@ function menu() {
 }
 function displayDash(){
     console.log("display dashboard");
+    var menu = document.getElementById("menuItems"); // get the menu items
+    menu.style.marginTop = "5%";
     $('#dashboard').fadeIn(); //display the dashboard
     // first add data to the summary bar
     var today = document.getElementById("today"); // get the cell for today

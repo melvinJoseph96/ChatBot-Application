@@ -19,7 +19,7 @@
 
     <div id="menu">
 
-        <ul>
+        <ul id="menuItems">
             <li style="list-style-image: url('media/house.png')"><a href="" onclick="sessionStorage['current'] = 'dashboard'">Dashboard</a></li>
             <li style="list-style-image: url('media/control.png')"><a href="" onclick="sessionStorage['current'] = 'controlPanel'">Control Panel</a></li>
             <li style="list-style-image: url('media/question.png')"><a href="" onclick="sessionStorage['current'] = 'unansweredQuestions'">Unanswered Questions</a></li>
