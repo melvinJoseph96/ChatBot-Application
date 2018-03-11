@@ -10,8 +10,10 @@
 <body onload="load()">
 
     <div id="bar">
-        <a href="#" onclick="menu()"><img src="media/menu.png" width="60" height="60" id="menuIcon"></a>
-        <img src="media/fdm-logo-anim.gif" width="120" height="60" style="margin-left: -10px">
+        <div id="menuButton">
+            <button onclick="menu()"><img src="media/menu.png" width="60" height="60" id="menuIcon"></button>
+        </div>
+        <img src="media/fdm-logo-anim.gif" width="120" height="60" id="logo">
         <h1>Admin Control Panel</h1>
     </div>
 

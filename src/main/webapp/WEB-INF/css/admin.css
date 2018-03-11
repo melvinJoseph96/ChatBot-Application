@@ -112,3 +112,18 @@ button {
     color: white;
 }
 
+#bar button{
+    width: 60px;
+    height: 60px;
+    border: none;
+    outline: none;
+}
+#menuButton {
+    z-index: 4;
+    position: absolute;
+}
+#logo {
+    margin-left: 60px;
+}
+
+
