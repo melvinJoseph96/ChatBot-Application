@@ -1,16 +1,25 @@
+var isMinimised;
+
 $(function() { // On page load
     console.log("loaded chatbot.js");
     if (sessionStorage.getItem("chat-log") === null) { // if this is a new session
         var greetingMessage = "Hello!, how can I help you?"; // greeting message
+        isMinimised= false;
         setTimeout(function () { // time delay
-            $("#main").fadeIn(); // display main div that contains chatbot after 5000ms
+            $("#chatbot").fadeIn(); // display main div that contains chatbot after 5000ms
             addMessage("bot", greetingMessage);
         }, 5000);
     }
     else {
         document.getElementById("messages").innerHTML = sessionStorage.getItem("chat-log");
-        $("#main").fadeIn();
+        if (sessionStorage.getItem("isMinimised") === "true"){
+            $('#collapse').fadeIn();
+            $('.expand').fadeIn();
+        }
+        else
+            $("#chatbot").fadeIn();
     }
+
     var action = "firstMessage";
     var currentLang = "en";
     $('#input').on('keypress', function(e) { // When a key is pressed
@@ -116,19 +125,17 @@ function addMessage(id, message){
     sessionStorage['chat-log'] = chatLog; // save it as a session cookie
 }
 function minimise(){
-    $('#titlebar').fadeOut(); //Remove titlebar from screen
-    $('#inputBar').fadeOut(); //Remove text box from screen
-    $('#messages').fadeOut(); //Remove messages from screen
+    sessionStorage['isMinimised'] = "true";
+    $('#chatbot').fadeOut(); //Remove the chatbot
     $('#collapse').fadeIn(); //Display collapsed chatbot
     $('.expand').fadeIn(); //Expand button appears
 }
 
 function reopen(){
+    sessionStorage['isMinimised'] = "false";
     $('#collapse').fadeOut(); //Remove collapsed title bar from screen
     $('.expand').fadeOut(); //Remove button from screen
-    $('#titlebar').fadeIn(); //Add titlebar to screen
-    $('#inputBar').fadeIn(); //Add text box to screen
-    $('#messages').fadeIn(); //Add messages to screen
+    $('#chatbot').fadeIn(); //Display the chatbot
 }
 
 

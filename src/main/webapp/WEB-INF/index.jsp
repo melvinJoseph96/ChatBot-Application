@@ -27,9 +27,8 @@
         <div id="content">
             <h1 style="font-size: 50px">Careers</h1>
             <div id="boxes">
-                <p class="box">Grad</p>
-                <p class="box">Worker</p>
-                <p class="box">Ex-Forces</p>
+                <button class="button-main" onclick="window.location.href='/gradCareers'">Grad</button>
+                <button class="button-main" onclick="window.location.href='/exforcesCareers'">Ex-Forces</button>
             </div>
         </div>
     </div>
