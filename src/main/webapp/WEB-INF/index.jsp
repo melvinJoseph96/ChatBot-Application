@@ -27,8 +27,17 @@
         <div id="content">
             <h1 style="font-size: 50px">Careers</h1>
             <div id="boxes">
-                <button class="button-main" onclick="window.location.href='/gradCareers'">Grad</button>
-                <button class="button-main" onclick="window.location.href='/exforcesCareers'">Ex-Forces</button>
+                <div class="box">
+                <h2> I am a graduate</h2> <br> Bridging the gap between university and the professional workplace <br><br><br>
+                <button class="button-main" onclick="window.location.href='/gradCareers'">Find out more!</button>
+                </div>
+                <div class="box">
+                <h2> I am returning to work</h2> <br> Opportunities for individuals who have taken an extended break in their career
+                </div>
+                <div class="box">
+                <h2> I am ex-forces</h2> <br> Providing a smooth transition into the corporate world <br><br><br>
+                    <button class="button-main" onclick="window.location.href='/exforcesCareers'">Find out more!</button>
+                </div>
             </div>
         </div>
     </div>
