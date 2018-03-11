@@ -45,6 +45,23 @@ function addRow(){
 }
 function load(){
     console.log("loaded admin.js");
+    console.log(sessionStorage.getItem("current"));
+    if (sessionStorage.getItem("current") === null) { // if this is a new session
+        sessionStorage["current"] = "dashboard";
+    }
+    else if (sessionStorage.getItem("current") === "dashboard"){ // if the admin has selected the dashboard
+        displayDash(); //display the dashboard
+    }
+    else if (sessionStorage.getItem("current") === "controlPanel"){ // if the admin has selected the control panel
+        displayControl(); // display the control panel
+    }
+    else if (sessionStorage.getItem("current") === "questions"){ // if the admin has selected the unanswered questions
+        displayQuestion(); // display the unanswered quesitions
+    }
+    else if (sessionStorage.getItem("current") === "simulator"){ // if the admin selected the chatbot simulator
+        displaySim(); // display the simulation
+    }
+
     // when the page loads
     // got to /admin/intents to get all the intent information from dialogflow
     $.ajax({
@@ -157,4 +174,20 @@ function menu() {
     else {
         $('#menu').fadeIn();
     }
+}
+function displayDash(){
+    console.log("display dashboard");
+    $('#dashboard').fadeIn();
+}
+function displayControl() {
+    console.log("display control panel");
+    $('#controlPanel').fadeIn();
+}
+function displayQuestion(){
+    console.log("display unanswered questions");
+    $('#unansweredQuestions').fadeIn();
+}
+function displaySim(){
+    console.log("display chatbot simulation");
+    $('#chatbotSimulator').fadeIn();
 }

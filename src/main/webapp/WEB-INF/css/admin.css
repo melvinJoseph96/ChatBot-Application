@@ -107,6 +107,7 @@ button {
 #menu a {
     color: white;
     text-decoration: none;
+    padding-left: 7px;
 }
 #menu a:active{
     color: white;
@@ -125,5 +126,19 @@ button {
 #logo {
     margin-left: 60px;
 }
-
+#dashboard {
+    display: none;
+    background-color: purple;
+}
+#controlPanel {
+    display: none;
+}
+#unansweredQuestions {
+    display: none;
+    background-color: #42b72a;
+}
+#chatbotSimulator {
+    display: none;
+    background-color: red;
+}
 
