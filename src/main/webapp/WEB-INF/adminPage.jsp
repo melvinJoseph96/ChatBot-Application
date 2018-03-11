@@ -29,11 +29,11 @@
 
     </div>
     <div id="dashboard">
-        <div id="titleBar">
+        <div id="titleBarDash">
             <h1>Dashboard</h1>
             <p>overview</p>
-            <div id="refresh">
-                <button id="refreshButton" onclick="load()" title="Refresh the data"><img src="media/refresh.png" width="16" height="16"></button>
+            <div id="refreshDash">
+                <button id="refreshButtonDash" onclick="load()" title="Refresh the data"><img src="media/refresh.png" width="16" height="16"></button>
             </div>
         </div>
 
@@ -80,15 +80,19 @@
                 </table>
             </div>
         </div>
-        <div id="answeredSection">
-            <canvas id="unanswered"></canvas>
-        </div>
     </div>
     <div id="controlPanel">
         <div id="popUp">
             <h1>Are you sure you wish to delete this intent?</h1>
             <button id="accept">Yes</button>
             <button id="reject">No</button>
+        </div>
+        <div id="titleBarControl">
+            <h1>Control Panel</h1>
+            <p>display and answer</p>
+            <div id="refreshControl">
+                <button id="refreshButtonControl" onclick="load()" title="Refresh the data"><img src="media/refresh.png" width="16" height="16"></button>
+            </div>
         </div>
         <div id="content">
             <div id="search">
@@ -129,10 +133,22 @@
         </div>
     </div>
     <div id="unansweredQuestions">
-        <p>questions</p>
+        <div id="titleBarQuest">
+            <h1>Unanswered Questions</h1>
+            <p>display and answer</p>
+            <div id="refreshQuest">
+                <button id="refreshButtonQuest" onclick="load()" title="Refresh the data"><img src="media/refresh.png" width="16" height="16"></button>
+            </div>
+        </div>
     </div>
     <div id="chatbotSimulator">
-        <p>Sim</p>
+        <div id="titleBarSim">
+            <h1>Chatbot Simulator</h1>
+            <p>preview</p>
+            <div id="refreshSim">
+                <button id="refreshButtonSim" onclick="load()" title="Refresh the data"><img src="media/refresh.png" width="16" height="16"></button>
+            </div>
+        </div>
     </div>
 </body>
 </html>

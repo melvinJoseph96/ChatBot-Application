@@ -275,6 +275,3 @@ function displayAnswered(){
         }
     });
 }
-function displayUnanswered(){
-
-}

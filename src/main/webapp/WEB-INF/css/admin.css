@@ -2,6 +2,7 @@ body {
     margin: 0;
     font-family: sans-serif;
     overflow-x: hidden;
+    padding-bottom: 15px;
 }
 #bar {
     background-color: #212121;
@@ -130,26 +131,26 @@ button {
 #dashboard {
     display: none;
 }
-#titleBar {
+#titleBarDash {
     margin-top: 99px;
     width: 100%;
     background-color: white;
     padding-left: 10px;
 }
-#titleBar h1 {
+#titleBarDash h1 {
     padding: 10px 10px 3px 0;
 }
-#titleBar p {
+#titleBarDash p {
     margin-top: -27px;
     padding-bottom: 5px;
 }
-#refresh {
+#refreshDash {
     z-index: 2;
     position: absolute;
     right: 30px;
     top: 122px;
 }
-#refreshButton{
+#refreshButtonDash{
     border: none;
     background-color: #fcfcfc;
     outline: #cccccc;
@@ -208,12 +209,84 @@ button {
 #controlPanel {
     display: none;
 }
+#titleBarControl {
+    margin-top: -20px;
+    width: 100%;
+    background-color: white;
+    padding-left: 10px;
+}
+#titleBarControl h1 {
+    padding: 10px 10px 3px 0;
+}
+#titleBarControl p {
+    margin-top: -27px;
+    padding-bottom: 5px;
+}
+#refreshControl {
+    z-index: 2;
+    position: absolute;
+    right: 30px;
+    top: 122px;
+}
+#refreshButtonControl{
+    border: none;
+    background-color: #fcfcfc;
+    outline: #cccccc;
+}
+#refreshQuest {
+    z-index: 2;
+    position: absolute;
+    right: 30px;
+    top: 122px;
+}
+#refreshButtonQuest{
+    border: none;
+    background-color: #fcfcfc;
+    outline: #cccccc;
+}
 #unansweredQuestions {
     display: none;
     background-color: #42b72a;
 }
+#titleBarQuest {
+    margin-top: 99px;
+    width: 100%;
+    background-color: white;
+    padding-left: 10px;
+}
+#titleBarQuest h1 {
+    padding: 10px 10px 3px 0;
+}
+#titleBarQuest p {
+    margin-top: -27px;
+    padding-bottom: 5px;
+}
 #chatbotSimulator {
     display: none;
     background-color: red;
+}
+#titleBarSim {
+    margin-top: 99px;
+    width: 100%;
+    background-color: white;
+    padding-left: 10px;
+}
+#titleBarSim h1 {
+    padding: 10px 10px 3px 0;
+}
+#titleBarSim p {
+    margin-top: -27px;
+    padding-bottom: 5px;
+}
+#refreshSim {
+    z-index: 2;
+    position: absolute;
+    right: 30px;
+    top: 122px;
+}
+#refreshButtonSim{
+    border: none;
+    background-color: #fcfcfc;
+    outline: #cccccc;
 }
 
