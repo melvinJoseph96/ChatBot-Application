@@ -203,6 +203,32 @@ function displayDash(){
 
     //display graph of answered questions
     displayAnswered();
+
+    //display the most recent answers table
+    var zero = document.getElementById("zero");
+    zero.innerHTML = "<p style='color: #1d1641'>admin</p>"; // most recent admin to answer a question, needs to get data from the database
+    var zerodata = document.getElementById("zerodata"); // box the time goes into
+    zerodata.innerHTML = "<p>12:24</p>"; // get data from the database
+
+    var first = document.getElementById("first");
+    first.innerHTML = "<p style='color: #1d1641'>hs355</p>"; // second most recent admin to answer a question, needs to get data from the database
+    var firstdata = document.getElementById("firstdata"); // box the time goes into
+    firstdata.innerHTML = "<p>12:04</p>"; // get data from the database
+
+    var second = document.getElementById("second");
+    second.innerHTML = "<p style='color: #1d1641'>admin</p>"; // third most recent admin to answer a question, needs to get data from the database
+    var seconddata = document.getElementById("seconddata"); // box the time goes into
+    seconddata.innerHTML = "<p>11.45</p>"; // get data from the database
+
+    var third = document.getElementById("third");
+    third.innerHTML = "<p style='color: #1d1641'>gd542</p>"; // fourth most recent admin to answer a question, needs to get data from the database
+    var thirddata = document.getElementById("thirddata"); // box the time goes into
+    thirddata.innerHTML = "<p>11:34</p>"; // get data from the database
+
+    var fourth = document.getElementById("fourth");
+    fourth.innerHTML = "<p style='color: #1d1641'>tr253</p>"; // fifth most recent admin to answer a question, needs to get data from the database
+    var fourthdata = document.getElementById("fourthdata"); // box the time goes into
+    fourthdata.innerHTML = "<p>10:19</p>"; // get data from the database
 }
 function displayControl() {
     console.log("display control panel");
@@ -238,7 +264,7 @@ function displayAnswered(){
         options: {
             title: { // chart title
                 display: true,
-                text: 'The Number of Answered Questions This Week'
+                text: 'The Number of Answered Questions By Admins This Week'
             },
             label :{
                 display: false

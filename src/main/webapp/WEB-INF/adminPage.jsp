@@ -55,7 +55,29 @@
                 <div id="over"></div>
             </div>
             <div id="adminAnswers">
-
+                <h3 id="tableTitle">Recent Answerers</h3>
+                <table id="admins">
+                    <tr>
+                        <td id="zero"></td>
+                        <td id="zerodata"></td>
+                    </tr>
+                    <tr>
+                        <td id="first"></td>
+                        <td id="firstdata"></td>
+                    </tr>
+                    <tr>
+                        <td id="second"></td>
+                        <td id="seconddata"></td>
+                    </tr>
+                    <tr>
+                        <td id="third"></td>
+                        <td id="thirddata"></td>
+                    </tr>
+                    <tr>
+                        <td id="fourth"></td>
+                        <td id="fourthdata"></td>
+                    </tr>
+                </table>
             </div>
         </div>
         <div id="answeredSection">
