@@ -28,13 +28,19 @@ body {
 }
 
 #search {
-    padding: 10px 100px 10px 100px;
     text-align: center;
+    z-index: 1;
+    position: absolute;
+    top: 121px;
+    left: 24%;
 }
 
 #search input {
     padding: 3px;
     top: 0;
+    border-radius: 15px;
+    outline: none;
+    background-color: #fafafa;
 }
 
 #search button {

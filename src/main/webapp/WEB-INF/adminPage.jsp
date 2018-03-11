@@ -87,17 +87,21 @@
             <button id="accept">Yes</button>
             <button id="reject">No</button>
         </div>
+
         <div id="titleBarControl">
             <h1>Control Panel</h1>
-            <p>display and answer</p>
+            <p>display and edit intents</p>
             <div id="refreshControl">
                 <button id="refreshButtonControl" onclick="load()" title="Refresh the data"><img src="media/refresh.png" width="16" height="16"></button>
             </div>
         </div>
+
         <div id="content">
+
             <div id="search">
-                <input id="searchBar" type="text" placeholder="Search" maxlength="200" size="100" height="30" onkeyup="search()">
+                <input id="searchBar" type="text" placeholder="Search Intents" maxlength="200" size="100" height="30" onkeyup="search()">
             </div>
+
             <div id="allIntents">
                 <div id="newIntent">
                     <form id="add">
