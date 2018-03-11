@@ -204,6 +204,9 @@ function displayDash(){
     //display graph of answered questions
     displayAnswered();
 
+    //display answered question number on graph
+    document.getElementById("over").innerHTML = "<h3 style='font-size: 16px; margin-top: 3px'>Total</h3><p style='font-size: 12px;margin-top: -15px;color: green'><b>7</b></p>"; // get value from the database
+
     //display the most recent answers table
     var zero = document.getElementById("zero");
     zero.innerHTML = "<p style='color: #1d1641'>admin</p>"; // most recent admin to answer a question, needs to get data from the database

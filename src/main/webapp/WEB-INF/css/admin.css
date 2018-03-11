@@ -195,6 +195,16 @@ button {
     border-bottom: 1px solid #f8f8f8;
     border-top: 1px solid #f8f8f8;
 }
+#over {
+    border-radius: 15px;
+    z-index: 1;
+    background-color: #dfdfdf;
+    position: absolute;
+    top: 52%;
+    text-align: center;
+    left: 70%;
+    width: 90px;
+}
 #controlPanel {
     display: none;
 }
