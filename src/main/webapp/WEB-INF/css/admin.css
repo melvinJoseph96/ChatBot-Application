@@ -88,15 +88,12 @@ button {
 #menuIcon{
     padding-top: 20px;
 }
-#menuButton{
-    background-color: transparent;
-    border: none;
-    float: left;
-}
 #menu {
-    display: none;
     background-color: #212121;
     width: 20%;
     height: 100%;
-    z-index: 1;
+    display: none;
+}
+#popUp {
+    display: none;
 }

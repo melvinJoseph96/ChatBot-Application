@@ -9,16 +9,16 @@
 </head>
 <body onload="load()">
     <div id="bar">
-        <img src="media/menu.png" onclick="menuOpen()" id="menuIcon" width="50" height="45">
+        <img src="media/menu.png" onclick="alert()" id="menuIcon" width="50" height="45">
         <img src="media/fdm-logo-anim.gif" width="120" height="60">
         <h1>Admin Control Panel</h1>
     </div>
     <div id="menu">
-    </div>
-    <div id="popUp">
-        <h1>Are you sure you wish to delete this intent?</h1>
-        <button id="accept">Yes</button>
-        <button id="reject">No</button>
+        <ul>
+            <li>Dashboard</li>
+            <li>Control Panel</li>
+            <li>Unanswered Questions</li>
+        </ul>
     </div>
     <div id="content">
         <div id="search">

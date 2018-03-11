@@ -73,6 +73,7 @@
 	border-left: 1px solid #f1f0f0;
 	border-right: 1px solid #f1f0f0;
 	background-color: white;
+
 }
 
 .message{
@@ -263,7 +264,6 @@
 }
 #inputBar {
 	width: 100%;
-	background-color: white;
 }
 #speechControl{
 	float: left;
