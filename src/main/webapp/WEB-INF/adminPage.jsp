@@ -107,10 +107,10 @@
                                     <input type="text" id="name" placeholder="Enter the new name" size="45">
                                 </td>
                                 <td>
-                                    <input type="text" id="userSays" placeholder="Enter a new keyword and press enter" size="50">
+                                    <input type="text" id="userSays" placeholder="Enter a new keyword and press enter to be accepted" size="50">
                                 </td>
                                 <td>
-                                    <input type="text" id="responses" placeholder="Enter a new chatbot response and press enter" size="50">
+                                    <input type="text" id="responses" placeholder="Enter a new response and press enter to be accepted" size="50">
                                 </td>
                                 <td>
                                     <button id="addButton" onclick="addRow(); return false;" style="font-size: 10px">Add</button>

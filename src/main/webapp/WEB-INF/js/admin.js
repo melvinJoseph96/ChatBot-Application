@@ -55,11 +55,23 @@ function search() {
 }
 
 function addRow(){
-    var x = document.getElementById("name").value; // get admin input values
-    var y = document.getElementById("userSays").value;
-    var z = document.getElementById("responses").value;
-    var data = [x,y,z];
-    if (x.length>=1 && y.length>=1 && z.length>=1) { // check data is added to each
+    // get admin input values
+    var x = document.getElementById("name").value; // name is input box value
+    var listUser = document.getElementById("addedUser");
+    var elementsUser = listUser.getElementsByTagName("li");
+    var userSaysList = []; // list of keywords
+    for (var i=0;i<elementsUser.length;i++){ // add all li values to the list
+        userSaysList.push(elementsUser[i].innerText);
+    }
+
+    var listResp = document.getElementById("addedResp");
+    var elementsResp = listResp.getElementsByTagName("li");
+    var responsesList = []; // list of responses
+    for (var i=0;i<elementsResp.length;i++){ // add all li values to the list
+        responsesList.push(elementsResp[i].innerText);
+    }
+    var data = [[x],userSaysList,responsesList];
+    if (x.length>=1 && userSaysList.length>=1 && responsesList.length>=1) { // check data is added to each
         // if so
         // set up the controller parameters
         $.ajax({
@@ -79,6 +91,21 @@ function addRow(){
             }
         });
     }
+    document.getElementById("name").value = ""; // empty all the data
+    document.getElementById("userSays").value = "";
+    document.getElementById("responses").value = "";
+    // remove listed data
+    var user = document.getElementById("addedUser");
+    user = user.getElementsByTagName("ul");
+    user[0].innerHTML = "";
+
+    var resp = document.getElementById("addedResp");
+    resp = resp.getElementsByTagName("ul");
+    resp[0].innerHTML = "";
+
+    // hide elements
+    $('#addedUser').fadeOut();
+    $('#addedResp').fadeOut();
 }
 function load(){
     console.log("loaded admin.js");

@@ -55,15 +55,20 @@ public class ChatbotController {
     }
 
     @RequestMapping(value = "/admin/add", method = RequestMethod.POST)
-    public Intent addIntent(@RequestBody String[] data){
+    public Intent addIntent(@RequestBody String[][] data){
         AdminLogic admin = new AdminLogic();
         // put the admin inputs into arrays
-        ArrayList<String> userSays = admin.toArrayList(data[1]);
-        ArrayList<String> responses = admin.toArrayList(data[2]);
-        String name = data[0];
-        admin.addIntent(name,userSays,responses);
+        ArrayList<String> userSays = new ArrayList<>();
+        for (String i : data[1]){
+            userSays.add(i);
+        }
+        ArrayList<String> responses = new ArrayList<>();
+        for (String i : data[2]){
+            responses.add(i);
+        }
+        admin.addIntent(data[0][0],userSays,responses);
         // create a new intent from the data given by the admin
-        return new Intent(name,userSays,responses);
+        return new Intent(data[0][0],userSays,responses);
     }
 
     @RequestMapping(value = "/admin/delete", method = RequestMethod.POST)
