@@ -119,7 +119,7 @@ When the admin has logged into the control panel, you are able to edit each inte
 If an admin is using the chatbot and wants to jump staright into the admin login page, they can do this by typing in the keyword "/openadminpanel" in the chatbot . This directs the user to the login page where they can put in their credentials to enter the panel.
 
 ## A user can type using their preferred language and the chat bot will respond
-If I user starts a conversation in a language that is not English, chatbot will detect it and suggest changing the language to the language it detected. If user answers yes (or its eqiuvalent in detected language), chatbot will continue the conversation in a changed language. If user answers no (or eqivalent), chatbot will continue conversation in English and inform the user about the command that allows him to change the language "change language". The chatbot can detect and use more than hundread diffrent languages.
+If I user starts a conversation in a language that is not English, chatbot will detect it and suggest changing the language to the language it detected. If user answers yes (or its equivalent in detected language), chatbot will continue the conversation in a changed language. If user answers no (or eqivalent), chatbot will continue conversation in English and inform the user about the command that allows him to change the language "change language". The chatbot can detect and use more than hundread diffrent languages.
 
 ## A user can mute the text to speech feature
 
@@ -128,3 +128,7 @@ When the chat bot is reading out its message, press the mute button found at the
 ## A user can navigate the website and keep the chatbot minimised
 
 Click on the minimised(X) button which you can find at the right-top of the chatbot. Then scroll down the page and click on one of the two "find out more" buttons, it will navigated you to one of the website's subpages. When the subpage will load the chatbot will still be minimized. 
+
+## A user can navigate the website and keep the chatbot muted
+
+Click the mute icon found on the top right hand side of the chatbot. The icon image will change to signify that the chatbot has muted. Next re-direct to another page either by typing into the search bar or by typing into the chatbot. Once the page has loaded, the chatbot will still be muted. 
