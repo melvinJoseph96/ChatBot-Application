@@ -86,9 +86,6 @@
         <div id="titleBarControl">
             <h1>Control Panel</h1>
             <p>display and edit intents</p>
-            <div id="refreshControl">
-                <button id="refreshButtonControl" onclick="load()" title="Refresh the data"><img src="media/refresh.png" width="16" height="16"></button>
-            </div>
         </div>
 
         <div id="content">
@@ -117,6 +114,8 @@
                                 </td>
                             </tr>
                         </table>
+                        <div id="userMin"><button id="one" onclick="expand1()"><img src="media/expand.png" width="12" height="12"></button></div>
+                        <div id="respMin"><button id="two" onclick="expand2()"><img src="media/expand.png" width="12" height="12"></button></div>
                         <div id="addedUser">
                             <ul></ul>
                         </div>
@@ -149,7 +148,7 @@
             <h1>Chatbot Simulator</h1>
             <p>preview</p>
             <div id="refreshSim">
-                <button id="refreshButtonSim" onclick="load()" title="Refresh the data"><img src="media/refresh.png" width="16" height="16"></button>
+                <button id="refreshButtonSim" onclick="l" title="Refresh the data"><img src="media/refresh.png" width="16" height="16"></button>
             </div>
         </div>
     </div>

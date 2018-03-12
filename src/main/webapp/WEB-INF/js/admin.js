@@ -340,3 +340,21 @@ function displayAnswered(){
         }
     });
 }
+function expand1(){
+    var displayed = document.getElementById("addedUser").style.display;
+    if (displayed === ""||displayed==="none"){
+        $('#addedUser').fadeIn(); // fade in if not visible
+    }
+    else if (displayed === "block"){
+        $('#addedUser').fadeOut(); // fade out it visible
+    }
+}
+function expand2(){
+    var displayed = document.getElementById("addedResp").style.display;
+    if (displayed === ""||displayed==="none"){ // check if the list is displayed
+        $('#addedResp').fadeIn(); // fade in if not
+    }
+    else if (displayed === "block"){
+        $('#addedResp').fadeOut(); // fade out if it is
+    }
+}

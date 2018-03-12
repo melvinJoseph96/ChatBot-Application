@@ -81,13 +81,42 @@ button {
 }
 #add button {
     background-color: #212121;
-    border-radius: 15px;
+    border-radius: 9px;
     color: white;
+    outline: none;
+}
+#add button:hover{
+    background-color: #535353;
 }
 #addButton {
     padding: 5px;
     margin-top: 18px;
 }
+#userMin {
+    position: absolute;
+    z-index: 1;
+    left: 60.4%;
+    top:37.1%;
+}
+#userMin button {
+    background-color: transparent;
+}
+#userMin button:hover {
+    background-color: transparent;
+}
+#respMin {
+    position: absolute;
+    z-index: 1;
+    left: 92.4%;
+    top:37.1%;
+}
+#respMin button {
+    background-color: transparent;
+}
+#respMin button:hover {
+    background-color: transparent;
+}
+
 #buttonDiv2 img {
     margin-top: -18px;
     float: right;
