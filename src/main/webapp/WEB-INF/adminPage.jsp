@@ -101,7 +101,7 @@
                         <table id="intents">
                             <tr>
                                 <td>
-                                    <input type="text" id="name" placeholder="Enter the new name" size="45">
+                                    <input type="text" id="name" placeholder="Enter the new name" size="45" required>
                                 </td>
                                 <td>
                                     <input type="text" id="userSays" placeholder="Enter a new keyword and press enter to be accepted" size="50">
@@ -111,30 +111,37 @@
                                 </td>
                                 <td>
                                     <button id="addButton" onclick="addRow(); return false;" style="font-size: 10px">Add</button>
+                                    <button id="cancel" onclick="cancel();return false;" style="font-size: 10px">Cancel</button>
                                 </td>
                             </tr>
                         </table>
                         <div id="userMin"><button id="one" onclick="expand1()"><img src="media/expand.png" width="12" height="12"></button></div>
                         <div id="respMin"><button id="two" onclick="expand2()"><img src="media/expand.png" width="12" height="12"></button></div>
+
                         <div id="addedUser">
                             <ul></ul>
                         </div>
                         <div id="addedResp">
                             <ul></ul>
                         </div>
+
+                        <div id="nameError"><p>Name field cannot be empty</p></div>
+                        <div id="userError"><p>Press enter to accept this keyword</p></div>
+                        <div id="respError"><p>Press enter to accept this response</p></div>
+
                     </div>
                     <br>
                 </div>
                 <div id="displayIntents">
-                    <table id="display" cellpadding="0" cellspacing="0">
-
-                    </table>
+                    <h2>Intent Table</h2>
+                    <table id="display" cellspacing="0" cellpadding="0"></table>
                 </div>
                 <br>
             </div>
         </div>
     </div>
     <div id="unansweredQuestions">
+
         <div id="titleBarQuest">
             <h1>Unanswered Questions</h1>
             <p>display and answer</p>
@@ -142,6 +149,7 @@
                 <button id="refreshButtonQuest" onclick="load()" title="Refresh the data"><img src="media/refresh.png" width="16" height="16"></button>
             </div>
         </div>
+
     </div>
     <div id="chatbotSimulator">
         <div id="titleBarSim">

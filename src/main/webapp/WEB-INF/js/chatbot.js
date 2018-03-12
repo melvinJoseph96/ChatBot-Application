@@ -1,10 +1,12 @@
 var isMinimised;
+var isMuted;
 
 $(function() { // On page load
     console.log("loaded chatbot.js");
     if (sessionStorage.getItem("chat-log") === null) { // if this is a new session
         var greetingMessage = "Hello!, how can I help you?"; // greeting message
         isMinimised= false;
+        isMuted= false;
         setTimeout(function () { // time delay
             $("#chatbot").fadeIn(); // display main div that contains chatbot after 5000ms
             addMessage("bot", greetingMessage);
@@ -12,6 +14,10 @@ $(function() { // On page load
     }
     else {
         document.getElementById("messages").innerHTML = sessionStorage.getItem("chat-log");
+        if (sessionStorage.getItem("isMuted") === "true")
+            soundChangeOff();
+        else
+            soundChangeOn();
         if (sessionStorage.getItem("isMinimised") === "true"){
             $('#collapse').fadeIn();
             $('.expand').fadeIn();
@@ -253,11 +259,11 @@ function dontKnow(lang) { //this method is when the user clicks on I do not know
 }
 
 function soundChangeOff(){
-    $('#imageSoundOn').fadeOut();
-    // fade the mute icon out
-    setTimeout(function () {
-        $('#imageSoundOff').fadeIn();
-    }, 700);
+    sessionStorage['isMuted'] = "true";
+    var on = document.getElementById("imageSoundOn").style.display = "none";
+    // fade the mute icon out and volume in
+    $('#imageSoundOff').fadeIn();
+
     // mute sound
     var msgRec = document.getElementById("messageReceived");
     msgRec.muted = true;
@@ -275,10 +281,9 @@ function soundChangeOff(){
     }
 }
 function soundChangeOn(){
-    $('#imageSoundOff').fadeOut();
-    setTimeout(function () {
-        $('#imageSoundOn').fadeIn();
-    }, 700);
+    sessionStorage['isMuted'] = "false";
+    var off = document.getElementById("imageSoundOff").style.display = "none";
+    $('#imageSoundOn').fadeIn();
     // return sound to chatbot
     var msgRec = document.getElementById("messageReceived");
     msgRec.muted = false;
