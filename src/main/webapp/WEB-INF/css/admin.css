@@ -3,6 +3,7 @@ body {
     font-family: sans-serif;
     overflow-x: hidden;
     padding-bottom: 15px;
+    overflow-y: scroll;
 }
 #bar {
     background-color: #212121;
@@ -143,22 +144,50 @@ button {
     margin-left: 1%;
 }
 #displayIntents{
-    margin:auto;
-    width: 70%;
+    margin-left: 1%;
+    width: 98%;
     text-align: center;
+    background-color: white;
+    border-radius: 15px;
+    padding-top: 40px;
+    padding-bottom: 40px;
 }
-#displayIntents table {
+#display {
     border: none;
-    margin: auto;
+    width: 98%;
+    margin-left: 1%;
+    border-radius: 15px;
+    margin-top: -15px;
+    margin-bottom: -25px;
 }
-#displayIntents td {
-    padding: 4px;
+#display tr:hover {
+    background-color: #cccccc;
+    border-radius: 15px;
 }
-#displayIntents tr:nth-child(odd){
-    background: #aaaaaa;
+#display tr {
+    background-color: #f1f0f0;
 }
-#displayIntents tr:nth-child(even){
-    background: #dfdfdf;
+#display td {
+    padding: 10px;
+    border-bottom: 5px solid white;
+    width: 20%;
+}
+#display tr td:first-child {
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+
+}
+#display tr td:last-child {
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+#displayIntents h2{
+    text-align: left;
+    font-size: 20px;
+    padding: 5px;
+    margin-left: 1%;
+    margin-top:-35px;
 }
 #menuIcon{
     padding-top: 13px;
