@@ -125,3 +125,6 @@ If I user starts a conversation in a language that is not English, chatbot will 
 
 When the chat bot is reading out its message, press the mute button found at the top right of the chat bot. The speech will then stop playing. Keeping the chat bot muted means that any more messages received from the chat bot are not spoken out loud. To return the sound to the chat bot, press the mute button.
 
+## A user can navigate the website and keep the chatbot minimised
+
+Click on the minimised(X) button which you can find at the right-top of the chatbot. Then scroll down the page and click on one of the two "find out more" buttons, it will navigated you to one of the website's subpages. When the subpage will load the chatbot will still be minimized. 
