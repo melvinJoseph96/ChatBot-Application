@@ -57,6 +57,21 @@ function search() {
 function addRow(){
     // get admin input values
     var x = document.getElementById("name").value; // name is input box value
+    if (document.getElementById("name").value === ""){// make sure the text boxes are empty
+        $('#nameError').fadeIn(); // display error message
+        $('#nameError').fadeOut(4000); // fade slowly
+        return false;
+    }
+    if (document.getElementById("userSays").value !== ""){// make sure the text boxes are empty
+        $('#userError').fadeIn(); // display error message
+        $('#userError').fadeOut(4000); // fade slowly
+        return false;
+    }
+    if (document.getElementById("responses").value !== ""){
+        $('#respError').fadeIn(); // display error message
+        $('#respError').fadeOut(4000); // fade slowly
+        return false;
+    }
     var listUser = document.getElementById("addedUser");
     var elementsUser = listUser.getElementsByTagName("li");
     var userSaysList = []; // list of keywords
@@ -71,6 +86,7 @@ function addRow(){
         responsesList.push(elementsResp[i].innerText);
     }
     var data = [[x],userSaysList,responsesList];
+
     if (x.length>=1 && userSaysList.length>=1 && responsesList.length>=1) { // check data is added to each
         // if so
         // set up the controller parameters
@@ -349,7 +365,7 @@ function cancel(){
     document.getElementById("name").value = ""; // empty all the data
     document.getElementById("userSays").value = "";
     document.getElementById("responses").value = "";
-    
+
     // remove listed data
     var user = document.getElementById("addedUser");
     user = user.getElementsByTagName("ul");

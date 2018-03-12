@@ -405,3 +405,42 @@ button {
     text-align: center;
     content: "DELETE:  ";
 }
+#userError{
+    z-index: 1;
+    position: absolute;
+    top: 30%;
+    left: 35.1%;
+    background-color: indianred;
+    height: 30px;
+    display: none;
+}
+#userError p {
+    margin-top: 6px;
+    padding: 0 3px 0 3px;
+}
+#nameError{
+    z-index: 1;
+    position: absolute;
+    top: 30%;
+    left: 11.5%;
+    background-color: indianred;
+    height: 30px;
+    display: none;
+}
+#nameError p {
+    margin-top: 6px;
+    padding: 0 3px 0 3px;
+}
+#respError{
+    z-index: 1;
+    position: absolute;
+    top: 30%;
+    left: 65%;
+    background-color: indianred;
+    height: 30px;
+    display: none;
+}
+#respError p {
+    margin-top: 6px;
+    padding: 0 3px 0 3px;
+}

@@ -101,7 +101,7 @@
                         <table id="intents">
                             <tr>
                                 <td>
-                                    <input type="text" id="name" placeholder="Enter the new name" size="45">
+                                    <input type="text" id="name" placeholder="Enter the new name" size="45" required>
                                 </td>
                                 <td>
                                     <input type="text" id="userSays" placeholder="Enter a new keyword and press enter to be accepted" size="50">
@@ -117,12 +117,18 @@
                         </table>
                         <div id="userMin"><button id="one" onclick="expand1()"><img src="media/expand.png" width="12" height="12"></button></div>
                         <div id="respMin"><button id="two" onclick="expand2()"><img src="media/expand.png" width="12" height="12"></button></div>
+
                         <div id="addedUser">
                             <ul></ul>
                         </div>
                         <div id="addedResp">
                             <ul></ul>
                         </div>
+
+                        <div id="nameError"><p>Name field cannot be empty</p></div>
+                        <div id="userError"><p>Press enter to accept this keyword</p></div>
+                        <div id="respError"><p>Press enter to accept this response</p></div>
+
                     </div>
                     <br>
                 </div>
