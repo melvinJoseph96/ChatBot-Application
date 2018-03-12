@@ -238,12 +238,13 @@
 }
 
 #bar img {
+
 	float: left;
 }
 #content {
-	text-align: center;
-	padding: 10px;
-	color:deepskyblue;
+	text-align: left;
+	padding-top: 40px;
+	color:black;
 	background-color: #cccccc;
 	overflow:hidden;
  }
@@ -287,6 +288,7 @@
 	width: 90%;
 	border-left:none;
 }
+
 
 .button {
 	text-align: center;

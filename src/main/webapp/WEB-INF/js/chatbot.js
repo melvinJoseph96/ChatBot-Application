@@ -207,8 +207,22 @@ function processing(inputMessage, lang) {
                 link("/exforcesCareers", "media/exforces.png");
                 $('#messages').scrollTop($('#messages')[0].scrollHeight); // Make sure the chatbox is scrolled to the bottom
             }
-            else if (answerInEng === "Taking you to admin panel") {
+            else if (answerInEng === "Taking you to admin panel") { // Taking the user to the admin page from the chatbot
                 window.location.href = "/admin"
+
+            }
+            else if(answerInEng === "Click the link below for our FAQ page"){   // Taking the user to the admin page
+                var message = "Click here for our FAQ page";
+                if (!isEnglish) {
+                    message = translate(message, "en", lang);
+                }
+
+                addMessage("bot",message);
+                link("/faq", "media/faq.png");
+                $('#messages').scrollTop($('#messages')[0].scrollHeight); // Make sure the chatbox is scrolled to the bottom
+
+
+
 
             }
             else {

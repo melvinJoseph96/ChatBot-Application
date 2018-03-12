@@ -35,4 +35,7 @@ public class IndexController {
     @RequestMapping(value = "/exforcesCareers", method = RequestMethod.GET)
     public String displayExForcesCareers() { return "exforcesCareers.jsp";}
 
+    @RequestMapping(value = "/faq", method = RequestMethod.GET)
+    public String displayFAQPage() { return "faq.jsp";}
+
 }
