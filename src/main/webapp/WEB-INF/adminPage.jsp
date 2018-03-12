@@ -134,9 +134,7 @@
                 </div>
                 <div id="displayIntents">
                     <h2>Intent Table</h2>
-                    <table id="display" cellspacing="0" cellpadding="0">
-
-                    </table>
+                    <table id="display" cellspacing="0" cellpadding="0"></table>
                 </div>
                 <br>
             </div>

@@ -239,11 +239,10 @@ function dontKnow(lang) { //this method is when the user clicks on I do not know
 }
 
 function soundChangeOff(){
-    $('#imageSoundOn').fadeOut();
-    // fade the mute icon out
-    setTimeout(function () {
-        $('#imageSoundOff').fadeIn();
-    }, 700);
+    var on = document.getElementById("imageSoundOn").style.display = "none";
+    // fade the mute icon out and volume in
+    $('#imageSoundOff').fadeIn();
+
     // mute sound
     var msgRec = document.getElementById("messageReceived");
     msgRec.muted = true;
@@ -261,10 +260,8 @@ function soundChangeOff(){
     }
 }
 function soundChangeOn(){
-    $('#imageSoundOff').fadeOut();
-    setTimeout(function () {
-        $('#imageSoundOn').fadeIn();
-    }, 700);
+    var off = document.getElementById("imageSoundOff").style.display = "none";
+    $('#imageSoundOn').fadeIn();
     // return sound to chatbot
     var msgRec = document.getElementById("messageReceived");
     msgRec.muted = false;
