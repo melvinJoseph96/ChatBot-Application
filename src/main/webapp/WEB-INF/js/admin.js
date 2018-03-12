@@ -120,10 +120,10 @@ function load(){
     else if (sessionStorage.getItem("current") === "controlPanel"){ // if the admin has selected the control panel
         displayControl(); // display the control panel
     }
-    else if (sessionStorage.getItem("current") === "questions"){ // if the admin has selected the unanswered questions
+    else if (sessionStorage.getItem("current") === "unansweredQuestions"){ // if the admin has selected the unanswered questions
         displayQuestion(); // display the unanswered quesitions
     }
-    else if (sessionStorage.getItem("current") === "simulator"){ // if the admin selected the chatbot simulator
+    else if (sessionStorage.getItem("current") === "chatbotSimulation"){ // if the admin selected the chatbot simulator
         displaySim(); // display the simulation
     }
 

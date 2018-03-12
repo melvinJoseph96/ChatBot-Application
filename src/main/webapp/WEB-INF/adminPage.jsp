@@ -135,6 +135,7 @@
         </div>
     </div>
     <div id="unansweredQuestions">
+
         <div id="titleBarQuest">
             <h1>Unanswered Questions</h1>
             <p>display and answer</p>
@@ -142,6 +143,7 @@
                 <button id="refreshButtonQuest" onclick="load()" title="Refresh the data"><img src="media/refresh.png" width="16" height="16"></button>
             </div>
         </div>
+
     </div>
     <div id="chatbotSimulator">
         <div id="titleBarSim">
