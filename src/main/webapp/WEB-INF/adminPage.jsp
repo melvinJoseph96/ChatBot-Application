@@ -150,8 +150,14 @@
             </div>
         </div>
 
+        <div id="unansweredTable">
+            <table></table>
+        </div>
+
     </div>
+
     <div id="chatbotSimulator">
+
         <div id="titleBarSim">
             <h1>Chatbot Simulator</h1>
             <p>preview</p>
@@ -159,6 +165,7 @@
                 <button id="refreshButtonSim" onclick="l" title="Refresh the data"><img src="media/refresh.png" width="16" height="16"></button>
             </div>
         </div>
+
     </div>
 </body>
 </html>
