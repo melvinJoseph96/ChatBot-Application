@@ -91,21 +91,8 @@ function addRow(){
             }
         });
     }
-    document.getElementById("name").value = ""; // empty all the data
-    document.getElementById("userSays").value = "";
-    document.getElementById("responses").value = "";
-    // remove listed data
-    var user = document.getElementById("addedUser");
-    user = user.getElementsByTagName("ul");
-    user[0].innerHTML = "";
-
-    var resp = document.getElementById("addedResp");
-    resp = resp.getElementsByTagName("ul");
-    resp[0].innerHTML = "";
-
-    // hide elements
-    $('#addedUser').fadeOut();
-    $('#addedResp').fadeOut();
+    // remove the data
+    cancel();
 }
 function load(){
     console.log("loaded admin.js");
@@ -357,4 +344,23 @@ function expand2(){
     else if (displayed === "block"){
         $('#addedResp').fadeOut(); // fade out if it is
     }
+}
+function cancel(){
+    document.getElementById("name").value = ""; // empty all the data
+    document.getElementById("userSays").value = "";
+    document.getElementById("responses").value = "";
+    
+    // remove listed data
+    var user = document.getElementById("addedUser");
+    user = user.getElementsByTagName("ul");
+    user[0].innerHTML = "";
+
+    var resp = document.getElementById("addedResp");
+    resp = resp.getElementsByTagName("ul");
+    resp[0].innerHTML = "";
+
+    // hide elements
+    $('#addedUser').fadeOut();
+    $('#addedResp').fadeOut();
+
 }

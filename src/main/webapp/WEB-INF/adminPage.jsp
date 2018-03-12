@@ -111,6 +111,7 @@
                                 </td>
                                 <td>
                                     <button id="addButton" onclick="addRow(); return false;" style="font-size: 10px">Add</button>
+                                    <button id="cancel" onclick="cancel();return false;" style="font-size: 10px">Cancel</button>
                                 </td>
                             </tr>
                         </table>

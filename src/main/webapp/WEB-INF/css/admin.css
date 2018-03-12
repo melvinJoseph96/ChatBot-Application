@@ -88,6 +88,9 @@ button {
 #add button:hover{
     background-color: #535353;
 }
+#cancel {
+    padding: 5px;
+}
 #addButton {
     padding: 5px;
     margin-top: 18px;
@@ -95,7 +98,7 @@ button {
 #userMin {
     position: absolute;
     z-index: 1;
-    left: 60.4%;
+    left: 58.9%;
     top:37.1%;
 }
 #userMin button {
@@ -107,7 +110,7 @@ button {
 #respMin {
     position: absolute;
     z-index: 1;
-    left: 92.4%;
+    left: 89.5%;
     top:37.1%;
 }
 #respMin button {
@@ -363,7 +366,7 @@ button {
     position: absolute;
     z-index: 1;
     top: 240px;
-    left:31.2%;
+    left:30.1%;
     display: none;
 }
 #addedUser ul {
@@ -379,7 +382,7 @@ button {
     position: absolute;
     z-index: 1;
     top: 240px;
-    left:63.2%;
+    left:60.7%;
     display: none;
 }
 #addedResp ul {
