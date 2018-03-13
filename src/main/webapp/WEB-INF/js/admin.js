@@ -205,13 +205,21 @@ function update(name,id){
             }
 
             var userList ="<input type='text' id='textUs' placeholder='Enter new keywords' onkeypress='handle(event)' " +
-                 "name='keywords' size='50'><br><select id='user_says' style='width: 366px;outline: none;'>";
+                 "name='keywords' size='45'><br>" +
+
+                "<input type='text' id='textUs1' placeholder='Edit selected keyword' onkeypress='handle1(event)' " +
+                "name='keywords1' size='45'>" +
+
+                "<br><select id='user_says' style='width: 333px;outline: none;' onclick='select(this)'>";
             for (var j=0;j<userS.length;j++){ // list all the keywords into a dropdown
                 userList += "<option value='"+ userS[j]+"'>"+userS[j]+"</option>";
             }
             userList +=   "</select>";
 
-            var respList ="<input type='text' id='testR' placeholder='Enter new responses' size='50' onkeypress='handler(event)'><select style='width: 366px;outline: none;' id='responsesSelect'>";
+            var respList ="<input type='text' id='textR' placeholder='Enter new responses' size='45' onkeypress='handler(event)'>" +
+               "<br><input type='text' id='textResp1' placeholder='Edit selected response' onkeypress='handle2(event)' " +
+                "name='responses1' size='45'>" +
+                "<select style='width: 333px;outline: none;' id='responsesSelect' onclick='select1(this)'>";
             for (var j=0;j<resp.length;j++){ //list all the responses into a dropdown
                respList += "<option onclick='this.parentElement.removeChild(this);' value='"+ resp[j]+"'>"+resp[j]+"</option>";
             }
@@ -221,8 +229,6 @@ function update(name,id){
             tr[i].getElementsByTagName("td")[1].innerHTML = userList;
             tr[i].getElementsByTagName("td")[2].innerHTML = respList;
             tr[i].getElementsByTagName("td")[3].innerHTML = "<button id='update' onclick='submit2(this,\"" + id + "\")' style='background-color: #212121;border-radius: 15px;padding:5px;font-size: 10px'>Update</button>";
-
-            console.log(tr[i].getElementsByTagName("td")[1].innerHTML);
 
             return false;
         }
@@ -414,6 +420,24 @@ function handle(e){
         document.getElementById("user_says").appendChild(option); // add new option to dropdown
     }
 }
+function handle1(e){
+    if(e.keyCode === 13){ // if enter hit
+        var select= document.getElementById("user_says"); // get the select box
+        var option = select.options[select.selectedIndex];
+        option.value = document.getElementById("textUs1").value; // get the new value
+        option.text = document.getElementById("textUs1").value; // get the new text
+        document.getElementById("textUs1").value = ""; // remove text box value
+    }
+}
+function handle2(e){
+    if(e.keyCode === 13){ // if enter hit
+        var select= document.getElementById("responsesSelect"); // get the select box
+        var option = select.options[select.selectedIndex];
+        option.value = document.getElementById("textResp1").value; // get the new value
+        option.text = document.getElementById("textResp1").value; // get the new text
+        document.getElementById("textResp1").value = ""; // remove text box value
+    }
+}
 function handler(e){
     if(e.keyCode === 13){ // if enter hit
         var option = document.createElement("option");
@@ -425,4 +449,10 @@ function handler(e){
         document.getElementById("textR").value = ""; // remove text box value
         document.getElementById("responsesSelect").appendChild(option); // add new option to dropdown
     }
+}
+function select(e){
+    document.getElementById("textUs1").value = e.options[e.selectedIndex].text; // put the selected value into the text box
+}
+function select1(e){
+    document.getElementById("textResp1").value = e.options[e.selectedIndex].text; // put the selected value into the text box
 }
