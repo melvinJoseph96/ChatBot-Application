@@ -100,7 +100,7 @@ function addRow(){
                 // log the success
                 console.log("intent added");
                 // display the intent on the table
-                displayIntent(data);
+                load();
             },
             error: function () {
                 console.log("error occurred while adding intent")
@@ -136,6 +136,7 @@ function load(){
         type: "GET",
         url:'/admin/intents',
         success: function(data) {
+            document.getElementById("display").innerHTML = "";
             sessionStorage.setItem('intents',JSON.stringify(data));
             // for each intent received, add it to the table
             for (var i=0; i<data.length;i++){
@@ -228,27 +229,34 @@ function update(name,id){
             td0.innerHTML = "<input id='name"+resp.toString().replace(/\s/g, '').replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"")+"' type='text' size='40' value='"+name+ "'>"; // change the cells to input boxes with the values inside
             tr[i].getElementsByTagName("td")[1].innerHTML = userList;
             tr[i].getElementsByTagName("td")[2].innerHTML = respList;
-            tr[i].getElementsByTagName("td")[3].innerHTML = "<button id='update' onclick='submit2(this,\"" + id + "\")' style='background-color: #212121;border-radius: 15px;padding:5px;font-size: 10px'>Update</button>";
-            console.log(document.body.innerHTML);
+            tr[i].getElementsByTagName("td")[3].innerHTML = "<button id='update' onclick='submit2(\""+userS.toString().replace(/\s/g, '').replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"")+"\",\"" +resp.toString().replace(/\s/g, '').replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"")+"\",\"" + id + "\")' style='background-color: #212121;border-radius: 15px;padding:5px;font-size: 10px'>Update</button>";
+
             return false;
         }
     }
 }
 
-function submit2(data,id){
-    var row = data.parentNode.parentNode;
-    var one = row.getElementsByTagName("td")[0]; // fetch each cell of the row
-    var two = row.getElementsByTagName("td")[1];
-    var three = row.getElementsByTagName("td")[2];
-    var four = row.getElementsByTagName("td")[3];
-    var inputOne = one.getElementsByTagName("input")[0].value;
-    var inputTwo = two.getElementsByTagName("input")[0].value;
-    var inputThree = three.getElementsByTagName("input")[0].value;
-    one.innerText =  inputOne;// put the input box values into the cell
-    two.innerText = inputTwo;
-    three.innerText = inputThree;
-    four.innerHTML = "<button id='editButton' onclick='update(\"" + intent.name + "\",\"" + intent.id + "\")' style='background-color: #212121;border-radius: 15px;padding:5px;font-size: 10px'>Edit<button> <button id='deleteButton' onclick='return deleteIntent(\"" + intent.id + "\");' style='background-color: #212121;border-radius: 15px;padding:5px;font-size: 10px'>Delete<button>"; // add edit button
-    var data = [id,inputOne,inputTwo,inputThree];
+function submit2(userS,resp,id){
+
+    var name;
+    var userSays = [];
+    var responses = [];
+
+    name = document.getElementById("name" + resp).value; // name of the intent
+    var selectUser = document.getElementById("user_says" + userS); // get select element of the user says
+    var selectedResp = document.getElementById("responsesSelect" + resp); // get the select element of responses
+    var selectUser1 = selectUser.getElementsByTagName("option"); // get the lists of the options
+    var selectedResp1 = selectedResp.getElementsByTagName("option");
+
+    for (var i=0;i<selectUser1.length;i++) { // add all the values to userSays
+        userSays.push(selectUser1[i].value);
+    }
+    for (var i=0;i<selectedResp1.length;i++) { // add all the values to responses
+        responses.push(selectedResp1[i].value);
+    }
+
+    var data = [];
+    data.push([id],[name],userSays,responses);
     $.ajax({
         type: "POST",
         url: '/admin/update',
@@ -257,6 +265,9 @@ function submit2(data,id){
         contentType: "application/json",
         success: function () {
             console.log("intent updated");
+            // set
+            // reload page
+            load();
         },
         error: function () {
             console.log("error while updating intent");

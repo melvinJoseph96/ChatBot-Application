@@ -78,12 +78,20 @@ public class ChatbotController {
     }
 
     @RequestMapping(value = "/admin/update", method = RequestMethod.POST)
-    public void updateIntent(@RequestBody String[] data ) {
+    public void updateIntent(@RequestBody String[][] data ) {
         AdminLogic admin = new AdminLogic();
-        String id = data[0];
-        String name = data[1];
-        ArrayList<String> userSays = admin.toArrayList(data[2]);
-        ArrayList<String> responses = admin.toArrayList(data[3]);
+        String id = data[0][0];
+        String name = data[1][0];
+        ArrayList<String> userSays = new ArrayList<>();
+        ArrayList<String> responses = new ArrayList<>();
+
+        for (String i : data[2]){
+            userSays.add(i);
+        }
+        for (String i : data[3]){
+            responses.add(i);
+        }
+
         admin.updateIntent(id, name, userSays, responses);
 
     }
