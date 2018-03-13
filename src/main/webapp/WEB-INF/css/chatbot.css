@@ -74,7 +74,7 @@
 	border-left: 1px solid #f1f0f0;
 	border-right: 1px solid #f1f0f0;
 	background-color: white;
-
+	overflow-x: hidden;
 }
 
 .message{
@@ -89,10 +89,12 @@
 
 .message.user{
 	text-align: end;
+	word-wrap: break-word;
 }
 
 .message.bot{
 	text-align: start;
+	word-wrap: break-word;
 }
 
 .message.user .messagetext{

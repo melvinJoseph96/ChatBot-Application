@@ -41,7 +41,7 @@ $(function() { // On page load
                 action = "languageChangePrompt";
                 chatLog = document.getElementById("messages").innerHTML; // get the whole chatbot html
                 sessionStorage['chat-log'] = chatLog; // save it as a session cookie
-                $('#messages').scrollTop($('#messages')[0].scrollHeight); // Make sure the chatbox is scrolled to the bottom
+                $('#messages').scrollTop($('#messages')[0].scrollHeight); // Make sure the chat bot is scrolled to the bottom
             } else if (notEmpty && action === "default") { // Make sure it's not empty
                 addMessage("user", inputMessage); // Display the sent message in the chat box
                 $('#input').val(""); // Clear the message text box ready for another message
@@ -125,7 +125,7 @@ function addMessage(id, message){
             console.log("text to speech has not played"); // used to test text to speech - logs if no speech was played
         }
     }
-	$('#messages').append("<div class=\"message " + id + "\"><div class=\"messagetext\">" + message + "</div> " +
+	$('#messages').append("<div class=\"message " + id + "\"><div class=\"messagetext\" style='max-width: 200px'>" + message + "</div> " +
         "<p style='font-size: 10px; color: gray'>" + time() + "</p></div>"); // add time
     chatLog = document.getElementById("messages").innerHTML; // get the whole chat log
     sessionStorage['chat-log'] = chatLog; // save it as a session cookie

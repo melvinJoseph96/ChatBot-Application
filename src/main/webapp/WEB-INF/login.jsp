@@ -22,8 +22,8 @@
         <input type="password" placeholder="Enter Password" name="password" required>
         <div class="error"><c:if test="${not empty error}">${error}</c:if></div>
         <div id="buttons">
-            <button type="submit" style="background-color: #212121">Login</button>
-            <button style="background-color: #212121" onclick="location.href='/register'">Register</button>
+            <button type="submit" style="background-color: #212121;float: left;">Login</button>
+            <button style="background-color: #212121;float:right;" onclick="location.href='/register'">Register</button>
         </div>
     </div>
 </form>
