@@ -94,6 +94,10 @@
                 <input id="searchBar" type="text" placeholder="Search Intents" maxlength="200" size="100" height="30" onkeyup="search()">
             </div>
 
+            <div id="progress">
+                <div id="progressBar"></div>
+            </div>
+
             <div id="allIntents">
                 <div id="newIntent">
                     <div id="add">

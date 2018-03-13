@@ -129,7 +129,19 @@ function load(){
     else if (sessionStorage.getItem("current") === "chatbotSimulation"){ // if the admin selected the chatbot simulator
         displaySim(); // display the simulation
     }
-
+    $('#progress').fadeIn();
+    var elem = document.getElementById("progressBar");
+    var width = 1;
+    var id = setInterval(frame, 25);
+    function frame() {
+        if (width >= 100) {
+            clearInterval(id);
+        } else {
+            width++;
+            elem.style.width = width + '%';
+        }
+    }
+    setTimeout(function(){$('#progress').fadeOut();},2000);
     // when the page loads
     // got to /admin/intents to get all the intent information from dialogflow
     $.ajax({

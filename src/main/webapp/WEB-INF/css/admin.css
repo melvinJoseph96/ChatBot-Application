@@ -182,11 +182,12 @@ button {
     border-top-right-radius: 15px;
     border-bottom-right-radius: 30px;
     text-align: right;
-    width: 8%;
+    width: 9%;
 }
 #display tr td:last-child button {
     margin-top: 50%;
     outline: none;
+    margin-bottom: 50%;
 }
 #display tr td:last-child button:hover {
     background-color: #535353;
@@ -519,4 +520,16 @@ button {
     background-color: white;
     border-radius: 15px;
     padding: 15px;
+}
+#progress {
+    width: 94%;
+    background-color: white;
+    position: absolute;
+    top: 55%;
+    margin-left: 3%;
+}
+#progressBar {
+    width: 1%;
+    height: 30px;
+    background-color: #333333;
 }
