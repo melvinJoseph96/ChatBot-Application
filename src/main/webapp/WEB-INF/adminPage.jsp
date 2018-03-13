@@ -165,7 +165,8 @@
                 <button id="refreshButtonSim" onclick="l" title="Refresh the data"><img src="media/refresh.png" width="16" height="16"></button>
             </div>
         </div>
-
+        <div id="sim">
+        </div>
     </div>
 </body>
 </html>

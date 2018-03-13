@@ -371,7 +371,6 @@ button {
 }
 #chatbotSimulator {
     display: none;
-    background-color: red;
 }
 #titleBarSim {
     margin-top: 99px;
@@ -481,4 +480,43 @@ button {
 #respError p {
     margin-top: 6px;
     padding: 0 3px 0 3px;
+}
+#chatbot {
+    width: 270px;
+    height: auto;
+    padding: 4px 4px 0 4px;
+}
+#titlebar{
+    height: 25px;
+    background: radial-gradient(#212121,#111111);
+    color: white;
+    line-height: 25px;
+    padding: 4px;
+    border-top-left-radius: 9px;
+    border-top-right-radius: 9px;
+}
+#input{
+    width: 100%;
+    height: 30px;
+    padding: 5px;
+    box-sizing: border-box;
+    border: 1px solid #f1f0f0;
+    outline: none;
+}
+#inputBar {
+    width: 100%;
+}
+#messages{
+    height: 246px;
+    overflow-y: scroll;
+    border-left: 1px solid #f1f0f0;
+    border-right: 1px solid #f1f0f0;
+    background-color: white;
+}
+#sim {
+    width: 95.5%;
+    margin-left: 1%;
+    background-color: white;
+    border-radius: 15px;
+    padding: 15px;
 }

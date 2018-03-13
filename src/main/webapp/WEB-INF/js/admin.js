@@ -136,6 +136,7 @@ function load(){
         type: "GET",
         url:'/admin/intents',
         success: function(data) {
+            sessionStorage.setItem('intents',JSON.stringify(data));
             // for each intent received, add it to the table
             for (var i=0; i<data.length;i++){
                 displayIntent(data[i]);
@@ -189,15 +190,41 @@ function update(name,id){
     var table = document.getElementById("display");
     var tr = table.getElementsByTagName("tr"); // Get all rows from table
     for (var i = 0; i < tr.length; i++) {
-        var td0 = tr[i].getElementsByTagName("td")[0]; // Get the cell at index 0 (1st column)
-        var td1 = tr[i].getElementsByTagName("td")[1]; // Get the cell at index 1 (2nd column)
-        var td2 = tr[i].getElementsByTagName("td")[2]; // Get the cell at index 2 (3rd column)
-        var td3 = tr[i].getElementsByTagName("td")[3]; // Get the cell at index 3 (4th column)
+        var td0 = tr[i].getElementsByTagName("td")[0]; // Get the cell at index 0 (1st column), intent name
         if (td0.innerText === name) { // if the intent row is found
-            td0.innerHTML = "<input type='text' value='"+name+ "'>"; // change the cells to input boxes with the values inside
-            td1.innerHTML = "<input type='text' value='"+td1.innerText+ "'>";
-            td2.innerHTML = "<input type='text' value='"+td2.innerText+ "'>";
-            td3.innerHTML = "<button id='update' onclick='submit2(this,\"" + id + "\")' style='background-color: #212121;border-radius: 15px;padding:5px;font-size: 10px'>Update</button>";
+            var intents = sessionStorage.getItem('intents'); // get the list of intents
+            intents = JSON.parse(intents);
+            var userS;
+            var resp;
+
+            for (var j=0;j<intents.length;j++){
+                if (intents[j].name === name){
+                    userS = intents[j].userSays;
+                    resp = intents[j].responses;
+                }
+            }
+
+            var userList ="<input type='text' id='textUs' placeholder='Enter new keywords' onkeypress='handle(event)' " +
+                 "name='keywords' size='50'><br><select id='user_says' style='width: 366px;outline: none;'>";
+            for (var j=0;j<userS.length;j++){ // list all the keywords into a dropdown
+                userList += "<option value='"+ userS[j]+"'>"+userS[j]+"</option>";
+            }
+            userList +=   "</select>";
+
+            var respList ="<input type='text' id='testR' placeholder='Enter new responses' size='50' onkeypress='handler(event)'><select style='width: 366px;outline: none;' id='responsesSelect'>";
+            for (var j=0;j<resp.length;j++){ //list all the responses into a dropdown
+               respList += "<option onclick='this.parentElement.removeChild(this);' value='"+ resp[j]+"'>"+resp[j]+"</option>";
+            }
+            respList +=   "</select>";
+
+            td0.innerHTML = "<input type='text' size='40' value='"+name+ "'>"; // change the cells to input boxes with the values inside
+            tr[i].getElementsByTagName("td")[1].innerHTML = userList;
+            tr[i].getElementsByTagName("td")[2].innerHTML = respList;
+            tr[i].getElementsByTagName("td")[3].innerHTML = "<button id='update' onclick='submit2(this,\"" + id + "\")' style='background-color: #212121;border-radius: 15px;padding:5px;font-size: 10px'>Update</button>";
+
+            console.log(tr[i].getElementsByTagName("td")[1].innerHTML);
+
+            return false;
         }
     }
 }
@@ -373,5 +400,29 @@ function cancel(){
     // hide elements
     $('#addedUser').fadeOut();
     $('#addedResp').fadeOut();
+}
 
+function handle(e){
+    if(e.keyCode === 13){ // if enter hit
+        var option = document.createElement("option");
+        option.onclick = function () { // add the onclick delete
+            this.parentElement.removeChild(this);
+        };
+        option.value = document.getElementById("textUs").value; // get the new value
+        option.innerText = document.getElementById("textUs").value; // get the new value
+        document.getElementById("textUs").value = ""; // remove text box value
+        document.getElementById("user_says").appendChild(option); // add new option to dropdown
+    }
+}
+function handler(e){
+    if(e.keyCode === 13){ // if enter hit
+        var option = document.createElement("option");
+        option.onclick = function () { // add the onclick delete
+            this.parentElement.removeChild(this);
+        };
+        option.value = document.getElementById("textR").value; // get the new value
+        option.innerText = document.getElementById("textR").value; // get the new value
+        document.getElementById("textR").value = ""; // remove text box value
+        document.getElementById("responsesSelect").appendChild(option); // add new option to dropdown
+    }
 }
