@@ -7,6 +7,7 @@ $(function() { // On page load
         var greetingMessage = "Hello!, how can I help you?"; // greeting message
         isMinimised= false;
         isMuted= false;
+        sessionStorage['speechOn'] = "false"
         setTimeout(function () { // time delay
             $("#chatbot").fadeIn(); // display main div that contains chatbot after 5000ms
             addMessage("bot", greetingMessage);
@@ -18,6 +19,9 @@ $(function() { // On page load
             soundChangeOff();
         else
             soundChangeOn();
+        if (sessionStorage.getItem("speechOn") === "true"){
+            document.getElementById("speechControl").title = "Turn chat bot speech off";
+        }
         if (sessionStorage.getItem("isMinimised") === "true"){
             $('#collapse').fadeIn();
             $('.expand').fadeIn();
@@ -113,7 +117,7 @@ function addMessage(id, message){
         var speechSetting = document.getElementById("speechControl").title;
         console.log("NEW MESSAGE: " + message); // used to test the text to speech javascript - logs the new message
         console.log("speech setting - " + speechSetting); // used to test text to speech - logs if the function is on or off
-        if (speechSetting === "Turn chat bot speech off"){
+        if (sessionStorage.getItem("speechOn") === "true" ){
             if (document.getElementById("messageReceived").muted === false) { // only play if the chat bot is not muted
                 if (!message.match("<")) {
                     responsiveVoice.speak(message);
@@ -340,9 +344,11 @@ function speech(){
     var speechSetting = document.getElementById("speechControl").title;
     if (speechSetting === "Turn chat bot speech on"){
         document.getElementById("speechControl").title = "Turn chat bot speech off";
+        sessionStorage['speechOn'] = "true";
     }
     else {
         document.getElementById("speechControl").title = "Turn chat bot speech on";
+        sessionStorage['speechOn'] = "false";
     }
 }
 
