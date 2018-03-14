@@ -132,3 +132,7 @@ Click on the minimised(X) button which you can find at the right-top of the chat
 ## A user can navigate the website and keep the chatbot muted
 
 Click the mute icon found on the top right hand side of the chatbot. The icon image will change to signify that the chatbot has muted. Next re-direct to another page either by typing into the search bar or by typing into the chatbot. Once the page has loaded, the chatbot will still be muted. 
+
+## A user can navigate the website and keep text to speech on
+
+Click on the speech icon found at ther left-bottom of the chatbot. If you hoover over the icon, you can see a text saying "Turn chat bot speech off" that's means the speech is on.  Then scroll down the page and click on one of the two "find out more" buttons, it will navigated you to one of the website's subpages. When the subpage will load the chatbot, the speech will be still on. 
