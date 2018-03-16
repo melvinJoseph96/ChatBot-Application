@@ -141,3 +141,6 @@ Click on the speech icon found at the left-bottom of the chatbot. If you hover o
 
 When you are waiting for a message from the chatbot and you have minimised the chatbot, a green box that says 'message received' will appear at the bottom right hand corner of the page once you have got the message.
 
+## A user is displayed a chatbot message after a short delay
+
+When you have typed a message to the chatbot, there will be a delay between your message displaying and the chatbot's message displaying to make the conversation seem more natural.
