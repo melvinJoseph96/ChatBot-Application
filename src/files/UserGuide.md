@@ -135,4 +135,9 @@ Click the mute icon found on the top right hand side of the chatbot. The icon im
 
 ## A user can navigate the website and keep text to speech on
 
-Click on the speech icon found at ther left-bottom of the chatbot. If you hoover over the icon, you can see a text saying "Turn chat bot speech off" that's means the speech is on.  Then scroll down the page and click on one of the two "find out more" buttons, it will navigated you to one of the website's subpages. When the subpage will load the chatbot, the speech will be still on. 
+Click on the speech icon found at the left-bottom of the chatbot. If you hover over the icon, you can see a text saying "Turn chat bot speech off" that's means the speech is on.  Then scroll down the page and click on one of the two "find out more" buttons, it will navigated you to one of the website's sub-pages. When the sub-page will load the chatbot, the speech will be still on. 
+
+## A user is displayed a notification if they receive a message when the chatbot is minimised
+
+When you are waiting for a message from the chatbot and you have minimised the chatbot, a green box that says 'message received' will appear at the bottom right hand corner of the page once you have got the message.
+
