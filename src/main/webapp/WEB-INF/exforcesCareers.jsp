@@ -54,6 +54,9 @@
         <button onclick="reopen()" style='color: white; background-color: transparent;float: right;border:none;font-size: 20px'><b>-</b></button>
     </div>
 </div>
+<div id="messageNote">
+    <h3>Message Received</h3>
+</div>
 <div id="emailPopUp">
     <div id="boxed">
         <button id="close" onclick="closeEmail()">X</button>

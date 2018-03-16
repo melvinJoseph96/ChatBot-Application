@@ -7,6 +7,22 @@
 #fdm {
 	position:absolute; left: 0; right: 0; bottom: 0; top: 0px; background-color: #cccccc;
 }
+#messageNote {
+	background-color: #42b72a;
+	opacity: 0.9;
+	height: 25px;
+	width: 130px;
+	text-align: center;
+	position: fixed;
+	right: 10px;
+	bottom:  40px;
+	padding: 3px;
+	display: none;
+	z-index: 3;
+}
+#messageNote h3 {
+	margin-top: 3px;
+}
 #vid {
 	position: relative;
 	height: 100%;

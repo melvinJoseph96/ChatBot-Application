@@ -7,7 +7,7 @@ $(function() { // On page load
         var greetingMessage = "Hello!, how can I help you?"; // greeting message
         isMinimised= false;
         isMuted= false;
-        sessionStorage['speechOn'] = "false"
+        sessionStorage['speechOn'] = "false";
         setTimeout(function () { // time delay
             $("#chatbot").fadeIn(); // display main div that contains chatbot after 5000ms
             addMessage("bot", greetingMessage);
@@ -26,8 +26,10 @@ $(function() { // On page load
             $('#collapse').fadeIn();
             $('.expand').fadeIn();
         }
-        else
+        else {
             $("#chatbot").fadeIn();
+        }
+        $('#messages').scrollTop($('#messages')[0].scrollHeight); // scroll to bottom of chat log
     }
 
     var action = "firstMessage";
@@ -112,8 +114,7 @@ $(function() { // On page load
 
 function addMessage(id, message){
     if (id === "bot") {
-        var sound = document.getElementById("messageReceived");
-        sound.play();
+
         var speechSetting = document.getElementById("speechControl").title;
         console.log("NEW MESSAGE: " + message); // used to test the text to speech javascript - logs the new message
         console.log("speech setting - " + speechSetting); // used to test text to speech - logs if the function is on or off
@@ -128,11 +129,29 @@ function addMessage(id, message){
         else {
             console.log("text to speech has not played"); // used to test text to speech - logs if no speech was played
         }
+        setTimeout(function () {
+            if (document.getElementById("collapse").style.display === "block") { // if the chatbot is minimised
+                console.log("in");
+                $('#messageNote').fadeIn(); // display the notification
+                setTimeout(function () { // fade out after 0.6 seconds
+                    $('#messageNote').fadeOut(1000);
+                },600)
+            }
+            var sound = document.getElementById("messageReceived");
+            sound.play();
+            $('#messages').append("<div class=\"message " + id + "\"><div class=\"messagetext\" style='max-width: 200px'>" + message + "</div> " +
+                "<p style='font-size: 10px; color: gray'>" + time() + "</p></div>"); // add time
+            chatLog = document.getElementById("messages").innerHTML; // get the whole chat log
+            $('#messages').scrollTop($('#messages')[0].scrollHeight); // Make sure the chatbot is scrolled to the bottom
+            sessionStorage['chat-log'] = chatLog; // save it as a session cookie
+        },2000);
     }
-	$('#messages').append("<div class=\"message " + id + "\"><div class=\"messagetext\" style='max-width: 200px'>" + message + "</div> " +
-        "<p style='font-size: 10px; color: gray'>" + time() + "</p></div>"); // add time
-    chatLog = document.getElementById("messages").innerHTML; // get the whole chat log
-    sessionStorage['chat-log'] = chatLog; // save it as a session cookie
+    else {
+        $('#messages').append("<div class=\"message " + id + "\"><div class=\"messagetext\" style='max-width: 200px'>" + message + "</div> " +
+            "<p style='font-size: 10px; color: gray'>" + time() + "</p></div>"); // add time
+        chatLog = document.getElementById("messages").innerHTML; // get the whole chat log
+        sessionStorage['chat-log'] = chatLog; // save it as a session cookie
+    }
 }
 function minimise(){
     sessionStorage['isMinimised'] = "true";
