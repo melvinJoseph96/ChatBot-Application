@@ -144,7 +144,7 @@ function addMessage(id, message){
             chatLog = document.getElementById("messages").innerHTML; // get the whole chat log
             $('#messages').scrollTop($('#messages')[0].scrollHeight); // Make sure the chatbot is scrolled to the bottom
             sessionStorage['chat-log'] = chatLog; // save it as a session cookie
-        },2000);
+        },3000); // creates a time delay before displaying the message
     }
     else {
         $('#messages').append("<div class=\"message " + id + "\"><div class=\"messagetext\" style='max-width: 200px'>" + message + "</div> " +
@@ -445,5 +445,3 @@ function translate(query, source, target) {
     });
     return toReturn;
 }
-
-
