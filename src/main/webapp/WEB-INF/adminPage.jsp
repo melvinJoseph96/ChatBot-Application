@@ -142,7 +142,14 @@
                 </div>
                 <br>
             </div>
+            <div id="deletePop">
+                <button id="cancelDelete" onclick="closeThis()">X</button>
+                <h2>Are you sure you want to delete this intent?</h2>
+                <button id="deleteSub" onclick="deleteIntent(document.getElementById('invisible').innerText); $('#deletePop').fadeOut();">Delete</button>
+                <p id="invisible"></p>
+            </div>
         </div>
+        <div id="notification"><h3 id="info"></h3></div>
     </div>
     <div id="unansweredQuestions">
 
