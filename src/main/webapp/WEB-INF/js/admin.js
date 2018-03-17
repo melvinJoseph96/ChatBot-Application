@@ -34,7 +34,9 @@ $(document).ready(function(){
         }
     });
     $('#input').on('keypress', function(e) { // When a key is pressed
-        run(e);
+        if(e.keyCode === 13 || e.which === 13) { // And the key is enter
+            run();
+        }
     });
 });
 

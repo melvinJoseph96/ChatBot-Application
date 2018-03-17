@@ -179,25 +179,36 @@
         </div>
 
         <div id="sim">
-
             <div id="chatbot">
                 <div id="titlebar">
-                    Chatbot Simulator
+                    <div id="green">&#8226;</div>
+                    Chatbot
+                    <div class="dialog">
+                        <a href="#" class="close-X" onclick="minimise()"></a>
+                    </div>
+                    <img id="imageSoundOn" src="media/soundOff.png" title="mute" width="20" height="20" onclick="soundChangeOff()">
+                    <img id="imageSoundOff" src="media/soundOn.png" title="un-mute" width="20" height="20" onclick="soundChangeOn()">
                 </div>
                 <div id="messages">
 
                 </div>
                 <div id="inputBar">
+                    <img src="media/speech.png" id="speechControl" width="20px" height="20px" onclick="speech()" title="Turn chat bot speech on">
                     <input id="input" type="text" placeholder="Type a message and hit enter">
+                    <img id="saveLog" src="media/email.png" width="20px" height="15px" onclick="save()" title="Email the chat log">
                 </div>
+                <div id="collapse">
+                    Chat With Us
+                </div>
+                <audio id="messageReceived" src="media/message.mp3"></audio>
+                <script src='//vws.responsivevoice.com/v/e?key=7muhKJWW'></script>
             </div>
 
             <div id="intentList">
-                <div id="section">
-                    <table id="intentsTable"></table>
-                </div>
+
             </div>
         </div>
+
     </div>
 </body>
 </html>

@@ -543,14 +543,14 @@ button {
     border-top-right-radius: 9px;
 }
 #input{
-    width: 100%;
+    float: right;
+    width: 90%;
     height: 30px;
     padding: 5px;
     box-sizing: border-box;
-    border: 1px solid #f1f0f0;
     outline: none;
-    border-bottom-left-radius: 15px;
-    border-bottom-right-radius: 15px;
+    border: none;
+
 }
 #inputBar {
     width: 100%;
@@ -609,4 +609,36 @@ button {
     width: 1%;
     height: 30px;
     background-color: #333333;
+}
+.dialog{
+    float: right;
+    margin-right: 4px;
+}
+#green {
+    display: none;
+}
+#imageSoundOff {
+    display: none;
+    float: right;
+    padding-right: 6px;
+    padding-top: 2px;
+}
+
+#imageSoundOn{
+    float: right;
+    padding-right: 6px;
+    padding-top: 2px;
+}
+#collapse{
+    display: none;
+}
+#speechControl{
+    z-index: 3;
+    position: absolute;
+    left: 29px;
+    top: 524px;
+    padding: 5px 4px 3px 2px;
+}
+#saveLog {
+    display: none;
 }
