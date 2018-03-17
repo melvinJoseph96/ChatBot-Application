@@ -237,12 +237,17 @@ function processing(inputMessage, lang) {
             else if (answerInEng === "Taking you to admin panel") { // Taking the user to the admin page from the chatbot
                 window.location.href = "/admin"
             }
-            else if(answerInEng === "Click the link below for our FAQ page"){   // Taking the user to the admin page
-                var message = "Click here for our FAQ page";
+            else if (answerInEng === "Click the link below for our FAQ page"){
+                addMessage("bot",answerInEng);
+                link("/faq", "FAQ Page");
+            }
+            else if(answerInEng === "I didn't get that. Can you say it again?" || answerInEng === "I missed what you said. Say it again?" || answerInEng === "Sorry, could you say that again?" || answerInEng === "Sorry, can you say that again?" || answerInEng === "Can you say that again?" || answerInEng === "Sorry, I didn't get that." || answerInEng === "Sorry, what was that?" || answerInEng === "One more time?" || answerInEng === "What was that?" || answerInEng === "Say that again?" || answerInEng === "I didn't get that." || answerInEng === "I missed that."){   // Taking the user to the admin page
+
+                var message = answerInEng;
                 if (!isEnglish) {
                     message = translate(message, "en", lang);
                 }
-                addMessage("bot",message);
+                addMessage("bot",message + " Check out our FAQ page or rephrase your question.");
                 link("/faq", "FAQ Page");
                 $('#messages').scrollTop($('#messages')[0].scrollHeight); // Make sure the chatbox is scrolled to the bottom
             }
