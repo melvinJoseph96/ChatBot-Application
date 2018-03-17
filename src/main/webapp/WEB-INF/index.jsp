@@ -66,7 +66,7 @@
             <div id="collapse">
                 <div id="greenA">&#8226;</div>
                 Chat With Us
-                <button onclick="reopen()" style='color: white; background-color: transparent;float: right;border:none;font-size: 20px'><b>-</b></button>
+                <button onclick="reopen()" style='color: white; background-color: transparent;outline:none;float: right;border:none;font-size: 20px'><b>-</b></button>
             </div>
         </div>
         <div id="messageNote">
