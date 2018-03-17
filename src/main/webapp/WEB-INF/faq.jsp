@@ -70,7 +70,7 @@
                 </tr>
                 <tr>
                     <td><strong>What companies will I be working with?</strong></td>
-                    <td> You can be placed with any of FDM’s prestigious clients. You may end up working at the same place for the whole two years, or you may be placed on various client sites throughout that time.
+                    <td> You can be placed with any of FDM's prestigious clients. You may end up working at the same place for the whole two years, or you may be placed on various client sites throughout that time.
 
                     </td>
 
