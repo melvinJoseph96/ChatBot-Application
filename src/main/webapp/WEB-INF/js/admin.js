@@ -33,6 +33,9 @@ $(document).ready(function(){
             document.getElementById("responses").value = "";
         }
     });
+    $('#input').on('keypress', function(e) { // When a key is pressed
+        run(e);
+    });
 });
 
 function search() {

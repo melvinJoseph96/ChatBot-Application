@@ -558,9 +558,37 @@ button {
 #messages{
     height: 290px;
     overflow-y: scroll;
+    overflow-x: hidden;
     border-left: 1px solid #f1f0f0;
     border-right: 1px solid #f1f0f0;
     background-color: white;
+}
+.message{
+    width: 250px;
+}
+
+.messagetext{
+    margin:4px;
+    padding: 4px;
+    display: inline-block;
+}
+
+.message.user{
+    text-align: end;
+    word-wrap: break-word;
+}
+
+.message.bot{
+    text-align: start;
+    word-wrap: break-word;
+}
+
+.message.user .messagetext{
+    background-color: #1dadedbf;
+}
+
+.message.bot .messagetext{
+    background-color: #f1f0f0;
 }
 #sim {
     width: 95.5%;

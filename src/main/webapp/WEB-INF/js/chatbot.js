@@ -31,90 +31,90 @@ $(function() { // On page load
         }
         $('#messages').scrollTop($('#messages')[0].scrollHeight); // scroll to bottom of chat log
     }
-
-    var action = "firstMessage";
-    var currentLang = "en";
     $('#input').on('keypress', function(e) { // When a key is pressed
-	    if(e.keyCode === 13 || e.which === 13){ // And the key is enter
-	        var inputMessage = $('#input').val(); // Get the user's message
-            inputMessage = inputMessage.trim();
-            var notEmpty = inputMessage !== null && inputMessage.trim().length !== 0;
-
-            if (notEmpty && inputMessage === "change language" || inputMessage === "language") {
-                addMessage("user", inputMessage);
-                $('#input').val("");
-                addMessage("bot", "Please enter a name (in english) of a language you would like to use");
-                action = "languageChangePrompt";
-                chatLog = document.getElementById("messages").innerHTML; // get the whole chatbot html
-                sessionStorage['chat-log'] = chatLog; // save it as a session cookie
-                $('#messages').scrollTop($('#messages')[0].scrollHeight); // Make sure the chat bot is scrolled to the bottom
-            } else if (notEmpty && action === "default") { // Make sure it's not empty
-                addMessage("user", inputMessage); // Display the sent message in the chat box
-                $('#input').val(""); // Clear the message text box ready for another message
-                processing(inputMessage, currentLang)
-            } else if (notEmpty && action === "firstMessage") {
-                addMessage("user", inputMessage);
-                $('#input').val("");
-                $.ajax({
-                    type: "POST",
-                    url: "/detect",
-                    data: inputMessage,
-                    contentType: "text/plain",
-                    success: function (response) {
-                        if (response === "en") {
-                            processing(inputMessage);
-                            action = "default"
-                        } else {
-                            addMessage("bot", "Would you like to talk in " + getFullLang(response) + "?");
-                            action = "languageChangeConfirm";
-                        }
-                        currentLang = response;
-                    }
-                });
-                chatLog = document.getElementById("messages").innerHTML; // get the whole chatbot html
-                sessionStorage['chat-log'] = chatLog; // save it as a session cookie
-                $('#messages').scrollTop($('#messages')[0].scrollHeight); // Make sure the chatbox is scrolled to the bottom
-            } else if (notEmpty && action === "languageChangeConfirm") {
-                addMessage("user", inputMessage); // Display the sent message in the chat box
-                $('#input').val(""); // Clear the message text box ready for another message
-                inputMessage = inputMessage.trim().toLowerCase();
-                var inputTranslated = translate(inputMessage, currentLang, "en");
-                if (inputMessage === "yes" || inputMessage === "ok" || inputTranslated.trim().toLowerCase() === "yes") {
-                    var botAnswer = "You can speak " + getFullLang(currentLang) + " now";
-                    var botAnswerTranslated = translate(botAnswer, "en", currentLang);
-                    addMessage("bot", botAnswerTranslated);
-                } else if (inputMessage === "no" || inputMessage === "nope" || inputTranslated.trim().toLowerCase() === "no") {
-                    currentLang = "en";
-                    addMessage("bot", "Let's continue in English then. You can always change the language by typing \"change language\"");
-                }
-                action = "default";
-                chatLog = document.getElementById("messages").innerHTML; // get the whole chatbot html
-                sessionStorage['chat-log'] = chatLog; // save it as a session cookie
-                $('#messages').scrollTop($('#messages')[0].scrollHeight); // Make sure the chatbox is scrolled to the bottom
-            } else if (notEmpty && action === "languageChangePrompt") {
-                addMessage("user", inputMessage);
-                $('#input').val("");
-                var langCode = getLangCode(inputMessage.trim().toLowerCase());
-                if (langCode === "notfound") {
-                    addMessage("bot", "Sorry, we couldn't find a language like that");
-                } else {
-                    var botAnswer = "Let's talk in " + inputMessage;
-                    var botAnswerTranslated = translate(botAnswer, "en", langCode);
-                    addMessage("bot", botAnswerTranslated);
-                    currentLang = langCode;
-                }
-                action = "default";
-                chatLog = document.getElementById("messages").innerHTML; // get the whole chatbot html
-                sessionStorage['chat-log'] = chatLog; // save it as a session cookie
-                $('#messages').scrollTop($('#messages')[0].scrollHeight); // Make sure the chatbox is scrolled to the bottom
-            }
-	    }
+        run(e);
 	});
 });
+function run(e){
+    var action = "firstMessage";
+    var currentLang = "en";
+    if(e.keyCode === 13 || e.which === 13) { // And the key is enter
+        var inputMessage = $('#input').val(); // Get the user's message
+        inputMessage = inputMessage.trim();
+        var notEmpty = inputMessage !== null && inputMessage.trim().length !== 0;
 
+        if (notEmpty && inputMessage === "change language" || inputMessage === "language") {
+            addMessage("user", inputMessage);
+            $('#input').val("");
+            addMessage("bot", "Please enter a name (in english) of a language you would like to use");
+            action = "languageChangePrompt";
+            chatLog = document.getElementById("messages").innerHTML; // get the whole chatbot html
+            sessionStorage['chat-log'] = chatLog; // save it as a session cookie
+            $('#messages').scrollTop($('#messages')[0].scrollHeight); // Make sure the chat bot is scrolled to the bottom
+        } else if (notEmpty && action === "default") { // Make sure it's not empty
+            addMessage("user", inputMessage); // Display the sent message in the chat box
+            $('#input').val(""); // Clear the message text box ready for another message
+            processing(inputMessage, currentLang)
+        } else if (notEmpty && action === "firstMessage") {
+            addMessage("user", inputMessage);
+            $('#input').val("");
+            $.ajax({
+                type: "POST",
+                url: "/detect",
+                data: inputMessage,
+                contentType: "text/plain",
+                success: function (response) {
+                    if (response === "en") {
+                        processing(inputMessage);
+                        action = "default"
+                    } else {
+                        addMessage("bot", "Would you like to talk in " + getFullLang(response) + "?");
+                        action = "languageChangeConfirm";
+                    }
+                    currentLang = response;
+                }
+            });
+            chatLog = document.getElementById("messages").innerHTML; // get the whole chatbot html
+            sessionStorage['chat-log'] = chatLog; // save it as a session cookie
+            $('#messages').scrollTop($('#messages')[0].scrollHeight); // Make sure the chatbox is scrolled to the bottom
+        } else if (notEmpty && action === "languageChangeConfirm") {
+            addMessage("user", inputMessage); // Display the sent message in the chat box
+            $('#input').val(""); // Clear the message text box ready for another message
+            inputMessage = inputMessage.trim().toLowerCase();
+            var inputTranslated = translate(inputMessage, currentLang, "en");
+            if (inputMessage === "yes" || inputMessage === "ok" || inputTranslated.trim().toLowerCase() === "yes") {
+                var botAnswer = "You can speak " + getFullLang(currentLang) + " now";
+                var botAnswerTranslated = translate(botAnswer, "en", currentLang);
+                addMessage("bot", botAnswerTranslated);
+            } else if (inputMessage === "no" || inputMessage === "nope" || inputTranslated.trim().toLowerCase() === "no") {
+                currentLang = "en";
+                addMessage("bot", "Let's continue in English then. You can always change the language by typing \"change language\"");
+            }
+            action = "default";
+            chatLog = document.getElementById("messages").innerHTML; // get the whole chatbot html
+            sessionStorage['chat-log'] = chatLog; // save it as a session cookie
+            $('#messages').scrollTop($('#messages')[0].scrollHeight); // Make sure the chatbox is scrolled to the bottom
+        } else if (notEmpty && action === "languageChangePrompt") {
+            addMessage("user", inputMessage);
+            $('#input').val("");
+            var langCode = getLangCode(inputMessage.trim().toLowerCase());
+            if (langCode === "notfound") {
+                addMessage("bot", "Sorry, we couldn't find a language like that");
+            } else {
+                var botAnswer = "Let's talk in " + inputMessage;
+                var botAnswerTranslated = translate(botAnswer, "en", langCode);
+                addMessage("bot", botAnswerTranslated);
+                currentLang = langCode;
+            }
+            action = "default";
+            chatLog = document.getElementById("messages").innerHTML; // get the whole chatbot html
+            sessionStorage['chat-log'] = chatLog; // save it as a session cookie
+            $('#messages').scrollTop($('#messages')[0].scrollHeight); // Make sure the chatbox is scrolled to the bottom
+        }
+    }
+}
 function addMessage(id, message){
     if (id === "bot") {
-
         var speechSetting = document.getElementById("speechControl").title;
         console.log("NEW MESSAGE: " + message); // used to test the text to speech javascript - logs the new message
         console.log("speech setting - " + speechSetting); // used to test text to speech - logs if the function is on or off
@@ -159,21 +159,17 @@ function minimise(){
     $('#collapse').fadeIn(); //Display collapsed chatbot
     $('.expand').fadeIn(); //Expand button appears
 }
-
 function reopen(){
     sessionStorage['isMinimised'] = "false";
     $('#collapse').fadeOut(); //Remove collapsed title bar from screen
     $('.expand').fadeOut(); //Remove button from screen
     $('#chatbot').fadeIn(); //Display the chatbot
 }
-
-
 function processing(inputMessage, lang) {
     var isEnglish = lang === "en";
     if (!isEnglish) {
         inputMessage = translate(inputMessage, lang, "en");
     }
-
     $.ajax({
         type: "POST",
         url: "chatbot",
@@ -183,13 +179,11 @@ function processing(inputMessage, lang) {
         datatype: "json",
         contentType: "application/json",
         success: function(data) {
-
             var answerInEng = data.message;
             var answerToTheUser = answerInEng;
             if (!isEnglish) {
                 answerToTheUser = translate(answerInEng, "en", lang);
             }
-
             if (answerInEng === "Which team you want to send an email to?") { //the user can choose a team to send an email to
                 addMessage("bot", answerToTheUser);
                 addMessage("bot", answerToTheUser.replace(answerToTheUser, '<button type="button" class="button" onclick="location.href=\'mailto:sales_pool@fdmgroup.com\'"> Sales </button>' +
@@ -237,21 +231,15 @@ function processing(inputMessage, lang) {
             }
             else if (answerInEng === "Taking you to admin panel") { // Taking the user to the admin page from the chatbot
                 window.location.href = "/admin"
-
             }
             else if(answerInEng === "Click the link below for our FAQ page"){   // Taking the user to the admin page
                 var message = "Click here for our FAQ page";
                 if (!isEnglish) {
                     message = translate(message, "en", lang);
                 }
-
                 addMessage("bot",message);
                 link("/faq", "FAQ Page");
                 $('#messages').scrollTop($('#messages')[0].scrollHeight); // Make sure the chatbox is scrolled to the bottom
-
-
-
-
             }
             else {
                 addMessage("bot", answerToTheUser); // Display the response message in the chat box
@@ -450,7 +438,6 @@ function translate(query, source, target) {
             console.log("ERROR: failed to connect to /translate");
         }
     });
-
     $.ajaxSetup({
         async: true
     });
