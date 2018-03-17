@@ -254,6 +254,7 @@ button {
     height: 100%;
     position: fixed;
     display: none;
+    z-index: 3;
 }
 #menu ul {
     margin-top: 9px;
@@ -633,7 +634,6 @@ button {
     display: none;
 }
 #speechControl{
-    z-index: 3;
     position: absolute;
     left: 29px;
     top: 524px;
@@ -641,4 +641,38 @@ button {
 }
 #saveLog {
     display: none;
+}
+#intentList {
+    width: 70%;
+    top: 32%;
+    left: 27%;
+    padding-left: 15px;
+    position: absolute;
+}
+#tableArea {
+    height: 300px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+#listIntents {
+    text-align: center;
+    border-collapse: separate;
+}
+#listIntents tr:hover {
+    background-color: #cccccc;
+    border-radius: 15px;
+}
+#listIntents tr {
+    background-color: #f1f0f0;
+}
+#listIntents td {
+    padding: 10px;
+    width: 20%;
+    border: 0;
+}
+#listIntents tr td:first-child {
+    border-radius: 15px;
+}
+#listIntents tr td:last-child {
+    border-radius: 15px;
 }

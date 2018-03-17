@@ -174,6 +174,7 @@ function load(){
 }
 
 function displayIntent(intent){
+    // control panel
     var table = document.getElementById("display"); // get the display table
     var row = table.insertRow(0); // insert a row
     var cell1 = row.insertCell(0); // insert 5 cells
@@ -184,7 +185,13 @@ function displayIntent(intent){
     cell2.innerHTML = intent.userSays; //set cell data to intent's userSays
     cell3.innerHTML = intent.responses; //set cell data to intent's responses
     cell4.innerHTML = "<button id='editButton' onclick='update(\"" + intent.name + "\",\"" + intent.id + "\")' style='background-color: #212121;border-radius: 15px;padding:5px;font-size: 10px'>Edit<button> <button id='deleteButton' onclick='return deleteThis(\"" + intent.id + "\");' style='background-color: #212121;border-radius: 15px;padding:5px;font-size: 10px'>Delete<button>"; // add edit button
-
+    // simulator
+    var table1 = document.getElementById("listIntents"); // get the display table
+    row = table1.insertRow(0); // insert a row
+    cell1 = row.insertCell(0); // insert 3 cells
+    cell2 = row.insertCell(1);
+    cell1.innerHTML = intent.userSays; //set cell data to intent's userSays
+    cell2.innerHTML = intent.responses; //set cell data to intent's responses
 }
 function deleteThis(id){
     $('#deletePop').fadeIn();

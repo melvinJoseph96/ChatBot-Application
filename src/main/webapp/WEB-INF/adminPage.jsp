@@ -205,7 +205,10 @@
             </div>
 
             <div id="intentList">
-
+                <h3>List Intents</h3>
+                <div id="tableArea">
+                    <table id="listIntents"></table>
+                </div>
             </div>
         </div>
 
