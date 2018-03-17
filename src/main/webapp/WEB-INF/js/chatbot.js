@@ -200,7 +200,6 @@ function processing(inputMessage, lang) {
                     ' <button type="button" class="button" onclick="location.href=\'mailto:recruitment_pool@fdmgroup.com\'"> Recruitment</button>'+
                     ' <button type="button" class="button" onclick="location.href=\'mailto:other@example.com\'"> Other</button>' +
                     " <button type='button' class='button' onclick='dontKnow(\"" + lang + "\")'> I do not know </button>"))
-
             }
             else if (answerInEng === "How do you want to contact us?") { //when the user has to decide how to contact FDM
                 addMessage("bot", answerToTheUser);
@@ -224,7 +223,7 @@ function processing(inputMessage, lang) {
                     message = translate(message, "en", lang);
                 }
                 addMessage("bot", message);
-                link("/gradCareers", "media/grad.png");
+                link("/gradCareers", "Graduate Careers Page");
                 $('#messages').scrollTop($('#messages')[0].scrollHeight); // Make sure the chatbox is scrolled to the bottom
             }
             else if (answerInEng === "https://www.fdmgroup.com/careers/ex-forces/") { // when the message is a link to ex-forces careers
@@ -233,7 +232,7 @@ function processing(inputMessage, lang) {
                     message = translate(message, "en", lang);
                 }
                 addMessage("bot", message);
-                link("/exforcesCareers", "media/exforces.png");
+                link("/exforcesCareers", "Ex-forces Careers Page");
                 $('#messages').scrollTop($('#messages')[0].scrollHeight); // Make sure the chatbox is scrolled to the bottom
             }
             else if (answerInEng === "Taking you to admin panel") { // Taking the user to the admin page from the chatbot
@@ -247,7 +246,7 @@ function processing(inputMessage, lang) {
                 }
 
                 addMessage("bot",message);
-                link("/faq", "media/faq.png");
+                link("/faq", "FAQ Page");
                 $('#messages').scrollTop($('#messages')[0].scrollHeight); // Make sure the chatbox is scrolled to the bottom
 
 
@@ -346,16 +345,28 @@ function sendEmail(){
 function closeEmail(){
     $('#emailPopUp').fadeOut();
 }
-function link(hrefLink, imgName){
+function link(hrefLink, phrase){
     var messageDiv = document.getElementById("messages"); // get the message div to add the link to
     var link = document.createElement("a"); // create a link that leads to the page
     link.setAttribute("href", hrefLink); // link to the page provided in the parameter
-    var image = document.createElement("img"); // create image for the link
-    image.src = imgName; // set the image source to the one provided in the parameter
-    image.setAttribute("height", "80"); // set image height so it fits in the message box
-    image.setAttribute("width", "110"); // set image width
-    link.appendChild(image); // make the image the link
-    messageDiv.appendChild(link); // add the link to the chatbot
+    // style the link
+    link.style.borderRadius = "15px";
+    link.style.backgroundColor = "#aaaaaa";
+    link.style.padding = "3px";
+    link.innerText = phrase;
+    link.style.marginLeft = "5px";
+    link.style.marginBottom = "3px";
+    link.style.textDecoration = "none"; // remove underline
+    link.style.color = "darkslateblue";
+    setTimeout(function () { // make the link display after the chatbot's message
+        messageDiv.appendChild(link); // add the link to the chatbot
+        messageDiv.appendChild(document.createElement("br"));
+        messageDiv.appendChild(document.createElement("br"));
+        $('#messages').scrollTop($('#messages')[0].scrollHeight); // scroll down
+        var chatLog = document.getElementById("messages").innerHTML; // get the whole chatbot html
+        sessionStorage['chat-log'] = chatLog; // save it as a session cookie
+    },3500); // 3.5 second delay
+
     return false;
 }
 
