@@ -101,6 +101,13 @@ function addRow(){
                 console.log("intent added");
                 // display the intent on the table
                 load();
+                document.getElementById("info").innerText = "Intent Added"; // set the notifcation info
+                setTimeout(function () {
+                    $('#notification').fadeIn(); // display the notification
+                },2000);
+                setTimeout(function () { // remove the notification from the screen
+                    $('#notification').fadeOut(600);
+                },3000);
             },
             error: function () {
                 console.log("error occurred while adding intent")
@@ -171,10 +178,13 @@ function displayIntent(intent){
     cell1.innerHTML = intent.name; //set cell data to intent name
     cell2.innerHTML = intent.userSays; //set cell data to intent's userSays
     cell3.innerHTML = intent.responses; //set cell data to intent's responses
-    cell4.innerHTML = "<button id='editButton' onclick='update(\"" + intent.name + "\",\"" + intent.id + "\")' style='background-color: #212121;border-radius: 15px;padding:5px;font-size: 10px'>Edit<button> <button id='deleteButton' onclick='return deleteIntent(\"" + intent.id + "\");' style='background-color: #212121;border-radius: 15px;padding:5px;font-size: 10px'>Delete<button>"; // add edit button
+    cell4.innerHTML = "<button id='editButton' onclick='update(\"" + intent.name + "\",\"" + intent.id + "\")' style='background-color: #212121;border-radius: 15px;padding:5px;font-size: 10px'>Edit<button> <button id='deleteButton' onclick='return deleteThis(\"" + intent.id + "\");' style='background-color: #212121;border-radius: 15px;padding:5px;font-size: 10px'>Delete<button>"; // add edit button
 
 }
-
+function deleteThis(id){
+    $('#deletePop').fadeIn();
+    document.getElementById("invisible").innerText = id;
+}
 
 function deleteIntent(id) {
     $.ajax({
@@ -190,7 +200,15 @@ function deleteIntent(id) {
                 table.removeChild(table.firstChild);
             }
             load();
-            console.log("intent removed from the table")
+            console.log("intent removed from the table");
+            document.getElementById("info").innerText = "Intent Deleted"; // set the notifcation info
+            setTimeout(function () {
+                $('#notification').fadeIn(); // display the notification
+            },2000);
+            setTimeout(function () { // remove the notification from the screen
+                $('#notification').fadeOut(600);
+            },3000);
+
         },
         error: function () {
             console.log("error while deleting intent");
@@ -280,6 +298,13 @@ function submit2(userS,resp,id){
             // set
             // reload page
             load();
+            document.getElementById("info").innerText = "Intent Updated"; // set the notification info
+            setTimeout(function () {
+                $('#notification').fadeIn(); // display the notification
+            },2000);
+            setTimeout(function () { // remove the notification from the screen
+                $('#notification').fadeOut(600);
+            },3000);
         },
         error: function () {
             console.log("error while updating intent");
@@ -478,4 +503,8 @@ function select(e,a){
 }
 function select1(e,a){
     document.getElementById("textResp1"+a).value = e.options[e.selectedIndex].text; // put the selected value into the text box
+}
+
+function closeThis(){
+    $('#deletePop').fadeOut();
 }

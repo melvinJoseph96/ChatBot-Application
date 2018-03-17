@@ -144,3 +144,8 @@ When you are waiting for a message from the chatbot and you have minimised the c
 ## A user is displayed a chatbot message after a short delay
 
 When you have typed a message to the chatbot, there will be a delay between your message displaying and the chatbot's message displaying to make the conversation seem more natural.
+
+## An admin is shown a pop up after pressing the delete button
+
+Once you have chosen which intent you want to delete and pressed the delete button. a pop up will appear that asks if you are sure that you wnt to delete the intent. If you do not want to, press the black 'X' button found on the top right hand side of the pop up. The pop up will then disappear. If you do wish to delete the intent, press the delete button found on the bottom on the pop up. The pop up will then disappear and the page with re-load. Once the intents are displayed once again, the intent that was deleted will not be visible on the table.
+

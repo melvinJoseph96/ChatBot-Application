@@ -5,6 +5,52 @@ body {
     padding-bottom: 15px;
     overflow-y: scroll;
 }
+#invisible {
+    display: none;
+}
+#notification {
+    background-color: #42b72a;
+    width: 170px;
+    height: 30px;
+    position: fixed;
+    right: 10px;
+    bottom: 30px;
+    padding: 3px;
+    text-align: center;
+    display: none;
+}
+#info {
+    margin-top: 5px;
+    color: ghostwhite;
+}
+#deletePop {
+    background-color: #fffeff;
+    width: 70%;
+    height: 20%;
+    position: fixed;
+    z-index: 6;
+    text-align: center;
+    top: 50%;
+    left: 15%;
+    display: none;
+    padding: 10px;
+}
+#deletePop h2 {
+}
+#cancelDelete {
+    float: right;
+    background: none;
+    border: none;
+    outline: none;
+    color: #212121;
+}
+#deleteSub {
+    background-color: #212121;
+    color: white;
+    width: 70px;
+    height: 30px;
+    padding: 5px;
+}
 #bar {
     background-color: #212121;
     top: 0;
