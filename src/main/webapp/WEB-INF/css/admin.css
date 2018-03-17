@@ -549,12 +549,14 @@ button {
     box-sizing: border-box;
     border: 1px solid #f1f0f0;
     outline: none;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
 }
 #inputBar {
     width: 100%;
 }
 #messages{
-    height: 246px;
+    height: 290px;
     overflow-y: scroll;
     border-left: 1px solid #f1f0f0;
     border-right: 1px solid #f1f0f0;
@@ -566,6 +568,7 @@ button {
     background-color: white;
     border-radius: 15px;
     padding: 15px;
+    height: 363px;
 }
 #progress {
     width: 94%;

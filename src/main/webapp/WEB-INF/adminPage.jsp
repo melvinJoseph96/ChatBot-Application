@@ -176,7 +176,26 @@
                 <button id="refreshButtonSim" onclick="l" title="Refresh the data"><img src="media/refresh.png" width="16" height="16"></button>
             </div>
         </div>
+
         <div id="sim">
+
+            <div id="chatbot">
+                <div id="titlebar">
+                    Chatbot Simulator
+                </div>
+                <div id="messages">
+
+                </div>
+                <div id="inputBar">
+                    <input id="input" type="text" placeholder="Type a message and hit enter">
+                </div>
+            </div>
+
+            <div id="intentList">
+                <div id="section">
+                    <table id="intentsTable"></table>
+                </div>
+            </div>
         </div>
     </div>
 </body>
