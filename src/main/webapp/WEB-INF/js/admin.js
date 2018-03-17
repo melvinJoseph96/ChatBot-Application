@@ -511,3 +511,15 @@ function select1(e,a){
 function closeThis(){
     $('#deletePop').fadeOut();
 }
+
+/**
+ * If the menu bar is open and a click is detected anywhere but the menu, the menu will close to avoid
+ * obstructing the page.
+ */
+$(document).click(function(event) {
+    if(!$(event.target).closest('#menu').length && !$(event.target).closest('#menuButton').length) {
+        if($('#menu').css('display') === "block") {
+            $('#menu').fadeOut();
+        }
+    }
+});
