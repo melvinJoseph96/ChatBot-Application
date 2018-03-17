@@ -393,6 +393,7 @@ function displayQuestion(){
 function displaySim(){
     console.log("display chatbot simulation");
     $('#chatbotSimulator').fadeIn();
+    $('#messages').scrollTop($('#messages')[0].scrollHeight);
 }
 
 function displayAnswered(){
