@@ -149,3 +149,8 @@ When you have typed a message to the chatbot, there will be a delay between your
 
 Once you have chosen which intent you want to delete and pressed the delete button. a pop up will appear that asks if you are sure that you wnt to delete the intent. If you do not want to, press the black 'X' button found on the top right hand side of the pop up. The pop up will then disappear. If you do wish to delete the intent, press the delete button found on the bottom on the pop up. The pop up will then disappear and the page with re-load. Once the intents are displayed once again, the intent that was deleted will not be visible on the table.
 
+## An admin can view an interactive chat bot template on the chat bot simulator page
+
+Load the /admin page and sign in. Once the dashboard has loaded, press the menu icon found at the top left of the page. Click on the "Chatbot Simulator" link and allow the page to load. On the left of the page is the chatbot which works exactly as the one found on that main pages that users can use. Type into the text box found below the chatbot to communicate with it. Found to the right of the chatbot is the table of intents.
+
+ 
