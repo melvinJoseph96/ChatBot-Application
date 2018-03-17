@@ -153,4 +153,8 @@ Once you have chosen which intent you want to delete and pressed the delete butt
 
 Load the /admin page and sign in. Once the dashboard has loaded, press the menu icon found at the top left of the page. Click on the "Chatbot Simulator" link and allow the page to load. On the left of the page is the chatbot which works exactly as the one found on that main pages that users can use. Type into the text box found below the chatbot to communicate with it. Found to the right of the chatbot is the table of intents.
 
+## A user can be linked to the FAQ page when the chat bot does not know how to respond
+
+ When the chatbot does not have a response for the user, the chatbot will display a link to the FAQ page. Clicking this link will redirect the user to the FAQ page.
+ 
  
