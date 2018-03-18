@@ -3,9 +3,11 @@
     <head>
         <meta charset="utf-8">
         <script src="js/jquery-3.3.1.min.js"></script>
-        <script src="js/chatbot.js"></script>
+        <script src="js/chatbotMessages.js"></script>
+        <script src="js/chatbotFunctions.js"></script>
         <link rel="stylesheet" href="css/reset.css">
         <link rel="stylesheet" href="css/chatbot.css">
+        <script src="js/chatbotLanguage.js"></script>
         <title>FDM Graduate Careers</title>
     </head>
     <body>

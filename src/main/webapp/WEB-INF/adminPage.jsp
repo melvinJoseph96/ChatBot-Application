@@ -6,7 +6,9 @@
     <link rel="stylesheet" href="css/admin.css">
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/admin.js"></script>
-    <script src="js/chatbot.js"></script>
+    <script src="js/chatbotMessages.js"></script>
+    <script src="js/chatbotLanguage.js"></script>
+    <script src="js/chatbotFunctions.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 </head>
 <body onload="load()" style="background-color: #eae9e6;">

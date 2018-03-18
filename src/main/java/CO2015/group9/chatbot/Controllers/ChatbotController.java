@@ -36,10 +36,9 @@ public class ChatbotController {
     }
 
     @RequestMapping(value = "/translate", method = RequestMethod.POST)
-    public String translate(@RequestBody String data) {
-        JSONObject obj = new JSONObject(data);
+    public String translateMessage(@RequestBody String[] data) {
         AdminLogic admin = new AdminLogic();
-        return admin.translate(obj.getString("query"), obj.getString("source"), obj.getString("target"));
+        return admin.translate(data[0],data[1],data[2]);
     }
 
     @RequestMapping(value = "/detect", method = RequestMethod.POST)

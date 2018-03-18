@@ -1,12 +1,14 @@
 var isMinimised;
 var isMuted;
+var action = "firstMessage";
+var currentLang = "en";
 
 $(function() { // On page load
     console.log("loaded chatbot.js");
     if (sessionStorage.getItem("chat-log") === null) { // if this is a new session
         var greetingMessage = "Hello, how can I help you?"; // set the greeting message
         isMinimised= false; // chatbot is not minimised
-        isMuted= false; // chatbot has sond turned on
+        isMuted= false; // chatbot has sound turned on
         sessionStorage['speechOn'] = "false"; // text to speech is off
         setTimeout(function () { //  after time delay of 5 seconds
             $("#chatbot").fadeIn(); // display main div that contains chatbot after 5000ms
@@ -14,7 +16,7 @@ $(function() { // On page load
         }, 5000); // 5000ms = 5seconds
     }
     else { // if this is a return to the same session (i.e. a redirect or reopen the page on the same browser session)
-        // the chatlog is retreived from the session storage
+        // the chat log is retrieved from the session storage
         document.getElementById("messages").innerHTML = sessionStorage.getItem("chat-log");
 
         // check the mute setting
@@ -30,7 +32,7 @@ $(function() { // On page load
             document.getElementById("speechControl").title = "Turn chat bot speech off"; // change the title
         }
 
-        // check if the chatbot is minimsed
+        // check if the chatbot is minimised
         if (sessionStorage.getItem("isMinimised") === "true"){ // if it is
             $('#collapse').fadeIn(); // display the chatbot minimised bar
         }
@@ -49,9 +51,6 @@ $(function() { // On page load
 	});
 });
 function run(){
-    var action = "firstMessage";
-    var currentLang = "en";
-
     var inputMessage = $('#input').val(); // Get the user's message
     inputMessage = inputMessage.trim();
     var notEmpty = inputMessage !== null && inputMessage.trim().length !== 0;
@@ -89,7 +88,7 @@ function run(){
         });
         chatLog = document.getElementById("messages").innerHTML; // get the whole chatbot html
         sessionStorage['chat-log'] = chatLog; // save it as a session cookie
-        $('#messages').scrollTop($('#messages')[0].scrollHeight); // Make sure the chatbox is scrolled to the bottom
+        $('#messages').scrollTop($('#messages')[0].scrollHeight); // Make sure the chat box is scrolled to the bottom
     } else if (notEmpty && action === "languageChangeConfirm") {
         addMessage("user", inputMessage); // Display the sent message in the chat box
         $('#input').val(""); // Clear the message text box ready for another message
@@ -128,20 +127,20 @@ function run(){
 function addMessage(id, message){
     if (id === "bot") {
         var speechSetting = document.getElementById("speechControl").title;
-        console.log("NEW MESSAGE: " + message); // used to test the text to speech javascript - logs the new message
-        console.log("speech setting - " + speechSetting); // used to test text to speech - logs if the function is on or off
+        // console.log("NEW MESSAGE: " + message); // used to test the text to speech javascript - logs the new message
+        // console.log("speech setting - " + speechSetting); // used to test text to speech - logs if the function is on or off
         if (sessionStorage.getItem("speechOn") === "true" ){
             if (document.getElementById("messageReceived").muted === false) { // only play if the chat bot is not muted
                 if (!message.match("<")) {
                     setTimeout(function () {
                         responsiveVoice.speak(message);
                     },3000);
-                    console.log("text to speech has played"); // used to test text to speech - logs whether the speech was played
+                    // console.log("text to speech has played"); // used to test text to speech - logs whether the speech was played
                 }
             }
         }
         else {
-            console.log("text to speech has not played"); // used to test text to speech - logs if no speech was played
+            // console.log("text to speech has not played"); // used to test text to speech - logs if no speech was played
         }
         setTimeout(function () { // 3 seconds time delay
             if (document.getElementById("collapse").style.display === "block") { // if the chatbot is minimised
@@ -167,16 +166,7 @@ function messageInsert(id, message){
     $('#messages').scrollTop($('#messages')[0].scrollHeight); // Make sure the chatbot is scrolled to the bottom
     sessionStorage['chat-log'] = chatLog; // save it as a session cookie
 }
-function minimise(){ // function for minimising the chatbot
-    sessionStorage['isMinimised'] = "true"; // store that the chatbot is minimised
-    $('#chatbot').fadeOut(); //Remove the chatbot
-    $('#collapse').fadeIn(); //Display collapsed chatbot
-}
-function reopen(){ // function for expaning the chatbot
-    sessionStorage['isMinimised'] = "false"; // indicate that the chatbot is open
-    $('#collapse').fadeOut(); //Remove collapsed title bar from screen
-    $('#chatbot').fadeIn(); //Display the chatbot
-}
+
 function processing(inputMessage, lang) {
     var isEnglish = lang === "en";
     if (!isEnglish) { // translate the message if it is not english
@@ -282,36 +272,6 @@ function dontKnow(lang) { //this method is when the user clicks on I do not know
     processing(inputMessage, lang)
 }
 
-function soundChangeOff(){
-    sessionStorage['isMuted'] = "true";
-    var on = document.getElementById("imageSoundOn").style.display = "none";
-    // fade the mute icon out and volume in
-    $('#imageSoundOff').fadeIn();
-
-    // mute sound
-    var msgRec = document.getElementById("messageReceived");
-    msgRec.muted = true;
-    // mute text to speech
-    if (responsiveVoice.isPlaying()){ // if the voice over is playing
-        console.log("text to speech is playing");
-        responsiveVoice.cancel(); // cancel the speech
-        console.log("text to speech has stopped playing");
-        if (responsiveVoice.isPlaying()){ // test to see if successful
-            console.log("FAIL"); // if the speech is still playing, log a failed test
-        }
-        else{
-            console.log("PASS"); // otherwise, log the success
-        }
-    }
-}
-function soundChangeOn(){
-    sessionStorage['isMuted'] = "false";
-    var off = document.getElementById("imageSoundOff").style.display = "none";
-    $('#imageSoundOn').fadeIn();
-    // return sound to chatbot
-    var msgRec = document.getElementById("messageReceived");
-    msgRec.muted = false;
-}
 function time(){
     var date = new Date();
     var hrs = date.getHours().toString();
@@ -326,24 +286,6 @@ function time(){
     return toReturn;
 }
 
-function save(){
-    $('#emailPopUp').fadeIn();
-}
-function sendEmail(){
-    var email = document.getElementById("email").value;
-    var body = document.getElementById("messages").innerText;
-    for (var i=0;i<body.length;i++){
-        if (body.charAt(i) === ':'){ // if the character is :, a space is inserted after the next two numbers
-            body = body.substring(0,i+3) + "     " + body.substring(i+3, body.length); // makes the email more readable
-        }
-    }
-    var mail = window.open('mailto:'+email+'?subject=Your FDM Chat Log&body=' + body); // fill in the email address, subject and the body
-    setTimeout(function() { mail.close() }, 500); // close the tab that opened
-    $('#emailPopUp').fadeOut();
-}
-function closeEmail(){
-    $('#emailPopUp').fadeOut();
-}
 function link(hrefLink, phrase){
     var messageDiv = document.getElementById("messages"); // get the message div to add the link to
     var link = document.createElement("a"); // create a link that leads to the page
@@ -367,90 +309,4 @@ function link(hrefLink, phrase){
     },3500); // 3.5 second delay
 
     return false;
-}
-
-function speech(){
-    var speechSetting = document.getElementById("speechControl").title;
-    if (speechSetting === "Turn chat bot speech on"){
-        document.getElementById("speechControl").title = "Turn chat bot speech off";
-        sessionStorage['speechOn'] = "true";
-    }
-    else {
-        document.getElementById("speechControl").title = "Turn chat bot speech on";
-        sessionStorage['speechOn'] = "false";
-    }
-}
-
-function getFullLang(lang) {
-
-    $.ajaxSetup({
-        async: false
-    });
-
-    var toReturn = lang;
-    $.getJSON('js/langcodes.json', function (json) {
-        for (var i in json) {
-            if (lang === json[i].code) {
-                toReturn = json[i].name;
-            }
-        }
-    });
-
-    $.ajaxSetup({
-        async: true
-    });
-
-    return toReturn;
-}
-
-function getLangCode(lang) {
-
-    $.ajaxSetup({
-        async: false
-    });
-
-    var toReturn = "notfound";
-    $.getJSON('js/langcodes.json', function (json) {
-        for (var i in json) {
-            if (lang === json[i].name.trim().toLowerCase()) {
-                toReturn = json[i].code;
-            }
-        }
-    });
-
-    $.ajaxSetup({
-        async: true
-    });
-
-    return toReturn;
-}
-
-function translate(query, source, target) {
-    var toReturn = query;
-    $.ajaxSetup({
-        async: false
-    });
-    var data = [query,source,target];
-    $.ajax({
-        type: "POST",
-        url: "/translate",
-        data: JSON.stringify({
-            "query": query,
-            "source": source,
-            "target": target
-        }),
-        contentType: "application/json",
-        success: function (response) {
-            console.log("ajax code was successful: /translate connection therefore successful");
-            toReturn = response;
-            console.log("outcome - value of 'toReturn': " + toReturn);
-        },
-        error: function(){
-            console.log("ERROR: failed to connect to /translate");
-        }
-    });
-    $.ajaxSetup({
-        async: true
-    });
-    return toReturn;
 }
