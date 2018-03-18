@@ -1,46 +1,22 @@
 $(document).ready(function(){
     $('#userSays').keypress(function(e){ // when enter key is hit for the user bar
         if(e.keyCode==13) {
-            $('#addedUser').fadeIn(); // display the list
-            var user = document.getElementById("addedUser");
-            user.style.backgroundColor = "white";
-            var list = user.getElementsByTagName("ul")[0]; // get the list element
-            var data = document.createElement("li"); //create a list item
-            data.style.wordWrap = "break-word"; // wrap key word if too long
-            data.style.borderBottom = "1px solid #f8f8f8"; // add line under each element
-            data.onclick = function () {
-                this.parentElement.removeChild(this);
-            };
-            data.innerText = document.getElementById("userSays").value; // get the inputted value
-            list.appendChild(data);
-            document.getElementById("userSays").value = "";
+            addTo('addedUser', "userSays"); // add the userSays input value to the addedUser list
         }
     });
     $('#responses').keypress(function(e){ // when user key is hit for the response bar
         if(e.keyCode==13) {
-            $('#addedResp').fadeIn(); // display the list
-            var user = document.getElementById("addedResp");
-            user.style.backgroundColor = "white";
-            var list = user.getElementsByTagName("ul")[0]; // get the list element
-            var data = document.createElement("li"); //create a list item
-            data.style.wordWrap = "break-word"; // wrap key word if too long
-            data.style.borderBottom = "1px solid #f8f8f8"; // add line under each element
-            data.onclick = function () {
-                this.parentElement.removeChild(this);
-            };
-            data.innerText = document.getElementById("responses").value; // get the inputted value
-            list.appendChild(data);
-            document.getElementById("responses").value = "";
+            addTo('addedResp', "responses"); // add the responses input value to the addedResp list
         }
     });
     $('#input').on('keypress', function(e) { // When a key is pressed
         if(e.keyCode === 13 || e.which === 13) { // And the key is enter
-            run();
+            run(); // method found in chatbotMessages.js
         }
     });
 });
 
-function search() {
+function search() { // search bar function
     var table = document.getElementById("display"); // Get the table
     var input = document.getElementById("searchBar"); // Get admin input
     var inputLower = input.value.toLowerCase(); // Put all characters to lower case
@@ -57,6 +33,22 @@ function search() {
             }
         }
     }
+}
+
+function addTo(id,name) {
+    $('#' + id).fadeIn(); // display the list
+    var user = document.getElementById(id);
+    user.style.backgroundColor = "white";
+    var list = user.getElementsByTagName("ul")[0]; // get the list element
+    var data = document.createElement("li"); //create a list item
+    data.style.wordWrap = "break-word"; // wrap key word if too long
+    data.style.borderBottom = "1px solid #f8f8f8"; // add line under each element
+    data.onclick = function () { // when the item is clicked, it will be deleted
+        this.parentElement.removeChild(this);
+    };
+    data.innerText = document.getElementById(name).value; // get the inputted value
+    list.appendChild(data); // add it to the list
+    document.getElementById(name).value = ""; // remove the value from the name input box
 }
 
 function addRow(){
@@ -106,7 +98,7 @@ function addRow(){
                 console.log("intent added");
                 // display the intent on the table
                 load();
-                document.getElementById("info").innerText = "Intent Added"; // set the notifcation info
+                document.getElementById("info").innerText = "Intent Added"; // set the notification info
                 setTimeout(function () {
                     $('#notification').fadeIn(); // display the notification
                 },2000);
@@ -136,7 +128,7 @@ function load(){
         displayControl(); // display the control panel
     }
     else if (sessionStorage.getItem("current") === "unansweredQuestions"){ // if the admin has selected the unanswered questions
-        displayQuestion(); // display the unanswered quesitions
+        displayQuestion(); // display the unanswered questions
     }
     else if (sessionStorage.getItem("current") === "chatbotSimulation"){ // if the admin selected the chatbot simulator
         displaySim(); // display the simulation
@@ -185,7 +177,7 @@ function displayIntent(intent){
     cell2.innerHTML = intent.userSays; //set cell data to intent's userSays
     cell3.innerHTML = intent.responses; //set cell data to intent's responses
     cell4.innerHTML = "<button id='editButton' onclick='update(\"" + intent.name + "\",\"" + intent.id + "\")' style='background-color: #212121;border-radius: 15px;padding:5px;font-size: 10px'>Edit<button> <button id='deleteButton' onclick='return deleteThis(\"" + intent.id + "\");' style='background-color: #212121;border-radius: 15px;padding:5px;font-size: 10px'>Delete<button>"; // add edit button
-    // simulator
+    // simulator's table
     var table1 = document.getElementById("listIntents"); // get the display table
     row = table1.insertRow(0); // insert a row
     cell1 = row.insertCell(0); // insert 3 cells
@@ -228,101 +220,6 @@ function deleteIntent(id) {
     });
 }
 
-function update(name,id){
-    // find the row you want to update
-    var table = document.getElementById("display");
-    var tr = table.getElementsByTagName("tr"); // Get all rows from table
-    for (var i = 0; i < tr.length; i++) {
-        var td0 = tr[i].getElementsByTagName("td")[0]; // Get the cell at index 0 (1st column), intent name
-        if (td0.innerText === name) { // if the intent row is found
-            var intents = sessionStorage.getItem('intents'); // get the list of intents
-            intents = JSON.parse(intents);
-            var userS;
-            var resp;
-
-            for (var j=0;j<intents.length;j++){
-                if (intents[j].name === name){
-                    userS = intents[j].userSays;
-                    resp = intents[j].responses;
-                }
-            }
-
-            var userList ="<input type='text' id='textUs"+userS.toString().replace(/\s/g, '').replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"")+"' placeholder='Enter new keywords' onkeypress='handle(event,\""+userS.toString().replace(/\s/g, '').replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"")+"\")' " +
-                 "name='keywords' size='45'><br>" +
-
-                "<input type='text' id='textUs1"+userS.toString().replace(/\s/g, '').replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"")+"' placeholder='Edit selected keyword' onkeypress='handle1(event,\""+userS.toString().replace(/\s/g, '').replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"")+"\")' " +
-                "name='keywords1' size='45'>" +
-
-                "<br><select id='user_says"+userS.toString().replace(/\s/g, '').replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"")+"' style='width: 333px;outline: none;' onclick='select(this,\""+userS.toString().replace(/\s/g, '').replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"")+"\")'>";
-            for (var j=0;j<userS.length;j++){ // list all the keywords into a dropdown
-                userList += "<option value='"+ userS[j]+"'>"+userS[j]+"</option>";
-            }
-            userList +=   "</select>";
-
-            var respList ="<input type='text' id='textR"+resp.toString().replace(/\s/g, '').replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"")+"' placeholder='Enter new responses' size='45' onkeypress='handler(event,\""+resp.toString().replace(/\s/g, '').replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"")+"\")'>" +
-               "<br><input type='text' id='textResp1"+resp.toString().replace(/\s/g, '').replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"")+"' placeholder='Edit selected response' onkeypress='handle2(event,\""+resp.toString().replace(/\s/g, '').replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"")+"\")' " +
-                "name='responses1' size='45'>" +
-                "<select style='width: 333px;outline: none;' id='responsesSelect"+resp.toString().replace(/\s/g, '').replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"")+"' onclick='select1(this,\""+resp.toString().replace(/\s/g, '').replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"")+"\")'>";
-            for (var j=0;j<resp.length;j++){ //list all the responses into a dropdown
-               respList += "<option onclick='this.parentElement.removeChild(this);' value='"+ resp[j]+"'>"+resp[j]+"</option>";
-            }
-            respList +=   "</select>";
-
-            td0.innerHTML = "<input id='name"+resp.toString().replace(/\s/g, '').replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"")+"' type='text' size='40' value='"+name+ "'>"; // change the cells to input boxes with the values inside
-            tr[i].getElementsByTagName("td")[1].innerHTML = userList;
-            tr[i].getElementsByTagName("td")[2].innerHTML = respList;
-            tr[i].getElementsByTagName("td")[3].innerHTML = "<button id='update' onclick='submit2(\""+userS.toString().replace(/\s/g, '').replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"")+"\",\"" +resp.toString().replace(/\s/g, '').replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"")+"\",\"" + id + "\")' style='background-color: #212121;border-radius: 15px;padding:5px;font-size: 10px'>Update</button>";
-
-            return false;
-        }
-    }
-}
-
-function submit2(userS,resp,id){
-
-    var name;
-    var userSays = [];
-    var responses = [];
-
-    name = document.getElementById("name" + resp).value; // name of the intent
-    var selectUser = document.getElementById("user_says" + userS); // get select element of the user says
-    var selectedResp = document.getElementById("responsesSelect" + resp); // get the select element of responses
-    var selectUser1 = selectUser.getElementsByTagName("option"); // get the lists of the options
-    var selectedResp1 = selectedResp.getElementsByTagName("option");
-
-    for (var i=0;i<selectUser1.length;i++) { // add all the values to userSays
-        userSays.push(selectUser1[i].value);
-    }
-    for (var i=0;i<selectedResp1.length;i++) { // add all the values to responses
-        responses.push(selectedResp1[i].value);
-    }
-
-    var data = [];
-    data.push([id],[name],userSays,responses);
-    $.ajax({
-        type: "POST",
-        url: '/admin/update',
-        data: JSON.stringify(data),
-        datatype: "json",
-        contentType: "application/json",
-        success: function () {
-            console.log("intent updated");
-            // set
-            // reload page
-            load();
-            document.getElementById("info").innerText = "Intent Updated"; // set the notification info
-            setTimeout(function () {
-                $('#notification').fadeIn(); // display the notification
-            },2000);
-            setTimeout(function () { // remove the notification from the screen
-                $('#notification').fadeOut(600);
-            },3000);
-        },
-        error: function () {
-            console.log("error while updating intent");
-        }
-    });
-}
 function menu() {
     if (document.getElementById("menu").style.display === "block"){
         $('#menu').fadeOut();
@@ -330,64 +227,6 @@ function menu() {
     else {
         $('#menu').fadeIn();
     }
-}
-function displayDash(){
-    console.log("display dashboard");
-    var menu = document.getElementById("menuItems"); // get the menu items
-    menu.style.marginTop = "5%";
-    $('#dashboard').fadeIn(); //display the dashboard
-    // first add data to the summary bar
-    var today = document.getElementById("today"); // get the cell for today
-    // value is the number of unanswered questions there have been today
-    today.innerHTML = "<h4>Today</h4><p style='margin-top:-15px'>19</p><p style='font-size: 10px; margin-top: -13px'>Unanswered Questions</p>"; // 19 needs to be replaced with value from database
-
-    var week = document.getElementById("week"); // get the cell for week
-    // value is the number of unanswered questions there have been this week
-    week.innerHTML = "<h4>This Week</h4><p style='margin-top:-15px'>20</p><p style='font-size: 10px; margin-top: -13px'>Unanswered Questions</p>"; // 20 needs to be replaced with value from database
-
-    var month = document.getElementById("month"); // get the cell for month
-    // value is the number of unanswered questions there have been this month
-    month.innerHTML = "<h4>This Month</h4><p style='margin-top:-15px'>30</p><p style='font-size: 10px; margin-top: -13px'>Unanswered Questions</p>"; // 30 needs to be replaced with value from database
-
-    var year = document.getElementById("year"); // get the cell for year
-    // value is the number of unanswered questions there have been this year
-    year.innerHTML = "<h4>This Year</h4><p style='margin-top:-15px'>50</p><p style='font-size: 10px; margin-top: -13px'>Unanswered Questions</p>"; // 50 needs to be replaced with value from database
-
-    var unanswered = document.getElementById("needs"); // get the cell for need
-    // value is the number of questions answered
-    unanswered.innerHTML = "<h4>Require Answers</h4><p style='margin-top:-15px;color: red'><b>17</b></p>"; // 17 needs to be replaced with value from database
-
-    //display graph of answered questions
-    displayAnswered();
-
-    //display answered question number on graph
-    document.getElementById("over").innerHTML = "<h3 style='font-size: 16px; margin-top: 3px'>Total</h3><p style='font-size: 12px;margin-top: -15px;color: green'><b>7</b></p>"; // get value from the database
-
-    //display the most recent answers table
-    var zero = document.getElementById("zero");
-    zero.innerHTML = "<p style='color: #1d1641'>admin</p>"; // most recent admin to answer a question, needs to get data from the database
-    var zerodata = document.getElementById("zerodata"); // box the time goes into
-    zerodata.innerHTML = "<p>12:24</p>"; // get data from the database
-
-    var first = document.getElementById("first");
-    first.innerHTML = "<p style='color: #1d1641'>hs355</p>"; // second most recent admin to answer a question, needs to get data from the database
-    var firstdata = document.getElementById("firstdata"); // box the time goes into
-    firstdata.innerHTML = "<p>12:04</p>"; // get data from the database
-
-    var second = document.getElementById("second");
-    second.innerHTML = "<p style='color: #1d1641'>admin</p>"; // third most recent admin to answer a question, needs to get data from the database
-    var seconddata = document.getElementById("seconddata"); // box the time goes into
-    seconddata.innerHTML = "<p>11.45</p>"; // get data from the database
-
-    var third = document.getElementById("third");
-    third.innerHTML = "<p style='color: #1d1641'>gd542</p>"; // fourth most recent admin to answer a question, needs to get data from the database
-    var thirddata = document.getElementById("thirddata"); // box the time goes into
-    thirddata.innerHTML = "<p>11:34</p>"; // get data from the database
-
-    var fourth = document.getElementById("fourth");
-    fourth.innerHTML = "<p style='color: #1d1641'>tr253</p>"; // fifth most recent admin to answer a question, needs to get data from the database
-    var fourthdata = document.getElementById("fourthdata"); // box the time goes into
-    fourthdata.innerHTML = "<p>10:19</p>"; // get data from the database
 }
 function displayControl() {
     console.log("display control panel");
@@ -403,35 +242,6 @@ function displaySim(){
     $('#messages').scrollTop($('#messages')[0].scrollHeight);
 }
 
-function displayAnswered(){
-    var ctx = document.getElementById('answered').getContext('2d'); // data for the answered questions
-    var chart = new Chart(ctx, {
-        // The type of chart is line
-        type: 'line',
-
-        // The data for our dataset
-        data: {
-            labels: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-            datasets: [{
-                label: "Answered Questions",
-                backgroundColor: 'paleturquoise',
-                borderColor: 'lightblue',
-                data: [0, 10, 5, 11, 12, 13, 6]
-            }]
-        },
-
-        // Configuration options
-        options: {
-            title: { // chart title
-                display: true,
-                text: 'The Number of Answered Questions By Admins This Week'
-            },
-            label :{
-                display: false
-            }
-        }
-    });
-}
 function expand1(){
     var displayed = document.getElementById("addedUser").style.display;
     if (displayed === ""||displayed==="none"){
@@ -467,55 +277,6 @@ function cancel(){
     // hide elements
     $('#addedUser').fadeOut();
     $('#addedResp').fadeOut();
-}
-
-function handle(e,a){
-    if(e.keyCode === 13){ // if enter hit
-        var option = document.createElement("option");
-        option.onclick = function () { // add the onclick delete
-            this.parentElement.removeChild(this);
-        };
-        option.value = document.getElementById("textUs"+a).value; // get the new value
-        option.innerText = document.getElementById("textUs"+a).value; // get the new value
-        document.getElementById("textUs"+a).value = ""; // remove text box value
-        document.getElementById("user_says"+a).appendChild(option); // add new option to dropdown
-    }
-}
-function handle1(e,a){
-    if(e.keyCode === 13){ // if enter hit
-        var select= document.getElementById("user_says"+a); // get the select box
-        var option = select.options[select.selectedIndex];
-        option.value = document.getElementById("textUs1"+a).value; // get the new value
-        option.text = document.getElementById("textUs1"+a).value; // get the new text
-        document.getElementById("textUs1"+a).value = ""; // remove text box value
-    }
-}
-function handle2(e,a){
-    if(e.keyCode === 13){ // if enter hit
-        var select= document.getElementById("responsesSelect"+a); // get the select box
-        var option = select.options[select.selectedIndex];
-        option.value = document.getElementById("textResp1"+a).value; // get the new value
-        option.text = document.getElementById("textResp1"+a).value; // get the new text
-        document.getElementById("textResp1"+a).value = ""; // remove text box value
-    }
-}
-function handler(e,a){
-    if(e.keyCode === 13){ // if enter hit
-        var option = document.createElement("option");
-        option.onclick = function () { // add the onclick delete
-            this.parentElement.removeChild(this);
-        };
-        option.value = document.getElementById("textR"+a).value; // get the new value
-        option.innerText = document.getElementById("textR"+a).value; // get the new value
-        document.getElementById("textR"+a).value = ""; // remove text box value
-        document.getElementById("responsesSelect"+a).appendChild(option); // add new option to dropdown
-    }
-}
-function select(e,a){
-    document.getElementById("textUs1"+a).value = e.options[e.selectedIndex].text; // put the selected value into the text box
-}
-function select1(e,a){
-    document.getElementById("textResp1"+a).value = e.options[e.selectedIndex].text; // put the selected value into the text box
 }
 
 function closeThis(){

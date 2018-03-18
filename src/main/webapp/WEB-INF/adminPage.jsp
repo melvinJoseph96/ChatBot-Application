@@ -6,6 +6,8 @@
     <link rel="stylesheet" href="css/admin.css">
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/admin.js"></script>
+    <script src="js/adminUpdate.js"></script>
+    <script src="js/adminDashboard.js"></script>
     <script src="js/chatbotMessages.js"></script>
     <script src="js/chatbotLanguage.js"></script>
     <script src="js/chatbotFunctions.js"></script>
@@ -207,7 +209,7 @@
             </div>
 
             <div id="intentList">
-                <h3>List Intents</h3>
+                <h3>List of Intents</h3>
                 <div id="tableArea">
                     <table id="listIntents"></table>
                 </div>
