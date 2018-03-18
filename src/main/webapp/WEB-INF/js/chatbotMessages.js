@@ -127,20 +127,20 @@ function run(){
 function addMessage(id, message){
     if (id === "bot") {
         var speechSetting = document.getElementById("speechControl").title;
-        // console.log("NEW MESSAGE: " + message); // used to test the text to speech javascript - logs the new message
-        // console.log("speech setting - " + speechSetting); // used to test text to speech - logs if the function is on or off
+        console.log("NEW MESSAGE: " + message); // used to test the text to speech javascript - logs the new message
+        console.log("speech setting - " + speechSetting); // used to test text to speech - logs if the function is on or off
         if (sessionStorage.getItem("speechOn") === "true" ){
             if (document.getElementById("messageReceived").muted === false) { // only play if the chat bot is not muted
                 if (!message.match("<")) {
                     setTimeout(function () {
                         responsiveVoice.speak(message);
                     },3000);
-                    // console.log("text to speech has played"); // used to test text to speech - logs whether the speech was played
+                    console.log("text to speech has played"); // used to test text to speech - logs whether the speech was played
                 }
             }
         }
         else {
-            // console.log("text to speech has not played"); // used to test text to speech - logs if no speech was played
+            console.log("text to speech has not played"); // used to test text to speech - logs if no speech was played
         }
         setTimeout(function () { // 3 seconds time delay
             if (document.getElementById("collapse").style.display === "block") { // if the chatbot is minimised
