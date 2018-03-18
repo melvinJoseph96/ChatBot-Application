@@ -4,33 +4,44 @@ var isMuted;
 $(function() { // On page load
     console.log("loaded chatbot.js");
     if (sessionStorage.getItem("chat-log") === null) { // if this is a new session
-        var greetingMessage = "Hello!, how can I help you?"; // greeting message
-        isMinimised= false;
-        isMuted= false;
-        sessionStorage['speechOn'] = "false";
-        setTimeout(function () { // time delay
+        var greetingMessage = "Hello, how can I help you?"; // set the greeting message
+        isMinimised= false; // chatbot is not minimised
+        isMuted= false; // chatbot has sond turned on
+        sessionStorage['speechOn'] = "false"; // text to speech is off
+        setTimeout(function () { //  after time delay of 5 seconds
             $("#chatbot").fadeIn(); // display main div that contains chatbot after 5000ms
-            addMessage("bot", greetingMessage);
-        }, 5000);
+            addMessage("bot", greetingMessage); // display the greeting message
+        }, 5000); // 5000ms = 5seconds
     }
-    else {
+    else { // if this is a return to the same session (i.e. a redirect or reopen the page on the same browser session)
+        // the chatlog is retreived from the session storage
         document.getElementById("messages").innerHTML = sessionStorage.getItem("chat-log");
-        if (sessionStorage.getItem("isMuted") === "true")
-            soundChangeOff();
-        else
-            soundChangeOn();
-        if (sessionStorage.getItem("speechOn") === "true"){
-            document.getElementById("speechControl").title = "Turn chat bot speech off";
+
+        // check the mute setting
+        if (sessionStorage.getItem("isMuted") === "true") { // check if the chatbot is muted
+            soundChangeOff(); // set the sound to off
         }
-        if (sessionStorage.getItem("isMinimised") === "true"){
-            $('#collapse').fadeIn();
-            $('.expand').fadeIn();
+        else { // if the sound is turned on
+            soundChangeOn(); // set the sound to on
         }
-        else {
-            $("#chatbot").fadeIn();
+
+        // check the text to speech setting
+        if (sessionStorage.getItem("speechOn") === "true"){ // if it is turned on
+            document.getElementById("speechControl").title = "Turn chat bot speech off"; // change the title
         }
-        $('#messages').scrollTop($('#messages')[0].scrollHeight); // scroll to bottom of chat log
+
+        // check if the chatbot is minimsed
+        if (sessionStorage.getItem("isMinimised") === "true"){ // if it is
+            $('#collapse').fadeIn(); // display the chatbot minimised bar
+        }
+        else { // if the chatbot is expanded
+            $("#chatbot").fadeIn(); // display the chatbot
+        }
+
+        // scroll to bottom of chat log
+        $('#messages').scrollTop($('#messages')[0].scrollHeight);
     }
+    // check for keypress on the chatbot input bar
     $('#input').on('keypress', function(e) { // When a key is pressed
         if(e.keyCode === 13 || e.which === 13) { // And the key is enter
             run();
@@ -38,7 +49,6 @@ $(function() { // On page load
 	});
 });
 function run(){
-    console.log("work");
     var action = "firstMessage";
     var currentLang = "en";
 
@@ -114,7 +124,6 @@ function run(){
         sessionStorage['chat-log'] = chatLog; // save it as a session cookie
         $('#messages').scrollTop($('#messages')[0].scrollHeight); // Make sure the chatbox is scrolled to the bottom
     }
-
 }
 function addMessage(id, message){
     if (id === "bot") {
@@ -134,48 +143,46 @@ function addMessage(id, message){
         else {
             console.log("text to speech has not played"); // used to test text to speech - logs if no speech was played
         }
-        setTimeout(function () {
+        setTimeout(function () { // 3 seconds time delay
             if (document.getElementById("collapse").style.display === "block") { // if the chatbot is minimised
-                console.log("in");
                 $('#messageNote').fadeIn(); // display the notification
                 setTimeout(function () { // fade out after 0.6 seconds
-                    $('#messageNote').fadeOut(1000);
+                    $('#messageNote').fadeOut(1000); // slow fade
                 },600)
             }
             var sound = document.getElementById("messageReceived");
-            sound.play();
-            $('#messages').append("<div class=\"message " + id + "\"><div class=\"messagetext\" style='max-width: 200px'>" + message + "</div> " +
-                "<p style='font-size: 10px; color: gray'>" + time() + "</p></div>"); // add time
-            chatLog = document.getElementById("messages").innerHTML; // get the whole chat log
-            $('#messages').scrollTop($('#messages')[0].scrollHeight); // Make sure the chatbot is scrolled to the bottom
-            sessionStorage['chat-log'] = chatLog; // save it as a session cookie
+            sound.play(); // play the sound that indicates a message has been received
+            messageInsert(id,message); // insert the message onto the chatbot
         },3000); // creates a time delay before displaying the message
     }
     else {
-        $('#messages').append("<div class=\"message " + id + "\"><div class=\"messagetext\" style='max-width: 200px'>" + message + "</div> " +
-            "<p style='font-size: 10px; color: gray'>" + time() + "</p></div>"); // add time
-        chatLog = document.getElementById("messages").innerHTML; // get the whole chat log
-        sessionStorage['chat-log'] = chatLog; // save it as a session cookie
+        messageInsert(id,message); // insert the message into the chatbot
     }
 }
-function minimise(){
-    sessionStorage['isMinimised'] = "true";
+// function for displaying messages
+function messageInsert(id, message){
+    $('#messages').append("<div class=\"message " + id + "\"><div class=\"messagetext\" style='max-width: 200px'>" + message + "</div> " +
+        "<p style='font-size: 10px; color: gray'>" + time() + "</p></div>"); // add time
+    chatLog = document.getElementById("messages").innerHTML; // get the whole chat log
+    $('#messages').scrollTop($('#messages')[0].scrollHeight); // Make sure the chatbot is scrolled to the bottom
+    sessionStorage['chat-log'] = chatLog; // save it as a session cookie
+}
+function minimise(){ // function for minimising the chatbot
+    sessionStorage['isMinimised'] = "true"; // store that the chatbot is minimised
     $('#chatbot').fadeOut(); //Remove the chatbot
     $('#collapse').fadeIn(); //Display collapsed chatbot
-    $('.expand').fadeIn(); //Expand button appears
 }
-function reopen(){
-    sessionStorage['isMinimised'] = "false";
+function reopen(){ // function for expaning the chatbot
+    sessionStorage['isMinimised'] = "false"; // indicate that the chatbot is open
     $('#collapse').fadeOut(); //Remove collapsed title bar from screen
-    $('.expand').fadeOut(); //Remove button from screen
     $('#chatbot').fadeIn(); //Display the chatbot
 }
 function processing(inputMessage, lang) {
     var isEnglish = lang === "en";
-    if (!isEnglish) {
+    if (!isEnglish) { // translate the message if it is not english
         inputMessage = translate(inputMessage, lang, "en");
     }
-    $.ajax({
+    $.ajax({ // connect to /chatbot to get a response
         type: "POST",
         url: "chatbot",
         data: JSON.stringify({
@@ -183,10 +190,10 @@ function processing(inputMessage, lang) {
         }),
         datatype: "json",
         contentType: "application/json",
-        success: function(data) {
+        success: function(data) { // if the connection was successful
             var answerInEng = data.message;
             var answerToTheUser = answerInEng;
-            if (!isEnglish) {
+            if (!isEnglish) { // translate the answer if it is not english
                 answerToTheUser = translate(answerInEng, "en", lang);
             }
             if (answerInEng === "Which team you want to send an email to?") { //the user can choose a team to send an email to
@@ -242,7 +249,6 @@ function processing(inputMessage, lang) {
                 link("/faq", "FAQ Page");
             }
             else if(answerInEng === "I didn't get that. Can you say it again?" || answerInEng === "I missed what you said. Say it again?" || answerInEng === "Sorry, could you say that again?" || answerInEng === "Sorry, can you say that again?" || answerInEng === "Can you say that again?" || answerInEng === "Sorry, I didn't get that." || answerInEng === "Sorry, what was that?" || answerInEng === "One more time?" || answerInEng === "What was that?" || answerInEng === "Say that again?" || answerInEng === "I didn't get that." || answerInEng === "I missed that."){   // Taking the user to the admin page
-
                 var message = answerInEng;
                 if (!isEnglish) {
                     message = translate(message, "en", lang);
@@ -257,11 +263,9 @@ function processing(inputMessage, lang) {
             var chatLog = document.getElementById("messages").innerHTML; // get the whole chatbot html
             sessionStorage['chat-log'] = chatLog; // save it as a session cookie
             $('#messages').scrollTop($('#messages')[0].scrollHeight); // Make sure the chatbox is scrolled to the bottom
-
         }
     });
 }
-
 
 function email(lang) { //this method is when the user clicks on email button
     var inputMessage = "email";
@@ -317,9 +321,6 @@ function time(){
     var mins = date.getMinutes().toString();
     if (mins.length === 1){ // if in first 10 mins
         mins = "0" + mins;
-    }
-    if (mins.length === 0) { // at O'Clock
-        mins = "00";
     }
     toReturn = hrs + ":" + mins;
     return toReturn;
