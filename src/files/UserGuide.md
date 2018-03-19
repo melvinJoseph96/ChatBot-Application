@@ -36,11 +36,15 @@ The messages are easily distinguishable from the user's messages as the are on o
 
 ## Accessing the admin control panel
 
-Type /admin into the URL. This will then bring up the admin login page where you can enter your admin login details. By pressing the login button, an admin will then get re-directed to the control panel. The URL will then be /controlpanel. The panel will appear as a table where you can edit chat bot data.
+Type /admin into the URL. This will then bring up the admin login page where you can enter your admin login details. By pressing the login button, an admin will then get re-directed to the control panel. The URL will then be /controlpanel. The panel will appear containing a dashboard and a menu button on the left-top side of the page.
 
-## Send an email via chatbot
+## A user can select the best way for them to be contacted
 
-When you type your message into the text box using keywords such as "email", "contact", "information" etc the chatbot will display a clickable link saying "Click here to send an email". When you click the link, it will create an empty email ready for you to write to the team.
+Type your message into the text box using keywords such as "information", "contact" etc,  the chatbot will display a message saying "How do you want to contact us?" and two buttons, email or other. If you click on the email button you can choose one team of many to get in touch with. If you click on the other button, the chabot will display all our contact information like where we are, telephone numbers etc.
+
+## Send an email via chatbot and can select which team their email gets sent to
+
+Type your message into the text box using keywords such as "email", "send", "message" etc the chatbot will display a message saying "Which team you want to send an email to?" and some buttons below with your options. After clicking the button you want, it will create an empty email ready for you to write to the team you chose.
 
 ## Ask questions about FDM
 
@@ -54,17 +58,9 @@ Type /admin onto the end of the URL and hit enter. A login page will then be dis
 
 Click on the search bar found at the top of the admin control panel. Begin typing into this text box, it can be he intent's name, the user's question or the chatbot's response. As you type in characters, the intents that match your input will be displayed. All other intents that do not match your input are removed from the page.
 
-## A user can select which team their email gets sent to
-
-Type your message into the text box using keywords such as "email", "send", "message" etc the chatbot will display a message saying "Which team you want to send an email to?" and some buttons below with your options. After clicking the button you want, it will create an empty email ready for you to write to the team you chose.
-
 ## Sound plays when chatbot message received
 
 Once you have sent the chatbot a message, wait. Once the chatbot has a response, the chatbot will play a sound to indicate that the user has received a message and then the message will appear on screen.
-
-## A user can select the best way for them to be contacted
-
-Type your message into the text box using keywords such as "information", "contact" etc,  the chatbot will display a message saying "How do you want to contact us?" and two buttons, email or other. If you click on the email button you can choose one team of many to get in touch with. If you click on the other button, the chabot will display all our contact information like where we are, telephone numbers etc.
 
 ## A user can press a mute button to silence the sound of the chatbot
 
