@@ -295,6 +295,11 @@
 	float: left;
 	overflow:hidden;
 }
+
+.box:hover h2{
+    color:white;
+}
+
 #inputBar {
 	width: 100%;
 }
