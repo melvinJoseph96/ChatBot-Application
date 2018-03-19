@@ -206,8 +206,15 @@ function processing(inputMessage, lang) {
             else if (answerInEng === "Here is our contact details:") { //when the user wants to know FDM's contact info
                 addMessage("bot", answerToTheUser);
                 addMessage("bot", answerToTheUser.replace(answerToTheUser, '<p>London <br> 020 3056 8240 <br> Cottons Centre, Cottons Lane <br>' +
-                    ' London, SE1 2QG <br> <br> Leeds <br> 0113 331 5048 <br> No. 1 Whitehall Riverside <br> Leeds, West Yorkshire LS1 4BN <br> <br>' +
-                    ' Glasgow <br> 0141 218 3100 <br> 1 West Regent Street, 6th Floor <br> Glasgow, G2 1RW</p>'))
+                    ' London, SE1 2QG <br></p>'));
+                generateMap("london",51.506198,-0.084903);
+
+                addMessage("bot",answerToTheUser.replace(answerToTheUser,'<p> Leeds <br> 0113 331 5048 <br> No. 1 Whitehall Riverside <br> Leeds, West Yorkshire LS1 4BN <br></p>'));
+                generateMap("leeds",53.794950,-1.553101);
+
+                addMessage("bot",answerToTheUser.replace(answerToTheUser,'<p>Glasgow <br> 0141 218 3100 <br> 1 West Regent Street, 6th Floor <br> Glasgow, G2 1RW</p>'));
+                generateMap("glasgow",55.862934,-4.255477);
+
             }
             else if (answerInEng.match("[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}")) { // when the message is an email
                 var email = answerToTheUser;
@@ -309,4 +316,38 @@ function link(hrefLink, phrase){
     },3500); // 3.5 second delay
 
     return false;
+}
+function map(latitute,longitude,id) { // display google map
+    var centre = new google.maps.LatLng(latitute, longitude); // centre of the map; co-ordinates of the centres
+    var mapOptions = {
+        center: centre,
+        zoom: 16,
+        mapTypeId: google.maps.MapTypeId.ROADMAP // display normal google map appearance
+    }
+    var map = new google.maps.Map(document.getElementById(id), mapOptions);// generate the new map
+    var marker = new google.maps.Marker({position:centre}); // add the red marker on the map
+    marker.setMap(map); // display the marker
+}
+
+function generateMap(location,lat,long) {
+    setTimeout(function () {
+        var maps = document.createElement("div"); // create a new div
+        var date = new Date(); // date used to create unique id
+        var ID = location + + date.toDateString() + date.toTimeString() + date.toISOString();
+        ID = ID.replace(/\s/g, '').replace(/[.,\/#!$%\^&\*;:{}=\-_`~()+]/g,"");
+        maps.id = ID; // set the map id for london
+        maps.style.width = "150px"; // set the dimensions
+        maps.style.height = "150px"
+        maps.style.backgroundColor = "#cccccc"; // set the background colour
+        maps.style.marginLeft = "5px"; // add some white space to the left of the map
+        var messages = document.getElementById("messages");
+        messages.appendChild(maps); // add the map to the chat log
+        messages.appendChild(document.createElement("br"));// add a space after the map has been inserted
+        map(lat,long,ID);
+
+        var chatLog = document.getElementById("messages").innerHTML; // get the whole chatbot html
+        sessionStorage['chat-log'] = chatLog; // save it as a session cookie
+        $('#messages').scrollTop($('#messages')[0].scrollHeight); // Make sure the chatbox is scrolled to the bottom
+
+    },3000);
 }

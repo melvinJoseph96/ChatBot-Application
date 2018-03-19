@@ -5,6 +5,7 @@
     <title>Admin</title>
     <link rel="stylesheet" href="css/admin.css">
     <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJXmkKHkLX6HpgUiFEasCKUxszaLXNOSw&callback=myMap"></script>
     <script src="js/admin.js"></script>
     <script src="js/adminUpdate.js"></script>
     <script src="js/adminDashboard.js"></script>

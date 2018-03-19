@@ -7,6 +7,7 @@
         <script src="js/chatbotLanguage.js"></script>
         <script src="js/chatbotMessages.js"></script>
         <script src="js/chatbotFunctions.js"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJXmkKHkLX6HpgUiFEasCKUxszaLXNOSw&callback=initMap"></script>
         <link rel="stylesheet" href="css/reset.css">
         <link rel="stylesheet" href="css/chatbot.css">
 

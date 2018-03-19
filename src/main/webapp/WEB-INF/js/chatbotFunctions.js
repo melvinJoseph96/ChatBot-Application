@@ -8,7 +8,6 @@ function reopen(){ // function for expanding the chatbot
     $('#collapse').fadeOut(); //Remove collapsed title bar from screen
     $('#chatbot').fadeIn(); //Display the chatbot
 }
-
 function soundChangeOff(){
     sessionStorage['isMuted'] = "true";
     document.getElementById("imageSoundOn").style.display = "none";
