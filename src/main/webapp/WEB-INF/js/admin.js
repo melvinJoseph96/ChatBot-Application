@@ -45,6 +45,9 @@ function addTo(id,name) {
     data.style.borderBottom = "1px solid #f8f8f8"; // add line under each element
     data.onclick = function () { // when the item is clicked, it will be deleted
         this.parentElement.removeChild(this);
+        if($('#' + id).has("ul").has("li").length == 0){
+            $('#' + id).fadeOut();
+        }
     };
     data.innerText = document.getElementById(name).value; // get the inputted value
     list.appendChild(data); // add it to the list
