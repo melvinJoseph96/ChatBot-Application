@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -58,13 +59,9 @@ public class ChatbotController {
         AdminLogic admin = new AdminLogic();
         // put the admin inputs into arrays
         ArrayList<String> userSays = new ArrayList<>();
-        for (String i : data[1]){
-            userSays.add(i);
-        }
+        Collections.addAll(userSays, data[1]);
         ArrayList<String> responses = new ArrayList<>();
-        for (String i : data[2]){
-            responses.add(i);
-        }
+        Collections.addAll(responses, data[2]);
         admin.addIntent(data[0][0],userSays,responses);
         // create a new intent from the data given by the admin
         return new Intent(data[0][0],userSays,responses);
@@ -83,15 +80,8 @@ public class ChatbotController {
         String name = data[1][0];
         ArrayList<String> userSays = new ArrayList<>();
         ArrayList<String> responses = new ArrayList<>();
-
-        for (String i : data[2]){
-            userSays.add(i);
-        }
-        for (String i : data[3]){
-            responses.add(i);
-        }
-
+        Collections.addAll(userSays, data[2]);
+        Collections.addAll(responses, data[3]);
         admin.updateIntent(id, name, userSays, responses);
-
     }
 }
