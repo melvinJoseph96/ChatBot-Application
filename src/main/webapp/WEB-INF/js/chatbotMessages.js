@@ -19,6 +19,24 @@ $(function() { // On page load
         // the chat log is retrieved from the session storage
         document.getElementById("messages").innerHTML = sessionStorage.getItem("chat-log");
 
+        // display the maps data
+        var ids = sessionStorage.getItem('maps'); // session storage string
+        var Ids = ids.split("#"); // list of ids, split at occurence of #
+        for (var i=0;i<Ids.length;i++) {
+            var full = Ids[i]; // get the id from the list; full id
+            if (full.charAt(0) === 'l') {
+                if (full.charAt(1) === 'o') {// if this is for london
+                    map(51.506198, -0.084903, full);
+                }
+                else if (full.charAt(1) === 'e'){ // if this is leeds
+                    map(53.794950,-1.553101,full);
+                }
+            }
+            else if (full.charAt(0) === 'g'){ // for glasgow
+                map(55.862934,-4.255477,full);
+            }
+        }
+
         // check the mute setting
         if (sessionStorage.getItem("isMuted") === "true") { // check if the chatbot is muted
             soundChangeOff(); // set the sound to off
@@ -347,7 +365,13 @@ function generateMap(location,lat,long) {
 
         var chatLog = document.getElementById("messages").innerHTML; // get the whole chatbot html
         sessionStorage['chat-log'] = chatLog; // save it as a session cookie
+        if (sessionStorage.getItem("maps") === null) {
+            sessionStorage['maps'] = ID;
+        }
+        else {
+            sessionStorage['maps'] = sessionStorage.getItem("maps") + "#" + ID;
+        }
         $('#messages').scrollTop($('#messages')[0].scrollHeight); // Make sure the chatbox is scrolled to the bottom
-
+        console.log(sessionStorage.getItem('maps'));
     },3000);
 }
