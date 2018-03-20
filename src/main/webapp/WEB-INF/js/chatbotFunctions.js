@@ -70,4 +70,3 @@ function speech(){ // function for text to speech
         sessionStorage['speechOn'] = "false";
     }
 }
-

@@ -203,7 +203,6 @@
                     <img id="saveLog" src="media/email.png" width="20px" height="15px" onclick="save()" title="Email the chat log">
                 </div>
                 <div id="collapse">
-                    Chat With Us
                 </div>
                 <audio id="messageReceived" src="media/message.mp3"></audio>
                 <script src='//vws.responsivevoice.com/v/e?key=7muhKJWW'></script>
