@@ -111,21 +111,7 @@ class ChatbotApplicationTests extends Specification {
         then: "I should see the view 'faq'"
         result.andExpect(status().isOk()).andExpect(view().name('faq.jsp'))
     }
-//    @Test
-//    def "Response for HTTP request '/admin/add'"() {
-//        given: "the context of the controller is set up"
-//        mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build()
-//        data = new String[3]
-//        data[0] = "a"
-//        data[1] = "b"
-//        data[2] = "c"
-//        when: "I do a post '/admin/add'"
-//        result = this.mockMvc.perform(post('/admin/add')
-//                .contentType(MediaType.APPLICATION_JSON)
-//                .content("{\"data\":" + "\""+data.toString() + "\"}"))
-//        then: "The request should be successful"
-//        result.andExpect(status().is2xxSuccessful())
-//    }
+
     @Test
     def "test delete method"(){
         given: // new intent created
@@ -268,7 +254,7 @@ class ChatbotApplicationTests extends Specification {
     }
     @Test
     def "testing update function for updating the responses and userSays"(){
-        given: // set up damin logic instance and set the data for the intent
+        given: // set up admin logic instance and set the data for the intent
         AdminLogic admin = new AdminLogic()
         String name = "test12rrtt"
         ArrayList<String> userSaysOld = new ArrayList<>()
@@ -301,5 +287,23 @@ class ChatbotApplicationTests extends Specification {
         admin.deleteIntent(changed.id)
         then:
         (changed.responses == responsesNew) && (changed.userSays == userSaysNew)
+    }
+
+    @Test
+    def "check setId() works for an intent"(){
+        given: // the data to create an intent
+        String name = "test534t3"
+        ArrayList<String> userSays = new ArrayList<>()
+        // add some data to the userSays
+        userSays.add("why work for fdm")
+        ArrayList<String> responses = new ArrayList<>()
+        // add some responses
+        responses.add("because fdm are great")
+        when:
+        // create a new intent without an id
+        Intent intent = new Intent(name,userSays,responses)
+        intent.setId("newId") // set the id to "newId"
+        then: // the id of the intent should now be "newId"
+        intent.getId().equals("newId")
     }
 }
