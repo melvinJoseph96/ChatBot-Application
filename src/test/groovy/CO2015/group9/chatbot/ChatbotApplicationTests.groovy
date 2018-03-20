@@ -340,4 +340,21 @@ class ChatbotApplicationTests extends Specification {
         then: // the getName function should return the name set earlier
         intent.getName().equals(name)
     }
+
+    @Test
+    def "test the getUserSays() function for intent class"(){
+        given:
+        String id = "eryhb"
+        String name = "original"
+        ArrayList<String> userSays = new ArrayList<>()
+        // add some data to the userSays
+        userSays.add("why work for fdm")
+        ArrayList<String> responses = new ArrayList<>()
+        // add some responses
+        responses.add("because fdm are great")
+        when: // create the intent with the userSays set
+        Intent intent = new Intent(id,name,userSays,responses)
+        then:
+        intent.getUserSays() == userSays
+    }
 }
