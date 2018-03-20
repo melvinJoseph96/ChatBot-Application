@@ -70,5 +70,7 @@ function translate(query, source, target) {
 
 function changeLang() {
     action = "languageChange";
+    isDelayed = false;
     run();
+    isDelayed = true;
 }

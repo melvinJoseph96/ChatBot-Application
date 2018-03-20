@@ -2,6 +2,7 @@ var isMinimised;
 var isMuted;
 var action = "firstMessage";
 var currentLang = "en";
+var isDelayed = true;
 
 $(function() { // On page load
     console.log("loaded chatbot.js");
@@ -145,6 +146,7 @@ function run(){
     }
 }
 function addMessage(id, message){
+    var delay = (isDelayed) ? 3000 : 0;
     if (id === "bot") {
         var speechSetting = document.getElementById("speechControl").title;
         console.log("NEW MESSAGE: " + message); // used to test the text to speech javascript - logs the new message
@@ -154,7 +156,7 @@ function addMessage(id, message){
                 if (!message.match("<")) {
                     setTimeout(function () {
                         responsiveVoice.speak(message);
-                    },3000);
+                    },delay);
                     console.log("text to speech has played"); // used to test text to speech - logs whether the speech was played
                 }
             }
@@ -172,7 +174,7 @@ function addMessage(id, message){
             var sound = document.getElementById("messageReceived");
             sound.play(); // play the sound that indicates a message has been received
             messageInsert(id,message); // insert the message onto the chatbot
-        },3000); // creates a time delay before displaying the message
+        },delay); // creates a time delay before displaying the message
     }
     else {
         messageInsert(id,message); // insert the message into the chatbot
