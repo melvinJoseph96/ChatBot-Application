@@ -403,4 +403,42 @@ class ChatbotApplicationTests extends Specification {
         then: // getMessage should return title
         message.getMessage() == title
     }
+
+    @Test
+    def "test setMessage for message class"(){
+        given: // set the data for a message
+        String titleOrig = "Hello"
+        String time = "12:35"
+        when: // create the message
+        Message message = new Message(titleOrig,time)
+        // set the new title
+        String title = "hello again"
+        message.setMessage(title)
+        then: // the message of the message should equal title
+        message.message == title
+    }
+
+    @Test
+    def "test the getTimestamp method"(){
+        given: // set the data for a message
+        String title = "Hello"
+        String time = "12:35"
+        when: // create the message
+        Message message = new Message(title,time)
+        then: // getTimestamp should return the time that was set previously
+        message.getTimestamp() == time
+    }
+    @Test
+    def "test the setTimestamp function"(){
+        given: // set the data for a message
+        String title = "Hello"
+        String timeOrig = "12:35"
+        when: // create the message
+        Message message = new Message(title,timeOrig)
+        // set the new title
+        String time = "14:55"
+        message.setTimestamp(time)
+        then: // the timestamp of the message should equal time
+        message.timestamp == time
+    }
 }
