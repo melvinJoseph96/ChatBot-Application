@@ -3,6 +3,7 @@ package CO2015.group9.chatbot
 import CO2015.group9.chatbot.Controllers.ChatbotController
 import CO2015.group9.chatbot.Controllers.IndexController
 import CO2015.group9.chatbot.domain.Intent
+import CO2015.group9.chatbot.domain.Message
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.springframework.beans.factory.annotation.Autowired
@@ -390,5 +391,16 @@ class ChatbotApplicationTests extends Specification {
         Intent intent = new Intent(id,name,userSays,responses)
         then: // check the format of the toString call
         intent.toString().equals("1 2 " + userSays + " " + responses)
+    }
+
+    @Test
+    def "check the Message class' getMessage function works"() {
+        given: // set the data for a message
+        String title = "Hello"
+        String time = "12:35"
+        when: // create the message
+        Message message = new Message(title,time)
+        then: // getMessage should return title
+        message.getMessage() == title
     }
 }
