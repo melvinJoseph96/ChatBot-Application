@@ -122,7 +122,7 @@ public class AdminLogic {
             JSONArray userSaysArray = new JSONArray();
 
             // add each user says to the userSaysArray
-            for (int i =0; i<userSays.size();i++){
+            for (String userSay : userSays) {
                 // create the object that the data goes into
                 JSONObject dataObject = new JSONObject();
                 // this is where the text goes for the user says object
@@ -131,11 +131,11 @@ public class AdminLogic {
                 JSONObject dataText = new JSONObject();
 
                 // add the user says to text
-                dataText.put("text",userSays.get(i));
+                dataText.put("text", userSay);
                 //add this text to the array
                 dataArray.put(dataText);
                 // add to the data object
-                dataObject.put("data",dataArray);
+                dataObject.put("data", dataArray);
                 // finally add it to the array of userSays
                 userSaysArray.put(dataObject);
             }
@@ -146,8 +146,8 @@ public class AdminLogic {
             JSONArray responsesArray = new JSONArray();
             // iterate through each response and add to JsonArray of strings
             JSONArray responesText = new JSONArray();
-            for (int i=0;i<responses.size();i++){
-                responesText.put(responses.get(i));
+            for (String response : responses) {
+                responesText.put(response);
             }
             // add this list to messages object
             JSONObject messagesOb = new JSONObject();
