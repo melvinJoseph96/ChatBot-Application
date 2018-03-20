@@ -27,10 +27,10 @@
     <div id="menu">
 
         <ul id="menuItems">
-            <li style="list-style-image: url('media/house.png')"><a href="" onclick="sessionStorage['current'] = 'dashboard'">Dashboard</a></li>
-            <li style="list-style-image: url('media/control.png')"><a href="" onclick="sessionStorage['current'] = 'controlPanel'">Control Panel</a></li>
-            <li style="list-style-image: url('media/question.png')"><a href="" onclick="sessionStorage['current'] = 'unansweredQuestions'">Unanswered Questions</a></li>
-            <li style="list-style-image: url('media/computer.png')"><a href="" onclick="sessionStorage['current'] = 'chatbotSimulation'">Chatbot Simulator</a></li>
+            <li id="dash"><a href="" onclick="sessionStorage['current'] = 'dashboard'">Dashboard</a></li>
+            <li id="control"><a href="" onclick="sessionStorage['current'] = 'controlPanel'">Control Panel</a></li>
+            <li id="question"><a href="" onclick="sessionStorage['current'] = 'unansweredQuestions'">Unanswered Questions</a></li>
+            <li id="simulator"><a href="" onclick="sessionStorage['current'] = 'chatbotSimulation'">Chatbot Simulator</a></li>
         </ul>
 
     </div>
@@ -120,8 +120,8 @@
                                     <input type="text" id="responses" placeholder="Enter a new response and press enter to be accepted" size="50">
                                 </td>
                                 <td>
-                                    <button id="addButton" onclick="addRow(); return false;" style="font-size: 10px">Add</button>
-                                    <button id="cancel" onclick="cancel();return false;" style="font-size: 10px">Cancel</button>
+                                    <button id="addButton" onclick="addRow(); return false;">Add</button>
+                                    <button id="cancel" onclick="cancel();return false;">Cancel</button>
                                 </td>
                             </tr>
                         </table>
@@ -178,9 +178,6 @@
         <div id="titleBarSim">
             <h1>Chatbot Simulator</h1>
             <p>preview</p>
-            <div id="refreshSim">
-                <button id="refreshButtonSim" onclick="l" title="Refresh the data"><img src="media/refresh.png" width="16" height="16"></button>
-            </div>
         </div>
 
         <div id="sim">

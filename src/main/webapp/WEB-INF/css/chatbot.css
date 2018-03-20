@@ -33,6 +33,27 @@ body{
 	background-color: #cccccc;
 	overflow:hidden;
 }
+#header {
+	font-size: 30px;
+	padding: 5px;
+}
+#CareersTitle {
+	font-size: 50px;
+}
+#EmailLog {
+	font-size: 40px;
+}
+#max {
+	color: white;
+	background-color: transparent;
+	outline:none;
+	float: right;
+	border:none;
+	font-size: 20px;
+}
+#jobTitle {
+	font-size: 50px; margin-top:20px;
+}
 #vid iframe{
 	position: absolute;
 	top: 0;

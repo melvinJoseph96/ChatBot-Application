@@ -10,13 +10,13 @@
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/chatbot.css">
     <link rel="stylesheet" href="css/faq.css">
-    <title>FDM Graduate Careers</title>
+    <title>FDM FAQ Page</title>
 </head>
 <body>
 <div id="fdm">
     <div id="bar">
         <img src="media/fdm-logo-anim.gif" width="120" height="60">
-        <h1 style="font-size: 30px;padding: 5px">Frequently Asked Questions</h1>
+        <h1 id="header">Frequently Asked Questions</h1>
     </div>
     <!- for demo purposes only ->
     <!- shows what the chatbot will look like a page similar to FDM's ->
@@ -118,7 +118,7 @@
     <div id="collapse">
         <div id="greenA">&#8226;</div>
         Chat With Us
-        <button onclick="reopen()" style='color: white; background-color: transparent;float: right;border:none;font-size: 20px'><b>-</b></button>
+        <button id="max" onclick="reopen()"><b>-</b></button>
     </div>
 </div>
 <div id="messageNote">
@@ -127,7 +127,7 @@
 <div id="emailPopUp">
     <div id="boxed">
         <button id="close" onclick="closeEmail()">X</button>
-        <h1 style="font-size: 40px;">Email Your Chat Log</h1>
+        <h1 id="EmailLog">Email Your Chat Log</h1>
 
         <label for="email">Enter Your Email:</label>
         <br>
