@@ -1,34 +1,38 @@
 # User Guide
 
+## Loading the Web Application
+
+You can access the application by typing localhost:8080 into your browsers search bar. Once loaded, the home page will be displayed.
+
+#### The FDM page is viewable
+
+On load of the web application, a template of the FDM page is shown. It is visible underneath the chatbot. The pages that are accessable are the home page ('/'), the graduate careers page ('/gradCareers'), the ex-forces page ('/exforcesCareers'), a FAQ page ('/faq') and the admin control panel, accessible at '/admin'.
+
 ## Chatbot features
 
 #### Chatbot is displayed after 5 seconds
 
-When first loading the website, the chatbot will not be visible. By waiting for 5 seconds, the chatbot will appear in the bottom right corner.
-
-#### The FDM page is viewable
-
-On load of the web application, the FDM page is shown. It is visible underneath the chatbot.
-
-#### Collapse the chatbot
-
-Press the 'X' button located on the right of the titlebar of the chatbot. The chatbot will then minimise, leaving only the title bar and a button that, when pressed, will re-open the chatbot. The title bar is located at the bottom right hand corner of the web page.
-
-#### A user can navigate the website and keep the chatbot minimised/collapsed
-
-Click on the minimised(X) button which you can find at the right-top of the chatbot. Then scroll down the page and click on one of the two "find out more" buttons, it will navigated you to one of the website's subpages. When the subpage will load the chatbot will still be minimized. 
-
-#### Re-open the collapsed chatbot
-
-Press the round button labelled '^' found on the right hand side of the title bar which is found on the bottom right of the page. Once you have pressed this button, the whole chatbot will reopen.
+When first loading the website, the chatbot will not be visible. By waiting for 5 seconds, the chatbot will appear in the bottom right corner of the page.
 
 #### User is greeted by the chatbot
 
 When first loading the page and waiting 5 seconds for the chatbot to appear, the chatbot will automatically display a greeting. It will appear on the left of the chatbot as a message.
 
+#### Collapse the chatbot
+
+Press the 'X' button located on the right of the titlebar of the chatbot. The chatbot will then minimise, leaving only the title bar and a button that, when pressed, will re-open the chatbot. The title bar is located at the bottom right hand corner of the web page.
+
+#### Re-open the collapsed chatbot
+
+Press the button labelled '-' found on the right hand side of the title bar which is found on the bottom right of the page. Once you have pressed this button, the whole chatbot will reopen.
+
 #### Re-opening the chatbot will keep the old messages
 
-When you have closed the chatbot, press the button labelled '^' to re-open the chatbot. All the messages from the previous conversation will be displayed as they were before.
+When you have closed the chatbot, press the button labelled '-' to re-open the chatbot. All the messages from the previous conversation will be displayed as they were before.
+
+#### A user can navigate the website and keep the chatbot minimised/collapsed
+
+Click on the minimised(X) button which you can find at the right-top of the chatbot. Then scroll down the page and click on one of the two "find out more" buttons, it will navigated you to one of the website's subpages. When the subpage will load the chatbot will still be minimized. 
 
 #### Typing into the chatbot
 
@@ -134,11 +138,11 @@ If an admin is using the chatbot and wants to jump staright into the admin login
 
 #### An admin can view current chatbot data
  
- Type /admin onto the end of the URL and hit enter. A login page will then be displayed where you must enter valid admin details. Once you've done that and redirected to /controlpanel, the table of data containing the intent information is displayed. The admin can then make changes to the data as they wish.
+Type /admin onto the end of the URL and hit enter. A login page will then be displayed where you must enter valid admin details. Once you've done that and redirected to /controlpanel, the table of data containing the intent information is displayed. The admin can then make changes to the data as they wish.
  
 #### An admin can search through the intents
  
- Click on the search bar found at the top of the admin control panel. Begin typing into this text box, it can be he intent's name, the user's question or the chatbot's response. As you type in characters, the intents that match your input will be displayed. All other intents that do not match your input are removed from the page.
+Click on the search bar found at the top of the admin control panel. Begin typing into this text box, it can be he intent's name, the user's question or the chatbot's response. As you type in characters, the intents that match your input will be displayed. All other intents that do not match your input are removed from the page.
 
 #### Admin can add an intent
 
