@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Intent {
 
     private String id = "";
-    private String name = "";
+    private String name;
     private ArrayList<String> userSays;
     private ArrayList<String> responses;
 

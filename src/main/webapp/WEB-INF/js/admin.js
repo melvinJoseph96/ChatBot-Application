@@ -1,11 +1,11 @@
 $(document).ready(function(){
     $('#userSays').keypress(function(e){ // when enter key is hit for the user bar
-        if(e.keyCode==13) {
+        if(e.keyCode === 13) {
             addTo('addedUser', "userSays"); // add the userSays input value to the addedUser list
         }
     });
     $('#responses').keypress(function(e){ // when user key is hit for the response bar
-        if(e.keyCode==13) {
+        if(e.keyCode === 13) {
             addTo('addedResp', "responses"); // add the responses input value to the addedResp list
         }
     });
