@@ -56,6 +56,8 @@
                     </div>
                     <img id="imageSoundOn" src="media/soundOff.png" title="mute" width="20" height="20" onclick="soundChangeOff()">
                     <img id="imageSoundOff" src="media/soundOn.png" title="un-mute" width="20" height="20" onclick="soundChangeOn()">
+                    <img id="imageLang" src="media/lang.png" title="mute" width="20" height="20" onclick="soundChangeOff()">
+
                 </div>
                 <div id="messages">
 
