@@ -11,7 +11,12 @@ body {
     padding: 5px 0 5px 0;
     overflow: hidden;
 }
-
+#login {
+    background-color: #212121;float: left;
+}
+#register {
+    background-color: #212121;float:right;
+}
 #bar h1 {
     color: white;
     font-family: sans-serif;
