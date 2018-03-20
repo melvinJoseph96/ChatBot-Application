@@ -374,4 +374,21 @@ class ChatbotApplicationTests extends Specification {
         then:
         intent.getResponses() == responses
     }
+
+    @Test
+    def "testing the toString override method of the intent class"(){
+        given:
+        String id = "1"
+        String name = "2"
+        ArrayList<String> userSays = new ArrayList<>()
+        // add some data to the userSays
+        userSays.add("3")
+        ArrayList<String> responses = new ArrayList<>()
+        // add some responses
+        responses.add("4")
+        when: // create the intent
+        Intent intent = new Intent(id,name,userSays,responses)
+        then: // check the format of the toString call
+        intent.toString().equals("1 2 " + userSays + " " + responses)
+    }
 }
