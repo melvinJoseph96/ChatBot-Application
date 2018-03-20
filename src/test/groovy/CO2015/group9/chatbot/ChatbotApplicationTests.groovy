@@ -323,4 +323,21 @@ class ChatbotApplicationTests extends Specification {
         then:
         testIntent.getId().equals(id);
     }
+
+    @Test
+    def "test intent's getName() function"(){
+        given:
+        String id = "id132"
+        String name = "nameTest"
+        ArrayList<String> userSays = new ArrayList<>()
+        // add some data to the userSays
+        userSays.add("why work for fdm")
+        ArrayList<String> responses = new ArrayList<>()
+        // add some responses
+        responses.add("because fdm are great")
+        when: // create an intent from the data
+        Intent intent = new Intent(id,name,userSays,responses)
+        then: // the getName function should return the name set earlier
+        intent.getName().equals(name)
+    }
 }
