@@ -304,7 +304,7 @@ class ChatbotApplicationTests extends Specification {
         Intent intent = new Intent(name,userSays,responses)
         intent.setId("newId") // set the id to "newId"
         then: // the id of the intent should now be "newId"
-        intent.getId().equals("newId")
+        intent.id.equals("newId")
     }
 
     @Test
