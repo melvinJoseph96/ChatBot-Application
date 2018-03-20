@@ -1,8 +1,9 @@
-let isMinimised;
-let isMuted;
-let action = "firstMessage";
-let currentLang = "en";
-let isDelayed = false;
+var isMinimised;
+var isMuted;
+var chatLog;
+var action = "firstMessage";
+var currentLang = "en";
+var isDelayed = false;
 
 $(function() { // On page load
     console.log("loaded chatbot.js");
@@ -19,25 +20,6 @@ $(function() { // On page load
     else { // if this is a return to the same session (i.e. a redirect or reopen the page on the same browser session)
         // the chat log is retrieved from the session storage
         document.getElementById("messages").innerHTML = sessionStorage.getItem("chat-log");
-
-        // display the maps data
-        var ids = sessionStorage.getItem('maps'); // session storage string
-        var Ids = ids.split("#"); // list of ids, split at occurence of #
-        for (var i=0;i<Ids.length;i++) {
-            var full = Ids[i]; // get the id from the list; full id
-            if (full.charAt(0) === 'l') {
-                if (full.charAt(1) === 'o') {// if this is for london
-                    map(51.506198, -0.084903, full);
-                }
-                else if (full.charAt(1) === 'e'){ // if this is leeds
-                    map(53.794950,-1.553101,full);
-                }
-            }
-            else if (full.charAt(0) === 'g'){ // for glasgow
-                map(55.862934,-4.255477,full);
-            }
-        }
-
         // check the mute setting
         if (sessionStorage.getItem("isMuted") === "true") { // check if the chatbot is muted
             soundChangeOff(); // set the sound to off
@@ -57,6 +39,23 @@ $(function() { // On page load
         }
         else { // if the chatbot is expanded
             $("#chatbot").fadeIn(); // display the chatbot
+        }
+        // display the maps data
+        var ids = sessionStorage.getItem('maps'); // session storage string
+        var Ids = ids.split("#"); // list of ids, split at occurence of #
+        for (var i=0;i<Ids.length;i++) {
+            var full = Ids[i]; // get the id from the list; full id
+            if (full.charAt(0) === 'l') {
+                if (full.charAt(1) === 'o') {// if this is for london
+                    map(51.506198, -0.084903, full);
+                }
+                else if (full.charAt(1) === 'e'){ // if this is leeds
+                    map(53.794950,-1.553101,full);
+                }
+            }
+            else if (full.charAt(0) === 'g'){ // for glasgow
+                map(55.862934,-4.255477,full);
+            }
         }
 
         // scroll to bottom of chat log
@@ -186,8 +185,8 @@ function messageInsert(id, message){
     $('#messages').append("<div class=\"message " + id + "\"><div class=\"messagetext\" style='max-width: 200px'>" + message + "</div> " +
         "<p style='font-size: 10px; color: gray'>" + time() + "</p></div>"); // add time
     chatLog = document.getElementById("messages").innerHTML; // get the whole chat log
-    $('#messages').scrollTop($('#messages')[0].scrollHeight); // Make sure the chatbot is scrolled to the bottom
     sessionStorage['chat-log'] = chatLog; // save it as a session cookie
+    $('#messages').scrollTop($('#messages')[0].scrollHeight); // Make sure the chatbot is scrolled to the bottom
 }
 
 function processing(inputMessage, lang) {
