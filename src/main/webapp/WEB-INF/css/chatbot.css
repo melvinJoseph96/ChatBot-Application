@@ -9,7 +9,7 @@ body{
 
 }
 #fdm {
-	position:absolute; left: 0; right: 0; bottom: 0; top: 0px; background-color: #cccccc;
+	position:absolute; left: 0; right: 0; bottom: 0; top: 0; background-color: #cccccc;
 }
 #messageNote {
 	background-color: #42b72a;

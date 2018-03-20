@@ -341,7 +341,7 @@ function map(latitute,longitude,id) { // display google map
         center: centre,
         zoom: 16,
         mapTypeId: google.maps.MapTypeId.ROADMAP // display normal google map appearance
-    }
+    };
     var map = new google.maps.Map(document.getElementById(id), mapOptions);// generate the new map
     var marker = new google.maps.Marker({position:centre}); // add the red marker on the map
     marker.setMap(map); // display the marker
@@ -355,7 +355,7 @@ function generateMap(location,lat,long) {
         ID = ID.replace(/\s/g, '').replace(/[.,\/#!$%\^&\*;:{}=\-_`~()+]/g,"");
         maps.id = ID; // set the map id for london
         maps.style.width = "150px"; // set the dimensions
-        maps.style.height = "150px"
+        maps.style.height = "150px";
         maps.style.backgroundColor = "#cccccc"; // set the background colour
         maps.style.marginLeft = "5px"; // add some white space to the left of the map
         var messages = document.getElementById("messages");
