@@ -10,7 +10,7 @@ On load of the web application, a template of the FDM page is shown. It is visib
 
 ## Chatbot 
 
-### Basic Feature:
+### Basic Features:
 #### Chatbot is displayed after 5 seconds
 
 When first loading the website, the chatbot will not be visible. By waiting for 5 seconds, the chatbot will appear in the bottom right corner of the page.
