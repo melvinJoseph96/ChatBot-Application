@@ -29,7 +29,7 @@ function getLangCode(lang) {
     var toReturn = "notfound";
     $.getJSON('js/langcodes.json', function (json) {
         for (var i in json) {
-            if (lang === json[i].name.trim().toLowerCase()) {
+            if (json[i].name.trim().toLowerCase().includes(lang)) {
                 toReturn = json[i].code;
             }
         }

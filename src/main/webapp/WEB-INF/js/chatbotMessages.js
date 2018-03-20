@@ -1,8 +1,8 @@
-var isMinimised;
-var isMuted;
-var action = "firstMessage";
-var currentLang = "en";
-var isDelayed = false;
+let isMinimised;
+let isMuted;
+let action = "firstMessage";
+let currentLang = "en";
+let isDelayed = false;
 
 $(function() { // On page load
     console.log("loaded chatbot.js");
