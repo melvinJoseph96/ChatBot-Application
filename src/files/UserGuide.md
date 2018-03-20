@@ -76,6 +76,10 @@ Type your message into the text box using keywords such as "information", "conta
 
 Type your message into the text box using keywords such as "email", "send", "message" etc the chatbot will display a message saying "Which team you want to send an email to?" and some buttons below with your options. After clicking the button you want, it will create an empty email ready for you to write to the team you chose.
 
+#### A user is displayed locations via google maps
+
+Type your message into the text box using keywords such as "address", "location" etc, the chatbot will display our offices' addresses and the exact location in google maps.
+
 #### A user can press a mute button to silence the sound of the chatbot
 
 Found at the top right hand side of the chatbot, there is a speaker icon. This signifies that the sound is on. By pressing the icon, a mute icon appears. This looks like the speaker icon but crossed out. The sound of the chatbot can no longer be heard. If you press the icon again, you can return the sound.
