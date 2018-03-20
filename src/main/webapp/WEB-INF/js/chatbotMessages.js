@@ -235,8 +235,7 @@ function processing(inputMessage, lang) {
 
             }
             else if (answerInEng.match("[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}")) { // when the message is an email
-                var email = answerToTheUser;
-                window.location.href = "mailto:" + email;
+                window.location.href = "mailto:" + answerToTheUser;
             }
             else if (answerInEng === "https://www.fdmgroup.com/careers/graduates/") { // when the message is a link to graduate careers
                 var message = "Click here to view our graduate careers page:";
@@ -275,8 +274,7 @@ function processing(inputMessage, lang) {
             else {
                 addMessage("bot", answerToTheUser); // Display the response message in the chat box
             }
-            var chatLog = document.getElementById("messages").innerHTML; // get the whole chatbot html
-            sessionStorage['chat-log'] = chatLog; // save it as a session cookie
+            sessionStorage['chat-log'] = document.getElementById("messages").innerHTML; // get the whole chatbot html and save it as a session cookie
             $('#messages').scrollTop($('#messages')[0].scrollHeight); // Make sure the chatbox is scrolled to the bottom
         }
     });
@@ -329,8 +327,7 @@ function link(hrefLink, phrase){
         messageDiv.appendChild(document.createElement("br"));
         messageDiv.appendChild(document.createElement("br"));
         $('#messages').scrollTop($('#messages')[0].scrollHeight); // scroll down
-        var chatLog = document.getElementById("messages").innerHTML; // get the whole chatbot html
-        sessionStorage['chat-log'] = chatLog; // save it as a session cookie
+        sessionStorage['chat-log'] = document.getElementById("messages").innerHTML; // get the whole chatbot html and save it as a session cookie
     },3500); // 3.5 second delay
 
     return false;
@@ -363,8 +360,7 @@ function generateMap(location,lat,long) {
         messages.appendChild(document.createElement("br"));// add a space after the map has been inserted
         map(lat,long,ID);
 
-        var chatLog = document.getElementById("messages").innerHTML; // get the whole chatbot html
-        sessionStorage['chat-log'] = chatLog; // save it as a session cookie
+        sessionStorage['chat-log'] = document.getElementById("messages").innerHTML; // get the whole chatbot html and save it as a session cookie
         if (sessionStorage.getItem("maps") === null) {
             sessionStorage['maps'] = ID;
         }
