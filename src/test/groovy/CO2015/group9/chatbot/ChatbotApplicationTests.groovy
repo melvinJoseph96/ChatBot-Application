@@ -357,4 +357,21 @@ class ChatbotApplicationTests extends Specification {
         then:
         intent.getUserSays() == userSays
     }
+
+    @Test
+    def "test the intent function getResponses"(){
+        given:
+        String id = "eryhb"
+        String name = "original"
+        ArrayList<String> userSays = new ArrayList<>()
+        // add some data to the userSays
+        userSays.add("why work for fdm")
+        ArrayList<String> responses = new ArrayList<>()
+        // add some responses
+        responses.add("because fdm are great")
+        when: // create the intent with the responses set
+        Intent intent = new Intent(id,name,userSays,responses)
+        then:
+        intent.getResponses() == responses
+    }
 }
