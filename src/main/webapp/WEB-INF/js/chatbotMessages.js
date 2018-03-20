@@ -43,7 +43,7 @@ $(function() { // On page load
         // display the maps data
         var ids = sessionStorage.getItem('maps'); // session storage string
         if (ids !== null) {
-            var Ids = ids.split("#"); // list of ids, split at occurence of #
+            var Ids = ids.split("#"); // list of ids, split at occurrence of #
             for (var i = 0; i < Ids.length; i++) {
                 var full = Ids[i]; // get the id from the list; full id
                 if (full.charAt(0) === 'l') {

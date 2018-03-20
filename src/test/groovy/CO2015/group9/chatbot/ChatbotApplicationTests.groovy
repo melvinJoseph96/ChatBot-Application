@@ -186,7 +186,7 @@ class ChatbotApplicationTests extends Specification {
     }
     @Test
     def "testing update function for updating the userSays"(){
-        given: // set up damin logic instance and set the data for the intent
+        given: // set up admin logic instance and set the data for the intent
         AdminLogic admin = new AdminLogic()
         String name = "test12rr"
         ArrayList<String> userSaysOld = new ArrayList<>()
@@ -221,7 +221,7 @@ class ChatbotApplicationTests extends Specification {
 
     @Test
     def "testing update function for updating the responses"(){
-        given: // set up damin logic instance and set the data for the intent
+        given: // set up admin logic instance and set the data for the intent
         AdminLogic admin = new AdminLogic()
         String name = "test12rr"
         ArrayList<String> userSays = new ArrayList<>()
@@ -441,4 +441,6 @@ class ChatbotApplicationTests extends Specification {
         then: // the timestamp of the message should equal time
         message.timestamp == time
     }
+
+
 }
