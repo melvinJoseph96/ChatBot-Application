@@ -215,55 +215,6 @@ public class AdminLogic {
             }
         }
 
-
-//    public void addResponse(String id, String newResponse) {
-//        ArrayList<Intent> intents = getIntents();
-//        Intent intent = intents.stream().filter(x -> x.getId().equals(id)).findAny().orElse(null);
-//        if (intent != null) {
-//            String intentName = intent.getName();
-//            String userSaysAsJSON = intent.getUserSaysAsJSON();
-//            String newResponseFormatted = ",\"" + newResponse + "\"";
-//            String responsesAsJSON = intent.getResponsesAsJSON();
-//
-//            try {
-//                HttpResponse<JsonNode> httpResponse = Unirest.put("https://api.dialogflow.com/v1/intents/" + id)
-//                        .header("Authorization", dialogFlowApiKey)
-//                        .header("Content-Type", "application/json")
-//                        .body("{    \"name\": \"" + intentName + "\",\"responses\": [{\"messages\": [{\"type\": 0,\"speech\": [" +
-//                                responsesAsJSON + newResponseFormatted + "]}]}],\"userSays\": [" + userSaysAsJSON + "]}")
-//                        .asJson();
-//            } catch (UnirestException e) {
-//                e.printStackTrace();
-//            }
-//        } else {
-//            System.out.println("AddResponse error: Intent is null");
-//        }
-//    }
-//
-//    public void addUserSays(String id, String newUserSays) {
-//        ArrayList<Intent> intents = getIntents();
-//        Intent intent = intents.stream().filter(x -> x.getId().equals(id)).findAny().orElse(null);
-//        if (intent != null) {
-//            String intentName = intent.getName();
-//            String userSaysAsJSON = intent.getUserSaysAsJSON();
-//            String responsesAsJSON = intent.getResponsesAsJSON();
-//            String newUserSaysFormatted = ",{\"data\": [{\"text\": \"" + newUserSays + "\"}]}";
-//
-//            try {
-//                HttpResponse<JsonNode> httpResponse = Unirest.put("https://api.dialogflow.com/v1/intents/" + id)
-//                        .header("Authorization", dialogFlowApiKey)
-//                        .header("Content-Type", "application/json")
-//                        .body("{    \"name\": \"" + intentName + "\",\"responses\": [{\"messages\": [{\"type\": 0,\"speech\": [" +
-//                                responsesAsJSON + "]}]}],\"userSays\": [" + userSaysAsJSON + newUserSaysFormatted + "]}")
-//                        .asJson();
-//            } catch (UnirestException e) {
-//                e.printStackTrace();
-//            }
-//        } else {
-//            System.out.println("AddUserSays error: Intent is null");
-//        }
-//    }
-
     public ArrayList<String> toArrayList(String input){
         ArrayList<String> array = new ArrayList<>(); // Create new array
         StringBuilder sb = new StringBuilder();
