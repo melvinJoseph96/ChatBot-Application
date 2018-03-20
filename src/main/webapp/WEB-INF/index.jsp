@@ -22,11 +22,12 @@
         <!- shows what the chatbot will look like a page similar to FDM's ->
         <div id="vid">
             <iframe id="fdmVid" width="100%" height="100%"
-                    src="https://www.youtube.com/embed/u70RHFJyxws?autoplay=1&mute=1&loop=1&cc_load_policy=1rel=0&amp;controls=0&amp;showinfo=0&playlist=u70RHFJyxws"
+                    src="https://www.youtube.com/embed/u70RHFJyxws?autoplay=1&mute=1&loop=1&modestbranding=1&disablekb=1&cc_load_policy=1rel=0&amp;controls=0&amp;showinfo=0&playlist=u70RHFJyxws"
                     frameborder="0"
-                    allowfullscreen>
+                    allowfullscreen="allowfullscreen">
             </iframe>
         </div>
+        <div id="vidCover"></div>
         <div id="content">
             <h1 style="font-size: 50px">Careers</h1>
             <div id="boxes">
