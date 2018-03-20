@@ -8,8 +8,9 @@ You can access the application by typing localhost:8080 into your browsers searc
 
 On load of the web application, a template of the FDM page is shown. It is visible underneath the chatbot. The pages that are accessable are the home page ('/'), the graduate careers page ('/gradCareers'), the ex-forces page ('/exforcesCareers'), a FAQ page ('/faq') and the admin control panel, accessible at '/admin'.
 
-## Chatbot features
+## Chatbot 
 
+### Basic Feature:
 #### Chatbot is displayed after 5 seconds
 
 When first loading the website, the chatbot will not be visible. By waiting for 5 seconds, the chatbot will appear in the bottom right corner of the page.
@@ -68,22 +69,6 @@ Underneath each message displayed on the chatbot, the time the user received or 
 
 Once you have sent the chatbot a message, wait. Once the chatbot has a response, the chatbot will play a sound to indicate that the user has received a message and then the message will appear on screen.
 
-#### Ask questions about FDM
-
-Type into the message box on the chatbot any questions you may have about FDM. An example is "What does an FDM assessment day involve?". Once you enter the question, the chatbot will respond with the answer.
-
-#### A user can select the best way for them to be contacted
-
-Type your message into the text box using keywords such as "information", "contact" etc,  the chatbot will display a message saying "How do you want to contact us?" and two buttons, email or other. If you click on the email button you can choose one team of many to get in touch with. If you click on the other button, the chabot will display all our contact information like where we are, telephone numbers etc.
-
-#### Send an email via chatbot and can select which team their email gets sent to
-
-Type your message into the text box using keywords such as "email", "send", "message" etc the chatbot will display a message saying "Which team you want to send an email to?" and some buttons below with your options. After clicking the button you want, it will create an empty email ready for you to write to the team you chose.
-
-#### A user is displayed locations via google maps
-
-Type your message into the text box using keywords such as "address", "location" etc, the chatbot will display our offices' addresses and the exact location in google maps.
-
 #### A user can press a mute button to silence the sound of the chatbot
 
 Found at the top right hand side of the chatbot, there is a speaker icon. This signifies that the sound is on. By pressing the icon, a mute icon appears. This looks like the speaker icon but crossed out. The sound of the chatbot can no longer be heard. If you press the icon again, you can return the sound.
@@ -91,14 +76,6 @@ Found at the top right hand side of the chatbot, there is a speaker icon. This s
 #### A user can navigate the website and keep the chatbot muted
 
 Click the mute icon found on the top right hand side of the chatbot. The icon image will change to signify that the chatbot has muted. Next re-direct to another page either by typing into the search bar or by typing into the chatbot. Once the page has loaded, the chatbot will still be muted. 
-
-#### A user can email themselves their chat log
-
-After you have finished your conversation with the chatbot, click the icon found at the bottom left of teh chatbot that looks like a letter. This will then cause a box to appear over the screen that prompts you to enter your email. Type in your email into the boc and press the send button. Your email application will then appear with the information already entered into it. Just press send. You will then receive an email containing your chat log.
-
-#### The chatbot can re-direct the user to different parts of the website
-
-When you ask a question that the chatbot provides with an image, i.e. "Where can I apply for a graduate job", by clicking onto the image, as prompted by the chatbot, the page will be re-directed to the one linked.
 
 #### A user can make the chatbot speak out its messages
 
@@ -112,30 +89,56 @@ When the chat bot is reading out its message, press the mute button found at the
 
 Click on the speech icon found at the left-bottom of the chatbot. If you hover over the icon, you can see a text saying "Turn chat bot speech off" that's means the speech is on.  Then scroll down the page and click on one of the two "find out more" buttons, it will navigated you to one of the website's sub-pages. When the sub-page will load the chatbot, the speech will be still on. 
 
+#### A user can email themselves their chat log
+
+After you have finished your conversation with the chatbot, click the icon found at the bottom left of teh chatbot that looks like a letter. This will then cause a box to appear over the screen that prompts you to enter your email. Type in your email into the boc and press the send button. Your email application will then appear with the information already entered into it. Just press send. You will then receive an email containing your chat log.
+
+#### The chatbot can re-direct the user to different parts of the website
+
+When you ask a question that the chatbot provides with an image, i.e. "Where can I apply for a graduate job", by clicking onto the image, as prompted by the chatbot, the page will be re-directed to the one linked.
+
 #### A user can type using their preferred language and the chat bot will respond
 
 If I user starts a conversation in a language that is not English, chatbot will detect it and suggest changing the language to the language it detected. If user answers yes (or its equivalent in detected language), chatbot will continue the conversation in a changed language. If user answers no (or eqivalent), chatbot will continue conversation in English and inform the user about the command that allows him to change the language "change language". The chatbot can detect and use more than hundread diffrent languages.
 
+#### Ask questions about FDM
+
+Type into the message box on the chatbot any questions you may have about FDM. An example is "What does an FDM assessment day involve?". Once you enter the question, the chatbot will respond with the answer.
+
 #### A user can be linked to the FAQ page when the chat bot does not know how to respond
 
  When the chatbot does not have a response for the user, the chatbot will display a link to the FAQ page. Clicking this link will redirect the user to the FAQ page.
+
+### How to contact us:
+#### A user can select the best way for them to be contacted
  
+ Type your message into the text box using keywords such as "information", "contact" etc,  the chatbot will display a message saying "How do you want to contact us?" and two buttons, email or other. If you click on the email button you can choose one team of many to get in touch with. If you click on the other button, the chabot will display all our contact information like where we are, telephone numbers etc.
  
+#### Send an email via chatbot and can select which team their email gets sent to
+ 
+ Type your message into the text box using keywords such as "email", "send", "message" etc the chatbot will display a message saying "Which team you want to send an email to?" and some buttons below with your options. After clicking the button you want, it will create an empty email ready for you to write to the team you chose.
+ 
+#### A user is displayed locations via google maps
+ 
+ Type your message into the text box using keywords such as "address", "location" etc, the chatbot will display our offices' addresses and the exact location in google maps.
+
 
 ## User guide for the admin
 
+### How to access control panel:
 #### A user cannot access the admin control panel
 
 Unless you have access to an admin login account, you cannot access the control panel. To gain access you must type in your admin details into the login page on /admin.
 
 #### Accessing the admin control panel
  
- Type /admin into the URL. This will then bring up the admin login page where you can enter your admin login details. By pressing the login button, an admin will then get re-directed to the control panel. The URL will then be /controlpanel. The panel will appear containing a dashboard and a menu button on the left-top side of the page.
+ Type /admin into the URL. This will then bring up the admin login page where you can enter your admin login details. By pressing the login button, an admin will then get re-directed to the control panel. The URL will then be /controlpanel. The panel will appear containing a dashboard and a menu button on the left-top side of the page.###
 
 #### An admin can get to the admin login page through the chat bot
 
 If an admin is using the chatbot and wants to jump staright into the admin login page, they can do this by typing in the keyword "/openadminpanel" in the chatbot . This directs the user to the login page where they can put in their credentials to enter the panel.
 
+### Basic features for the admin:
 #### An admin can view current chatbot data
  
 Type /admin onto the end of the URL and hit enter. A login page will then be displayed where you must enter valid admin details. Once you've done that and redirected to /controlpanel, the table of data containing the intent information is displayed. The admin can then make changes to the data as they wish.
