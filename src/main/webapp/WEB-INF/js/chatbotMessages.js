@@ -42,19 +42,21 @@ $(function() { // On page load
         }
         // display the maps data
         var ids = sessionStorage.getItem('maps'); // session storage string
-        var Ids = ids.split("#"); // list of ids, split at occurence of #
-        for (var i=0;i<Ids.length;i++) {
-            var full = Ids[i]; // get the id from the list; full id
-            if (full.charAt(0) === 'l') {
-                if (full.charAt(1) === 'o') {// if this is for london
-                    map(51.506198, -0.084903, full);
+        if (ids !== null) {
+            var Ids = ids.split("#"); // list of ids, split at occurence of #
+            for (var i = 0; i < Ids.length; i++) {
+                var full = Ids[i]; // get the id from the list; full id
+                if (full.charAt(0) === 'l') {
+                    if (full.charAt(1) === 'o') {// if this is for london
+                        map(51.506198, -0.084903, full);
+                    }
+                    else if (full.charAt(1) === 'e') { // if this is leeds
+                        map(53.794950, -1.553101, full);
+                    }
                 }
-                else if (full.charAt(1) === 'e'){ // if this is leeds
-                    map(53.794950,-1.553101,full);
+                else if (full.charAt(0) === 'g') { // for glasgow
+                    map(55.862934, -4.255477, full);
                 }
-            }
-            else if (full.charAt(0) === 'g'){ // for glasgow
-                map(55.862934,-4.255477,full);
             }
         }
 
