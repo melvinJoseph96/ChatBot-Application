@@ -306,4 +306,21 @@ class ChatbotApplicationTests extends Specification {
         then: // the id of the intent should now be "newId"
         intent.getId().equals("newId")
     }
+
+    @Test
+    def "check the result of getId() returns the correct value"(){
+        given:
+        String id = "id111"
+        String name = "test534t3"
+        ArrayList<String> userSays = new ArrayList<>()
+        // add some data to the userSays
+        userSays.add("why work for fdm")
+        ArrayList<String> responses = new ArrayList<>()
+        // add some responses
+        responses.add("because fdm are great")
+        when:
+        Intent testIntent = new Intent(id,name,userSays,responses)
+        then:
+        testIntent.getId().equals(id);
+    }
 }
