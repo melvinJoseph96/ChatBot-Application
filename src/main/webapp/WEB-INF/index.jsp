@@ -52,11 +52,11 @@
                     <div id="green">&#8226;</div>
                     Chatbot
                     <div class="dialog">
-                        <a href="" class="close-X" onclick="minimise()"></a>
+                        <a href="#" class="close-X" onclick="minimise()"></a>
                     </div>
                     <img id="imageSoundOn" src="media/soundOff.png" title="mute" width="20" height="20" onclick="soundChangeOff()">
                     <img id="imageSoundOff" src="media/soundOn.png" title="un-mute" width="20" height="20" onclick="soundChangeOn()">
-                    <img id="imageLang" src="media/lang.png" title="mute" width="20" height="20" onclick="soundChangeOff()">
+                    <img id="imageLang" src="media/lang.png" title="lang" width="20" height="20" >
 
                 </div>
                 <div id="messages">

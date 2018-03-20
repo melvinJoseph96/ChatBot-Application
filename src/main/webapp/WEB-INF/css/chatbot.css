@@ -152,11 +152,9 @@ body{
     margin-right: 4px;
 }
 
-[class*='close-'] {
+.close-X {
 	color: white;
 	text-decoration: none;
-}
-.close-X {
 	float: right;
 }
 .close-X:after {
