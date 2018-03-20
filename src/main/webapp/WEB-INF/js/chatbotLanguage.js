@@ -67,3 +67,8 @@ function translate(query, source, target) {
     });
     return toReturn;
 }
+
+function changeLang() {
+    action = "languageChange";
+    run();
+}

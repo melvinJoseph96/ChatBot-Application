@@ -73,8 +73,10 @@ function run(){
     inputMessage = inputMessage.trim();
     var notEmpty = inputMessage !== null && inputMessage.trim().length !== 0;
 
-    if (notEmpty && inputMessage === "change language" || inputMessage === "language") {
-        addMessage("user", inputMessage);
+    if (notEmpty && (inputMessage === "change language" || inputMessage === "language") || action === "languageChange") {
+        if (action !== "languageChange") {
+            addMessage("user", inputMessage);
+        }
         $('#input').val("");
         addMessage("bot", "Please enter a name (in english) of a language you would like to use");
         action = "languageChangePrompt";
