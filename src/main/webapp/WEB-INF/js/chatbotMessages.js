@@ -2,7 +2,7 @@ var isMinimised;
 var isMuted;
 var action = "firstMessage";
 var currentLang = "en";
-var isDelayed = true;
+var isDelayed = false;
 
 $(function() { // On page load
     console.log("loaded chatbot.js");
@@ -110,6 +110,7 @@ function run(){
         chatLog = document.getElementById("messages").innerHTML; // get the whole chatbot html
         sessionStorage['chat-log'] = chatLog; // save it as a session cookie
         $('#messages').scrollTop($('#messages')[0].scrollHeight); // Make sure the chat box is scrolled to the bottom
+        isDelayed = true; //switching on the delay from now on
     } else if (notEmpty && action === "languageChangeConfirm") {
         addMessage("user", inputMessage); // Display the sent message in the chat box
         $('#input').val(""); // Clear the message text box ready for another message
