@@ -4,6 +4,9 @@ import CO2015.group9.chatbot.Controllers.ChatbotController
 import CO2015.group9.chatbot.Controllers.IndexController
 import CO2015.group9.chatbot.domain.Intent
 import CO2015.group9.chatbot.domain.Message
+import org.json.JSONArray
+import org.json.JSONException
+import org.json.JSONObject
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.springframework.beans.factory.annotation.Autowired
@@ -442,5 +445,82 @@ class ChatbotApplicationTests extends Specification {
         message.timestamp == time
     }
 
+    @Test
+    def "test fir AdminLogic getIntentDetails()"(){
+        given: // a new intent
+        String name1 = "test4rfdv"
+        ArrayList<String> userSays1 = new ArrayList<>()
+        // add some data to the userSays
+        userSays1.add("3")
+        ArrayList<String> responses1 = new ArrayList<>()
+        // add some responses
+        responses1.add("4")
+        AdminLogic adminLogic = new AdminLogic()
+        String id
+        when:
+        // add the intent
+        adminLogic.addIntent(name1,userSays1,responses1)
+        // get the id of the intent
+        ArrayList<Intent> intents = adminLogic.getIntents() // get all intents
+        for (Intent i : intents) { // loop through list
+            if (i.name == name1) { // find the intent we just added
+                id = i.id // get its id
+            }
+        }
+        // now get the results of calling the getIntentDetails method
+        JSONObject intentDetails = adminLogic.getIntentDetails(id)
+        // get the details of the intent
 
+        ArrayList<String> userSays = new ArrayList<>() // empty usersays list
+        ArrayList<String> responses = new ArrayList<>() // new responses list
+
+        JSONArray JSONUserSays = intentDetails.getJSONArray("userSays") // gets the usersays
+        JSONArray JSONResponses = intentDetails.getJSONArray("responses") // gets the responses
+
+        int userSaysArrLength = 0;
+        try {
+            userSaysArrLength = JSONUserSays.length();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        for (int j = 0; j < userSaysArrLength; j++) {
+            try {
+
+                userSays.add(JSONUserSays
+                        .getJSONObject(j)
+                        .getJSONArray("data")
+                        .getJSONObject(0)
+                        .getString("text"));
+            } catch (JSONException e) {
+                e.printStackTrace();
+                System.out.println("Intent has no prompts");
+            }
+        }
+
+
+        JSONObject responsesObject = JSONResponses
+                .getJSONObject(0)
+                .getJSONArray("messages")
+                .getJSONObject(0);
+
+        int responsesArrLength = 0;
+        if (responsesObject.get("speech") instanceof JSONArray) {
+            responsesArrLength = responsesObject
+                    .getJSONArray("speech")
+                    .length();
+        } else {
+            responses.add(responsesObject.getString("speech"))
+        }
+
+        for (int k = 0; k < responsesArrLength; k++) {
+            responses.add(responsesObject
+                    .getJSONArray("speech")
+                    .getString(k))
+        }
+        // delete the intent to finish
+        adminLogic.deleteIntent(id)
+        then: // now check the returned details are the same as the ones set at the start
+        ((userSays1 == userSays)&&(responses1 == responses))
+    }
 }
