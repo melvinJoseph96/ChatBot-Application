@@ -523,4 +523,18 @@ class ChatbotApplicationTests extends Specification {
         then: // now check the returned details are the same as the ones set at the start
         ((userSays1 == userSays)&&(responses1 == responses))
     }
+
+    @Test
+    def "test for admin logic toArrayList"(){
+        given: // given 2 strings
+        String one = "1"
+        String two = "2"
+        AdminLogic admin = new AdminLogic()
+        when: // make an array list of the string
+        ArrayList<String> value = admin.toArrayList(one+two)
+        then: // check the values have been set
+        for (String i : value) {
+            (i == one || i == two)
+        }
+    }
 }
