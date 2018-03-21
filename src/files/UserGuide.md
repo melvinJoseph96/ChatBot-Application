@@ -101,6 +101,10 @@ When you ask a question that the chatbot provides with an image, i.e. "Where can
 
 If I user starts a conversation in a language that is not English, chatbot will detect it and suggest changing the language to the language it detected. If user answers yes (or its equivalent in detected language), chatbot will continue the conversation in a changed language. If user answers no (or eqivalent), chatbot will continue conversation in English and inform the user about the command that allows him to change the language "change language". The chatbot can detect and use more than hundread diffrent languages.
 
+#### A user can select their language by pressing a globe icon
+
+Anytime during the conversation you can change the current language by clicking on the globe icon found at the right-top of the chatbot. When you press the icon, the chabot will send you a message saying "Please enter a name (in english) of a language you would like to use", type the name of the language you want and now you can chat with the chatbot using that language.
+
 #### Ask questions about FDM
 
 Type into the message box on the chatbot any questions you may have about FDM. An example is "What does an FDM assessment day involve?". Once you enter the question, the chatbot will respond with the answer.
