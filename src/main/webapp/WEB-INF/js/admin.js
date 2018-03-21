@@ -121,17 +121,11 @@ function load(){
     console.log("loaded admin.js");
     console.log(sessionStorage.getItem("current"));
     if (sessionStorage.getItem("current") === null) { // if this is a new session
-        sessionStorage["current"] = "dashboard";
-        displayDash();
-    }
-    else if (sessionStorage.getItem("current") === "dashboard"){ // if the admin has selected the dashboard
-        displayDash(); //display the dashboard
+        sessionStorage["current"] = "controlPanel";
+        displayControl();
     }
     else if (sessionStorage.getItem("current") === "controlPanel"){ // if the admin has selected the control panel
         displayControl(); // display the control panel
-    }
-    else if (sessionStorage.getItem("current") === "unansweredQuestions"){ // if the admin has selected the unanswered questions
-        displayQuestion(); // display the unanswered questions
     }
     else if (sessionStorage.getItem("current") === "chatbotSimulation"){ // if the admin selected the chatbot simulator
         displaySim(); // display the simulation
@@ -234,10 +228,6 @@ function menu() {
 function displayControl() {
     console.log("display control panel");
     $('#controlPanel').fadeIn();
-}
-function displayQuestion(){
-    console.log("display unanswered questions");
-    $('#unansweredQuestions').fadeIn();
 }
 function displaySim(){
     console.log("display chatbot simulation");

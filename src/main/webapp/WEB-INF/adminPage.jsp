@@ -27,66 +27,12 @@
     <div id="menu">
 
         <ul id="menuItems">
-            <li id="dash"><a href="" onclick="sessionStorage['current'] = 'dashboard'">Dashboard</a></li>
-            <li id="control"><a href="" onclick="sessionStorage['current'] = 'controlPanel'">Control Panel</a></li>
-            <li id="question"><a href="" onclick="sessionStorage['current'] = 'unansweredQuestions'">Unanswered Questions</a></li>
+            <li id="control" style="list-style-image: url('media/control.png')"><a href="" onclick="sessionStorage['current'] = 'controlPanel'">Control Panel</a></li>
             <li id="simulator"><a href="" onclick="sessionStorage['current'] = 'chatbotSimulation'">Chatbot Simulator</a></li>
         </ul>
 
     </div>
-    <div id="dashboard">
-        <div id="titleBarDash">
-            <h1>Dashboard</h1>
-            <p>overview</p>
-            <div id="refreshDash">
-                <button id="refreshButtonDash" onclick="load()" title="Refresh the data"><img src="media/refresh.png" width="16" height="16"></button>
-            </div>
-        </div>
 
-        <div id="dataBar">
-            <table id="data">
-                <tr>
-                    <td id="today"></td>
-                    <td id="week"></td>
-                    <td id="month"></td>
-                    <td id="year"></td>
-                    <td id="needs"></td>
-                </tr>
-            </table>
-        </div>
-
-        <div id="data2">
-            <div id="answeredGraph">
-                <canvas id="answered"></canvas>
-                <div id="over"></div>
-            </div>
-            <div id="adminAnswers">
-                <h3 id="tableTitle">Recent Answerers</h3>
-                <table id="admins">
-                    <tr>
-                        <td id="zero"></td>
-                        <td id="zerodata"></td>
-                    </tr>
-                    <tr>
-                        <td id="first"></td>
-                        <td id="firstdata"></td>
-                    </tr>
-                    <tr>
-                        <td id="second"></td>
-                        <td id="seconddata"></td>
-                    </tr>
-                    <tr>
-                        <td id="third"></td>
-                        <td id="thirddata"></td>
-                    </tr>
-                    <tr>
-                        <td id="fourth"></td>
-                        <td id="fourthdata"></td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-    </div>
     <div id="controlPanel">
 
         <div id="titleBarControl">
@@ -120,8 +66,8 @@
                                     <input type="text" id="responses" placeholder="Enter a new response and press enter to be accepted" size="50">
                                 </td>
                                 <td>
-                                    <button id="addButton" onclick="addRow(); return false;">Add</button>
-                                    <button id="cancel" onclick="cancel();return false;">Cancel</button>
+                                    <button id="addButton" onclick="addRow(); return false;" style="font-size: 10px">Add</button>
+                                    <button id="cancel" onclick="cancel();return false;" style="font-size: 10px">Cancel</button>
                                 </td>
                             </tr>
                         </table>
@@ -157,27 +103,15 @@
         </div>
         <div id="notification"><h3 id="info"></h3></div>
     </div>
-    <div id="unansweredQuestions">
-
-        <div id="titleBarQuest">
-            <h1>Unanswered Questions</h1>
-            <p>display and answer</p>
-            <div id="refreshQuest">
-                <button id="refreshButtonQuest" onclick="load()" title="Refresh the data"><img src="media/refresh.png" width="16" height="16"></button>
-            </div>
-        </div>
-
-        <div id="unansweredTable">
-            <table></table>
-        </div>
-
-    </div>
 
     <div id="chatbotSimulator">
 
         <div id="titleBarSim">
             <h1>Chatbot Simulator</h1>
             <p>preview</p>
+            <div id="refreshSim">
+                <button id="refreshButtonSim" onclick="l" title="Refresh the data"><img src="media/refresh.png" width="16" height="16"></button>
+            </div>
         </div>
 
         <div id="sim">

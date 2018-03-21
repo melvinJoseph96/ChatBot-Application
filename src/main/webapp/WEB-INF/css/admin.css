@@ -137,7 +137,6 @@ button {
 }
 #cancel {
     padding: 5px;
-    font-size: 10px
 }
 #addButton {
     padding: 5px;
@@ -259,7 +258,7 @@ button {
     z-index: 3;
 }
 #menu ul {
-    margin-top: 9px;
+    margin-top: 10px;
     color: white;
 }
 #menu li {
@@ -678,14 +677,8 @@ button {
 #listIntents tr td:last-child {
     border-radius: 15px;
 }
-#dash {
-    list-style-image: url("../media/house.png");
-}
 #control {
     list-style-image: url('../media/control.png');
-}
-#question {
-    list-style-image: url('../media/question.png')
 }
 #simulator {
     list-style-image: url('../media/computer.png')
