@@ -340,28 +340,4 @@ public class AdminLogic {
         return str.toString();
     }
 
-
-    public static void main(String[] args) {
-        AdminLogic test = new AdminLogic();
-        test.getIntents();
-        test.translate("Co to jest FDM", "pl", "en");
-        test.translate("Co to jest FDM", "en");
-        test.detectUserLang("chrząszcz brzmi w trzcinie w strzebeszynie");
-//        ArrayList<String> us = new ArrayList<>();
-//        ArrayList<String> r = new ArrayList<>();
-//        us.add("test1");
-//        us.add("test2");
-//        us.add("test3");
-//        r.add("rtest1");
-//        r.add("rtest2");
-//        r.add("rtest3");
-//        test.updateIntent("42470a2b-1f18-480a-86a5-026e5da4a883", "testchanged", us, r);
-//         test.detectUserLang("Co to jest FDM?");
-//         test.addIntent("hbvdsafjhgfdfsghbd",new ArrayList<>(),new ArrayList<>());
-//         System.out.println(test.getIntentDetails("fa39fa7a-2737-41f9-9b72-7e26aa37ea3d"));
-//         test.deleteIntent("c822f665-946c-47a1-b898-51d7351db821");
-//         test.addResponse("42470a2b-1f18-480a-86a5-026e5da4a883", "testresponse");
-//         test.addUserSays("8a043471-028d-4645-af0a-55a698385337", "nubedsdr 5");
-    }
-
 }
