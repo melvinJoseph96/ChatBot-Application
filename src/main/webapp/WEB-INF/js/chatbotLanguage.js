@@ -48,6 +48,7 @@ function translate(query, source, target) {
         async: false
     });
     var data = [query,source,target];
+    console.log(data);
     $.ajax({
         type: "POST",
         url: "/translate",

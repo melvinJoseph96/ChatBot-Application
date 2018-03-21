@@ -537,4 +537,60 @@ class ChatbotApplicationTests extends Specification {
             (i == one || i == two)
         }
     }
+
+    @Test
+    def "test the translate function works with french"(){
+        given: // message to translate is 'oui'
+        String query = "oui"
+        String source = "fr"
+        String target = "en"
+        AdminLogic admin = new AdminLogic()
+        when: // translate the message
+        String value = admin.translate(query,source,target)
+        then: // default return value in french
+        value == "Yes"
+    }
+
+    @Test
+    def "test the translate function in Mandarin"(){
+        given: // message to translate is 'ni hao' meaning "hello"/"hello there"
+        String query = "你好"
+        String source = "zh-CN"
+        String target = "en"
+        AdminLogic admin = new AdminLogic()
+        when: // translate the message
+        String value = admin.translate(query,source,target)
+        then: // default return value in mandarin
+        value == "Hello there"
+    }
+
+    @Test
+    def "detectUserLang function test french"(){
+        given:
+        AdminLogic admin = new AdminLogic()
+        when:
+        String lang = admin.detectUserLang("oui")
+        then:
+        lang == "fr"
+    }
+
+    @Test
+    def "detectUserLang function test Mandarin"(){
+        given:
+        AdminLogic admin = new AdminLogic()
+        when:
+        String lang = admin.detectUserLang("大熊猫")
+        then:
+        lang == "zh-CN"
+    }
+
+    @Test
+    def "detectUserLang function test italian"(){
+        given:
+        AdminLogic admin = new AdminLogic()
+        when:
+        String lang = admin.detectUserLang("italiano")
+        then:
+        lang == "it"
+    }
 }
